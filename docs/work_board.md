@@ -4,7 +4,7 @@
 
 | 角色 | GitHub Issue | 模块 | 主要文件 | PR 合并标准 |
 |---|---|---|---|---|
-| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2) | A · 页面整合 / PR 管理 / 最终提交 QA | `README.md`, `docs/*`, 全站 QA | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
+| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2) | 项目负责人 / 初版网页实现 / GitHub 协作与代码整合 | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `docs/*`, 全站 QA | baseline 代码可运行 + 完成 PR review/merge + 最终整合验证 |
 | B | [#3](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/3) | 发表年、获奖年与 recognition lag | `data/award_timeline.csv`, `data/recognition_lag_distribution.csv`, `src/app.js` Time functions | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
 | C | [#4](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/4) | 会议和领域分布 | `data/venue_stats.csv`, `data/venue_area_stats.csv`, Venue section | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
 | D | [#5](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/5) | 主题分布、演化和代表论文卡 | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/*`, Topic section | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
@@ -28,3 +28,7 @@
 - Citation and Impact：citation vs lag + citation trajectories + depth × breadth scatter
 - Network：institution ranking + country/region ranking
 - README 本地运行说明
+
+## A 组长贡献记录写法
+
+报告中可以写：负责项目仓库与代码整合工作：搭建 GitHub 协作仓库并配置 PR 工作流，根据研究问题创建 Issues 分工；先实现完整的 D3 网页 baseline，包括页面结构、数据加载、多个核心图表、tooltip 交互、论文详情卡和统一视觉样式；后续负责 review 队友 PR，检查代码运行、数据路径、图表解释和最终整合质量。

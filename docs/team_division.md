@@ -4,22 +4,25 @@
 
 GitHub Issue 对照表见：`docs/work_board.md`。组长可以把对应 issue assign 给具体成员；每个成员从自己的 issue 开分支和 PR。
 
-## A：总负责人 / 页面整合
+## A：项目负责人 / 初版网页实现 / GitHub 协作与代码整合
 
 负责内容：
 
 - 维护项目主线和页面结构；
-- 搭建网页整体框架；
-- 整合各成员图表模块；
-- 统一 README、报告结构和最终提交材料；
-- 检查数据路径、页面运行和提交格式。
+- 搭建 GitHub 协作仓库，配置 PR-based 工作流和 `main` 分支保护；
+- 根据研究问题创建 GitHub Issues 分工，明确每个模块的任务、数据文件和交付标准；
+- 先实现完整的 D3 网页 baseline，包括页面结构、数据加载、核心图表、tooltip、论文详情卡和统一视觉样式；
+- 为 Time / Venue / Topic / Citation / Network 各模块先产出可运行代码版本，供队友在此基础上继续优化；
+- review 队友 PR，检查代码能否运行、数据路径是否正确、图表是否回答对应研究问题；
+- 负责最终代码整合、运行测试和提交前 QA。
 
 交付内容：
 
-- 网页主框架；
-- 页面导航和章节顺序；
-- 报告总稿；
-- 最终提交检查清单。
+- GitHub repo、Issues #2–#7 和 `docs/work_board.md` 分工表；
+- baseline D3 webpage：`index.html`, `src/app.js`, `src/styles.css`；
+- README 本地运行说明；
+- PR review / merge 记录；
+- 最终页面运行验证和提交前检查清单。
 
 ## B：时间线与 Recognition Lag 模块
 

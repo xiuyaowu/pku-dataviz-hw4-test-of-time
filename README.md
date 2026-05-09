@@ -112,7 +112,7 @@ Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
-| A | 总负责 / 页面整合 | 故事线、网页框架、最终整合、README、报告总稿、提交检查 |
+| A | 项目负责人 / 初版网页实现 / GitHub 协作与代码整合 | GitHub 仓库与 PR 工作流、Issues 分工、baseline D3 网页、code review、最终整合和 QA |
 | B | 时间线与 recognition lag | 分析发表年、获奖年、recognition lag，做时间线和分布图 |
 | C | 会议 / 领域分布 | 分析 venue、venue_area，做会议排名、领域分布、热力图 |
 | D | 主题演化 | 分析 topic_label / concepts，做主题演化和代表论文卡片 |
