@@ -51,6 +51,9 @@ git push -u origin feature/your-name-task
 │   ├── project_plan.md
 │   ├── team_division.md
 │   ├── work_board.md
+│   ├── final_qa_checklist.md
+│   ├── report/
+│   │   └── contribution_A.md
 │   └── data_dictionary.md
 ├── data/
 │   ├── papers_enriched.csv
@@ -108,7 +111,7 @@ http://127.0.0.1:8765/index.html
 
 详细分工见：`docs/team_division.md`
 
-Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。
+Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，最终整合检查见 `docs/final_qa_checklist.md`。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
@@ -160,6 +163,8 @@ Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#
 - 主要发现有文字说明；
 - 没有提交 `.DS_Store`、缓存、临时文件、无关大文件；
 - PR 描述写清楚改了什么。
+
+仓库已提供 PR 模板：`.github/pull_request_template.md`。最终提交前按 `docs/final_qa_checklist.md` 做整体验证。
 
 ## 最终目标
 

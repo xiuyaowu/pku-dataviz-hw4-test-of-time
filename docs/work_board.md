@@ -16,6 +16,7 @@
 - 每个人从 `main` 新建自己的分支。
 - 不直接改 `main`。
 - PR 描述必须包含：做了什么、使用的数据、主要发现、需要别人注意的地方。
+- 仓库已提供 `.github/pull_request_template.md`，发 PR 时按模板填写。
 - 如果改了 `src/app.js`，本地先跑 `node --check src/app.js`。
 - 如果改了页面，启动 `python3 -m http.server 8765 --bind 127.0.0.1` 后打开 `http://127.0.0.1:8765/index.html` 检查。
 
@@ -32,3 +33,5 @@
 ## A 组长贡献记录写法
 
 报告中可以写：负责项目仓库与代码整合工作：搭建 GitHub 协作仓库并配置 PR 工作流，根据研究问题创建 Issues 分工；先实现完整的 D3 网页 baseline，包括页面结构、数据加载、多个核心图表、tooltip 交互、论文详情卡和统一视觉样式；后续负责 review 队友 PR，检查代码运行、数据路径、图表解释和最终整合质量。
+
+可直接引用的更完整版本见：`docs/report/contribution_A.md`。最终整合检查表见：`docs/final_qa_checklist.md`。
