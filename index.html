@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What Research Stands the Test of Time?</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="src/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <a href="#time">Time</a>
+      <a href="#venue">Venue</a>
+      <a href="#topic">Topic</a>
+      <a href="#citation">Citation</a>
+      <a href="#network">Network</a>
+    </nav>
+    <p class="eyebrow">PKU Data Visualization HW4 · Test of Time Award</p>
+    <h1>哪些计算机研究经得起时间检验？</h1>
+    <p class="subtitle">Visualizing long-term impact in computer science through award timing, research fields, topic evolution, citation trajectories, and institutional diffusion.</p>
+    <div id="summary-cards" class="summary-grid"></div>
+  </header>
+
+  <main>
+    <section id="time" class="section two-col">
+      <div class="section-copy">
+        <p class="section-kicker">RQ1 · Time</p>
+        <h2>时间检验奖通常隔多久才颁发？</h2>
+        <p>recognition lag 直接刻画“经得起时间检验”的时间尺度：从论文发表到多年后被重新认可，中间间隔了多久。</p>
+        <p id="time-note" class="reading-note"></p>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Recognition Lag Distribution</h3>
+          <span>count by lag bin</span>
+        </div>
+        <div id="lag-chart" class="chart"></div>
+      </div>
+    </section>
+
+    <section id="venue" class="section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">RQ2 · Venue & Field</p>
+          <h2>哪些会议和领域更容易产生长期影响论文？</h2>
+        </div>
+        <p class="reading-note" id="venue-note"></p>
+      </div>
+      <div class="grid-2">
+        <div class="chart-card">
+          <div class="chart-head"><h3>Top Venues</h3><span>paper count</span></div>
+          <div id="venue-chart" class="chart tall"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-head"><h3>Field Map</h3><span>papers by area</span></div>
+          <div id="area-chart" class="chart tall"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topic" class="section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">RQ3 · Topic Evolution</p>
+          <h2>长期影响论文集中在哪些主题？</h2>
+        </div>
+        <p class="reading-note" id="topic-note"></p>
+      </div>
+      <div class="grid-2 uneven">
+        <div class="chart-card">
+          <div class="chart-head"><h3>Topic Distribution</h3><span>top topics</span></div>
+          <div id="topic-chart" class="chart tall"></div>
+        </div>
+        <div class="chart-card detail-card">
+          <div class="chart-head"><h3>Representative Papers</h3><span>click points/bars to update</span></div>
+          <div id="paper-detail"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="citation" class="section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">RQ4 · Citation & Recognition</p>
+          <h2>高引用是否等于经得起时间检验？</h2>
+        </div>
+        <p class="reading-note" id="citation-note"></p>
+      </div>
+      <div class="grid-2">
+        <div class="chart-card">
+          <div class="chart-head"><h3>Citation vs Recognition Lag</h3><span>each dot = paper</span></div>
+          <div id="scatter-chart" class="chart tall"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-head"><h3>Citation Trajectory</h3><span>top cited papers</span></div>
+          <div id="trajectory-chart" class="chart tall"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="network" class="section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">RQ5 · Impact Network</p>
+          <h2>长期影响如何跨机构和国家扩散？</h2>
+        </div>
+        <p class="reading-note" id="network-note"></p>
+      </div>
+      <div class="grid-2">
+        <div class="chart-card">
+          <div class="chart-head"><h3>Institutions</h3><span>paper count</span></div>
+          <div id="institution-chart" class="chart tall"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-head"><h3>Countries / Regions</h3><span>paper count</span></div>
+          <div id="country-chart" class="chart tall"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+  <footer>
+    <p>Data source: Test of Time Award records enriched with public scholarly metadata. Metrics such as impact breadth are approximate indicators for visualization.</p>
+  </footer>
+  <script src="src/app.js"></script>
+</body>
+</html>

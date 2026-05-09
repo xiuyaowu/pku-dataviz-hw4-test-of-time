@@ -46,6 +46,7 @@ git push -u origin feature/your-name-task
 ```text
 .
 ├── README.md
+├── index.html
 ├── docs/
 │   ├── project_plan.md
 │   ├── team_division.md
@@ -66,10 +67,41 @@ git push -u origin feature/your-name-task
 │   ├── manual_paper_annotations_top60_template.csv
 │   └── 按方向拆分的 5 份待补充表
 ├── src/
-│   └── 前端代码后续放这里
+│   ├── app.js
+│   └── styles.css
 ├── 小组作业说明.md
 └── 小组作业说明-20260415.pdf
 ```
+
+## 当前基础网页
+
+仓库已经包含一个可直接运行的 D3 网页基础版：`index.html` + `src/app.js` + `src/styles.css`。
+
+当前页面包含 5 个研究问题模块：
+
+1. Time：recognition lag 分布和核心时间尺度；
+2. Venue & Field：会议排名和领域分布；
+3. Topic Evolution：主题分布和代表论文详情卡；
+4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹；
+5. Impact Network：机构和国家/地区分布。
+
+这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
+
+## 本地运行
+
+不要直接双击打开 `index.html`，因为浏览器可能拦截本地 CSV 读取。请在仓库根目录启动一个本地静态服务器：
+
+```bash
+python3 -m http.server 8765 --bind 127.0.0.1
+```
+
+然后在浏览器打开：
+
+```text
+http://127.0.0.1:8765/index.html
+```
+
+修改 `src/app.js` 或 `src/styles.css` 后，刷新网页即可查看效果。
 
 ## 分工概览
 
