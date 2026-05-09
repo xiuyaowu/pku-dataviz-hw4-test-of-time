@@ -1,0 +1,170 @@
+id,name,node_type,country,paper_count,best_paper_count,group,centrality
+https://openalex.org/I95457486,"University of California, Berkeley",institution,,17,0,,12
+https://openalex.org/I74973139,Carnegie Mellon University,institution,,15,0,,11
+https://openalex.org/I97018004,Stanford University,institution,,14,0,,10
+https://openalex.org/I63966007,Massachusetts Institute of Technology,institution,,11,0,,11
+https://openalex.org/I205783295,Cornell University,institution,,8,0,,3
+https://openalex.org/I4210085935,IBM Research - Almaden,institution,,8,0,,9
+https://openalex.org/I1341412227,IBM (United States),institution,,8,0,,21
+https://openalex.org/I24603500,University of Massachusetts Amherst,institution,,8,0,,10
+https://openalex.org/I201448701,University of Washington,institution,,7,0,,5
+https://openalex.org/I1297971548,International Computer Science Institute,institution,,7,0,,6
+https://openalex.org/I1343180700,Intel (United States),institution,,7,0,,15
+https://openalex.org/I72090969,Nokia (United States),institution,,7,0,,5
+https://openalex.org/I185261750,University of Toronto,institution,,6,0,,8
+https://openalex.org/I141945490,University of British Columbia,institution,,6,0,,0
+https://openalex.org/I1283103587,AT&T (United States),institution,,5,0,,6
+https://openalex.org/I1290206253,Microsoft (United States),institution,,5,0,,7
+https://openalex.org/I1324840837,Hewlett-Packard (United States),institution,,5,0,,6
+https://openalex.org/I36258959,"University of California, San Diego",institution,,4,0,,3
+https://openalex.org/I20089843,Princeton University,institution,,4,0,,7
+https://openalex.org/I2801204180,Marina Del Rey Hospital,institution,,4,0,,7
+https://openalex.org/I1174212,University of Southern California,institution,,4,0,,6
+https://openalex.org/I27837315,University of Michigan–Ann Arbor,institution,,4,0,,4
+https://openalex.org/I4210164937,Microsoft Research (United Kingdom),institution,,4,0,,5
+https://openalex.org/I241749,University of Cambridge,institution,,3,0,,2
+https://openalex.org/I66946132,"University of Maryland, College Park",institution,,3,0,,2
+https://openalex.org/I1331384533,University of Hawaii System,institution,,3,0,,8
+https://openalex.org/I4210162662,Digital Equipment (Germany),institution,,3,0,,0
+https://openalex.org/I173498003,Palo Alto Research Center,institution,,3,0,,2
+https://openalex.org/I86519309,The University of Texas at Austin,institution,,3,0,,17
+https://openalex.org/I204250578,"University of California, Irvine",institution,,3,0,,3
+https://openalex.org/I170897317,Duke University,institution,,3,0,,3
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",institution,,3,0,,3
+https://openalex.org/I1298353152,SRI International,institution,,2,0,,3
+https://openalex.org/I122411786,California Institute of Technology,institution,,2,0,,2
+https://openalex.org/I1294671590,Centre National de la Recherche Scientifique,institution,,2,0,,7
+https://openalex.org/I176714629,Bell (Canada),institution,,2,0,,3
+https://openalex.org/I148283060,Lawrence Berkeley National Laboratory,institution,,2,0,,2
+https://openalex.org/I197251160,Hebrew University of Jerusalem,institution,,2,0,,3
+https://openalex.org/I1342911587,Oracle (United States),institution,,2,0,,1
+https://openalex.org/I99043593,Macquarie University,institution,,2,0,,7
+https://openalex.org/I4210148712,Silicon Valley University,institution,,2,0,,6
+https://openalex.org/I1326498283,Institut national de recherche en informatique et en automatique,institution,,2,0,,2
+https://openalex.org/I135310074,University of Wisconsin–Madison,institution,,2,0,,1
+https://openalex.org/I188538660,University of Colorado Boulder,institution,,2,0,,0
+https://openalex.org/I177802217,University of Mannheim,institution,,2,0,,1
+https://openalex.org/I18014758,Simon Fraser University,institution,,2,0,,4
+https://openalex.org/I1280536761,Ames Research Center,institution,,2,0,,1
+https://openalex.org/I130238516,University of Minnesota,institution,,2,0,,0
+https://openalex.org/I40347166,University of Chicago,institution,,2,0,,3
+https://openalex.org/I125749732,Western University,institution,,2,0,,3
+https://openalex.org/I40120149,University of Oxford,institution,,2,0,,3
+https://openalex.org/I136199984,Harvard University,institution,,2,0,,1
+https://openalex.org/I174306211,Technion – Israel Institute of Technology,institution,,2,0,,2
+https://openalex.org/I35440088,ETH Zurich,institution,,2,0,,1
+https://openalex.org/I47508984,Imperial College London,institution,,2,0,,0
+https://openalex.org/I4210099336,Menlo School,institution,,1,0,,2
+https://openalex.org/I91045830,Texas A&M University,institution,,1,0,,2
+https://openalex.org/I4210121786,Max Planck Institute for Software Systems,institution,,1,0,,1
+https://openalex.org/I123185442,Reykjavík University,institution,,1,0,,4
+https://openalex.org/I35364215,Naval Postgraduate School,institution,,1,0,,4
+https://openalex.org/I26653445,Tellabs (Canada),institution,,1,0,,1
+https://openalex.org/I899635006,Université Grenoble Alpes,institution,,1,0,,5
+https://openalex.org/I4210104430,Laboratoire d'Informatique de Grenoble,institution,,1,0,,5
+https://openalex.org/I4210099593,Computer Algorithms for Medicine,institution,,1,0,,5
+https://openalex.org/I4210121838,Laboratoire Lorrain de Recherche en Informatique et ses Applications,institution,,1,0,,5
+https://openalex.org/I35765314,Pittsburgh Supercomputing Center,institution,,1,0,,1
+https://openalex.org/I3039010084,Tamedia (Switzerland),institution,,1,0,,0
+https://openalex.org/I2799798094,UCLA Health,institution,,1,0,,0
+https://openalex.org/I117965899,University of Hawaiʻi at Mānoa,institution,,1,0,,2
+https://openalex.org/I4210090841,Honolulu University,institution,,1,0,,2
+https://openalex.org/I2800306684,Acton Institute,institution,,1,0,,0
+https://openalex.org/I169540460,The Aerospace Corporation,institution,,1,0,,1
+https://openalex.org/I1292974536,Ford Motor Company (United States),institution,,1,0,,1
+https://openalex.org/I2801851002,Harvard University Press,institution,,1,0,,0
+https://openalex.org/I4210122731,Digital Wave (United States),institution,,1,0,,2
+https://openalex.org/I78577930,Columbia University,institution,,1,0,,2
+https://openalex.org/I154570441,"University of California, Santa Barbara",institution,,1,0,,1
+https://openalex.org/I186995768,Università degli studi di Cassino e del Lazio Meridionale,institution,,1,0,,7
+https://openalex.org/I4210099310,Consorzio Nazionale Interuniversitario per le Telecomunicazioni,institution,,1,0,,7
+https://openalex.org/I157485424,Korea Advanced Institute of Science and Technology,institution,,1,0,,7
+https://openalex.org/I170486558,Pompeu Fabra University,institution,,1,0,,7
+https://openalex.org/I4210146936,Huawei Technologies (United States),institution,,1,0,,7
+https://openalex.org/I4210101778,Samsung (United States),institution,,1,0,,7
+https://openalex.org/I20121455,Bielefeld University,institution,,1,0,,1
+https://openalex.org/I177725633,Chinese University of Hong Kong,institution,,1,0,,1
+https://openalex.org/I114395901,University of Nebraska–Lincoln,institution,,1,0,,0
+https://openalex.org/I4210110987,IIT@MIT,institution,,1,0,,2
+https://openalex.org/I1743320,Palo Alto University,institution,,1,0,,2
+https://openalex.org/I4210159778,National Research Council Canada,institution,,1,0,,1
+https://openalex.org/I4210134091,Yahoo (United States),institution,,1,0,,1
+https://openalex.org/I129604602,University of Sydney,institution,,1,0,,0
+https://openalex.org/I98677209,University of Edinburgh,institution,,1,0,,1
+https://openalex.org/I151746483,University of Waterloo,institution,,1,0,,1
+https://openalex.org/I118118575,New Jersey Institute of Technology,institution,,1,0,,1
+https://openalex.org/I134446601,Berkeley College,institution,,1,0,,2
+https://openalex.org/I31419693,Kyungpook National University,institution,,1,0,,4
+https://openalex.org/I4210113654,IBM (Canada),institution,,1,0,,4
+https://openalex.org/I3005327000,Institute for Infocomm Research,institution,,1,0,,0
+https://openalex.org/I124158823,Conservatoire National des Arts et Métiers,institution,,1,0,,1
+https://openalex.org/I91950636,Unisys (United States),institution,,1,0,,2
+https://openalex.org/I4210103385,Tandem Diabetes Care (United States),institution,,1,0,,2
+https://openalex.org/I59553526,Stony Brook University,institution,,1,0,,1
+https://openalex.org/I63772739,Florida Atlantic University,institution,,1,0,,0
+https://openalex.org/I8204097,Ludwig-Maximilians-Universität München,institution,,1,0,,0
+https://openalex.org/I175594653,John Brown University,institution,,1,0,,0
+https://openalex.org/I4210140791,Irvine University,institution,,1,0,,1
+https://openalex.org/I19894307,Université de Montpellier,institution,,1,0,,2
+https://openalex.org/I4210101743,"Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier",institution,,1,0,,2
+https://openalex.org/I1297127228,Space Telescope Science Institute,institution,,1,0,,1
+https://openalex.org/I131651094,University of Denver,institution,,1,0,,0
+https://openalex.org/I58610484,Seattle University,institution,,1,0,,2
+https://openalex.org/I154425047,University of Alberta,institution,,1,0,,1
+https://openalex.org/I1325784139,Yahoo (United Kingdom),institution,,1,0,,1
+https://openalex.org/I98259816,"Birkbeck, University of London",institution,,1,0,,4
+https://openalex.org/I4210112150,Institute of Automation,institution,,1,0,,4
+https://openalex.org/I84653119,Academia Sinica,institution,,1,0,,4
+https://openalex.org/I4210160447,Universidad de Londres,institution,,1,0,,4
+https://openalex.org/I111236770,University of Vermont,institution,,1,0,,4
+https://openalex.org/I161318765,"University of California, Los Angeles",institution,,1,0,,2
+https://openalex.org/I4210114115,IBM Research - Thomas J. Watson Research Center,institution,,1,0,,2
+https://openalex.org/I79272384,"University of Maryland, Baltimore County",institution,,1,0,,1
+https://openalex.org/I72951846,Washington State University,institution,,1,0,,1
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,institution,,1,0,,0
+https://openalex.org/I70983195,Syracuse University,institution,,1,0,,0
+https://openalex.org/I52099693,University of York,institution,,1,0,,0
+https://openalex.org/I4210109390,National Center for Biotechnology Information,institution,,1,0,,0
+https://openalex.org/I1321296531,National Institute of Standards and Technology,institution,,1,0,,0
+Tampere University,Tampere University,institution,,1,0,,0
+https://openalex.org/I2802123492,Oxford Research Group,institution,,1,0,,1
+https://openalex.org/I53964585,Weizmann Institute of Science,institution,,1,0,,0
+https://openalex.org/I4210090857,Schlumberger (United States),institution,,1,0,,1
+https://openalex.org/I154100212,Schlumberger (British Virgin Islands),institution,,1,0,,1
+https://openalex.org/I5388228,University of Rochester,institution,,1,0,,1
+https://openalex.org/I4210122954,MIT Lincoln Laboratory,institution,,1,0,,1
+https://openalex.org/I4210141230,Apple (Germany),institution,,1,0,,2
+https://openalex.org/I4210153776,Apple (United States),institution,,1,0,,2
+https://openalex.org/I50441567,Universitat de les Illes Balears,institution,,1,0,,2
+https://openalex.org/I36672615,Courant Institute of Mathematical Sciences,institution,,1,0,,2
+https://openalex.org/I4210116723,Robotics Research (United States),institution,,1,0,,2
+https://openalex.org/I57206974,New York University,institution,,1,0,,2
+https://openalex.org/I926574661,Leipzig University,institution,,1,0,,2
+https://openalex.org/I87216513,Michigan State University,institution,,1,0,,2
+https://openalex.org/I59270414,Indian Institute of Science Bangalore,institution,,1,0,,2
+https://openalex.org/I52357470,The Ohio State University,institution,,1,0,,2
+https://openalex.org/I1341640284,Centrum Wiskunde & Informatica,institution,,1,0,,0
+https://openalex.org/I67031392,Carleton University,institution,,1,0,,1
+https://openalex.org/I4210097842,Istituto Centrale per la Ricerca Scientifica e Tecnologica Applicata al Mare,institution,,1,0,,0
+https://openalex.org/I189590672,Kansas State University,institution,,1,0,,1
+https://openalex.org/I93860229,Politecnico di Milano,institution,,1,0,,1
+https://openalex.org/I177477856,Polytechnic University of Turin,institution,,1,0,,1
+https://openalex.org/I114772536,Software Engineering Institute,institution,,1,0,,2
+https://openalex.org/I4210109752,Research International (United States),institution,,1,0,,2
+https://openalex.org/I2801227569,Ghent University Hospital,institution,,1,0,,0
+https://openalex.org/I118347636,Australian National University,institution,,1,0,,8
+https://openalex.org/I2802236040,University of Colorado System,institution,,1,0,,8
+https://openalex.org/I219193219,Purdue University West Lafayette,institution,,1,0,,8
+https://openalex.org/I4210158342,Intel (United Kingdom),institution,,1,0,,8
+https://openalex.org/I73236664,Wheaton College - Illinois,institution,,1,0,,8
+https://openalex.org/I179647637,Universidad Autónoma del Estado de México,institution,,1,0,,1
+https://openalex.org/I4210165121,Instituto Tecnologico de Orizaba,institution,,1,0,,1
+https://openalex.org/I4210096112,Rutgers Sexual and Reproductive Health and Rights,institution,,1,0,,2
+https://openalex.org/I13469542,Vrije Universiteit Brussel,institution,,1,0,,0
+https://openalex.org/I181653535,San Diego Supercomputer Center,institution,,1,0,,1
+https://openalex.org/I135458274,Citigroup,institution,,1,0,,1
+https://openalex.org/I124055696,University of Copenhagen,institution,,1,0,,1
+https://openalex.org/I1288214837,United States Naval Research Laboratory,institution,,1,0,,0
+https://openalex.org/I165690674,Oregon Health & Science University,institution,,1,0,,1
+https://openalex.org/I99418890,Northwestern Polytechnic University,institution,,1,0,,1
+https://openalex.org/I1322087612,Alcatel Lucent (Germany),institution,,1,0,,0

@@ -1,0 +1,61 @@
+paper_id,title,year,venue,topic_label_api,citation_count,recognition_lag,impact_breadth_score,manual_priority_score,manual_topic_label,one_sentence_contribution_zh,why_time_tested_zh,foundational_type,industry_impact_level,industry_impact_note_zh,evidence_url_1,evidence_url_2,display_priority,teammate,checked
+kdd_1996_1b93ceb4,A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise,1996,KDD,Computer Vision,19133,18,81.12,0.8609,,,,,,,,,,,no
+iccv_1987_56f24279,Snakes: Active Contour Models,1987,ICCV,Computer Vision,17009,26,68.5,0.8264,,,,,,,,,,,no
+iccv_1999_ac21b391,Object Recognition from Local Scale-Invariant Features,1999,ICCV,Computer Vision,16147,12,65.88,0.6942,,,,,,,,,,,no
+vldb_2000_1f64865f,Database replication: a tale of research across communities,2000,VLDB,Computer Vision,13125,10,81.12,0.6607,,,,,,,,,,,no
+sigmod_1993_cda45823,Mining Association Rules Between Sets of Items in Large Databases,1993,SIGMOD,Database / Systems,14771,10,66.75,0.6501,,,,,,,,,,,no
+acm_mobicom_2002_e34a4638,Wake on Wireless: An Event Driven Energy Saving Strategy for Battery Operated Devices,2002,ACM MobiCom,Human-Computer Interaction,8135,16,75.88,0.5695,,,,,,,,,,,no
+sigir_1988_12a50dc3,A Look Back and a Look Forward,1988,SIGIR,Human-Computer Interaction,5127,26,72.25,0.5598,,,,,,,,,,,no
+ieee_transactions_on_information_theory_2000_f5a20c28,Network Information Flow,2000,IEEE Transactions on Information Theory,Machine Learning Theory,7857,18,66.38,0.545,,,,,,,,,,,no
+wmcsa_1999_367b771d,Ad-hoc On-Demand Distance Vector Routing,1999,WMCSA,Human-Computer Interaction,10309,19,44.25,0.5341,,,,,,,,,,,no
+iccv_2001_8e7ef59f,A Database of Human Segmented Natural Images and Its Application to Evaluating Segmentation Algorithms and Measuring Ecological Statistics,2001,ICCV,Computer Vision,7941,15,62.88,0.5129,,,,,,,,,,,no
+iccv_1998_99fb2c6a,Bilateral Filtering for Gray and Color Images,1998,ICCV,Computer Vision,8050,15,59.5,0.5039,,,,,,,,,,,no
+vldb_1994_ba6086d0,Fast Algorithms for Mining Association Rules in Large Databases,1994,VLDB,Data Mining / Web,9384,10,58.88,0.4964,,,,,,,,,,,no
+iccv_2003_d4dc49eb,Video Google: A text retrieval approach to object matching in videos,2003,ICCV,Computer Vision,6430,14,62.38,0.4683,,,,,,,,,,,no
+sigcomm_1974_e56e4374,The ALOHA system,1974,SIGCOMM,Database / Systems,2029,32,53.12,0.4654,,,,,,,,,,,no
+sigir_1980_e20f7878,Probabilistic Models of Indexing and Searching,1980,SIGIR,Natural Language Processing,316,34,58.62,0.4587,,,,,,,,,,,no
+icml_2008_be55835e,A Unified Architecture for Natural Language Processing: Deep Neural Networks with Multitask Learning,2008,ICML,Natural Language Processing,6709,10,66.12,0.4583,,,,,,,,,,,no
+iccv_1995_7c62dbfa,Geodesic Active Contours,1995,ICCV,Computer Vision,5227,16,62.88,0.4565,,,,,,,,,,,no
+kdd_2008_2966bdf2,Factorization meets the neighborhood: a multifaceted collaborative filtering model,2008,KDD,Database / Systems,3592,10,84.88,0.4494,,,,,,,,,,,no
+ieee_personal_communications_2001_3d162e3f,Pervasive Computing: Vision and Challenges,2001,IEEE Personal Communications,Database / Systems,2415,17,75.12,0.4397,,,,,,,,,,,no
+sigir_1988_31fae25c,Information Retrieval using a Singular Value Decomposition Model of Latent Semantic Structure,1988,SIGIR,Database / Systems,257,26,66.25,0.4247,,,,,,,,,,,no
+oopsla_2001_a9f21d83,Multitasking without compromise: a virtual machine evolution,2001,OOPSLA,Data Mining / Web,2212,10,86.5,0.4225,,,,,,,,,,,no
+iccv_1990_02b9f79c,Indexing via color histograms,1990,ICCV,Computer Vision,423,23,70.88,0.4224,,,,,,,,,,,no
+sigir_1986_5b31cf31,A New Theoretical Framework for Information Retrieval,1986,SIGIR,Computer science,56,28,61.88,0.4197,,,,,,,,,,,no
+oopsla_1987_b39fa126,Concepts and Experiments in Computational Reflection,1987,OOPSLA,Computer Vision,1011,20,71.5,0.4163,,,,,,,,,,,no
+sigir_1985_03a95325,The Cluster Hypothesis Revisited,1985,SIGIR,Computer Vision,120,29,57.5,0.4135,,,,,,,,,,,no
+iccv_1990_d335338f,"Steerable filters for early vision, image analysis, and wavelet decomposition",1990,ICCV,Computer Vision,51,23,70.12,0.4111,,,,,,,,,,,no
+iccv_1999_f83b407c,Flexible Camera Calibration by Viewing a Plane from Unknown Orientations,1999,ICCV,Computer Vision,2583,14,71.88,0.4105,,,,,,,,,,,no
+www_2007_973301ac,YAGO: A Core of Semantic Knowledge Unifying WordNet and Wikipedia,2007,WWW,Data Mining / Web,1186,11,85.88,0.4036,,,,,,,,,,,no
+sigir_1988_7fa8009d,Towards Interactive Query Expansion,1988,SIGIR,Machine Learning Theory,121,26,60.75,0.4026,,,,,,,,,,,no
+sigir_1987_63b9a46d,Automatic Phrase Indexing for Document Retrieval,1987,SIGIR,Natural Language Processing,98,27,58.5,0.4017,,,,,,,,,,,no
+sigir_2003_73629bd4,Beyond independent relevance: methods and evaluation metrics for subtopic retrieval,2003,SIGIR,Natural Language Processing,2865,15,65.12,0.4013,,,,,,,,,,,no
+kdd_2005_ebddb36d,"Graphs over Time: Densification Laws, Shrinking Diameters and Possible Explanations",2005,KDD,Data Mining / Web,847,11,87.38,0.4008,,,,,,,,,,,no
+sigir_1999_c5218e0a,Probabilistic Latent Semantic Indexing,1999,SIGIR,Natural Language Processing,3933,15,57.12,0.3989,,,,,,,,,,,no
+aaai_1982_448fc0ce,Reverend Bayes on Inference Engines: A Distributed Hierarchical Approach,1982,AAAI,Computer Vision,756,18,72.12,0.3977,,,,,,,,,,,no
+emnlp_2002_bbd2b492,Thumbs up? Sentiment Classification using Machine Learning Techniques,2002,EMNLP,Natural Language Processing,2212,16,66.38,0.3976,,,,,,,,,,,no
+emnlp_2002_6452d908,Discriminative Training Methods for Hidden Markov Models: Theory and Experiments with Perceptron Algorithms,2002,EMNLP,Natural Language Processing,2868,16,61.75,0.3971,,,,,,,,,,,no
+sigir_1994_13ffa355,A Sequential Algorithm for Training Text Classifiers,1994,SIGIR,Natural Language Processing,1807,20,60.25,0.3964,,,,,,,,,,,no
+iccv_1998_aaed5ca1,A Metric for Distributions with Applications to Image Databases,1998,ICCV,Computer Vision,1736,15,70.62,0.3936,,,,,,,,,,,no
+sigmod_1996_2e57c7b7,BIRCH: An Efficient Data Clustering Method for Very Large Databases,1996,SIGMOD,Data Mining / Web,3781,10,66.88,0.3921,,,,,,,,,,,no
+sigcomm_1984_06999596,Congestion Control in IP/TCP Internetworks,1984,SIGCOMM,Database / Systems,429,22,61.0,0.3813,,,,,,,,,,,no
+sigir_1989_e1368db3,Adaptive Information Retrieval: Using a Connectionist Representation to Retrieve and Learn about Documents,1989,SIGIR,Natural Language Processing,48,25,56.88,0.3802,,,,,,,,,,,no
+sigcomm_2001_c9228ba7,Chord: A Scalable Peer-to-peer Lookup Service for Internet Applications,2001,SIGCOMM,Database / Systems,6403,10,44.62,0.3773,,,,,,,,,,,no
+sigcomm_2001_841b16e4,A Scalable Content-addressable Network,2001,SIGCOMM,Database / Systems,6403,10,44.62,0.3773,,,,,,,,,,,no
+acl_2002_1a4aaa49,BLEU: a Method for Automatic Evaluation of Machine Translation,2002,ACL,Natural Language Processing,542,16,71.75,0.3767,,,,,,,,,,,no
+nips_2007_72016643,Random Features for Large-Scale Kernel Machines,2007,NIPS,Machine Learning Theory,2663,10,69.25,0.3739,,,,,,,,,,,no
+oopsla_1987_a4a707e2,Self: The power of simplicity,1987,OOPSLA,Simplicity,909,20,59.75,0.3736,,,,,,,,,,,no
+sigcomm_1999_71dae235,On Power-Law Relationships of the Internet Topology,1999,SIGCOMM,Data Mining / Web,4255,11,56.0,0.3732,,,,,,,,,,,no
+sigcomm_1987_b342b594,Improving Round-Trip Time Estimates in Reliable Transport Protocols,1987,SIGCOMM,Database / Systems,194,19,66.38,0.3722,,,,,,,,,,,no
+iccv_1988_d325cb60,Geometric Hashing: A General and Efficient Model-Based Recognition Scheme,1988,ICCV,Computer Vision,778,21,57.88,0.3714,,,,,,,,,,,no
+kdd_2002_14fa3fe7,Optimizing Search Engines using Clickthrough Data,2002,KDD,Data Mining / Web,3918,13,53.38,0.371,,,,,,,,,,,no
+sigir_1983_d8cc96f7,A Study of the Overlap among Document Representations,1983,SIGIR,Natural Language Processing,26,31,41.12,0.3697,,,,,,,,,,,no
+sigir_1982_a22d476b,The Unified Probabilistic Model for IR,1982,SIGIR,Computer Vision,24,32,38.75,0.3689,,,,,,,,,,,no
+sigir_1998_6199a153,"The use of MMR, Diversity-based Reranking for Reordering Documents and Producing Summaries",1998,SIGIR,Natural Language Processing,2120,16,58.38,0.3679,,,,,,,,,,,no
+sigcomm_2006_dfdc39e9,XORs in the air: practical wireless network coding,2006,SIGCOMM,Computer network,2274,12,65.5,0.3666,,,,,,,,,,,no
+usenix_security_2004_8af63cc5,Tor: The Second-Generation Onion Router,2004,USENIX Security,Human-Computer Interaction,4019,10,57.75,0.3663,,,,,,,,,,,no
+sigir_1992_e446a5cb,Scatter/Gather: A Cluster-based approach to Browsing Large Document Collections,1992,SIGIR,Cluster analysis,947,22,52.5,0.3643,,,,,,,,,,,no
+sigcomm_1975_c8d8b477,"Selecting Sequence Numbers,",1975,SIGCOMM,Machine Learning Theory,20,31,39.38,0.3636,,,,,,,,,,,no
+sigir_1990_7aa5a101,Inference Networks for Document Retrieval,1990,SIGIR,Data Mining / Web,425,24,51.38,0.3629,,,,,,,,,,,no
+aaai_1994_fcd06997,A Filtering Algorithm for Constraints of Difference in CSPs,1994,AAAI,Data Mining / Web,667,19,60.12,0.3618,,,,,,,,,,,no
+aaai_1988_d39c76b4,Bayesian Classification,1988,AAAI,Data Mining / Web,506,19,60.88,0.3606,,,,,,,,,,,no

@@ -1,0 +1,36 @@
+# macOS / system artifacts
+.DS_Store
+.AppleDouble
+.LSOverride
+*.DS_Store_*
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+
+# Node / frontend caches
+node_modules/
+dist/
+build/
+.cache/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Local editor files
+.vscode/
+.idea/
+
+# Archives and local-only materials
+*.zip
+legacy/
+**/legacy/
+*_local_only/
+github_repo_不上传legacy归档/
+github_repo_清理前备份_local_only/

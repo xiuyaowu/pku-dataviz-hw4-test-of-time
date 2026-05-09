@@ -1,0 +1,13 @@
+建议方向,paper_id,title,year,venue,topic_label_api,citation_count,recognition_lag,impact_breadth_score,manual_priority_score,manual_topic_label,one_sentence_contribution_zh,why_time_tested_zh,foundational_type,industry_impact_level,industry_impact_note_zh,evidence_url_1,evidence_url_2,display_priority,teammate,checked
+偏 SIGMOD/VLDB/SIGIR/KDD,iccv_2003_d4dc49eb,Video Google: A text retrieval approach to object matching in videos,2003,ICCV,Computer Vision,6430,14,62.38,0.4683,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,sigcomm_1974_e56e4374,The ALOHA system,1974,SIGCOMM,Database / Systems,2029,32,53.12,0.4654,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,sigir_1980_e20f7878,Probabilistic Models of Indexing and Searching,1980,SIGIR,Natural Language Processing,316,34,58.62,0.4587,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,icml_2008_be55835e,A Unified Architecture for Natural Language Processing: Deep Neural Networks with Multitask Learning,2008,ICML,Natural Language Processing,6709,10,66.12,0.4583,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,iccv_1995_7c62dbfa,Geodesic Active Contours,1995,ICCV,Computer Vision,5227,16,62.88,0.4565,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,kdd_2008_2966bdf2,Factorization meets the neighborhood: a multifaceted collaborative filtering model,2008,KDD,Database / Systems,3592,10,84.88,0.4494,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,ieee_personal_communications_2001_3d162e3f,Pervasive Computing: Vision and Challenges,2001,IEEE Personal Communications,Database / Systems,2415,17,75.12,0.4397,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,sigir_1988_31fae25c,Information Retrieval using a Singular Value Decomposition Model of Latent Semantic Structure,1988,SIGIR,Database / Systems,257,26,66.25,0.4247,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,oopsla_2001_a9f21d83,Multitasking without compromise: a virtual machine evolution,2001,OOPSLA,Data Mining / Web,2212,10,86.5,0.4225,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,iccv_1990_02b9f79c,Indexing via color histograms,1990,ICCV,Computer Vision,423,23,70.88,0.4224,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,sigir_1986_5b31cf31,A New Theoretical Framework for Information Retrieval,1986,SIGIR,Computer science,56,28,61.88,0.4197,,,,,,,,,,,no
+偏 SIGMOD/VLDB/SIGIR/KDD,oopsla_1987_b39fa126,Concepts and Experiments in Computational Reflection,1987,OOPSLA,Computer Vision,1011,20,71.5,0.4163,,,,,,,,,,,no

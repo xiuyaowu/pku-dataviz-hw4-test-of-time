@@ -1,0 +1,251 @@
+paper_id,title,year,announcement_year,recognition_lag,venue,awarded_by,venue_area,topic_label,citation_count,influential_citation_count,impact_breadth_score,citing_venue_count,citing_field_count,citing_institution_count,citing_country_count,citing_works_sampled
+icse_1975_51a1b6ab,The Source Code Control System,1975,1989,14,ICSE,ICSE,Software Engineering,Database / Systems,711,,58.75,19.0,79.0,66.0,16.0,50
+icse_1976_2636710a,An Introduction to the Construction and Verification of Alphard Programs,1976,1990,14,ICSE,ICSE,Software Engineering,Computer science,325,,49.0,21.0,63.0,44.0,8.0,50
+icse_1978_8b12dc8d,Designing Software for Ease of Extension and Contraction,1978,1991,13,ICSE,ICSE,Software Engineering,Human-Computer Interaction,117,,52.88,17.0,70.0,43.0,14.0,50
+icse_1979_53edb596,Software Development Control Based on Module Interconnection,1979,1992,13,ICSE,ICSE,Software Engineering,Real-Time / Embedded Systems,73,,47.75,18.0,59.0,46.0,8.0,50
+icse_1981_dbf96e7e,Program Slicing,1981,1993,12,ICSE,ICSE,Software Engineering,Data Mining / Web,702,,57.62,12.0,68.0,69.0,18.0,50
+icse_1982_e7ce49aa,Capturing More World Knowledge in the Requirements Specification,1982,1994,12,ICSE,ICSE,Software Engineering,Machine Learning Theory,120,,61.5,18.0,65.0,60.0,20.0,50
+icse_1984_07ade597,The Modular Structure of Complex Systems,1984,1995,11,ICSE,ICSE,Software Engineering,Database / Systems,46,,52.25,21.0,84.0,38.0,12.0,46
+vldb_1985_2e940bdd,A Model of CAD Transactions,1985,1995,10,VLDB,VLDB,Database,Database / Systems,166,,54.5,21.0,64.0,48.0,13.0,50
+icse_1985_01bca770,Software Technology Maturation,1985,1996,11,ICSE,ICSE,Software Engineering,Natural Language Processing,266,,72.38,22.0,62.0,91.0,30.0,50
+vldb_1986_2e7892c2,Object and File Management in the EXODUS Extensible Database System,1986,1996,10,VLDB,VLDB,Database,Database / Systems,255,,55.38,21.0,62.0,55.0,13.0,50
+icse_1987_7c3e11ac,"Process Models, Process Programs, Programming Support",1987,1997,10,ICSE,ICSE,Software Engineering,Computer Vision,82,,57.12,22.0,58.0,41.0,16.0,50
+icse_1987_00efd12d,Software Processes are Software Too,1987,1997,10,ICSE,ICSE,Software Engineering,Data Mining / Web,874,,68.12,22.0,64.0,81.0,22.0,50
+vldb_1987_cd8865d1,The R+-Tree: A Dynamic Index for Multi-Dimensional Objects,1987,1997,10,VLDB,VLDB,Database,Data Mining / Web,1266,,56.38,19.0,67.0,55.0,15.0,50
+icse_1988_97b81ae0,A Working Environment for the Development of Complex Reactive Systems,1988,1998,10,ICSE,ICSE,Software Engineering,Human-Computer Interaction,210,,54.38,20.0,73.0,51.0,13.0,50
+vldb_1988_2e996094,Disk Shadowing,1988,1998,10,VLDB,VLDB,Database,Computer science,227,,43.75,18.0,67.0,30.0,6.0,50
+aaai_1980_fd78cccb,R1: An Expert in the Computer Systems Domain,1980,1999,19,AAAI,AAAI,AI,Database / Systems,103,,63.0,37.0,83.0,52.0,13.0,50
+sigmod_1988_50d64da2,A Case for Redundant Arrays of Inexpensive Disks (RAID),1988,1999,11,SIGMOD,SIGMOD,Database,Database / Systems,2296,,49.25,21.0,68.0,46.0,8.0,50
+icse_1989_3ce99cbd,The Inscape Environment,1989,1999,10,ICSE,ICSE,Software Engineering,Database / Systems,147,,52.0,14.0,70.0,48.0,14.0,50
+sigmod_1989_463af2b8,"F-Logic: A Higher-Order Language for Reasoning About Objects, Inheritance, and Scheme",1989,1999,10,SIGMOD,SIGMOD,Database,Computer Vision,359,,67.62,31.0,58.0,81.0,17.0,50
+vldb_1989_37fbfaa6,ARIES/NT: A Recovery Method Based on Write-Ahead Logging for Nested Transactions,1989,1999,10,VLDB,VLDB,Database,Database / Systems,69,,56.88,22.0,64.0,39.0,16.0,50
+aaai_1982_448fc0ce,Reverend Bayes on Inference Engines: A Distributed Hierarchical Approach,1982,2000,18,AAAI,AAAI,AI,Computer Vision,756,,72.12,39.0,70.0,93.0,16.0,50
+sigmod_1990_11b22cc4,Encapsulation of Parallelism in the Volcano Query Processing System.,1990,2000,10,SIGMOD,SIGMOD,Database,Database / Systems,344,,51.88,16.0,60.0,47.0,13.0,50
+sigmod_1990_e1450486,Set-Oriented Production Rules in Relational Database Systems,1990,2000,10,SIGMOD,SIGMOD,Database,Database / Systems,231,,51.25,19.0,68.0,46.0,11.0,50
+vldb_1990_cf01796b,Deriving Production Rules for Constraint Maintainance,1990,2000,10,VLDB,VLDB,Database,Database / Systems,313,,54.75,18.0,61.0,46.0,15.0,50
+icse_1991_278e93a0,Tolerating Inconsistency,1991,2001,10,ICSE,ICSE,Software Engineering,Database / Systems,241,,55.0,16.0,68.0,48.0,16.0,50
+vldb_1991_f463ce21,A Transactional Model for Long-Running Activities,1991,2001,10,VLDB,VLDB,Database,Database / Systems,164,,58.0,18.0,58.0,56.0,17.0,50
+aaai_1983_bd1232e5,A Variational Approach to Edge Detection,1983,2002,19,AAAI,AAAI,AI,Computer Vision,54,,58.88,24.0,84.0,47.0,16.0,50
+icse_1992_202e0644,Towards a Method of Programming with Assertions,1992,2002,10,ICSE,ICSE,Software Engineering,Data Mining / Web,82,,54.75,14.0,69.0,54.0,16.0,50
+sigmod_1992_e01056d7,Extensible/Rule Based Query Rewrite Optimization in Starburst,1992,2002,10,SIGMOD,SIGMOD,Database,Database / Systems,313,,51.0,16.0,66.0,48.0,12.0,50
+sigmod_1992_28fc55ec,Querying Object-Oriented Databases,1992,2002,10,SIGMOD,SIGMOD,Database,Database / Systems,276,,53.62,19.0,53.0,57.0,12.0,50
+vldb_1992_dd588335,Querying in Highly Mobile Distributed Environments,1992,2002,10,VLDB,VLDB,Database,Database / Systems,193,,57.75,21.0,72.0,50.0,16.0,50
+vldb_1992_21207a7a,Performance Evaluation of an Adaptive and Robust Load Control Method for the Avoidance of Data-Contention,1992,2002,10,VLDB,VLDB,Database,Database / Systems,44,,46.38,20.0,70.0,27.0,8.0,44
+icse_1993_c5f879d8,Expressing the Relationships between Multiple Views in Requirements Specification,1993,2003,10,ICSE,ICSE,Software Engineering,Natural Language Processing,90,,58.62,19.0,70.0,57.0,17.0,50
+sigmod_1993_cda45823,Mining Association Rules Between Sets of Items in Large Databases,1993,2003,10,SIGMOD,SIGMOD,Database,Database / Systems,14771,,66.75,23.0,73.0,66.0,22.0,50
+vldb_1993_da42dbe0,Universality of Serial Histograms,1993,2003,10,VLDB,VLDB,Database,Database / Systems,101,,48.88,13.0,56.0,43.0,12.0,50
+aaai_1984_4209ed0e,A Logic of Implicit and Explicit Belief,1984,2004,20,AAAI,AAAI,AI,Natural Language Processing,538,,54.12,20.0,66.0,49.0,13.0,50
+icse_1994_f5516959,Formalizing Architectural Connection,1994,2004,10,ICSE,ICSE,Software Engineering,Computer Vision,368,,50.0,16.0,71.0,56.0,10.0,50
+sigmod_1994_575b720e,Shoring Up Persistent Applications,1994,2004,10,SIGMOD,SIGMOD,Database,Data Mining / Web,421,,40.88,10.0,65.0,39.0,6.0,50
+vldb_1994_ba6086d0,Fast Algorithms for Mining Association Rules in Large Databases,1994,2004,10,VLDB,VLDB,Database,Data Mining / Web,9384,,58.88,21.0,77.0,59.0,16.0,50
+aaai_1986_977126d7,Quantifying the Inductive Bias in Concept Learning,1986,2005,19,AAAI,AAAI,AI,Fairness / Evaluation,21,,34.75,10.0,42.0,14.0,3.0,21
+sigmod_1994_01eb71c6,From Structured Documents to Novel Query Facilities,1994,2005,11,SIGMOD,SIGMOD,Database,Database / Systems,293,,50.12,13.0,54.0,45.0,13.0,50
+icse_1995_c9dd9bce,Deriving Specifications from Requirements: An Example,1995,2005,10,ICSE,ICSE,Software Engineering,Database / Systems,159,,58.38,18.0,72.0,75.0,15.0,50
+sigmod_1995_76f92761,View Maintenance in a Warehousing Environment,1995,2005,10,SIGMOD,SIGMOD,Database,Database / Systems,431,,48.0,17.0,70.0,52.0,8.0,50
+vldb_1995_d5d826d2,W3QS: A Query System for the World-Wide Web,1995,2005,10,VLDB,VLDB,Database,Database / Systems,258,,58.0,24.0,53.0,48.0,15.0,50
+sigcomm_1974_5f7a35f6,Research Areas in Computer Communication,1974,2006,32,SIGCOMM,SIGCOMM,Networking,Data Mining / Web,9,,31.62,5.0,34.0,9.0,3.0,9
+sigcomm_1974_e56e4374,The ALOHA system,1974,2006,32,SIGCOMM,SIGCOMM,Networking,Database / Systems,2029,,53.12,18.0,62.0,57.0,12.0,50
+sigcomm_1975_c8d8b477,"Selecting Sequence Numbers,",1975,2006,31,SIGCOMM,SIGCOMM,Networking,Machine Learning Theory,20,,39.38,6.0,51.0,19.0,9.0,20
+sixth_data_comm_symposium_1979_276be54f,An Overview of the New Routing Algorithm for the ARPANET,1979,2006,27,Sixth Data Comm.Symposium,SIGCOMM,CS,Computer science,22,,41.12,14.0,43.0,17.0,7.0,22
+sigcomm_1984_06999596,Congestion Control in IP/TCP Internetworks,1984,2006,22,SIGCOMM,SIGCOMM,Networking,Database / Systems,429,,61.0,18.0,57.0,72.0,18.0,50
+aaai_1987_5f526ff9,Pengi: An Implementation of a Theory of Activity,1987,2006,19,AAAI,AAAI,AI,Computer Vision,877,,49.25,27.0,81.0,38.0,6.0,50
+aaai_1987_71381415,Reactive Reasoning and Planning,1987,2006,19,AAAI,AAAI,AI,Reinforcement Learning,881,,58.25,28.0,93.0,58.0,12.0,50
+sigcomm_1987_b342b594,Improving Round-Trip Time Estimates in Reliable Transport Protocols,1987,2006,19,SIGCOMM,SIGCOMM,Networking,Database / Systems,194,,66.38,22.0,51.0,83.0,20.0,50
+sigcomm_1987_49cc360d,Fragmentation Considered Harmful,1987,2006,19,SIGCOMM,SIGCOMM,Networking,Database / Systems,80,,58.0,17.0,60.0,60.0,17.0,50
+sigcomm_1988_741ee633,Multicast Routing in Internetworks and Extended LANs,1988,2006,18,SIGCOMM,SIGCOMM,Networking,Multicast,191,,58.5,22.0,60.0,60.0,15.0,50
+sigcomm_1988_03dd0f93,The Design Philosophy of the DARPA Internet Procotols,1988,2006,18,SIGCOMM,SIGCOMM,Networking,Computer Vision,1,,16.62,1.0,6.0,1.0,1.0,1
+sigcomm_1988_59475861,Development of the Domain Name System,1988,2006,18,SIGCOMM,SIGCOMM,Networking,Data Mining / Web,158,,53.75,18.0,63.0,62.0,12.0,50
+sigcomm_1988_0115cda1,Measured Capacity of an Ethernet: Myths and Reality,1988,2006,18,SIGCOMM,SIGCOMM,Networking,Implementation,89,,57.5,19.0,68.0,56.0,16.0,50
+sigcomm_1988_eeb807c6,A Binary Feedback Scheme for Congestion Avoidance in Computer Networks with a Connectionless Network Layer,1988,2006,18,SIGCOMM,SIGCOMM,Networking,Database / Systems,139,,58.5,16.0,52.0,60.0,18.0,50
+sigcomm_1988_393c4320,Congestion Avoidance and Control,1988,2006,18,SIGCOMM,SIGCOMM,Networking,Database / Systems,2457,,46.38,10.0,55.0,43.0,11.0,50
+sigcomm_1989_2f7f5967,Analysis and Simulation of a Fair Queueing Algorithm,1989,2006,17,SIGCOMM,SIGCOMM,Networking,Real-Time / Embedded Systems,1724,,41.25,8.0,58.0,42.0,7.0,50
+sigcomm_1991_2123e742,A Control-Theoretic Approach to Flow Control,1991,2006,15,SIGCOMM,SIGCOMM,Networking,Computer Vision,752,,50.5,13.0,59.0,56.0,12.0,50
+sigcomm_1993_ff2d8bf7,On the Self-Similar Nature of Ethernet Traffic,1993,2006,13,SIGCOMM,SIGCOMM,Networking,Real-Time / Embedded Systems,1079,,60.75,22.0,87.0,62.0,17.0,50
+sigcomm_1996_d5f97824,End-to-End Routing Behavior in the Internet,1996,2006,10,SIGCOMM,SIGCOMM,Networking,Reinforcement Learning,200,,42.75,9.0,69.0,42.0,8.0,50
+sigmod_1996_2e57c7b7,BIRCH: An Efficient Data Clustering Method for Very Large Databases,1996,2006,10,SIGMOD,SIGMOD,Database,Data Mining / Web,3781,,66.88,21.0,79.0,91.0,20.0,50
+sigmod_1996_4401c63b,Implementing Data Cubes Efficiently,1996,2006,10,SIGMOD,SIGMOD,Database,Database / Systems,1166,,52.12,17.0,65.0,45.0,13.0,50
+vldb_1996_571ac16e,Querying Heterogeneous Information Sources using Source Descriptions,1996,2006,10,VLDB,VLDB,Database,Database / Systems,1124,,52.88,20.0,64.0,47.0,12.0,50
+oopsla_1987_b39fa126,Concepts and Experiments in Computational Reflection,1987,2007,20,OOPSLA,OOPSLA,Programming Languages,Computer Vision,1011,,71.5,23.0,61.0,88.0,24.0,50
+oopsla_1987_a4a707e2,Self: The power of simplicity,1987,2007,20,OOPSLA,OOPSLA,Programming Languages,Simplicity,909,,59.75,14.0,66.0,70.0,19.0,50
+aaai_1988_d39c76b4,Bayesian Classification,1988,2007,19,AAAI,AAAI,AI,Data Mining / Web,506,,60.88,29.0,60.0,59.0,14.0,50
+oopsla_1993_69c1958a,Subject Oriented Programming: A Critique of Pure Objects,1993,2007,14,OOPSLA,OOPSLA,Programming Languages,Data Mining / Web,149,,58.38,15.0,65.0,63.0,18.0,50
+ccr_1996_3af7ce69,Towards an Active Network Architecture,1996,2007,11,CCR,SIGCOMM,Networking,Computer Vision,491,,69.5,21.0,61.0,80.0,24.0,50
+ccr_1997_fb881c2c,The Macroscopic Behavior of the TCP Congestion Avoidance Algorithm,1997,2007,10,CCR,SIGCOMM,Networking,Database / Systems,1494,,50.38,17.0,63.0,55.0,10.0,50
+icse_1997_b6032ea7,Designing Distributed Applications with Mobile Code Paradigms,1997,2007,10,ICSE,ICSE,Software Engineering,Database / Systems,296,,66.12,24.0,73.0,57.0,22.0,50
+oopsla_1997_678cb4e4,Call Graph Construction in Object-Oriented Languages,1997,2007,10,OOPSLA,OOPSLA,Programming Languages,Machine Learning Theory,296,,52.38,11.0,68.0,63.0,14.0,50
+sigmod_1997_8f0b8c70,Online Aggregation,1997,2007,10,SIGMOD,SIGMOD,Database,Human-Computer Interaction,926,,50.88,16.0,70.0,55.0,11.0,50
+vldb_1997_bedd4b77,An Efficient Cost-Driven Index Selection Tool for Microsoft SQL Server,1997,2007,10,VLDB,VLDB,Database,Data Mining / Web,352,,48.75,11.0,65.0,50.0,12.0,50
+sigcomm_1998_d2b8808e,Modeling TCP Throughput: A Simple Model and Its Empirical Validation,1998,2007,9,SIGCOMM,SIGCOMM,Networking,Real-Time / Embedded Systems,36,,56.12,17.0,64.0,45.0,17.0,36
+aaai_1990_113a29dc,Solving Large-Scale Constraint Satisfaction and Scheduling Problems Using a Heuristic Repair Method,1990,2008,18,AAAI,AAAI,AI,Machine Learning Theory,277,,49.75,19.0,62.0,42.0,10.0,50
+sigcomm_1997_55d45519,Internet Routing Instability,1997,2008,11,SIGCOMM,SIGCOMM,Networking,Reinforcement Learning,363,,55.0,7.0,63.0,68.0,18.0,50
+icse_1998_f79e4ec6,Architecture-Based Runtime Software Evolution,1998,2008,10,ICSE,ICSE,Software Engineering,Database / Systems,584,,58.75,16.0,71.0,62.0,18.0,50
+oopsla_1998_08e5919b,Ownership Types for Flexible Alias Protection,1998,2008,10,OOPSLA,OOPSLA,Programming Languages,Data Mining / Web,578,,49.75,13.0,48.0,50.0,12.0,50
+sigmod_1998_f875f59e,Integration of Heterogeneous Databases without Common Domains Using Queries Based on Textual Similarity,1998,2008,10,SIGMOD,SIGMOD,Database,Data Mining / Web,380,,54.62,19.0,62.0,49.0,14.0,50
+vldb_1998_270214bc,A Quantitative Analysis and Performance Study for Similarity-Search Methods in High-Dimensional Spaces,1998,2008,10,VLDB,VLDB,Database,Computer Vision,1516,,61.88,20.0,63.0,71.0,18.0,50
+iccv_1988_d325cb60,Geometric Hashing: A General and Efficient Model-Based Recognition Scheme,1988,2009,21,ICCV,ICCV,CV,Computer Vision,778,,57.88,20.0,68.0,55.0,16.0,50
+sigcomm_1998_813258b5,A Digital Fountain Approach to Reliable Distribution of Bulk Data,1998,2009,11,SIGCOMM,SIGCOMM,Networking,Data Mining / Web,1159,,52.25,16.0,56.0,58.0,12.0,50
+icse_1999_f470c157,N Degrees of Separation: Multi-Dimensional Separation of Concerns,1999,2009,10,ICSE,ICSE,Software Engineering,Machine Learning Theory,154,,60.75,13.0,69.0,74.0,20.0,50
+oopsla_1999_4dc300ec,Implementing Jalapeño in Java,1999,2009,10,OOPSLA,OOPSLA,Programming Languages,Machine Learning Theory,268,,50.12,10.0,62.0,49.0,14.0,50
+sigmod_1999_4b279094,Approximate Computation of Multidimensional Aggregates of Sparse Data Using Wavelets,1999,2009,10,SIGMOD,SIGMOD,Database,Database / Systems,347,,52.62,16.0,67.0,53.0,13.0,50
+vldb_1999_d56e67ab,Database Architecture Optimized for the New Bottleneck: Memory Access,1999,2009,10,VLDB,VLDB,Database,Database / Systems,349,,51.75,10.0,52.0,54.0,15.0,50
+aaai_1992_83f14b17,Systematic Nonlinear Planning,1992,2010,18,AAAI,AAAI,AI,Machine Learning Theory,524,,46.0,14.0,76.0,40.0,9.0,50
+sigcomm_1999_240100a1,An analysis of BGP convergence properties,1999,2010,11,SIGCOMM,SIGCOMM,Networking,Reinforcement Learning,372,,54.75,12.0,58.0,62.0,16.0,50
+sigcomm_1999_71dae235,On Power-Law Relationships of the Internet Topology,1999,2010,11,SIGCOMM,SIGCOMM,Networking,Data Mining / Web,4255,,56.0,21.0,77.0,52.0,14.0,50
+icse_2000_1b942859,A case study of open source software development: the Apache server,2000,2010,10,ICSE,ICSE,Software Engineering,Data Mining / Web,88,,72.5,27.0,80.0,80.0,24.0,50
+icse_2000_f354deec,Bandera: extracting finite-state models from Java source code,2000,2010,10,ICSE,ICSE,Software Engineering,Database / Systems,147,,60.38,18.0,57.0,67.0,18.0,50
+oopsla_2000_01b57c0c,Adaptive Optimization in the Jalapeño JVM,2000,2010,10,OOPSLA,OOPSLA,Programming Languages,Machine Learning Theory,257,,47.38,8.0,55.0,43.0,13.0,50
+sigmod_2000_7c9d933e,NiagaraCQ: A Scalable Continuous Query System for Internet Databases,2000,2010,10,SIGMOD,SIGMOD,Database,Database / Systems,567,,73.25,25.0,69.0,86.0,29.0,50
+vldb_2000_1f64865f,Database replication: a tale of research across communities,2000,2010,10,VLDB,VLDB,Database,Computer Vision,13125,,81.12,36.0,73.0,121.0,23.0,50
+icdm_2001_2bfeb4ea,Frequent Subgraph Discovery,2001,2010,9,ICDM,ICDM,DM/Web,Data Mining / Web,1062,,58.75,15.0,54.0,58.0,19.0,50
+aaai_1992_b78893c6,Hard and Easy Distribution of SAT Problems,1992,2011,19,AAAI,AAAI,AI,Fairness / Evaluation,807,,51.12,19.0,59.0,45.0,11.0,50
+aaai_1992_4bfc223f,A New Method for Solving Hard Satisfiability Problems,1992,2011,19,AAAI,AAAI,AI,Machine Learning Theory,1188,,53.5,19.0,68.0,48.0,13.0,50
+iccv_1995_7c62dbfa,Geodesic Active Contours,1995,2011,16,ICCV,ICCV,CV,Computer Vision,5227,,62.88,26.0,61.0,71.0,16.0,50
+iccv_1999_ac21b391,Object Recognition from Local Scale-Invariant Features,1999,2011,12,ICCV,ICCV,CV,Computer Vision,16147,,65.88,18.0,67.0,95.0,20.0,50
+iccv_1999_d98a9e1c,Fast Approximate Energy Minimization via Graph Cuts,1999,2011,12,ICCV,ICCV,CV,Computer Vision,472,,57.88,16.0,65.0,79.0,15.0,50
+icse_2001_ddccec05,Analysis and testing of Web applications,2001,2011,10,ICSE,ICSE,Software Engineering,Data Mining / Web,275,,57.0,17.0,60.0,60.0,16.0,50
+oopsla_2001_a9f21d83,Multitasking without compromise: a virtual machine evolution,2001,2011,10,OOPSLA,OOPSLA,Programming Languages,Data Mining / Web,2212,,86.5,38.0,96.0,140.0,33.0,50
+sigcomm_2001_c9228ba7,Chord: A Scalable Peer-to-peer Lookup Service for Internet Applications,2001,2011,10,SIGCOMM,SIGCOMM,Networking,Database / Systems,6403,,44.62,15.0,60.0,33.0,8.0,50
+sigcomm_2001_841b16e4,A Scalable Content-addressable Network,2001,2011,10,SIGCOMM,SIGCOMM,Networking,Database / Systems,6403,,44.62,15.0,60.0,33.0,8.0,50
+sigmod_2001_67b3610a,"Optimizing Queries Using Materialized Views: A Practical, Scalable Solution",2001,2011,10,SIGMOD,SIGMOD,Database,Database / Systems,23,,46.38,13.0,44.0,31.0,11.0,23
+vldb_2001_7739e73c,Generic Schema Matching With Cupid,2001,2011,10,VLDB,VLDB,Database,Data Mining / Web,1273,,57.62,17.0,61.0,49.0,18.0,50
+icdm_2002_b81a3ed1,gSpan: Graph-Based Substructure Pattern Mining,2002,2011,9,ICDM,ICDM,DM/Web,Data Mining / Web,2030,,59.75,16.0,68.0,62.0,19.0,50
+aaai_1993_a138bac4,Learning Interface Agents,1993,2012,19,AAAI,AAAI,AI,Human-Computer Interaction,241,,51.25,21.0,86.0,38.0,11.0,50
+fast_2002_b4580077,Venti: A New Approach to Archival Storage,2002,2012,10,FAST,USENIX,Systems,Database / Systems,728,,46.12,9.0,58.0,53.0,10.0,50
+icse_2002_6189aeca,ArchJava: Connecting Software Architecture to Implementation,2002,2012,10,ICSE,ICSE,Software Engineering,Database / Systems,136,,56.0,8.0,63.0,64.0,19.0,50
+oopsla_2002_d7f46d29,Reconsidering Custom Memory Allocation,2002,2012,10,OOPSLA,OOPSLA,Programming Languages,Machine Learning Theory,185,,56.75,11.0,53.0,66.0,18.0,50
+sigcomm_2002_d2209898,Tussle in cyberspace: defining tomorrow's internet,2002,2012,10,SIGCOMM,SIGCOMM,Networking,Security / Privacy,416,,66.12,27.0,93.0,77.0,18.0,50
+sigmod_2002_3a3abfbf,Executing SQL over Encrypted Data in the Database-Service-Provider Model.,2002,2012,10,SIGMOD,SIGMOD,Database,Database / Systems,1148,,63.5,20.0,60.0,84.0,18.0,50
+vldb_2002_dbc5631e,Approximate Frequency Counts over Data Streams,2002,2012,10,VLDB,VLDB,Database,Data Mining / Web,930,,69.0,21.0,65.0,84.0,23.0,50
+icdm_2003_d0012638,On the Privacy Preserving Properties of Random Data Perturbation Techniques,2003,2012,9,ICDM,ICDM,DM/Web,Computer Vision,626,,67.25,19.0,71.0,78.0,23.0,50
+iccv_1987_56f24279,Snakes: Active Contour Models,1987,2013,26,ICCV,ICCV,CV,Computer Vision,17009,,68.5,19.0,77.0,128.0,18.0,50
+iccv_1990_02b9f79c,Indexing via color histograms,1990,2013,23,ICCV,ICCV,CV,Computer Vision,423,,70.88,32.0,83.0,79.0,20.0,50
+iccv_1990_d335338f,"Steerable filters for early vision, image analysis, and wavelet decomposition",1990,2013,23,ICCV,ICCV,CV,Computer Vision,51,,70.12,32.0,69.0,65.0,21.0,50
+iccv_1993_f8f5c041,A framework for the robust estimation of optical flow,1993,2013,20,ICCV,ICCV,CV,Computer Vision,449,,58.12,13.0,77.0,77.0,17.0,50
+aaai_1994_fcd06997,A Filtering Algorithm for Constraints of Difference in CSPs,1994,2013,19,AAAI,AAAI,AI,Data Mining / Web,667,,60.12,21.0,67.0,61.0,17.0,50
+iccv_1995_a9b7e171,Alignment by Maximization of Mutual Information,1995,2013,18,ICCV,ICCV,CV,Machine Learning Theory,608,,58.75,16.0,72.0,94.0,14.0,50
+iccv_1995_e08aeb98,In Defence of the 8-Point Algorithm,1995,2013,18,ICCV,ICCV,CV,Computer Vision,645,,55.25,16.0,60.0,50.0,16.0,50
+iccv_1995_39ed57d2,"Region Competition: Unifying Snakes, Region Growing, Energy/Bayes/MDL for Multi-band Image Segmentation",1995,2013,18,ICCV,ICCV,CV,Computer Vision,196,,61.12,22.0,53.0,81.0,15.0,50
+iccv_1998_99fb2c6a,Bilateral Filtering for Gray and Color Images,1998,2013,15,ICCV,ICCV,CV,Computer Vision,8050,,59.5,14.0,58.0,100.0,15.0,50
+iccv_1998_aaed5ca1,A Metric for Distributions with Applications to Image Databases,1998,2013,15,ICCV,ICCV,CV,Computer Vision,1736,,70.62,24.0,73.0,117.0,19.0,50
+usenix_security_1998_c7de7ba5,StackGuard: Automatic Adaptive Detection and Prevention of Buffer-Overflow Attacks,1998,2013,15,USENIX Security,USENIX,Security,Security / Privacy,1264,,51.5,11.0,54.0,56.0,14.0,50
+iccv_1999_f83b407c,Flexible Camera Calibration by Viewing a Plane from Unknown Orientations,1999,2013,14,ICCV,ICCV,CV,Computer Vision,2583,,71.88,34.0,85.0,79.0,20.0,50
+iccv_1999_d640090a,Texture Synthesis by Non-parametric Sampling,1999,2013,14,ICCV,ICCV,CV,Computer Vision,3031,,53.5,11.0,63.0,80.0,13.0,50
+fast_2002_55e53dcb,GPFS: A Shared-Disk File System for Large Computing Clusters,2002,2013,11,FAST,USENIX,Systems,Natural Language Processing,1224,,58.0,14.0,58.0,80.0,16.0,50
+ccr_2003_71528dcf,PlanetLab: an overlay testbed for broad-coverage services,2003,2013,10,CCR,SIGCOMM,Networking,Human-Computer Interaction,390,,75.38,21.0,59.0,119.0,27.0,50
+icse_2003_9c36f448,Hipikat: Recommending Pertinent Software Development Artifacts,2003,2013,10,ICSE,ICSE,Software Engineering,Data Mining / Web,319,,51.5,10.0,71.0,60.0,14.0,50
+oopsla_2003_8ae43423,Language Support for Lightweight Transactions,2003,2013,10,OOPSLA,OOPSLA,Programming Languages,Database / Systems,398,,40.88,7.0,48.0,43.0,7.0,50
+sigcomm_2003_68917358,A delay-tolerant network architecture for challenged internets,2003,2013,10,SIGCOMM,SIGCOMM,Networking,Database / Systems,3074,,60.88,17.0,74.0,67.0,19.0,50
+sigmod_2003_4b49e7bb,The Design of an Acquisitional Query Processor for Sensor Networks,2003,2013,10,SIGMOD,SIGMOD,Database,Database / Systems,936,,49.75,15.0,80.0,50.0,11.0,50
+icdm_2004_f632b71f,Moment: Maintaining Closed Frequent Itemsets over a Stream Sliding Window,2004,2013,9,ICDM,ICDM,DM/Web,Database / Systems,297,,64.88,25.0,56.0,67.0,19.0,50
+sigir_1980_e20f7878,Probabilistic Models of Indexing and Searching,1980,2014,34,SIGIR,SIGIR,IR,Natural Language Processing,316,,58.62,20.0,81.0,53.0,17.0,50
+sigir_1982_a22d476b,The Unified Probabilistic Model for IR,1982,2014,32,SIGIR,SIGIR,IR,Computer Vision,24,,38.75,11.0,51.0,18.0,6.0,24
+sigir_1983_d8cc96f7,A Study of the Overlap among Document Representations,1983,2014,31,SIGIR,SIGIR,IR,Natural Language Processing,26,,41.12,8.0,40.0,25.0,9.0,26
+sigir_1985_03a95325,The Cluster Hypothesis Revisited,1985,2014,29,SIGIR,SIGIR,IR,Computer Vision,120,,57.5,18.0,58.0,52.0,17.0,50
+sigir_1986_5b31cf31,A New Theoretical Framework for Information Retrieval,1986,2014,28,SIGIR,SIGIR,IR,Computer science,56,,61.88,19.0,78.0,59.0,20.0,50
+sigir_1987_63b9a46d,Automatic Phrase Indexing for Document Retrieval,1987,2014,27,SIGIR,SIGIR,IR,Natural Language Processing,98,,58.5,13.0,59.0,72.0,18.0,50
+sigir_1988_12a50dc3,A Look Back and a Look Forward,1988,2014,26,SIGIR,SIGIR,IR,Human-Computer Interaction,5127,,72.25,31.0,72.0,118.0,17.0,50
+sigir_1988_31fae25c,Information Retrieval using a Singular Value Decomposition Model of Latent Semantic Structure,1988,2014,26,SIGIR,SIGIR,IR,Database / Systems,257,,66.25,29.0,77.0,54.0,20.0,50
+sigir_1988_7fa8009d,Towards Interactive Query Expansion,1988,2014,26,SIGIR,SIGIR,IR,Machine Learning Theory,121,,60.75,18.0,71.0,62.0,19.0,50
+sigir_1989_83e330e8,A Library System for Information Retrieval based on a Cognitive Task Analysis and Supported by an Icon-based Interface,1989,2014,25,SIGIR,SIGIR,IR,Human-Computer Interaction,16,,35.88,7.0,50.0,11.0,6.0,16
+sigir_1989_e1368db3,Adaptive Information Retrieval: Using a Connectionist Representation to Retrieve and Learn about Documents,1989,2014,25,SIGIR,SIGIR,IR,Natural Language Processing,48,,56.88,15.0,71.0,59.0,17.0,48
+sigir_1990_7aa5a101,Inference Networks for Document Retrieval,1990,2014,24,SIGIR,SIGIR,IR,Data Mining / Web,425,,51.38,20.0,60.0,43.0,11.0,50
+sigir_1992_e446a5cb,Scatter/Gather: A Cluster-based approach to Browsing Large Document Collections,1992,2014,22,SIGIR,SIGIR,IR,Cluster analysis,947,,52.5,23.0,67.0,48.0,10.0,50
+sigir_1994_13ffa355,A Sequential Algorithm for Training Text Classifiers,1994,2014,20,SIGIR,SIGIR,IR,Natural Language Processing,1807,,60.25,25.0,70.0,54.0,16.0,50
+sigir_1994_8b4f616e,Some Simple Effective Approximation to the 2-Poisson Model for Probabilistic Weighted Retrieval,1994,2014,20,SIGIR,SIGIR,IR,Data Mining / Web,1164,,52.5,20.0,68.0,60.0,10.0,50
+sigir_1995_8c2ca5c7,Searching Distributed Collections with Inference Networks,1995,2014,19,SIGIR,SIGIR,IR,Data Mining / Web,387,,58.88,15.0,71.0,51.0,20.0,50
+aaai_1996_ab0965bb,Syskill & Webert: Identifying Interesting Web Sites,1996,2014,18,AAAI,AAAI,AI,Natural Language Processing,595,,60.5,21.0,66.0,64.0,17.0,50
+kdd_1996_1b93ceb4,A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise,1996,2014,18,KDD,SIGKDD,DM/Web,Computer Vision,19133,,81.12,34.0,78.0,121.0,24.0,50
+sigir_1996_536fcb7e,Pivoted Document Length Normalization,1996,2014,18,SIGIR,SIGIR,IR,Citation,545,,62.62,15.0,71.0,65.0,22.0,50
+sigir_1996_cc49b9c5,Query Expansion using Local and Global Document Analysis,1996,2014,18,SIGIR,SIGIR,IR,Data Mining / Web,824,,52.25,15.0,53.0,54.0,13.0,50
+sigir_1998_fb78786c,A Language Modeling Approach to Information Retrieval,1998,2014,16,SIGIR,SIGIR,IR,Natural Language Processing,1722,,49.88,11.0,56.0,51.0,13.0,50
+sigir_1998_9913135f,Improved Algorithms for Topic Distillation in a Hyperlinked Environment,1998,2014,16,SIGIR,SIGIR,IR,Data Mining / Web,440,,57.62,18.0,70.0,61.0,16.0,50
+sigir_1998_5e73eaa6,On-line New Event Detection and Tracking,1998,2014,16,SIGIR,SIGIR,IR,Data Mining / Web,523,,64.38,24.0,72.0,59.0,20.0,50
+sigir_1998_6199a153,"The use of MMR, Diversity-based Reranking for Reordering Documents and Producing Summaries",1998,2014,16,SIGIR,SIGIR,IR,Natural Language Processing,2120,,58.38,17.0,78.0,55.0,18.0,50
+sigir_1999_521297dd,An Algorithmic Framework for Performing Collaborative Filtering,1999,2014,15,SIGIR,SIGIR,IR,Citation,1966,,52.38,16.0,70.0,51.0,13.0,50
+sigir_1999_e4b30902,Information Retrieval as Statistical Translation,1999,2014,15,SIGIR,SIGIR,IR,Natural Language Processing,387,,52.75,11.0,62.0,58.0,15.0,50
+sigir_1999_c5218e0a,Probabilistic Latent Semantic Indexing,1999,2014,15,SIGIR,SIGIR,IR,Natural Language Processing,3933,,57.12,24.0,72.0,65.0,12.0,50
+sigir_2000_aed95749,Evaluating Evaluation Measure Stability,2000,2014,14,SIGIR,SIGIR,IR,Machine Learning Theory,394,,61.38,19.0,70.0,63.0,19.0,50
+sigir_2000_f803bbfd,IR Evaluation Methods for Retrieving Highly Relevant Documents,2000,2014,14,SIGIR,SIGIR,IR,Database / Systems,963,,52.0,11.0,70.0,60.0,14.0,50
+sigir_2001_06bf3a99,A Study of Smoothing Methods for Language Models applied to Ad Hoc Information Retrieval,2001,2014,13,SIGIR,SIGIR,IR,Natural Language Processing,883,,49.38,9.0,64.0,47.0,14.0,50
+sigir_2001_2796128b,"Document Language Models, Query Models and Risk Minimization for Information Retrieval",2001,2014,13,SIGIR,SIGIR,IR,Natural Language Processing,525,,53.38,12.0,58.0,51.0,16.0,50
+sigir_2001_1a192554,Relevance based Language Models,2001,2014,13,SIGIR,SIGIR,IR,Database / Systems,1024,,51.75,8.0,59.0,54.0,16.0,50
+sigcomm_2002_a31bf940,Congestion Control for High Bandwidth-Delay Product Networks,2002,2014,12,SIGCOMM,SIGCOMM,Networking,Fairness / Evaluation,1095,,54.5,14.0,58.0,68.0,14.0,50
+sigcomm_2002_a253844a,Measuring ISP Topologies with Rocketfuel,2002,2014,12,SIGCOMM,SIGCOMM,Networking,Network topology,1277,,50.62,12.0,58.0,61.0,12.0,50
+fast_2003_bc755e36,"ARC: A Self-Tuning, Low Overhead Replacement Cache",2003,2014,11,FAST,USENIX,Systems,Reinforcement Learning,792,,54.88,16.0,56.0,71.0,13.0,50
+icse_2004_5cf9d322,Mining Version Histories to Guide Software Changes,2004,2014,10,ICSE,ICSE,Software Engineering,Data Mining / Web,495,,52.62,10.0,76.0,69.0,14.0,50
+nsdi_2004_edafbe91,Operating System Support for Planetary-Scale Network Services,2004,2014,10,NSDI,USENIX,Systems/Networking,Data Mining / Web,409,,52.38,18.0,68.0,59.0,11.0,50
+nsdi_2004_d50b034e,Trickle: A Self-Regulating Algorithm for Code Propagation and Maintenance in Wireless Sensor Networks,2004,2014,10,NSDI,USENIX,Systems/Networking,Reinforcement Learning,1136,,58.12,16.0,63.0,65.0,17.0,50
+oopsla_2004_e3cef345,Mirrors: Design Principles for Meta-level Facilities of Object-Oriented Programming Languages,2004,2014,10,OOPSLA,OOPSLA,Programming Languages,Metaprogramming,169,,63.12,18.0,76.0,65.0,21.0,50
+sigmod_2004_a809fe60,Order-Preserving Encryption for Numeric Data,2004,2014,10,SIGMOD,SIGMOD,Database,Database / Systems,1212,,70.88,22.0,56.0,95.0,23.0,50
+usenix_security_2004_8af63cc5,Tor: The Second-Generation Onion Router,2004,2014,10,USENIX Security,USENIX,Security,Human-Computer Interaction,4019,,57.75,13.0,71.0,74.0,17.0,50
+vldb_2004_05868ecc,Efficient Query Evaluation on Probabilistic Databases,2004,2014,10,VLDB,VLDB,Database,Data Mining / Web,141,,56.12,15.0,55.0,69.0,15.0,50
+icdm_2005_1767506e,Supervised Tensor Learning,2005,2014,9,ICDM,ICDM,DM/Web,Machine Learning Theory,377,,66.5,30.0,67.0,100.0,14.0,50
+aaai_1997_358a0cd6,Statistical Parsing with a Context-Free Grammar and Word Statistics,1997,2015,18,AAAI,AAAI,AI,Natural Language Processing,538,,56.0,18.0,53.0,48.0,16.0,50
+usenix_security_1999_8ca68c47,Why Johnny Can’t Encrypt: A Usability Evaluation of PGP 5.0,1999,2015,16,USENIX Security,USENIX,Security,Human-Computer Interaction,0,,0.0,,,,,0
+fast_2002_1da1195d,Hippodrome: Running Circles Around Storage Administration,2002,2015,13,FAST,USENIX,Systems,Database / Systems,247,,46.75,12.0,71.0,46.0,10.0,50
+kdd_2002_14fa3fe7,Optimizing Search Engines using Clickthrough Data,2002,2015,13,KDD,SIGKDD,DM/Web,Data Mining / Web,3918,,53.38,16.0,84.0,59.0,13.0,50
+sigcomm_2004_6b41c296,Sizing router buffers,2004,2015,11,SIGCOMM,SIGCOMM,Networking,Router,682,,56.25,12.0,61.0,66.0,17.0,50
+ccr_2005_3ec7a6b7,A clean slate 4D approach to network control and management.,2005,2015,10,CCR,SIGCOMM,Networking,Computer Vision,656,,53.38,8.0,59.0,59.0,17.0,50
+icse_2005_a4cb3ae5,Is Mutation an Appropriate Tool for Testing Experiments?,2005,2015,10,ICSE,ICSE,Software Engineering,Data Mining / Web,786,,54.75,12.0,62.0,62.0,16.0,50
+nsdi_2005_1708a824,Live Migration of Virtual Machines,2005,2015,10,NSDI,USENIX,Systems/Networking,Database / Systems,2580,,62.88,15.0,60.0,83.0,20.0,50
+nsdi_2005_18e8a7d4,Design and Implementation of a Routing Control Platform,2005,2015,10,NSDI,USENIX,Systems/Networking,Database / Systems,400,,55.38,11.0,58.0,63.0,17.0,50
+oopsla_2005_92fb0725,X10: An Object-Oriented Approach to Non-Uniform Cluster Computing,2005,2015,10,OOPSLA,OOPSLA,Programming Languages,Natural Language Processing,175,,61.88,15.0,55.0,83.0,19.0,50
+sigmod_2005_2a0a907a,Robust and Fast Similarity Search for Moving Object Trajectories,2005,2015,10,SIGMOD,SIGMOD,Database,Computer Vision,1323,,67.25,20.0,66.0,82.0,22.0,50
+icdm_2006_fdafebc5,Fast Random Walk with Restart and Its Applications,2006,2015,9,ICDM,ICDM,DM/Web,Computer Vision,1199,,64.62,19.0,70.0,89.0,19.0,50
+aaai_1998_e399f17f,The Interactive Museum Tour-Guide Robot,1998,2016,18,AAAI,AAAI,AI,Human-Computer Interaction,504,,58.38,19.0,81.0,55.0,17.0,50
+iccv_2001_8e7ef59f,A Database of Human Segmented Natural Images and Its Application to Evaluating Segmentation Algorithms and Measuring Ecological Statistics,2001,2016,15,ICCV,ICCV,CV,Computer Vision,7941,,62.88,9.0,61.0,83.0,23.0,50
+iccv_2001_c28b186c,Matching Shapes,2001,2016,15,ICCV,ICCV,CV,Computer Vision,345,,62.25,16.0,67.0,66.0,21.0,50
+usenix_security_2003_2ed9565d,Preventing Privilege Escalation,2003,2016,13,USENIX Security,USENIX,Security,Data Mining / Web,287,,60.25,12.0,57.0,74.0,20.0,50
+fast_2004_f8c44e3f,Row-Diagonal Parity for Double Disk Failure Correction,2004,2016,12,FAST,USENIX,Systems,RAID,493,,44.75,7.0,60.0,50.0,10.0,50
+sigcomm_2004_6c3596a0,Link-level measurements from an 802.11b mesh network,2004,2016,12,SIGCOMM,SIGCOMM,Networking,Path loss,1002,,44.5,9.0,49.0,48.0,9.0,50
+sigcomm_2004_1c987b63,A first-principles approach to understanding the Internet's router-level topology,2004,2016,12,SIGCOMM,SIGCOMM,Networking,Data Mining / Web,359,,60.25,24.0,83.0,74.0,14.0,50
+kdd_2005_ebddb36d,"Graphs over Time: Densification Laws, Shrinking Diameters and Possible Explanations",2005,2016,11,KDD,SIGKDD,DM/Web,Data Mining / Web,847,,87.38,37.0,86.0,151.0,28.0,50
+icse_2006_f23af9a0,Who Should Fix This Bug,2006,2016,10,ICSE,ICSE,Software Engineering,Human-Computer Interaction,918,,51.0,9.0,63.0,60.0,14.0,50
+nsdi_2006_f00206e5,Pip: Detecting the Unexpected in Distributed Systems,2006,2016,10,NSDI,USENIX,Systems/Networking,Database / Systems,318,,57.25,15.0,77.0,70.0,16.0,50
+oopsla_2006_5186c94c,The DaCapo benchmarks: Java benchmarking development and analysis,2006,2016,10,OOPSLA,OOPSLA,Programming Languages,Fairness / Evaluation,1593,,55.0,11.0,66.0,60.0,17.0,50
+sigmod_2006_a6a81761,Provenance Management in Curated Databases,2006,2016,10,SIGMOD,SIGMOD,Database,Database / Systems,296,,66.88,26.0,65.0,71.0,20.0,50
+icdm_2007_a5b38b3c,Scalable Collaborative Filtering with Jointly Derived Neighborhood Interpolation Weights,2007,2016,9,ICDM,ICDM,DM/Web,Data Mining / Web,502,,65.5,25.0,86.0,56.0,21.0,50
+aaai_1999_7d4d17b7,Monte Carlo Localization: Efficient Position Estimation for Mobile Robots,1999,2017,18,AAAI,AAAI,AI,Computer Vision,1073,,58.88,21.0,67.0,59.0,16.0,50
+usenix_security_2001_84277b08,Inferring Internet Denial-of-Service Activity,2001,2017,16,USENIX Security,USENIX,Security,Security / Privacy,870,,50.75,20.0,61.0,54.0,9.0,50
+fast_2002_71c78dd2,SnapMirror: File-System-Based Asynchronous Mirroring for Disaster Recovery,2002,2017,15,FAST,USENIX,Systems,Database / Systems,140,,49.75,13.0,61.0,42.0,13.0,50
+iccv_2003_1e9d06bc,Space-time interest points,2003,2017,14,ICCV,ICCV,CV,Computer Vision,1306,,58.25,11.0,68.0,70.0,19.0,50
+iccv_2003_cf03eac5,Recognizing action at a distance,2003,2017,14,ICCV,ICCV,CV,Computer Vision,1237,,58.75,13.0,74.0,74.0,18.0,50
+iccv_2003_d4dc49eb,Video Google: A text retrieval approach to object matching in videos,2003,2017,14,ICCV,ICCV,CV,Computer Vision,6430,,62.38,15.0,67.0,71.0,21.0,50
+iccv_2003_17664fce,Recognising panoramas,2003,2017,14,ICCV,ICCV,CV,Computer Vision,680,,58.88,20.0,66.0,63.0,16.0,50
+iccv_2003_a3c9d759,Discovering objects and their location in images,2003,2017,14,ICCV,ICCV,CV,Computer Vision,984,,62.5,16.0,55.0,84.0,19.0,50
+iccv_2005_53de106d,The pyramid match kernel: Discriminative classification with sets of image features,2005,2017,12,ICCV,ICCV,CV,Computer Vision,1492,,66.5,14.0,71.0,84.0,24.0,50
+iccv_2005_14fd00e0,Actions as space-time shapes,2005,2017,12,ICCV,ICCV,CV,Computer Vision,1737,,62.12,15.0,74.0,85.0,19.0,50
+sigmod_2005_c02d9b0b,Fault-tolerance in the Borealis distributed stream processing system,2005,2017,12,SIGMOD,SIGMOD,Database,Database / Systems,203,,61.25,18.0,65.0,66.0,19.0,50
+kdd_2006_6001f510,Training Linear SVMs in Linear Time,2006,2017,11,KDD,SIGKDD,DM/Web,Natural Language Processing,1958,,63.75,19.0,78.0,74.0,20.0,50
+icml_2007_3e107099,Combining Online and Offline Knowledge in UCT,2007,2017,10,ICML,ICML,ML,Machine Learning Theory,457,,62.12,22.0,75.0,65.0,18.0,50
+icse_2007_280356c8,Feedback-Directed Random Test Generation,2007,2017,10,ICSE,ICSE,Software Engineering,Natural Language Processing,846,,51.5,10.0,69.0,52.0,15.0,50
+imc_2007_30656686,Measurement and analysis of online social networks,2007,2017,10,IMC,SIGCOMM,Networking,Data Mining / Web,3073,,60.0,20.0,84.0,72.0,16.0,50
+nips_2007_72016643,Random Features for Large-Scale Kernel Machines,2007,2017,10,NIPS,NIPS,ML,Machine Learning Theory,2663,,69.25,29.0,79.0,86.0,19.0,50
+nsdi_2007_989fba52,X-Trace: A Pervasive Network Tracing Framework,2007,2017,10,NSDI,USENIX,Systems/Networking,Database / Systems,408,,56.75,18.0,74.0,70.0,14.0,50
+oopsla_2007_7bb907bc,Statistically rigorous Java performance evaluation,2007,2017,10,OOPSLA,OOPSLA,Programming Languages,Real-Time / Embedded Systems,523,,59.75,15.0,74.0,74.0,18.0,50
+sigcomm_2007_a54ec39d,Ethane: Taking control of the Enterprise,2007,2017,10,SIGCOMM,SIGCOMM,Networking,Security / Privacy,522,,71.12,18.0,57.0,97.0,29.0,50
+icdm_2008_8466db39,Collaborative Filtering for Implicit Feedback Datasets,2008,2017,9,ICDM,ICDM,DM/Web,Data Mining / Web,3206,,56.88,11.0,75.0,67.0,18.0,50
+hpca_1999_95bcc4dc,Dynamically Exploiting Narrow Width Operands to Improve Processor Power and Performance,1999,2018,19,HPCA,HPCA,Architecture,Machine Learning Theory,297,,49.38,14.0,62.0,43.0,12.0,50
+wmcsa_1999_367b771d,Ad-hoc On-Demand Distance Vector Routing,1999,2018,19,WMCSA,SIGMOBILE,CS,Human-Computer Interaction,10309,,44.25,10.0,44.0,42.0,9.0,50
+aaai_2000_d59a2669,PROMPT: Algorithm and Tool for Automated Ontology Merging and Alignment,2000,2018,18,AAAI,AAAI,AI,Data Mining / Web,966,,59.0,21.0,50.0,60.0,16.0,50
+ieee_transactions_on_information_theory_2000_f5a20c28,Network Information Flow,2000,2018,18,IEEE Transactions on Information Theory,SIGMOBILE,CS,Machine Learning Theory,7857,,66.38,15.0,56.0,79.0,24.0,50
+ieee_personal_communications_2001_3d162e3f,Pervasive Computing: Vision and Challenges,2001,2018,17,IEEE Personal Communications,SIGMOBILE,CS,Database / Systems,2415,,75.12,27.0,80.0,93.0,26.0,50
+acl_2002_1a4aaa49,BLEU: a Method for Automatic Evaluation of Machine Translation,2002,2018,16,ACL,NAACL,CS,Natural Language Processing,542,,71.75,27.0,61.0,66.0,26.0,50
+acm_mobicom_2002_e34a4638,Wake on Wireless: An Event Driven Energy Saving Strategy for Battery Operated Devices,2002,2018,16,ACM MobiCom,SIGMOBILE,CS,Human-Computer Interaction,8135,,75.88,21.0,53.0,123.0,34.0,50
+emnlp_2002_6452d908,Discriminative Training Methods for Hidden Markov Models: Theory and Experiments with Perceptron Algorithms,2002,2018,16,EMNLP,NAACL,NLP,Natural Language Processing,2868,,61.75,18.0,74.0,78.0,18.0,50
+emnlp_2002_bbd2b492,Thumbs up? Sentiment Classification using Machine Learning Techniques,2002,2018,16,EMNLP,NAACL,NLP,Natural Language Processing,2212,,66.38,22.0,80.0,75.0,21.0,50
+sigir_2003_b86e5ee4,Stuff I’ve seen: a system for personal information retrieval and re-use,2003,2018,15,SIGIR,SIGIR,IR,Database / Systems,0,,0.0,,,,,0
+sigir_2003_73629bd4,Beyond independent relevance: methods and evaluation metrics for subtopic retrieval,2003,2018,15,SIGIR,SIGIR,IR,Natural Language Processing,2865,,65.12,26.0,64.0,65.0,19.0,50
+fast_2004_f8939090,Designing for Disasters,2004,2018,14,FAST,USENIX,Systems,Database / Systems,168,,59.25,22.0,86.0,50.0,17.0,50
+sigir_2005_82d07dff,Personalizing search via automated analysis of interests and activities,2005,2018,13,SIGIR,SIGIR,IR,Data Mining / Web,799,,54.38,11.0,57.0,55.0,17.0,50
+sigir_2005_782f98ae,Accurately interpreting clickthrough data as implicit feedback,2005,2018,13,SIGIR,SIGIR,IR,Natural Language Processing,1391,,49.25,14.0,73.0,50.0,11.0,50
+acm_sensys_2006_a4e2d6fd,CarTel: A Distributed Mobile Sensor Computing System,2006,2018,12,ACM SenSys,SIGMOBILE,CS,Reinforcement Learning,225,,77.0,29.0,83.0,100.0,32.0,50
+sigcomm_2006_dfdc39e9,XORs in the air: practical wireless network coding,2006,2018,12,SIGCOMM,SIGCOMM,Networking,Computer network,2274,,65.5,22.0,52.0,68.0,21.0,50
+sigir_2006_b1c8281c,Improving web search ranking by incorporating user behavior information,2006,2018,12,SIGIR,SIGIR,IR,Data Mining / Web,1044,,48.62,12.0,76.0,45.0,12.0,50
+usenix_security_2006_a1d53756,Evaluating SFI for a CISC Architecture,2006,2018,12,USENIX Security,USENIX,Security,Reinforcement Learning,167,,46.0,7.0,56.0,44.0,12.0,50
+www_2007_973301ac,YAGO: A Core of Semantic Knowledge Unifying WordNet and Wikipedia,2007,2018,11,WWW,WWW,Web,Data Mining / Web,1186,,85.88,38.0,82.0,135.0,31.0,50
+icml_2008_be55835e,A Unified Architecture for Natural Language Processing: Deep Neural Networks with Multitask Learning,2008,2018,10,ICML,ICML,ML,Natural Language Processing,6709,,66.12,22.0,67.0,81.0,20.0,50
+kdd_2008_2966bdf2,Factorization meets the neighborhood: a multifaceted collaborative filtering model,2008,2018,10,KDD,SIGKDD,DM/Web,Database / Systems,3592,,84.88,30.0,73.0,159.0,31.0,50
+nsdi_2008_a9fc5748,Remus: High Availability via Asynchronous Virtual Machine Replication,2008,2018,10,NSDI,USENIX,Systems/Networking,Database / Systems,584,,66.0,17.0,64.0,84.0,22.0,50
+sigcomm_2008_81bf07a4,"A Scalable, Commodity Data Center Network Architecture",2008,2018,10,SIGCOMM,SIGCOMM,Networking,Database / Systems,3154,,54.0,12.0,59.0,64.0,15.0,50
+sigmod_2008_55e86b32,Serializable isolation for snapshot databases,2008,2018,10,SIGMOD,SIGMOD,Database,Database / Systems,125,,55.62,13.0,54.0,65.0,16.0,50
