@@ -117,6 +117,9 @@ main { padding: 0 clamp(20px, 5vw, 72px) 70px; }
   align-items: stretch;
 }
 .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.grid-stack { display: grid; gap: 20px; }
+.wide-card { margin-top: 24px; }
 .grid-2.uneven { grid-template-columns: minmax(360px, 1.15fr) minmax(300px, 0.85fr); }
 .section-copy {
   padding: 18px 6px;
@@ -159,6 +162,9 @@ h2 { font-size: clamp(28px, 4vw, 50px); line-height: 1.04; margin: 8px 0 14px; l
 .bar:hover { opacity: .78; }
 .dot { cursor: pointer; stroke: #0c1118; stroke-width: 1.2; }
 .line-path { fill: none; stroke-width: 2.4; opacity: .82; }
+.topic-area { cursor: crosshair; transition: opacity .2s ease; }
+.topic-area:hover { opacity: .92; }
+.callout text { paint-order: stroke; stroke: rgba(10,13,18,.9); stroke-width: 4px; }
 .chart-title-small { fill: var(--muted); font-size: 11px; }
 .detail-card { min-height: 430px; }
 #paper-detail { padding: 8px 8px 18px; }
@@ -195,7 +201,7 @@ h2 { font-size: clamp(28px, 4vw, 50px); line-height: 1.04; margin: 8px 0 14px; l
 footer { padding: 34px clamp(20px, 5vw, 72px) 54px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.08); }
 
 @media (max-width: 920px) {
-  .summary-grid, .two-col, .grid-2, .grid-2.uneven { grid-template-columns: 1fr; }
+  .summary-grid, .two-col, .grid-2, .grid-2.uneven, .grid-3 { grid-template-columns: 1fr; }
   .section-title-row { display: block; }
   .hero { min-height: auto; padding-top: 112px; }
 }

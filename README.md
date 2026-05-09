@@ -50,6 +50,7 @@ git push -u origin feature/your-name-task
 ├── docs/
 │   ├── project_plan.md
 │   ├── team_division.md
+│   ├── work_board.md
 │   └── data_dictionary.md
 ├── data/
 │   ├── papers_enriched.csv
@@ -81,8 +82,8 @@ git push -u origin feature/your-name-task
 
 1. Time：recognition lag 分布和核心时间尺度；
 2. Venue & Field：会议排名和领域分布；
-3. Topic Evolution：主题分布和代表论文详情卡；
-4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹；
+3. Topic Evolution：主题分布、主题随年份演化和代表论文详情卡；
+4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
 5. Impact Network：机构和国家/地区分布。
 
 这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
@@ -106,6 +107,8 @@ http://127.0.0.1:8765/index.html
 ## 分工概览
 
 详细分工见：`docs/team_division.md`
+
+Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|

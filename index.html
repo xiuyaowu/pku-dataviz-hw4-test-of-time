@@ -31,12 +31,21 @@
         <p>recognition lag 直接刻画“经得起时间检验”的时间尺度：从论文发表到多年后被重新认可，中间间隔了多久。</p>
         <p id="time-note" class="reading-note"></p>
       </div>
-      <div class="chart-card">
-        <div class="chart-head">
-          <h3>Recognition Lag Distribution</h3>
-          <span>count by lag bin</span>
+      <div class="grid-stack">
+        <div class="chart-card">
+          <div class="chart-head">
+            <h3>Recognition Lag Distribution</h3>
+            <span>count by lag bin</span>
+          </div>
+          <div id="lag-chart" class="chart"></div>
         </div>
-        <div id="lag-chart" class="chart"></div>
+        <div class="chart-card">
+          <div class="chart-head">
+            <h3>Publication → Award Timeline</h3>
+            <span>each dot = paper</span>
+          </div>
+          <div id="timeline-chart" class="chart"></div>
+        </div>
       </div>
     </section>
 
@@ -78,6 +87,10 @@
           <div id="paper-detail"></div>
         </div>
       </div>
+      <div class="chart-card wide-card">
+        <div class="chart-head"><h3>Topic Evolution Over Publication Years</h3><span>stacked shares</span></div>
+        <div id="topic-evolution-chart" class="chart tall"></div>
+      </div>
     </section>
 
     <section id="citation" class="section">
@@ -88,7 +101,7 @@
         </div>
         <p class="reading-note" id="citation-note"></p>
       </div>
-      <div class="grid-2">
+      <div class="grid-3">
         <div class="chart-card">
           <div class="chart-head"><h3>Citation vs Recognition Lag</h3><span>each dot = paper</span></div>
           <div id="scatter-chart" class="chart tall"></div>
@@ -96,6 +109,10 @@
         <div class="chart-card">
           <div class="chart-head"><h3>Citation Trajectory</h3><span>top cited papers</span></div>
           <div id="trajectory-chart" class="chart tall"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-head"><h3>Depth × Breadth</h3><span>citation vs diffusion</span></div>
+          <div id="breadth-chart" class="chart tall"></div>
         </div>
       </div>
     </section>

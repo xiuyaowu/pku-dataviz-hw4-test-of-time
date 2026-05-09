@@ -25,18 +25,22 @@ Promise.all([
   d3.csv("data/topic_stats.csv", d3.autoType),
   d3.csv("data/topic_year_stats.csv", d3.autoType),
   d3.csv("data/citation_trajectories.csv", d3.autoType),
+  d3.csv("data/citing_breadth_metrics.csv", d3.autoType),
   d3.csv("data/institution_stats.csv", d3.autoType),
   d3.csv("data/country_stats.csv", d3.autoType)
-]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, institutions, countries]) => {
-  const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, institutions, countries };
+]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries]) => {
+  const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries };
   normalize(data);
   renderSummary(data);
   renderLag(data.lag);
+  renderAwardTimeline(data.timeline, data.papers);
   renderVenue(data.venues);
   renderAreas(data.areas);
   renderTopics(data.topics, data.papers);
+  renderTopicEvolution(data.topicYears);
   renderScatter(data.timeline, data.papers);
   renderTrajectory(data.citations, data.papers);
+  renderBreadth(data.timeline, data.papers);
   renderInstitutions(data.institutions);
   renderCountries(data.countries);
   updateDetail(topPaper(data.papers));
@@ -62,6 +66,13 @@ function normalize(data) {
     row.recognition_lag = num(row.recognition_lag);
     row.citation_count = num(row.citation_count);
     row.impact_breadth_score = num(row.impact_breadth_score);
+    row.citing_field_count = num(row.citing_field_count);
+    row.citing_country_count = num(row.citing_country_count);
+  }
+  for (const row of data.topicYears) {
+    row.publication_year = num(row.publication_year);
+    row.paper_count = num(row.paper_count);
+    row.proportion = num(row.proportion);
   }
 }
 
@@ -107,6 +118,29 @@ function renderLag(rows) {
   addGradient(svg, "lagGrad", "#70e1d4", "#3d8ee8");
 }
 
+function renderAwardTimeline(rows, papers) {
+  const {svg, width, height} = chartBox("#timeline-chart");
+  const margin = {top: 18, right: 26, bottom: 48, left: 58};
+  const clean = rows.filter(d => d.year && d.announcement_year);
+  const x = d3.scaleLinear().domain(d3.extent(clean, d => d.year)).nice().range([margin.left, width-margin.right]);
+  const y = d3.scaleLinear().domain(d3.extent(clean, d => d.announcement_year)).nice().range([height-margin.bottom, margin.top]);
+  const r = d3.scaleSqrt().domain(d3.extent(clean, d => d.citation_count)).range([3, 11]);
+  svg.append("g").attr("class", "grid").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(width-margin.left-margin.right)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d3.format("d")));
+  svg.append("text").attr("class", "chart-title-small").attr("x", width/2).attr("y", height-8).attr("text-anchor", "middle").text("publication year");
+  svg.append("text").attr("class", "chart-title-small").attr("x", -height/2).attr("y", 14).attr("text-anchor", "middle").attr("transform", "rotate(-90)").text("award year");
+  svg.selectAll("circle.timeline-dot").data(clean).join("circle")
+    .attr("class", "dot timeline-dot")
+    .attr("cx", d => x(d.year)).attr("cy", d => y(d.announcement_year))
+    .attr("r", d => r(d.citation_count)).attr("fill", d => color(d.venue_area)).attr("opacity", 0.68)
+    .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>${d.venue} · ${d.year} → ${d.announcement_year}<br>Lag: ${d.recognition_lag} years<br>Citations: ${fmt(d.citation_count)}`))
+    .on("mouseleave", hideTip)
+    .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
+  const longest = clean.slice().sort((a,b) => d3.descending(a.recognition_lag,b.recognition_lag))[0];
+  if (longest) addCallout(svg, x(longest.year), y(longest.announcement_year), `Longest lag · ${longest.recognition_lag}y`, 18, -18);
+}
+
 function renderVenue(rows) {
   const top = rows.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 12);
   horizontalBars("#venue-chart", top, "venue", "paper_count", "#70e1d4", d => `${d.venue_area || ""}<br>${d.paper_count} papers<br>Avg lag: ${fmt1(num(d.avg_recognition_lag))} years`);
@@ -122,6 +156,37 @@ function renderTopics(rows, papers) {
   horizontalBars("#topic-chart", top, "topic_label", "paper_count", "#b8a1ff", d => `${d.topic_label}<br>${d.paper_count} papers<br>Avg breadth: ${fmt1(num(d.avg_impact_breadth_score))}`, d => {
     const p = papers.filter(x => x.topic_label === d.topic_label).sort((a,b) => d3.descending(a.citation_count, b.citation_count))[0];
     if (p) updateDetail(p);
+  });
+}
+
+function renderTopicEvolution(rows) {
+  const {svg, width, height} = chartBox("#topic-evolution-chart");
+  const margin = {top: 20, right: 150, bottom: 48, left: 52};
+  const topTopics = Array.from(d3.rollup(rows, v => d3.sum(v, d => d.paper_count), d => d.topic_label).entries())
+    .sort((a,b) => d3.descending(a[1], b[1])).slice(0, 7).map(d => d[0]);
+  const years = Array.from(new Set(rows.map(d => d.publication_year))).sort(d3.ascending);
+  const byYear = years.map(year => {
+    const o = {year};
+    for (const topic of topTopics) o[topic] = 0;
+    for (const d of rows.filter(r => r.publication_year === year && topTopics.includes(r.topic_label))) o[d.topic_label] += d.paper_count;
+    return o;
+  });
+  const stack = d3.stack().keys(topTopics).offset(d3.stackOffsetExpand)(byYear);
+  const x = d3.scaleLinear().domain(d3.extent(years)).range([margin.left, width-margin.right]);
+  const y = d3.scaleLinear().domain([0,1]).range([height-margin.bottom, margin.top]);
+  const area = d3.area().x(d => x(d.data.year)).y0(d => y(d[0])).y1(d => y(d[1])).curve(d3.curveBasis);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(7).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, "%"));
+  svg.selectAll("path.topic-area").data(stack).join("path")
+    .attr("class", "topic-area")
+    .attr("d", area)
+    .attr("fill", d => color(d.key)).attr("opacity", 0.72)
+    .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.key)}</b><br>Share among top topic groups over time`))
+    .on("mouseleave", hideTip);
+  const legend = svg.append("g").attr("transform", `translate(${width-margin.right+18},${margin.top})`);
+  legend.selectAll("g").data(topTopics).join("g").attr("transform", (_,i) => `translate(0,${i*22})`).each(function(d){
+    const g=d3.select(this); g.append("rect").attr("width",10).attr("height",10).attr("rx",2).attr("fill",color(d));
+    g.append("text").attr("x",16).attr("y",9).attr("fill","#cdd6e5").attr("font-size",11).text(d.length>18?d.slice(0,18)+"…":d);
   });
 }
 
@@ -188,6 +253,29 @@ function renderTrajectory(rows, papers) {
     .on("mouseleave", hideTip);
 }
 
+function renderBreadth(rows, papers) {
+  const {svg, width, height} = chartBox("#breadth-chart");
+  const margin = {top: 18, right: 28, bottom: 50, left: 58};
+  const clean = rows.filter(d => d.citation_count && d.impact_breadth_score);
+  const x = d3.scaleLinear().domain([0, d3.max(clean, d => d.impact_breadth_score)]).nice().range([margin.left, width-margin.right]);
+  const y = d3.scaleLog().domain([Math.max(1, d3.min(clean, d => d.citation_count)), d3.max(clean, d => d.citation_count)]).range([height-margin.bottom, margin.top]);
+  svg.append("g").attr("class", "grid").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, ",~s").tickSize(-(width-margin.left-margin.right)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, ",~s"));
+  svg.append("text").attr("class", "chart-title-small").attr("x", width/2).attr("y", height-8).attr("text-anchor", "middle").text("impact breadth score");
+  svg.append("text").attr("class", "chart-title-small").attr("x", -height/2).attr("y", 14).attr("text-anchor", "middle").attr("transform", "rotate(-90)").text("citation count (log)");
+  svg.selectAll("circle.breadth-dot").data(clean).join("circle")
+    .attr("class", "dot breadth-dot")
+    .attr("cx", d => x(d.impact_breadth_score)).attr("cy", d => y(d.citation_count))
+    .attr("r", d => 3 + Math.sqrt(num(d.citing_country_count)) * 1.2)
+    .attr("fill", d => color(d.venue_area)).attr("opacity", 0.7)
+    .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>Breadth: ${fmt1(d.impact_breadth_score)}<br>Citing fields: ${fmt(d.citing_field_count)}<br>Citing countries: ${fmt(d.citing_country_count)}<br>Citations: ${fmt(d.citation_count)}`))
+    .on("mouseleave", hideTip)
+    .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
+  const high = clean.slice().sort((a,b) => d3.descending(a.impact_breadth_score,b.impact_breadth_score))[0];
+  if (high) addCallout(svg, x(high.impact_breadth_score), y(high.citation_count), "Widest diffusion", -96, -20);
+}
+
 function renderInstitutions(rows) {
   const top = rows.slice().filter(d => d.name).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 12);
   horizontalBars("#institution-chart", top, "name", "paper_count", "#70e1d4", d => `${d.country || "country unknown"}<br>${d.paper_count} papers<br>Centrality: ${num(d.centrality)}`);
@@ -232,6 +320,12 @@ function setNotes({papers, venues, areas, topics}) {
   d3.select("#topic-note").text(`${topTopic.topic_label} is the most frequent topic label, giving the topic module a natural entry point for representative-paper storytelling.`);
   d3.select("#citation-note").text(`The scatter plot separates citation volume from recognition timing: high citation counts and long recognition lags are related but not identical signals.`);
   d3.select("#network-note").text(`Institution and country rankings show where long-term impact clusters, while also reminding us that metadata coverage is uneven.`);
+}
+
+function addCallout(svg, x, y, label, dx=18, dy=-16) {
+  const g = svg.append("g").attr("class", "callout");
+  g.append("line").attr("x1", x).attr("y1", y).attr("x2", x+dx).attr("y2", y+dy).attr("stroke", "rgba(255,255,255,0.42)").attr("stroke-width", 1);
+  g.append("text").attr("x", x+dx+4).attr("y", y+dy-2).attr("fill", "#eef4ff").attr("font-size", 11).text(label);
 }
 
 function addGradient(svg, id, a, b) {
