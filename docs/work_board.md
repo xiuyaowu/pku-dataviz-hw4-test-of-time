@@ -1,37 +1,81 @@
 # 小组 Issue 分工表
 
-用途：先把六个人的工作拆成 GitHub Issues，之后组长可以在 GitHub 上 assign 给具体队友。当前代码已经先做了一版全模块 baseline，队友可以在此基础上补发现、优化图表、填证据。
+用途：把六个人的工作拆成可以并行推进的 GitHub Issues。当前代码已经有一版全模块 baseline，队友不是从零开始，而是在各自模块上补发现、优化图表、写报告小节并通过 PR 合并。
 
-| 角色 | GitHub Issue | 模块 | 主要文件 | PR 合并标准 |
-|---|---|---|---|---|
-| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2) | 项目负责人 / 初版网页实现 / GitHub 协作与代码整合 | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `docs/*`, 全站 QA | baseline 代码可运行 + 完成 PR review/merge + 最终整合验证 |
-| B | [#3](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/3) | 发表年、获奖年与 recognition lag | `data/award_timeline.csv`, `data/recognition_lag_distribution.csv`, `src/app.js` Time functions | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
-| C | [#4](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/4) | 会议和领域分布 | `data/venue_stats.csv`, `data/venue_area_stats.csv`, Venue section | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
-| D | [#5](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/5) | 主题分布、演化和代表论文卡 | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/*`, Topic section | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
-| E | [#6](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/6) | 引用轨迹、深度和广度 | `data/citation_trajectories.csv`, `data/citing_breadth_metrics.csv`, Citation section | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
-| F | [#7](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/7) | 机构国家、视觉统一和展示 | `data/institution_stats.csv`, `data/country_stats.csv`, Network section, CSS/PPT | 有可运行页面 + 2-3 条发现 + PR 描述写清数据来源 |
+## 总体协作规则
 
-## 统一 PR 要求
+1. 每个人从 `main` 新建自己的分支，不直接改 `main`。
+2. 每个 PR 必须链接自己的 Issue，并按 `.github/pull_request_template.md` 填写。
+3. 每个模块至少交付：可运行页面 + 2-3 条分析发现 + 数据来源说明 + 报告小节草稿。
+4. 如果改 `src/app.js`，本地先跑 `node --check src/app.js`。
+5. 如果改页面，本地启动 `python3 -m http.server 8765 --bind 127.0.0.1`，打开 `http://127.0.0.1:8765/index.html` 检查。
+6. A 负责 review、merge、全站叙事统一和最终 QA。
 
-- 每个人从 `main` 新建自己的分支。
-- 不直接改 `main`。
-- PR 描述必须包含：做了什么、使用的数据、主要发现、需要别人注意的地方。
-- 仓库已提供 `.github/pull_request_template.md`，发 PR 时按模板填写。
-- 如果改了 `src/app.js`，本地先跑 `node --check src/app.js`。
-- 如果改了页面，启动 `python3 -m http.server 8765 --bind 127.0.0.1` 后打开 `http://127.0.0.1:8765/index.html` 检查。
+## 六人分工总表
 
-## 当前我已先做的一版 baseline
+| 角色 | GitHub Issue | 模块 | 主要文件 | 必须交付 | PR 合并标准 |
+|---|---|---|---|---|---|
+| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2) | 项目负责人 / 全站 baseline / GitHub 协作 / Review / 最终整合 QA | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `.github/*`, `docs/*`, 全站 QA | baseline 代码、Issues、PR 模板、work board、贡献记录、最终检查表、review/merge 记录 | main 页面始终可运行；队友 PR 被检查；最终报告能追溯每个人贡献 |
+| B | [#3](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/3) | Time：发表年、获奖年、recognition lag | `data/award_timeline.csv`, `data/recognition_lag_distribution.csv`, `src/app.js` Time functions | lag 分布解释、最长/典型 lag 代表论文、2-3 条时间发现 | Time 两个图正常显示；结论能解释“时间检验”的时间尺度 |
+| C | [#4](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/4) | Venue and Field：会议和领域分布 | `data/venue_stats.csv`, `data/venue_area_stats.csv`, Venue section | Top venues、Top fields、集中度分析、2-3 条会议/领域发现 | 不把数量榜误写成官方排名；说明设奖历史差异限制 |
+| D | [#5](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/5) | Topic Evolution：主题分布、演化和代表论文卡 | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/*`, Topic section | Top topics、topic evolution、5-8 篇代表论文解释、2-3 条主题发现 | Topic 三个视图正常显示；代表论文卡有可展示解释/证据 |
+| E | [#6](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/6) | Citation and Impact：引用轨迹、深度和广度 | `data/citation_trajectories.csv`, `data/citing_breadth_metrics.csv`, Citation section | citation vs lag、trajectory、depth × breadth、2-3 条影响力发现 | 明确区分 citation depth 和 breadth；说明 OpenAlex 近似指标限制 |
+| F | [#7](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/7) | Network / Visual / Presentation：机构国家、视觉统一和展示 | `data/institution_stats.csv`, `data/country_stats.csv`, Network section, CSS/PPT | institution/country 发现、可选网络图升级、视觉统一检查、PPT 大纲 | Network baseline 正常；全站风格不被破坏；展示结构可直接用 |
 
-- Opening summary cards
-- Time：recognition lag histogram + publication → award timeline
-- Venue and Field：top venues + field map
-- Topic：topic distribution + topic evolution + representative paper detail card
-- Citation and Impact：citation vs lag + citation trajectories + depth × breadth scatter
-- Network：institution ranking + country/region ranking
-- README 本地运行说明
+## A 已经先完成的一版 baseline
 
-## A 组长贡献记录写法
+- Opening summary cards。
+- Time：recognition lag histogram + publication → award timeline。
+- Venue and Field：top venues + field map。
+- Topic：topic distribution + topic evolution + representative paper detail card。
+- Citation and Impact：citation vs lag + citation trajectories + depth × breadth scatter。
+- Network：institution ranking + country/region ranking。
+- README 本地运行说明。
+- PR 模板、最终 QA checklist、A 贡献记录。
 
-报告中可以写：负责项目仓库与代码整合工作：搭建 GitHub 协作仓库并配置 PR 工作流，根据研究问题创建 Issues 分工；先实现完整的 D3 网页 baseline，包括页面结构、数据加载、多个核心图表、tooltip 交互、论文详情卡和统一视觉样式；后续负责 review 队友 PR，检查代码运行、数据路径、图表解释和最终整合质量。
+## A 的“卷到极致”职责拆解
 
-可直接引用的更完整版本见：`docs/report/contribution_A.md`。最终整合检查表见：`docs/final_qa_checklist.md`。
+### 1. 项目架构
+
+- 建好 GitHub 仓库和 teammate-facing 文件结构。
+- 保证 root 下只有队友需要看的文件和文件夹。
+- 维护 README、data dictionary、project plan、team division、work board。
+- 把所有模块统一到同一个网页叙事，而不是六个人各做一个散图。
+
+### 2. Baseline 代码
+
+- 写出 `index.html` 的全站结构和导航锚点。
+- 写出 `src/app.js` 的统一数据加载、D3 绘图函数、tooltip、详情卡和 reading notes。
+- 写出 `src/styles.css` 的整体视觉系统、卡片布局、响应式样式。
+- 先让五个模块全部能跑，队友只需要在已有函数上继续优化。
+
+### 3. GitHub 协作
+
+- 把 B-F 的任务都拆成具体 Issue。
+- 每个 Issue 写清：目标问题、已有 baseline、相关文件、继续做什么、报告小节、验收标准。
+- 检查队友 PR 是否链接 Issue、是否写清数据和发现。
+- 合并前后检查 main 分支是否仍可运行。
+
+### 4. 内容和叙事把关
+
+- 每个模块必须产生能写进报告的发现。
+- 统一术语：Test of Time、recognition lag、citation trajectory、impact breadth、venue area。
+- 统一限制说明：公开元数据、OpenAlex 近似指标、奖项历史差异、机构元数据缺失。
+- 最终主线固定为：哪些 CS 研究经得起时间检验，以及这种长期影响体现在哪些时间、领域、主题、引用和网络模式中。
+
+### 5. 最终整合 QA
+
+- 跑 `node --check src/app.js`。
+- 本地启动页面，确认无 `Data loading failed`。
+- 检查 summary cards、五个模块、tooltip、详情卡、reading notes。
+- 检查所有数据文件存在，路径均为相对路径。
+- 检查 README、报告贡献记录、最终 QA checklist。
+- 最终合并所有队友 PR 后再做一次全站截图/展示检查。
+
+## 报告中 A 的贡献写法
+
+可以直接写：
+
+> 负责项目整体架构与协作整合：搭建 GitHub 仓库、设计 Issue/PR 协作流程、实现全站 D3 baseline，包括五个研究模块的数据加载、图表容器、tooltip、详情卡、summary cards 和统一视觉样式；后续负责 review 各模块 PR、检查数据路径与页面运行、统一图表叙事与最终提交 QA。该工作保证小组成员可以在已有可运行模块上并行优化，而不是从零开始各自开发。
+
+更完整版本见：`docs/report/contribution_A.md`。最终整合检查表见：`docs/final_qa_checklist.md`。
