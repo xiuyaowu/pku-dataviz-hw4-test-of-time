@@ -2,7 +2,7 @@
 
 ## 贡献概述
 
-负责项目整体架构与协作整合：搭建 GitHub 仓库、设计 Issue/PR 协作流程、实现全站 D3 baseline，包括五个研究模块的数据加载、图表容器、tooltip、详情卡、summary cards 和统一视觉样式；后续负责 review 各模块 PR、检查数据路径与页面运行、统一图表叙事与最终提交 QA。该工作保证小组成员可以在已有可运行模块上并行优化，而不是从零开始各自开发。
+负责项目整体架构与协作整合：搭建 GitHub 仓库、设计 Issue/PR 协作流程、实现全站 D3 baseline，包括五个研究模块的数据加载、图表容器、tooltip、详情卡、summary cards 和统一视觉样式；同时维护 README demo 截图，让未安装环境的读者可以快速理解当前成果；后续负责 review 各模块 PR、检查数据路径与页面运行、统一图表叙事与最终提交 QA。该工作保证小组成员可以在已有可运行模块上并行优化，而不是从零开始各自开发。
 
 ## 具体工作
 
@@ -43,7 +43,13 @@
 - 检查各模块术语、视觉、叙事是否统一。
 - 负责最终运行测试和提交前 QA。
 
-### 5. 报告和展示整合
+### 5. Demo 预览与成果展示入口
+
+- 生成 `docs/demo/homepage-overview.png`、`docs/demo/time-and-timeline.png`、`docs/demo/citation-and-impact.png`、`docs/demo/network-diffusion.png` 四张当前页面截图。
+- 在 `README.md` 顶部加入 Demo 预览区，方便老师、同学或未安装本地环境的读者先看到网页效果。
+- 将 GitHub Issue #13 纳入 A 的负责人工作，作为项目展示入口和最终整合可见性的补充。
+
+### 6. 报告和展示整合
 
 - 将全站主线统一为：哪些 CS 研究经得起时间检验，以及这种长期影响体现在哪些时间、领域、主题、引用和网络模式中。
 - 确保每个成员贡献能追溯到具体 Issue、文件、数据和图表。
@@ -62,9 +68,10 @@
 - `docs/work_board.md`
 - `docs/final_qa_checklist.md`
 - `docs/report/contribution_A.md`
-- GitHub Issues #2–#7
+- `docs/demo/*.png`
+- GitHub Issues #2–#7、#13
 - GitHub PR review / merge 记录
 
 ## 可直接放进报告的短版
 
-负责项目整体架构与协作整合。前期搭建 GitHub 仓库和 Issue/PR 工作流，并先实现全站可运行的 D3 baseline：包括 Time、Venue、Topic、Citation、Network 五个模块的数据加载、图表绘制、tooltip 交互、代表论文详情卡、summary cards 和统一视觉样式。中后期负责 review 队友 PR，检查数据路径、页面运行、图表解释、术语统一和最终 QA，保证小组成员可以在已有模块上并行优化，最终形成一个叙事统一、可运行、可展示的完整数据可视化项目。
+负责项目整体架构与协作整合。前期搭建 GitHub 仓库和 Issue/PR 工作流，并先实现全站可运行的 D3 baseline：包括 Time、Venue、Topic、Citation、Network 五个模块的数据加载、图表绘制、tooltip 交互、代表论文详情卡、summary cards 和统一视觉样式。同时维护 README demo 截图入口，让未安装环境的读者可以快速看到当前网页成果。中后期负责 review 队友 PR，检查数据路径、页面运行、图表解释、术语统一和最终 QA，保证小组成员可以在已有模块上并行优化，最终形成一个叙事统一、可运行、可展示的完整数据可视化项目。

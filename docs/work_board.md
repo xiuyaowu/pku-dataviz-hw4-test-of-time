@@ -15,7 +15,7 @@
 
 | 角色 | GitHub Issue | 模块 | 主要文件 | 必须交付 | PR 合并标准 |
 |---|---|---|---|---|---|
-| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2) | 项目负责人 / 全站 baseline / GitHub 协作 / Review / 最终整合 QA | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `.github/*`, `docs/*`, 全站 QA | baseline 代码、Issues、PR 模板、work board、贡献记录、最终检查表、review/merge 记录 | main 页面始终可运行；队友 PR 被检查；最终报告能追溯每个人贡献 |
+| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2), [#13](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/13) | 项目负责人 / 全站 baseline / GitHub 协作 / Demo 预览 / Review / 最终整合 QA | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `.github/*`, `docs/*`, `docs/demo/*`, 全站 QA | baseline 代码、Issues、PR 模板、work board、README demo 截图、贡献记录、最终检查表、review/merge 记录 | main 页面始终可运行；README 能让未安装环境的读者快速理解成果；队友 PR 被检查；最终报告能追溯每个人贡献 |
 | B | [#3](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/3) | Time：发表年、获奖年、recognition lag | `data/award_timeline.csv`, `data/recognition_lag_distribution.csv`, `src/app.js` Time functions | lag 分布解释、最长/典型 lag 代表论文、2-3 条时间发现 | Time 两个图正常显示；结论能解释“时间检验”的时间尺度 |
 | C | [#4](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/4) | Venue and Field：会议和领域分布 | `data/venue_stats.csv`, `data/venue_area_stats.csv`, Venue section | Top venues、Top fields、集中度分析、2-3 条会议/领域发现 | 不把数量榜误写成官方排名；说明设奖历史差异限制 |
 | D | [#5](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/5) | Topic Evolution：主题分布、演化和代表论文卡 | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/*`, Topic section | Top topics、topic evolution、5-8 篇代表论文解释、2-3 条主题发现 | Topic 三个视图正常显示；代表论文卡有可展示解释/证据 |
@@ -31,6 +31,7 @@
 - Citation and Impact：citation vs lag + citation trajectories + depth × breadth scatter。
 - Network：institution ranking + country/region ranking。
 - README 本地运行说明。
+- README demo 预览图：homepage、Time、Citation、Network 截图。
 - PR 模板、最终 QA checklist、A 贡献记录。
 
 ## A 的强化职责拆解
@@ -70,6 +71,7 @@
 - 检查 summary cards、五个模块、tooltip、详情卡、reading notes。
 - 检查所有数据文件存在，路径均为相对路径。
 - 检查 README、报告贡献记录、最终 QA checklist。
+- 更新 README demo 截图，让未安装环境的读者能直接看到当前成果。
 - 最终合并所有队友 PR 后再做一次全站截图/展示检查。
 
 ## 报告中 A 的贡献写法

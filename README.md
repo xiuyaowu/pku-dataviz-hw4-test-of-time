@@ -16,6 +16,20 @@
 
 > 一篇计算机论文在多年后仍被认为重要，通常具有什么共同特征？
 
+## Demo 预览图
+
+不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。
+
+![Homepage overview](docs/demo/homepage-overview.png)
+
+| Time / Timeline | Citation / Impact |
+|---|---|
+| ![Time and timeline module](docs/demo/time-and-timeline.png) | ![Citation and impact module](docs/demo/citation-and-impact.png) |
+
+| Network diffusion |
+|---|
+| ![Network diffusion module](docs/demo/network-diffusion.png) |
+
 ## 协作规则：必须 Pull Request，不要直接改 main
 
 为了避免文件互相覆盖、方便统一审核，本仓库采用 **always PR** 协作方式。
@@ -52,6 +66,11 @@ git push -u origin feature/your-name-task
 │   ├── team_division.md
 │   ├── work_board.md
 │   ├── final_qa_checklist.md
+│   ├── demo/
+│   │   ├── homepage-overview.png
+│   │   ├── time-and-timeline.png
+│   │   ├── citation-and-impact.png
+│   │   └── network-diffusion.png
 │   ├── report/
 │   │   └── contribution_A.md
 │   └── data_dictionary.md
