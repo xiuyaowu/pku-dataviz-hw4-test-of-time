@@ -21,6 +21,7 @@
     <h1>哪些计算机研究经得起时间检验？</h1>
     <p class="subtitle">Visualizing long-term impact in computer science through award timing, research fields, topic evolution, citation trajectories, and institutional diffusion.</p>
     <div id="summary-cards" class="summary-grid"></div>
+    <div id="insight-deck" class="insight-deck" aria-label="Key project insights"></div>
   </header>
 
   <main>
@@ -30,6 +31,7 @@
         <h2>时间检验奖通常隔多久才颁发？</h2>
         <p>recognition lag 直接刻画“经得起时间检验”的时间尺度：从论文发表到多年后被重新认可，中间间隔了多久。</p>
         <p id="time-note" class="reading-note"></p>
+        <div id="time-extremes" class="insight-strip"></div>
       </div>
       <div class="grid-stack">
         <div class="chart-card">
@@ -66,6 +68,10 @@
           <div class="chart-head"><h3>Field Map</h3><span>papers by area</span></div>
           <div id="area-chart" class="chart tall"></div>
         </div>
+      </div>
+      <div class="chart-card wide-card">
+        <div class="chart-head"><h3>Field × Decade Heatmap</h3><span>publication-era concentration</span></div>
+        <div id="venue-decade-chart" class="chart"></div>
       </div>
     </section>
 
@@ -115,6 +121,7 @@
           <div id="breadth-chart" class="chart tall"></div>
         </div>
       </div>
+      <div id="citation-quadrants" class="insight-strip wide-strip"></div>
     </section>
 
     <section id="network" class="section">
@@ -125,6 +132,7 @@
         </div>
         <p class="reading-note" id="network-note"></p>
       </div>
+      <div id="network-kpis" class="insight-strip wide-strip"></div>
       <div class="grid-2">
         <div class="chart-card">
           <div class="chart-head"><h3>Institutions</h3><span>paper count</span></div>

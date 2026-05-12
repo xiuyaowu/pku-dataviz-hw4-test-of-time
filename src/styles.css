@@ -161,6 +161,7 @@ h2 { font-size: clamp(28px, 4vw, 50px); line-height: 1.04; margin: 8px 0 14px; l
 .bar { cursor: pointer; transition: opacity .2s ease; }
 .bar:hover { opacity: .78; }
 .dot { cursor: pointer; stroke: #0c1118; stroke-width: 1.2; }
+.dot.selected-paper { stroke: var(--accent-2); stroke-width: 2.8; filter: drop-shadow(0 0 8px rgba(246,189,96,.65)); }
 .line-path { fill: none; stroke-width: 2.4; opacity: .82; }
 .topic-area { cursor: crosshair; transition: opacity .2s ease; }
 .topic-area:hover { opacity: .92; }
@@ -208,4 +209,39 @@ footer { padding: 34px clamp(20px, 5vw, 72px) 54px; color: var(--muted); border-
 
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
+
+.insight-deck {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 14px;
+  max-width: 1050px;
+  margin-top: 18px;
+  z-index: 2;
+}
+.insight-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+.wide-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 24px; }
+.insight-card {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(112,225,212,0.10), rgba(255,255,255,0.035));
+  border-radius: 18px;
+  padding: 14px 15px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+}
+.insight-card .metric { font-size: 26px; font-weight: 800; letter-spacing: -0.04em; color: var(--accent-2); }
+.insight-card .title { margin-top: 4px; font-weight: 700; color: #eef4ff; }
+.insight-card .body { margin-top: 6px; color: #aeb9ca; font-size: 13px; line-height: 1.55; }
+.reference-line { stroke: rgba(246,189,96,0.72); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.reference-label { fill: #f6bd60; font-size: 11px; paint-order: stroke; stroke: rgba(10,13,18,.9); stroke-width: 4px; }
+.quadrant-label { fill: rgba(238,244,255,0.72); font-size: 11px; letter-spacing: .02em; paint-order: stroke; stroke: rgba(10,13,18,.9); stroke-width: 4px; }
+.heat-cell { stroke: rgba(13,17,23,0.9); stroke-width: 1.4; rx: 6; cursor: pointer; }
+.focus-ring { fill: none; stroke: var(--accent-2); stroke-width: 2; opacity: .9; pointer-events: none; }
+@media (max-width: 920px) {
+  .insight-deck, .insight-strip, .wide-strip { grid-template-columns: 1fr; }
 }

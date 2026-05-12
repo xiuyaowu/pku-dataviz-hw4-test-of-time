@@ -32,15 +32,20 @@ Promise.all([
   const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries };
   normalize(data);
   renderSummary(data);
+  renderInsightDeck(data);
+  renderTimeExtremes(data.papers);
   renderLag(data.lag);
   renderAwardTimeline(data.timeline, data.papers);
   renderVenue(data.venues);
   renderAreas(data.areas);
+  renderVenueDecadeMatrix(data.papers);
   renderTopics(data.topics, data.papers);
   renderTopicEvolution(data.topicYears);
   renderScatter(data.timeline, data.papers);
   renderTrajectory(data.citations, data.papers);
   renderBreadth(data.timeline, data.papers);
+  renderCitationQuadrants(data.timeline);
+  renderNetworkKpis(data.institutions, data.countries);
   renderInstitutions(data.institutions);
   renderCountries(data.countries);
   updateDetail(topPaper(data.papers));
@@ -209,6 +214,12 @@ function horizontalBars(sel, rows, labelKey, valueKey, fill, tip, onClick) {
   svg.selectAll("text.value").data(rows).join("text")
     .attr("x", d => x(num(d[valueKey])) + 6).attr("y", d => y(d[labelKey]) + y.bandwidth()/2 + 4)
     .attr("fill", "#cdd6e5").attr("font-size", 11).text(d => fmt(num(d[valueKey])));
+  const avg = d3.mean(rows, d => num(d[valueKey]));
+  if (Number.isFinite(avg)) {
+    const ax = x(avg);
+    svg.append("line").attr("class", "reference-line").attr("x1", ax).attr("x2", ax).attr("y1", margin.top).attr("y2", height - margin.bottom);
+    svg.append("text").attr("class", "reference-label").attr("x", ax + 5).attr("y", margin.top + 11).text(`visible avg · ${fmt1(avg)}`);
+  }
 }
 
 function renderScatter(timeline, papers) {
@@ -223,6 +234,10 @@ function renderScatter(timeline, papers) {
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, ",~s"));
   svg.append("text").attr("class", "chart-title-small").attr("x", width/2).attr("y", height-8).attr("text-anchor", "middle").text("recognition lag (years)");
   svg.append("text").attr("class", "chart-title-small").attr("x", -height/2).attr("y", 14).attr("text-anchor", "middle").attr("transform", "rotate(-90)").text("citation count (log)");
+  const mx = d3.median(rows, d => d.recognition_lag);
+  const my = d3.median(rows, d => d.citation_count);
+  addReferenceGuides(svg, x(mx), y(my), width, height, margin, "median lag", "median citations");
+  svg.append("text").attr("class", "quadrant-label").attr("x", x(mx)+8).attr("y", y(my)-12).text("high citation · long recognition");
   svg.selectAll("circle.dot").data(rows).join("circle")
     .attr("class", "dot")
     .attr("cx", d => x(d.recognition_lag)).attr("cy", d => y(d.citation_count))
@@ -264,6 +279,10 @@ function renderBreadth(rows, papers) {
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, ",~s"));
   svg.append("text").attr("class", "chart-title-small").attr("x", width/2).attr("y", height-8).attr("text-anchor", "middle").text("impact breadth score");
   svg.append("text").attr("class", "chart-title-small").attr("x", -height/2).attr("y", 14).attr("text-anchor", "middle").attr("transform", "rotate(-90)").text("citation count (log)");
+  const mx = d3.median(clean, d => d.impact_breadth_score);
+  const my = d3.median(clean, d => d.citation_count);
+  addReferenceGuides(svg, x(mx), y(my), width, height, margin, "median breadth", "median citations");
+  svg.append("text").attr("class", "quadrant-label").attr("x", x(mx)+8).attr("y", y(my)-12).text("broad and deep impact");
   svg.selectAll("circle.breadth-dot").data(clean).join("circle")
     .attr("class", "dot breadth-dot")
     .attr("cx", d => x(d.impact_breadth_score)).attr("cy", d => y(d.citation_count))
@@ -286,12 +305,119 @@ function renderCountries(rows) {
   horizontalBars("#country-chart", top, "country", "paper_count", "#f6bd60", d => `${d.paper_count} papers<br>Avg citations: ${fmt(num(d.avg_citation_count))}`);
 }
 
+
+function renderInsightDeck({papers, venues, topics}) {
+  const lagMedian = d3.median(papers, d => d.recognition_lag);
+  const topVenue = venues.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topTopic = topics.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const highBreadth = papers.slice().sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0];
+  const cards = [
+    {metric: `${fmt1(lagMedian)}y`, title: "Time scale", body: "Median recognition lag anchors the project around delayed scholarly recognition."},
+    {metric: topVenue?.venue || "Venue", title: "Community signal", body: `${topVenue?.venue || "The top venue"} contributes the largest visible venue cluster in this award dataset.`},
+    {metric: fmt1(num(highBreadth?.impact_breadth_score)), title: "Diffusion peak", body: `${shortTitle(highBreadth?.title)} has the highest breadth proxy among enriched papers.`},
+    {metric: topTopic?.topic_label || "Topic", title: "Topic entry", body: "The most frequent topic group gives the report a concrete representative-paper entry point."}
+  ];
+  d3.select("#insight-deck").selectAll(".insight-card").data(cards).join("div")
+    .attr("class", "insight-card")
+    .html(d => `<div class="metric">${escapeHtml(d.metric)}</div><div class="title">${escapeHtml(d.title)}</div><div class="body">${escapeHtml(d.body)}</div>`);
+}
+
+function renderTimeExtremes(papers) {
+  const longest = papers.slice().sort((a,b) => d3.descending(a.recognition_lag, b.recognition_lag))[0];
+  const fastest = papers.filter(d => d.recognition_lag > 0).sort((a,b) => d3.ascending(a.recognition_lag, b.recognition_lag))[0];
+  const highestCited = topPaper(papers);
+  const cards = [
+    {metric: `${longest.recognition_lag}y`, title: "Longest lag", body: shortTitle(longest.title)},
+    {metric: `${fastest.recognition_lag}y`, title: "Shortest lag", body: shortTitle(fastest.title)},
+    {metric: fmt(highestCited.citation_count), title: "Most cited", body: shortTitle(highestCited.title)}
+  ];
+  d3.select("#time-extremes").selectAll(".insight-card").data(cards).join("div")
+    .attr("class", "insight-card")
+    .html(d => `<div class="metric">${escapeHtml(d.metric)}</div><div class="title">${escapeHtml(d.title)}</div><div class="body">${escapeHtml(d.body)}</div>`);
+}
+
+function renderVenueDecadeMatrix(papers) {
+  const target = d3.select("#venue-decade-chart");
+  if (target.empty()) return;
+  const {svg, width, height} = chartBox("#venue-decade-chart");
+  const margin = {top: 18, right: 22, bottom: 46, left: 150};
+  const topAreas = Array.from(d3.rollup(papers, v => v.length, d => d.venue_area || "Other").entries())
+    .sort((a,b) => d3.descending(a[1], b[1])).slice(0, 10).map(d => d[0]);
+  const decades = Array.from(new Set(papers.map(d => Math.floor(d.year / 10) * 10))).filter(Boolean).sort(d3.ascending);
+  const counts = [];
+  for (const area of topAreas) {
+    for (const decade of decades) {
+      counts.push({area, decade, count: papers.filter(d => (d.venue_area || "Other") === area && Math.floor(d.year / 10) * 10 === decade).length});
+    }
+  }
+  const x = d3.scaleBand().domain(decades).range([margin.left, width - margin.right]).padding(0.08);
+  const y = d3.scaleBand().domain(topAreas).range([margin.top, height - margin.bottom]).padding(0.10);
+  const fill = d3.scaleSequential(d3.interpolateYlGnBu).domain([0, d3.max(counts, d => d.count) || 1]);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).tickFormat(d => `${d}s`));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).tickSize(0)).call(g => g.select(".domain").remove());
+  svg.selectAll("rect.heat-cell").data(counts).join("rect")
+    .attr("class", "heat-cell")
+    .attr("x", d => x(d.decade)).attr("y", d => y(d.area))
+    .attr("width", x.bandwidth()).attr("height", y.bandwidth())
+    .attr("fill", d => d.count ? fill(d.count) : "rgba(255,255,255,0.035)")
+    .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.area)}</b><br>${d.decade}s · ${d.count} papers`))
+    .on("mouseleave", hideTip);
+}
+
+function renderCitationQuadrants(rows) {
+  const clean = rows.filter(d => d.recognition_lag && d.citation_count);
+  const lagMed = d3.median(clean, d => d.recognition_lag);
+  const citMed = d3.median(clean, d => d.citation_count);
+  const breadthMed = d3.median(clean, d => num(d.impact_breadth_score));
+  const groups = [
+    {title: "Fast recognition", metric: fmt(clean.filter(d => d.recognition_lag <= lagMed).length), body: `lag ≤ ${fmt1(lagMed)} years`},
+    {title: "Slow-burn impact", metric: fmt(clean.filter(d => d.recognition_lag > lagMed && d.citation_count > citMed).length), body: "long lag plus above-median citation depth"},
+    {title: "Broad diffusion", metric: fmt(clean.filter(d => num(d.impact_breadth_score) > breadthMed).length), body: `breadth proxy above ${fmt1(breadthMed)}`},
+    {title: "Caution", metric: "proxy", body: "citation and breadth guide interpretation; they do not encode award causality"}
+  ];
+  d3.select("#citation-quadrants").selectAll(".insight-card").data(groups).join("div")
+    .attr("class", "insight-card")
+    .html(d => `<div class="metric">${escapeHtml(d.metric)}</div><div class="title">${escapeHtml(d.title)}</div><div class="body">${escapeHtml(d.body)}</div>`);
+}
+
+function renderNetworkKpis(institutions, countries) {
+  const topInst = institutions.slice().filter(d => d.name).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topCountry = countries.slice().filter(d => d.country).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const instTotal = d3.sum(institutions, d => num(d.paper_count));
+  const topInstShare = instTotal ? num(topInst.paper_count) / instTotal * 100 : 0;
+  const countryTotal = d3.sum(countries, d => num(d.paper_count));
+  const topCountryShare = countryTotal ? num(topCountry.paper_count) / countryTotal * 100 : 0;
+  const cards = [
+    {metric: topInst?.paper_count || 0, title: "Top institution count", body: topInst?.name || "institution metadata unavailable"},
+    {metric: `${fmt1(topInstShare)}%`, title: "Top institution share", body: "share within observed institution mentions"},
+    {metric: topCountry?.country || "Country", title: "Top country/region", body: `${topCountry?.paper_count || 0} observed paper mentions`},
+    {metric: `${fmt1(topCountryShare)}%`, title: "Country concentration", body: "computed from available country metadata"}
+  ];
+  d3.select("#network-kpis").selectAll(".insight-card").data(cards).join("div")
+    .attr("class", "insight-card")
+    .html(d => `<div class="metric">${escapeHtml(d.metric)}</div><div class="title">${escapeHtml(d.title)}</div><div class="body">${escapeHtml(d.body)}</div>`);
+}
+
+function addReferenceGuides(svg, x, y, width, height, margin, xLabel, yLabel) {
+  svg.append("line").attr("class", "reference-line").attr("x1", x).attr("x2", x).attr("y1", margin.top).attr("y2", height - margin.bottom);
+  svg.append("line").attr("class", "reference-line").attr("x1", margin.left).attr("x2", width - margin.right).attr("y1", y).attr("y2", y);
+  svg.append("text").attr("class", "reference-label").attr("x", x + 6).attr("y", height - margin.bottom - 7).text(xLabel);
+  svg.append("text").attr("class", "reference-label").attr("x", margin.left + 8).attr("y", y - 7).text(yLabel);
+}
+
+function shortTitle(title) {
+  const t = String(title || "No title");
+  return t.length > 78 ? `${t.slice(0, 78)}…` : t;
+}
+
 function topPaper(papers) {
   return papers.slice().sort((a,b) => d3.descending(a.citation_count, b.citation_count))[0];
 }
 
 function updateDetail(p) {
   if (!p) return;
+  d3.selectAll(".selected-paper").classed("selected-paper", false);
+  d3.selectAll("circle").filter(d => d && d.paper_id === p.paper_id).classed("selected-paper", true);
   d3.select("#paper-detail").html(`
     <div class="paper-title">${escapeHtml(p.title || "Untitled")}</div>
     <div class="paper-meta">
