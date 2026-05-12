@@ -1,6 +1,6 @@
 # 小组 Issue 分工表
 
-用途：把六个人的工作拆成可以并行推进的 GitHub Issues。当前代码已经有一版全模块 baseline，队友不是从零开始，而是在各自模块上补发现、优化图表、写报告小节并通过 PR 合并。
+用途：把六个人的工作拆成可以并行推进的 GitHub Issues。当前代码已经有一版全模块 baseline，队友可以在各自模块上补发现、优化图表、写报告小节并通过 PR 合并。
 
 ## 总体协作规则
 
@@ -15,7 +15,7 @@
 
 | 角色 | GitHub Issue | 模块 | 主要文件 | 必须交付 | PR 合并标准 |
 |---|---|---|---|---|---|
-| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2), [#13](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/13) | 项目负责人 / 全站 baseline / GitHub 协作 / Demo 预览 / Review / 最终整合 QA | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `.github/*`, `docs/*`, `docs/demo/*`, 全站 QA | baseline 代码、Issues、PR 模板、work board、README demo 截图、贡献记录、最终检查表、review/merge 记录 | main 页面始终可运行；README 能让未安装环境的读者快速理解成果；队友 PR 被检查；最终报告能追溯每个人贡献 |
+| A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2), [#13](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/13) | 项目架构 / 全站 baseline / 队友减负 / GitHub 协作 / Demo 预览 / Review / 最终整合 QA | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `.github/*`, `docs/*`, `docs/demo/*`, 全站 QA | baseline 代码、Issues、PR 模板、work board、README demo 截图、队友任务卡、报告骨架、展示脚本、贡献记录、最终检查表、review/merge 记录 | main 页面始终可运行；README 能让未安装环境的读者快速理解成果；队友可以按任务卡直接开工；最终报告能追溯每个人贡献 |
 | B | [#3](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/3) | Time：发表年、获奖年、recognition lag | `data/award_timeline.csv`, `data/recognition_lag_distribution.csv`, `src/app.js` Time functions | lag 分布解释、最长/典型 lag 代表论文、2-3 条时间发现 | Time 两个图正常显示；结论能解释“时间检验”的时间尺度 |
 | C | [#4](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/4) | Venue and Field：会议和领域分布 | `data/venue_stats.csv`, `data/venue_area_stats.csv`, Venue section | Top venues、Top fields、集中度分析、2-3 条会议/领域发现 | 不把数量榜误写成官方排名；说明设奖历史差异限制 |
 | D | [#5](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/5) | Topic Evolution：主题分布、演化和代表论文卡 | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/*`, Topic section | Top topics、topic evolution、5-8 篇代表论文解释、2-3 条主题发现 | Topic 三个视图正常显示；代表论文卡有可展示解释/证据 |
@@ -33,6 +33,7 @@
 - README 本地运行说明。
 - README demo 预览图：homepage、Time、Citation、Network 截图。
 - PR 模板、最终 QA checklist、A 贡献记录。
+- A 质量系统、队友任务卡、报告骨架、展示讲稿。
 
 ## A 的强化职责拆解
 
@@ -41,7 +42,7 @@
 - 建好 GitHub 仓库和 teammate-facing 文件结构。
 - 保证 root 下只有队友需要看的文件和文件夹。
 - 维护 README、data dictionary、project plan、team division、work board。
-- 把所有模块统一到同一个网页叙事，而不是六个人各做一个散图。
+- 把所有模块统一到同一个网页叙事，避免六个人各做一个散图。
 
 ### 2. Baseline 代码
 
@@ -64,7 +65,14 @@
 - 统一限制说明：公开元数据、OpenAlex 近似指标、奖项历史差异、机构元数据缺失。
 - 最终主线固定为：哪些 CS 研究经得起时间检验，以及这种长期影响体现在哪些时间、领域、主题、引用和网络模式中。
 
-### 5. 最终整合 QA
+### 5. 队友减负与报告展示材料
+
+- 维护 `docs/module_handoff_cards.md`，让 B-F 明确已有 baseline、主要数据、最低交付、高分增强方向和报告句式。
+- 维护 `docs/report/report_skeleton.md`，让最终报告可以按模块直接填充。
+- 维护 `docs/demo_script.md`，让展示时按同一条故事线讲，避免逐张图解释。
+- 维护 `docs/a_lead_quality_system.md`，记录 A 的全局 baseline、review 标准和最终质量闸门。
+
+### 6. 最终整合 QA
 
 - 跑 `node --check src/app.js`。
 - 本地启动页面，确认无 `Data loading failed`。
@@ -78,6 +86,6 @@
 
 可以直接写：
 
-> 负责项目整体架构与协作整合：搭建 GitHub 仓库、设计 Issue/PR 协作流程、实现全站 D3 baseline，包括五个研究模块的数据加载、图表容器、tooltip、详情卡、summary cards 和统一视觉样式；后续负责 review 各模块 PR、检查数据路径与页面运行、统一图表叙事与最终提交 QA。该工作保证小组成员可以在已有可运行模块上并行优化，而不是从零开始各自开发。
+> 负责项目整体架构与协作整合：搭建 GitHub 仓库、设计 Issue/PR 协作流程、实现全站 D3 baseline，包括五个研究模块的数据加载、图表容器、tooltip、详情卡、summary cards 和统一视觉样式；后续负责 review 各模块 PR、检查数据路径与页面运行、统一图表叙事与最终提交 QA。该工作保证小组成员可以在已有可运行模块上并行优化，减少从零开始各自开发的成本。
 
-更完整版本见：`docs/report/contribution_A.md`。最终整合检查表见：`docs/final_qa_checklist.md`。
+更完整版本见：`docs/report/contribution_A.md`。A 的质量系统见 `docs/a_lead_quality_system.md`，队友任务卡见 `docs/module_handoff_cards.md`，报告骨架见 `docs/report/report_skeleton.md`，展示讲稿见 `docs/demo_script.md`，最终整合检查表见 `docs/final_qa_checklist.md`。

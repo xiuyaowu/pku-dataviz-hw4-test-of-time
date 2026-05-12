@@ -66,13 +66,17 @@ git push -u origin feature/your-name-task
 │   ├── team_division.md
 │   ├── work_board.md
 │   ├── final_qa_checklist.md
+│   ├── a_lead_quality_system.md
+│   ├── module_handoff_cards.md
+│   ├── demo_script.md
 │   ├── demo/
 │   │   ├── homepage-overview.png
 │   │   ├── time-and-timeline.png
 │   │   ├── citation-and-impact.png
 │   │   └── network-diffusion.png
 │   ├── report/
-│   │   └── contribution_A.md
+│   │   ├── contribution_A.md
+│   │   └── report_skeleton.md
 │   └── data_dictionary.md
 ├── data/
 │   ├── papers_enriched.csv
@@ -130,16 +134,28 @@ http://127.0.0.1:8765/index.html
 
 详细分工见：`docs/team_division.md`
 
-Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，最终整合检查见 `docs/final_qa_checklist.md`。
+Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强，最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，最终整合检查见 `docs/final_qa_checklist.md`。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
-| A | 项目负责人 / 初版网页实现 / GitHub 协作与代码整合 | GitHub 仓库与 PR 工作流、Issues 分工、baseline D3 网页、code review、最终整合和 QA |
+| A | 项目架构 / 全站 baseline / 队友减负 / GitHub 协作与最终整合 | GitHub 仓库与 PR 工作流、Issues 分工、全站 D3 baseline、队友任务卡、报告骨架、展示脚本、code review、最终整合和 QA |
 | B | 时间线与 recognition lag | 分析发表年、获奖年、recognition lag，做时间线和分布图 |
 | C | 会议 / 领域分布 | 分析 venue、venue_area，做会议排名、领域分布、热力图 |
 | D | 主题演化 | 分析 topic_label / concepts，做主题演化和代表论文卡片 |
 | E | 引用轨迹与影响深度/广度 | 分析 citation trajectory、citation count、impact breadth |
 | F | 作者机构网络 / 视觉 / PPT | 做机构网络、国家分布、统一视觉风格、准备展示 PPT |
+
+
+## 队友最快开始方式
+
+如果只想快速进入自己的任务：
+
+1. 先看 `docs/module_handoff_cards.md`，找到自己的 B-F 模块任务卡；
+2. 按任务卡确认已有 baseline、主要数据文件、最低交付和可写进报告的句式；
+3. 改完后按 PR 模板提交；
+4. 报告阶段直接填 `docs/report/report_skeleton.md` 对应模块。
+
+A 会负责主线、review、整合和最终 QA，保证各模块能拼成同一个完整网页故事。
 
 ## 推荐网页结构
 
@@ -187,6 +203,6 @@ Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#
 
 ## 最终目标
 
-最终作品应该像一个完整的数据故事，而不是几个图表拼在一起：
+最终作品应该呈现为一个完整的数据故事，避免只是几个图表拼在一起：
 
 > 用可视化解释：哪些计算机研究真正经得起时间检验，以及这种长期影响力如何在时间、领域、主题、引用和合作网络中体现出来。

@@ -1,60 +1,69 @@
-# A 贡献记录：项目负责人 / 全站 baseline / GitHub 协作 / Review / 最终整合 QA
+# A 贡献记录：项目架构 / 全站 baseline / 队友减负 / GitHub 协作 / Review / 最终整合 QA
 
 ## 贡献概述
 
-负责项目整体架构与协作整合：搭建 GitHub 仓库、设计 Issue/PR 协作流程、实现全站 D3 baseline，包括五个研究模块的数据加载、图表容器、tooltip、详情卡、summary cards 和统一视觉样式；同时维护 README demo 截图，让未安装环境的读者可以快速理解当前成果；后续负责 review 各模块 PR、检查数据路径与页面运行、统一图表叙事与最终提交 QA。该工作保证小组成员可以在已有可运行模块上并行优化，而不是从零开始各自开发。
+A 负责把小组项目从开放选题推进为一个可运行、可协作、可展示的数据可视化系统。前期完成 GitHub 协作仓库、Issue/PR 工作流、数据接入、单页 D3 叙事结构、五个研究模块的 baseline 图表、tooltip/详情卡/reading notes、统一 CSS 视觉系统和 README demo 截图；同时补齐队友任务卡、报告骨架、展示脚本、最终 QA checklist 和贡献记录。这样 B-F 可以在已有模块上并行增强分析，免去从零搭页面或临时拼图的成本。
+
+A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸门”：保证主线统一、页面始终可运行、每个模块有明确交付、每个 PR 有验证记录、最终报告能追溯每个人的具体贡献。
 
 ## 具体工作
 
-### 1. GitHub 协作与分工管理
+### 1. 项目架构与主线设计
 
-- 建立小组协作仓库，并清理为 teammate-facing 结构。
-- 维护 `README.md`、`docs/project_plan.md`、`docs/team_division.md`、`docs/work_board.md`。
-- 创建并细化 Issues #2–#7，对应六个成员的模块任务。
-- 为每个 Issue 写清：研究问题、已有 baseline、相关文件、继续优化任务、报告小节和验收标准。
-- 建立 `.github/pull_request_template.md`，让每个 PR 必须说明改动、数据、发现、验证方式。
+- 将项目主线确定为：哪些 CS 研究经得起时间检验，以及这种长期影响如何在时间、领域、主题、引用和研究网络中体现。
+- 将开放题目拆成五个连续研究问题：Time、Venue & Field、Topic Evolution、Citation & Recognition、Impact Network。
+- 设计单页滚动式叙事结构，避免六个人各做孤立图表后难以整合。
+- 维护 teammate-facing 仓库结构，保证 README、docs、data、manual annotations、src 等目录对队友清晰可用。
 
-### 2. 初版网页和代码实现
+### 2. 全站 D3 baseline 实现
 
-- 实现 `index.html` 页面结构和五个模块导航：Time / Venue / Topic / Citation / Network。
-- 实现 `src/app.js` 中的统一数据加载、D3 图表绘制、tooltip、详情卡、summary cards 和 reading notes。
-- 实现 `src/styles.css` 中的整体视觉风格、卡片布局、tooltip 和响应式样式。
-- 为五个研究模块先产出可运行版本：
+- 实现 `index.html` 页面结构、导航锚点、hero 区、summary cards 和五个模块容器。
+- 实现 `src/app.js` 的统一数据加载、字段解析、D3 图表绘制、tooltip、detail card 和 reading notes。
+- 实现 `src/styles.css` 的整体视觉系统、卡片布局、tooltip、响应式结构和展示风格。
+- 为五个模块先产出可运行版本：
   - Time：recognition lag histogram + publication → award timeline。
   - Venue：top venues + field/area distribution。
   - Topic：topic distribution + topic evolution + representative paper detail card。
   - Citation：citation vs recognition lag + citation trajectory + depth × breadth scatter。
   - Network：institution ranking + country/region ranking。
 
-### 3. 数据接入和路径检查
+### 3. 数据接入与解释边界
 
-- 将前端所需核心数据整理到 `data/` 目录。
+- 将前端所需核心数据整理到 `data/` 目录，并统一为相对路径读取。
 - 接入 `papers_enriched.csv`、`award_timeline.csv`、`recognition_lag_distribution.csv`、`venue_stats.csv`、`venue_area_stats.csv`、`topic_stats.csv`、`topic_year_stats.csv`、`citation_trajectories.csv`、`citing_breadth_metrics.csv`、`institution_stats.csv`、`country_stats.csv`。
-- 保证前端全部使用相对路径，便于 GitHub Pages 或本地静态服务器运行。
-- 检查数据解释边界：citation、impact breadth、network 都是公开元数据近似指标，不能过度宣称。
+- 检查 citation、impact breadth、network 等指标的解释边界，统一说明它们属于公开学术元数据近似指标，不能直接解释为官方评奖原因或因果结论。
 
-### 4. 代码审查与最终整合
+### 4. 队友减负材料
 
-- 后续负责 review 队友 PR。
-- 检查 JS 是否能通过 `node --check src/app.js`。
-- 检查页面是否能通过 `python3 -m http.server 8765 --bind 127.0.0.1` 本地运行。
-- 检查是否出现 `Data loading failed`、空图、tooltip 报错、样式溢出。
+- 编写 `docs/work_board.md`，把六人工作拆成 Issues、文件、交付物和 PR 合并标准。
+- 编写 `docs/module_handoff_cards.md`，为 B-F 提供每个模块的已有哪些 baseline、主要数据、最低交付、高分增强方向和报告句式。
+- 编写 `docs/report/report_skeleton.md`，提供最终报告结构和各模块可直接填充的段落框架。
+- 编写 `docs/demo_script.md`，提供 6-8 分钟展示讲解顺序和备选 Q&A。
+- 编写 `docs/a_lead_quality_system.md`，明确 A 的全局 baseline、队友减负和最终质量闸门职责。
+
+### 5. GitHub 协作与 PR 流程
+
+- 建立小组协作仓库，并清理为 teammate-facing 结构。
+- 创建并细化 Issues #2–#7，对应 A-F 六个成员的工作流。
+- 为每个 Issue 写清研究问题、已有 baseline、相关文件、继续优化任务、报告小节和验收标准。
+- 建立 `.github/pull_request_template.md`，要求每个 PR 说明改动、数据、发现和验证方式。
+- 维护 README 协作规则，要求 always PR，避免直接修改 `main` 造成覆盖。
+
+### 6. Demo 预览与展示入口
+
+- 生成 `docs/demo/homepage-overview.png`、`docs/demo/time-and-timeline.png`、`docs/demo/citation-and-impact.png`、`docs/demo/network-diffusion.png` 四张页面截图。
+- 在 `README.md` 顶部加入 Demo 预览区，让未安装环境的读者可以先看到网页效果。
+- 将 demo 截图作为项目展示入口，也作为后续视觉 QA 的基准。
+
+### 7. Review 与最终整合 QA
+
+- 后续负责 review 队友 PR，检查是否链接对应 Issue、是否写清数据和发现。
+- 合并前检查 `node --check src/app.js` 是否通过。
+- 本地启动 `python3 -m http.server 8765 --bind 127.0.0.1`，检查页面是否能打开。
+- 检查是否出现 `Data loading failed`、空图、tooltip 报错、样式溢出或数据路径错误。
 - 检查每个模块是否至少有 2-3 条可写进报告/展示的发现。
-- 检查各模块术语、视觉、叙事是否统一。
-- 负责最终运行测试和提交前 QA。
-
-### 5. Demo 预览与成果展示入口
-
-- 生成 `docs/demo/homepage-overview.png`、`docs/demo/time-and-timeline.png`、`docs/demo/citation-and-impact.png`、`docs/demo/network-diffusion.png` 四张当前页面截图。
-- 在 `README.md` 顶部加入 Demo 预览区，方便老师、同学或未安装本地环境的读者先看到网页效果。
-- 将 GitHub Issue #13 纳入 A 的负责人工作，作为项目展示入口和最终整合可见性的补充。
-
-### 6. 报告和展示整合
-
-- 将全站主线统一为：哪些 CS 研究经得起时间检验，以及这种长期影响体现在哪些时间、领域、主题、引用和网络模式中。
-- 确保每个成员贡献能追溯到具体 Issue、文件、数据和图表。
-- 在报告中说明 A 的贡献不是单纯协调，而是 baseline 代码、协作流程、review 和最终整合 QA。
-- 配合 F 的展示/PPT，检查故事线和模块顺序。
+- 统一术语、图表标题、caption、reading notes、限制说明和最终报告口径。
+- 最终提交前按 `docs/final_qa_checklist.md` 做全站检查。
 
 ## 对应文件 / 记录
 
@@ -66,7 +75,11 @@
 - `docs/project_plan.md`
 - `docs/team_division.md`
 - `docs/work_board.md`
+- `docs/a_lead_quality_system.md`
+- `docs/module_handoff_cards.md`
+- `docs/demo_script.md`
 - `docs/final_qa_checklist.md`
+- `docs/report/report_skeleton.md`
 - `docs/report/contribution_A.md`
 - `docs/demo/*.png`
 - GitHub Issues #2–#7、#13
@@ -74,4 +87,4 @@
 
 ## 可直接放进报告的短版
 
-负责项目整体架构与协作整合。前期搭建 GitHub 仓库和 Issue/PR 工作流，并先实现全站可运行的 D3 baseline：包括 Time、Venue、Topic、Citation、Network 五个模块的数据加载、图表绘制、tooltip 交互、代表论文详情卡、summary cards 和统一视觉样式。同时维护 README demo 截图入口，让未安装环境的读者可以快速看到当前网页成果。中后期负责 review 队友 PR，检查数据路径、页面运行、图表解释、术语统一和最终 QA，保证小组成员可以在已有模块上并行优化，最终形成一个叙事统一、可运行、可展示的完整数据可视化项目。
+A 负责项目整体架构、全站 baseline 实现与最终整合。前期完成 GitHub 协作仓库、Issue/PR 工作流、数据接入、D3 页面结构、五个研究模块的可运行图表、tooltip/详情卡/reading notes 和统一视觉系统；同时补齐 README demo 截图、队友任务卡、报告骨架和展示脚本，降低其他成员从零搭建的成本。中后期负责 review 各模块 PR、检查页面运行、数据路径、图表解释、术语统一和最终 QA，保证项目最终形成一条完整的数据故事，避免图表拼盘感。

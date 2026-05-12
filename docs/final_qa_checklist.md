@@ -42,7 +42,7 @@ http://127.0.0.1:8765/index.html
 
 - [x] 页面围绕同一个核心问题展开：哪些计算机研究经得起时间检验。
 - [x] 每个模块都有研究问题和 reading note。
-- [x] 图表不是孤立堆叠，而是按 Time → Venue/Field → Topic → Citation/Impact → Network 组织。
+- [x] 图表按 Time → Venue/Field → Topic → Citation/Impact → Network 组织，避免孤立堆叠。
 - [x] 数据来源和指标局限在 README/footer 中有说明。
 - [ ] 队友补充后的发现需要避免过度因果解释。
 - [ ] 手工补充的工业影响/代表性判断必须有 evidence URL。

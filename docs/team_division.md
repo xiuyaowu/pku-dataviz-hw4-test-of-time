@@ -4,23 +4,29 @@
 
 GitHub Issue 对照表见：`docs/work_board.md`。组长可以把对应 issue assign 给具体成员；每个成员从自己的 issue 开分支和 PR。
 
-## A：项目负责人 / 初版网页实现 / GitHub 协作与代码整合
+## A：项目架构 / 全站 baseline / 队友减负 / GitHub 协作与最终整合
 
 负责内容：
 
-- 维护项目主线和页面结构；
-- 搭建 GitHub 协作仓库，配置 PR-based 工作流和 `main` 分支保护；
-- 根据研究问题创建 GitHub Issues 分工，明确每个模块的任务、数据文件和交付标准；
-- 先实现完整的 D3 网页 baseline，包括页面结构、数据加载、核心图表、tooltip、论文详情卡和统一视觉样式；
+- 维护项目主线和页面结构，把项目统一成一条完整数据故事，避免六张散图式拼接；
+- 搭建 GitHub 协作仓库，配置 PR-based 工作流和 `main` 分支保护规则；
+- 根据研究问题创建 GitHub Issues 分工，明确每个模块的任务、数据文件、报告小节和交付标准；
+- 先实现完整的 D3 网页 baseline，包括页面结构、数据加载、核心图表、tooltip、论文详情卡、reading notes 和统一视觉样式；
 - 为 Time / Venue / Topic / Citation / Network 各模块先产出可运行代码版本，供队友在此基础上继续优化；
+- 编写队友任务卡、报告骨架和展示脚本，降低 B-F 从零分析和写作的成本；
 - review 队友 PR，检查代码能否运行、数据路径是否正确、图表是否回答对应研究问题；
+- 统一术语、图表解释、限制说明、视觉风格和最终报告口径；
 - 负责最终代码整合、运行测试和提交前 QA。
 
 交付内容：
 
 - GitHub repo、Issues #2–#7 和 `docs/work_board.md` 分工表；
 - baseline D3 webpage：`index.html`, `src/app.js`, `src/styles.css`；
-- README 本地运行说明；
+- A 质量系统：`docs/a_lead_quality_system.md`；
+- 队友任务卡：`docs/module_handoff_cards.md`；
+- 最终报告骨架：`docs/report/report_skeleton.md`；
+- 展示讲稿：`docs/demo_script.md`；
+- README 本地运行说明和 demo 截图；
 - PR review / merge 记录；
 - 最终页面运行验证和提交前检查清单。
 
