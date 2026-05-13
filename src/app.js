@@ -147,7 +147,7 @@ function renderLag(rows) {
     .attr("x", d => x(d.lag_bin)).attr("y", d => y(d.paper_count))
     .attr("width", x.bandwidth()).attr("height", d => y(0) - y(d.paper_count))
     .attr("rx", 8).attr("fill", "url(#lagGrad)")
-    .on("mousemove", (e,d) => showTip(e, `<b>${d.lag_bin}</b><br>${d.paper_count} papers<br>Avg citations: ${fmt(num(d.avg_citation_count))}`))
+    .on("mousemove", (e,d) => showTip(e, `<b>${d.lag_bin}</b><br>${d.paper_count} papers<br>Recognition lag = announcement year − publication year<br>Avg citations: ${fmt(num(d.avg_citation_count))}`))
     .on("mouseleave", hideTip);
   addGradient(svg, "lagGrad", "#70e1d4", "#3d8ee8");
 }

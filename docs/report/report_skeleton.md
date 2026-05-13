@@ -49,6 +49,8 @@
 
 负责人：B
 
+详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。
+
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | Test of Time 认可通常不是即时发生，而是在发表多年后被重新确认。 | 250 篇论文的 recognition lag 中位数约 12 年，平均约 14.0 年；最短 9 年，最长 34 年。 | “经得起时间检验”本身意味着需要经历后续研究、系统落地或社区吸收。 | 数据只覆盖设立 Test of Time Award 的会议，不能代表所有 CS 论文。 |
