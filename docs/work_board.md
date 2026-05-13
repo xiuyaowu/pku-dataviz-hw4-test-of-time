@@ -13,6 +13,8 @@
 
 ## 六人分工总表
 
+补充质量目标：如需进一步提高完成度，按 `docs/quality_upgrade_plan.md` 检查每个模块是否都有“发现、案例、限制、截图/验证”。
+
 | 角色 | GitHub Issue | 模块 | 主要文件 | 必须交付 | PR 合并标准 |
 |---|---|---|---|---|---|
 | A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2), [#13](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/13) | 项目架构 / 全站 baseline / 队友减负 / GitHub 协作 / Demo 预览 / Review / 最终整合 QA | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `.github/*`, `docs/*`, `docs/demo/*`, 全站 QA | baseline 代码、Issues、PR 模板、work board、README demo 截图、队友任务卡、报告骨架、展示脚本、贡献记录、最终检查表、review/merge 记录 | main 页面始终可运行；README 能让未安装环境的读者快速理解成果；队友可以按任务卡直接开工；最终报告能追溯每个人贡献 |

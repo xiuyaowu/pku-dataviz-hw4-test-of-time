@@ -45,6 +45,9 @@ http://127.0.0.1:8765/index.html
 - [x] 图表按 Time → Venue/Field → Topic → Citation/Impact → Network 组织，避免孤立堆叠。
 - [x] 数据来源和指标局限在 README/footer 中有说明。
 - [ ] 队友补充后的发现需要避免过度因果解释。
+- [ ] 每个模块都有 2-3 条发现、1-3 个代表案例、1 条限制说明。
+- [ ] `docs/quality_upgrade_plan.md` 中的模块级优化目标已检查。
+- [ ] 最终报告和展示讲稿中术语一致：recognition lag / citation depth / impact breadth。
 - [ ] 手工补充的工业影响/代表性判断必须有 evidence URL。
 
 ## 4. 提交前文件检查
