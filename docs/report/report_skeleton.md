@@ -65,6 +65,8 @@
 
 负责人：C
 
+详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。
+
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | Test of Time 论文在少数会议中较集中，但这种集中更像奖项记录密度，不等同于会议质量排名。 | Top venues：SIGIR 35 篇、SIGCOMM 33 篇、ICSE 29 篇、ICCV 24 篇、SIGMOD 24 篇、VLDB 20 篇。 | 不同社区记录长期影响的制度差异会改变可见数量。 | 会议设奖历史、收录范围、数据源完整性都会影响数量。 |

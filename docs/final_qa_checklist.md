@@ -48,6 +48,7 @@ http://127.0.0.1:8765/index.html
 - [x] 数据来源和指标局限在 README/footer 中有说明。
 - [ ] 队友补充后的发现需要避免过度因果解释。
 - [x] `docs/report/report_skeleton.md` 已有每个模块的 draft findings matrix：2-3 条发现、至少 1 个代表案例、1 条限制说明。
+- [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界，可作为 Issue #4 的验收材料。
 - [x] `docs/data_provenance_audit.md` 已统一 award seed / public metadata / derived metrics / manual annotation 的来源边界。
 - [x] citation depth、impact breadth、institution/country counts 已在 data dictionary、methods 和 report skeleton 中写成近似指标而非官方评价。
 - [ ] B-F 已人工核查各自模块的代表案例、贡献解释和 evidence URL。
