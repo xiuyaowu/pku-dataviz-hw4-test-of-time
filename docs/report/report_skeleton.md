@@ -81,6 +81,8 @@
 
 负责人：D
 
+详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。
+
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 长期影响论文并不集中在单一技术主题，而是覆盖系统、数据挖掘、视觉、NLP、理论等多个方向。 | Top topics：Database / Systems 67 篇、Data Mining / Web 46 篇、Computer Vision 43 篇、NLP 26 篇、Machine Learning Theory 18 篇。 | Test of Time 不是单一领域现象，而是跨社区的长期知识沉淀。 | topic_label 来自规则/API 元数据，需要对重点论文做人工校正。 |
