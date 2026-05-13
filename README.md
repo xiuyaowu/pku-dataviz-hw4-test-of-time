@@ -22,9 +22,13 @@
 
 ![Homepage overview](docs/demo/homepage-overview.png)
 
-| Time / Timeline | Citation / Impact |
+| Time / Timeline | Venue / Field |
 |---|---|
-| ![Time and timeline module](docs/demo/time-and-timeline.png) | ![Citation and impact module](docs/demo/citation-and-impact.png) |
+| ![Time and timeline module](docs/demo/time-and-timeline.png) | ![Venue and field module](docs/demo/venue-and-field.png) |
+
+| Topic Evolution | Citation / Impact |
+|---|---|
+| ![Topic evolution module](docs/demo/topic-evolution.png) | ![Citation and impact module](docs/demo/citation-and-impact.png) |
 
 | Network diffusion |
 |---|
@@ -72,6 +76,8 @@ git push -u origin feature/your-name-task
 │   ├── demo/
 │   │   ├── homepage-overview.png
 │   │   ├── time-and-timeline.png
+│   │   ├── venue-and-field.png
+│   │   ├── topic-evolution.png
 │   │   ├── citation-and-impact.png
 │   │   └── network-diffusion.png
 │   ├── report/
