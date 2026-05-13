@@ -36,9 +36,13 @@ GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-o
 |---|---|
 | ![Topic evolution module](docs/demo/topic-evolution.png) | ![Citation and impact module](docs/demo/citation-and-impact.png) |
 
-| Explorer / Evidence Index | Network diffusion |
+| Explorer / Evidence Index | Benchmark Lab |
 |---|---|
-| ![Explorer and evidence index module](docs/demo/explorer-evidence-index.png) | ![Network diffusion module](docs/demo/network-diffusion.png) |
+| ![Explorer and evidence index module](docs/demo/explorer-evidence-index.png) | ![Benchmark lab module](docs/demo/benchmark-lab.png) |
+
+| Network diffusion |
+|---|
+| ![Network diffusion module](docs/demo/network-diffusion.png) |
 
 ## 协作规则：必须 Pull Request，不要直接改 main
 
@@ -93,6 +97,7 @@ git push -u origin feature/your-name-task
 │   │   ├── topic-evolution.png
 │   │   ├── citation-and-impact.png
 │   │   ├── explorer-evidence-index.png
+│   │   ├── benchmark-lab.png
 │   │   ├── network-diffusion.png
 │   │   └── online-demo-qr.png
 │   ├── report/
@@ -125,14 +130,15 @@ git push -u origin feature/your-name-task
 
 仓库已经包含一个可直接运行的 D3 网页基础版：`index.html` + `src/app.js` + `src/styles.css`。
 
-当前页面包含 6 个研究问题模块：
+当前页面包含 7 个研究问题模块：
 
 1. Time：recognition lag 分布和核心时间尺度；
 2. Venue & Field：会议排名和领域分布；
 3. Topic Evolution：主题分布、主题随年份演化和代表论文详情卡；
 4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
 5. Paper Explorer：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
-6. Impact Network：机构和国家/地区分布。
+6. Benchmark Lab：把任意选中论文和全数据集/同领域中位数做 percentile 对比，生成讲解视角；
+7. Impact Network：机构和国家/地区分布。
 
 这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
 
@@ -187,7 +193,8 @@ A 会负责主线、review、整合和最终 QA，保证各模块能拼成同一
 4. Topic Evolution：长期影响论文的主题如何变化；
 5. Citation & Recognition：高引用是否等于经得起时间检验；
 6. Paper Explorer：检索、排序并定位代表论文证据；
-7. Impact Network：长期影响如何跨作者、机构、国家扩散。
+7. Benchmark Lab：解释选中论文相对全数据和同领域的位置；
+8. Impact Network：长期影响如何跨作者、机构、国家扩散。
 
 ## 数据使用说明
 

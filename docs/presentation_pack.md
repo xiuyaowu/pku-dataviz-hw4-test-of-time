@@ -12,9 +12,10 @@
 | Topic | D | 90s | 长期影响主题随 CS 研究重心迁移，代表论文能解释统计背后的具体贡献。 | `docs/demo/topic-evolution.png` + evidence card |
 | Citation / Impact | E | 90s | 高引用不是全部，citation depth 和 impact breadth 描述不同类型的长期影响。 | `docs/demo/citation-and-impact.png` |
 | Paper Explorer | A or D | 50s | 可检索证据库把统计发现落回具体论文，便于展示和答疑。 | `docs/demo/explorer-evidence-index.png` |
+| Benchmark Lab | A or D | 50s | 选中论文后展示 percentile 和解释视角，回答“这篇强在哪里”。 | `docs/demo/benchmark-lab.png` |
 | Network | F | 70s | 长期影响也沉淀在机构、国家/地区和学术共同体结构中。 | `docs/demo/network-diffusion.png` |
 | Methods / Limitations | A or F | 60s | 数据可信但有边界：award history、metadata coverage、sampled breadth。 | methods slide |
-| Conclusion | A | 40s | 时间、主题、引用、证据案例和网络共同刻画“经得起时间检验”。 | summary slide |
+| Conclusion | A | 40s | 时间、主题、引用、证据案例、单篇基准和网络共同刻画“经得起时间检验”。 | summary slide |
 
 ## Slide outline
 
@@ -105,7 +106,20 @@ Need from A/D:
 - 展示时准备 1 个搜索关键词
 - 准备 1 个代表论文点击示例
 
-### Slide 8 / Network
+### Slide 8 / Benchmark Lab
+
+Visual: `docs/demo/benchmark-lab.png`
+
+Talking point:
+
+> Benchmark Lab 会把选中论文和全数据集比较，用 percentile 说明 citation depth、impact breadth、recognition lag、国家和机构跨度分别强在哪里。它适合在展示中承接 Paper Explorer：先找到案例，再解释案例为什么有代表性。
+
+Need from A/D:
+
+- 准备一个从 Explorer 点击到 Benchmark 的现场演示路径
+- 准备一句该论文的 percentile 解读
+
+### Slide 9 / Network
 
 Visual: `docs/demo/network-diffusion.png`
 
@@ -118,7 +132,7 @@ Need from F:
 - Top institutions / countries
 - 视觉统一检查
 
-### Slide 9 / Methods & limitations
+### Slide 10 / Methods & limitations
 
 Use: `docs/methods_and_limitations.md`
 
@@ -130,7 +144,7 @@ Must mention:
 - award history bias
 - causality boundary
 
-### Slide 10 / Conclusion
+### Slide 11 / Conclusion
 
 Suggested wording:
 
@@ -146,6 +160,7 @@ Use these if live demo fails:
 - `docs/demo/topic-evolution.png`
 - `docs/demo/citation-and-impact.png`
 - `docs/demo/explorer-evidence-index.png`
+- `docs/demo/benchmark-lab.png`
 - `docs/demo/network-diffusion.png`
 
 ## Speaker checklist

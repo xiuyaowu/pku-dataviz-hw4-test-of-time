@@ -3,6 +3,7 @@ const fmt1 = d3.format(".1f");
 const color = d3.scaleOrdinal()
   .range(["#70e1d4", "#f6bd60", "#b8a1ff", "#ff7a90", "#8bd17c", "#7cc9ff", "#f39ac7", "#c6d66f"]);
 
+let activePapers = [];
 const tooltip = d3.select("#tooltip");
 const showTip = (event, html) => {
   tooltip.html(html).attr("hidden", null)
@@ -31,6 +32,7 @@ Promise.all([
 ]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries]) => {
   const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries };
   normalize(data);
+  activePapers = data.papers;
   renderSummary(data);
   renderInsightDeck(data);
   renderTimeExtremes(data.papers);
@@ -46,6 +48,7 @@ Promise.all([
   renderBreadth(data.timeline, data.papers);
   renderCitationQuadrants(data.timeline);
   renderExplorer(data.papers);
+  renderBenchmark(data.papers);
   renderNetworkKpis(data.institutions, data.countries);
   renderInstitutions(data.institutions);
   renderCountries(data.countries);
@@ -493,6 +496,124 @@ function formatExplorerMetric(d, key) {
   return fmt(num(d[key]));
 }
 
+
+function renderBenchmark(papers) {
+  const target = d3.select("#benchmark-chart");
+  if (target.empty()) return;
+  activePapers = papers;
+  updateBenchmark(topPaper(papers));
+}
+
+function updateBenchmark(p) {
+  if (!p || !activePapers.length || d3.select("#benchmark-chart").empty()) return;
+  const metrics = benchmarkMetrics(p, activePapers);
+  renderBenchmarkBars(metrics, p);
+  renderBenchmarkStory(metrics, p, activePapers);
+}
+
+function benchmarkMetrics(p, papers) {
+  const fieldRows = papers.filter(d => (d.venue_area || "Other") === (p.venue_area || "Other"));
+  const metricDefs = [
+    {key: "citation_count", label: "Citation depth", value: num(p.citation_count), format: v => fmt(v), note: "raw citation count"},
+    {key: "impact_breadth_score", label: "Impact breadth", value: num(p.impact_breadth_score), format: v => fmt1(v), note: "sampled OpenAlex diffusion proxy"},
+    {key: "recognition_lag", label: "Recognition lag", value: num(p.recognition_lag), format: v => `${fmt(v)}y`, note: "publication to award"},
+    {key: "country_count", label: "Author country span", value: num(p.country_count), format: v => fmt(v), note: "available author metadata"},
+    {key: "institution_count", label: "Institution span", value: num(p.institution_count), format: v => fmt(v), note: "available institution metadata"}
+  ];
+  return metricDefs.map(m => {
+    const allVals = papers.map(d => num(d[m.key])).filter(v => Number.isFinite(v));
+    const fieldVals = fieldRows.map(d => num(d[m.key])).filter(v => Number.isFinite(v));
+    return {
+      ...m,
+      percentile: percentileRank(allVals, m.value),
+      datasetMedian: d3.median(allVals),
+      fieldMedian: d3.median(fieldVals),
+      fieldN: fieldRows.length
+    };
+  });
+}
+
+function renderBenchmarkBars(metrics, p) {
+  const {svg, width, height} = chartBox("#benchmark-chart");
+  const margin = {top: 28, right: 46, bottom: 44, left: 168};
+  const x = d3.scaleLinear().domain([0, 100]).range([margin.left, width - margin.right]);
+  const y = d3.scaleBand().domain(metrics.map(d => d.label)).range([margin.top, height - margin.bottom]).padding(0.26);
+  svg.append("g").attr("class", "grid").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5).tickSize(-(height-margin.top-margin.bottom)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5).tickFormat(d => `${d}%`));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).tickSize(0)).call(g => g.select(".domain").remove());
+  svg.append("line").attr("class", "reference-line").attr("x1", x(50)).attr("x2", x(50)).attr("y1", margin.top).attr("y2", height - margin.bottom);
+  svg.append("text").attr("class", "reference-label").attr("x", x(50)+6).attr("y", margin.top-8).text("dataset median");
+  const g = svg.selectAll("g.benchmark-row").data(metrics).join("g").attr("class", "benchmark-row").attr("transform", d => `translate(0,${y(d.label)})`);
+  g.append("rect")
+    .attr("class", "benchmark-track")
+    .attr("x", margin.left).attr("y", 0)
+    .attr("width", x(100)-margin.left).attr("height", y.bandwidth()).attr("rx", 10);
+  g.append("rect")
+    .attr("class", "benchmark-fill")
+    .attr("x", margin.left).attr("y", 0)
+    .attr("width", d => Math.max(2, x(d.percentile)-margin.left)).attr("height", y.bandwidth()).attr("rx", 10)
+    .attr("fill", d => d.percentile >= 75 ? "#70e1d4" : d.percentile >= 50 ? "#f6bd60" : "#b8a1ff");
+  g.append("text")
+    .attr("class", "benchmark-value")
+    .attr("x", d => Math.min(x(d.percentile)+8, width-margin.right-74)).attr("y", y.bandwidth()/2 + 4)
+    .text(d => `${fmt1(d.percentile)}% · ${d.format(d.value)}`);
+  g.on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.label)}</b><br>${d.note}<br>Value: ${d.format(d.value)}<br>Dataset median: ${d.format(d.datasetMedian || 0)}<br>${escapeHtml(p.venue_area || "Field")} median: ${d.format(d.fieldMedian || 0)} (n=${d.fieldN})`))
+    .on("mouseleave", hideTip);
+  svg.append("text").attr("class", "chart-title-small").attr("x", margin.left).attr("y", height - 8).text(`Selected: ${shortTitle(p.title)}`);
+}
+
+function renderBenchmarkStory(metrics, p, papers) {
+  const top = metrics.slice().sort((a,b) => d3.descending(a.percentile, b.percentile))[0];
+  const weak = metrics.slice().sort((a,b) => d3.ascending(a.percentile, b.percentile))[0];
+  const citation = metrics.find(d => d.key === "citation_count");
+  const breadth = metrics.find(d => d.key === "impact_breadth_score");
+  const lag = metrics.find(d => d.key === "recognition_lag");
+  const archetype = classifyPaper(citation?.percentile || 0, breadth?.percentile || 0, lag?.percentile || 0);
+  const peers = papers
+    .filter(d => d.paper_id !== p.paper_id && (d.venue_area || "Other") === (p.venue_area || "Other"))
+    .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))
+    .slice(0, 3);
+  d3.select("#benchmark-story").html(`
+    <div class="paper-title">${escapeHtml(shortTitle(p.title))}</div>
+    <div class="paper-meta">
+      <span class="chip">${escapeHtml(p.venue_area || "Field")}</span>
+      <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
+      <span class="chip">${p.year || "Year"} → ${p.announcement_year || "Award"}</span>
+    </div>
+    <div class="archetype-badge">${escapeHtml(archetype.title)}</div>
+    <p class="abstract">${escapeHtml(archetype.body)}</p>
+    <div class="detail-stats">
+      <div class="detail-stat"><b>${fmt1(top.percentile)}%</b><span>strongest percentile · ${escapeHtml(top.label)}</span></div>
+      <div class="detail-stat"><b>${fmt1(weak.percentile)}%</b><span>lowest percentile · ${escapeHtml(weak.label)}</span></div>
+    </div>
+    <div class="benchmark-peers">
+      <div class="title">Same-field reference papers</div>
+      ${peers.map((d,i) => `<button type="button" class="peer-pill" data-paper-id="${escapeHtml(d.paper_id)}"><b>#${i+1}</b> ${escapeHtml(shortTitle(d.title))}</button>`).join("")}
+    </div>
+    <p class="reading-note mini-note">Demo use: click any point/list item elsewhere, then use this panel to explain why that paper is representative relative to the whole dataset and its field.</p>
+  `);
+  d3.selectAll(".peer-pill").on("click", function() {
+    const id = this.getAttribute("data-paper-id");
+    const peer = activePapers.find(d => d.paper_id === id);
+    if (peer) updateDetail(peer);
+  });
+}
+
+function percentileRank(values, value) {
+  const clean = values.filter(v => Number.isFinite(v)).sort(d3.ascending);
+  if (!clean.length) return 0;
+  const below = d3.bisectRight(clean, value);
+  return below / clean.length * 100;
+}
+
+function classifyPaper(citationPct, breadthPct, lagPct) {
+  if (citationPct >= 75 && breadthPct >= 75) return {title: "Deep + broad influence", body: "This paper combines high citation depth with broad diffusion, making it a strong example when explaining long-term impact beyond a single metric."};
+  if (lagPct >= 75 && citationPct >= 60) return {title: "Slow-burn classic", body: "This paper waited longer than most before recognition while still showing strong citation depth, useful for explaining delayed value discovery."};
+  if (breadthPct >= 75) return {title: "Wide diffusion case", body: "This paper stands out more by breadth than raw depth, making it useful for discussing cross-field or cross-region influence."};
+  if (citationPct >= 75) return {title: "Citation-depth case", body: "This paper is strongest as a citation-depth example; pair it with limitations about citation count and field size."};
+  return {title: "Contextual evidence case", body: "This paper is best interpreted through venue, topic, and award context rather than one extreme quantitative score."};
+}
+
 function renderNetworkKpis(institutions, countries) {
   const topInst = institutions.slice().filter(d => d.name).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   const topCountry = countries.slice().filter(d => d.country).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
@@ -546,6 +667,7 @@ function updateDetail(p) {
     </div>
     <p class="abstract">${escapeHtml((p.abstract || "No abstract available.").slice(0, 520))}${(p.abstract || "").length > 520 ? "…" : ""}</p>
   `);
+  updateBenchmark(p);
 }
 
 function setNotes({papers, venues, areas, topics}) {
@@ -559,6 +681,7 @@ function setNotes({papers, venues, areas, topics}) {
   d3.select("#topic-note").text(`${topTopic.topic_label} is the most frequent topic label, giving the topic module a natural entry point for representative-paper storytelling.`);
   d3.select("#citation-note").text(`The scatter plot separates citation volume from recognition timing: high citation counts and long recognition lags are related but not identical signals.`);
   d3.select("#explorer-note").text(`The explorer turns the dataset into a live evidence index: search by title/topic/venue, sort by citation, lag, breadth, or year, then click any paper to update the shared detail card.`);
+  d3.select("#benchmark-note").text(`The benchmark lab converts a selected paper into percentile evidence: citation depth, recognition lag, breadth, collaboration, and field context are shown side by side.`);
   d3.select("#network-note").text(`Institution and country rankings show where long-term impact clusters, while also reminding us that metadata coverage is uneven.`);
 }
 
