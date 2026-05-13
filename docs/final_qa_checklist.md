@@ -37,6 +37,7 @@ http://127.0.0.1:8765/index.html
 - [x] Time / Venue / Topic / Citation / Explorer / Benchmark / Network 模块均有图表或交互组件。
 - [x] Explorer 的 search / sort / field filter / paper list 正常工作。
 - [x] Benchmark Lab 的 percentile bars / interpretation lens / same-field peers 正常工作。
+- [x] B-F 主要模块末尾有 report claim cards，可复制为最终报告发现。
 - [ ] 最终提交前截图备份关键页面。
 
 ## 3. 内容质量检查

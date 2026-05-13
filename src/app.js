@@ -51,6 +51,7 @@ Promise.all([
   renderBenchmark(data.papers);
   renderStoryboard(data);
   renderNetworkKpis(data.institutions, data.countries);
+  renderModuleClaims(data);
   renderInstitutions(data.institutions);
   renderCountries(data.countries);
   updateDetail(topPaper(data.papers));
@@ -688,6 +689,66 @@ function renderStoryboard(data) {
       <h3>${escapeHtml(d.question)}</h3>
       <p><b>Evidence</b>${escapeHtml(d.evidence)}</p>
       <p><b>So what</b>${escapeHtml(d.soWhat)}</p>
+    `);
+}
+
+function renderModuleClaims(data) {
+  const {papers, venues, areas, topics, timeline, institutions, countries} = data;
+  const lagMedian = d3.median(papers, d => d.recognition_lag);
+  const lagQ1 = d3.quantile(papers.map(d => d.recognition_lag).filter(Boolean).sort(d3.ascending), 0.25);
+  const lagQ3 = d3.quantile(papers.map(d => d.recognition_lag).filter(Boolean).sort(d3.ascending), 0.75);
+  const longest = papers.slice().sort((a,b) => d3.descending(num(a.recognition_lag), num(b.recognition_lag)))[0];
+  const topVenue = venues.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topArea = areas.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const concentratedAreas = areas.filter(d => num(d.paper_count) >= d3.median(areas, x => num(x.paper_count))).length;
+  const topTopic = topics.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const broadTopic = topics.slice().sort((a,b) => d3.descending(num(a.avg_impact_breadth_score), num(b.avg_impact_breadth_score)))[0];
+  const highCitation = papers.slice().sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))[0];
+  const highBreadth = papers.slice().sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0];
+  const citationMedian = d3.median(timeline, d => num(d.citation_count));
+  const lagAboveMedianCitation = timeline.filter(d => num(d.recognition_lag) > lagMedian && num(d.citation_count) > citationMedian).length;
+  const topInst = institutions.slice().filter(d => d.name).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topCountry = countries.slice().filter(d => d.country).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const usShare = d3.sum(countries, d => num(d.paper_count)) ? num(topCountry?.paper_count) / d3.sum(countries, d => num(d.paper_count)) * 100 : 0;
+  const cards = {
+    "#time-claims": [
+      claim("Finding", `典型 recognition lag 约为 ${fmt1(lagMedian)} 年，中间 50% 大致落在 ${fmt1(lagQ1)}–${fmt1(lagQ3)} 年。`, "Evidence", "Lag distribution + timeline", "Boundary", "这是获奖记录中的时间尺度，不代表所有经典工作的唯一成熟周期。"),
+      claim("Case", `${shortTitle(longest?.title)} 是最长 lag 案例，等待 ${fmt(num(longest?.recognition_lag))} 年后获得认可。`, "Evidence", `${longest?.venue || "venue"} · ${longest?.year || "year"} → ${longest?.announcement_year || "award"}`, "Interpretation", "长 lag 适合用来解释基础性工作可能需要后续生态成熟才被重新看见。")
+    ],
+    "#venue-claims": [
+      claim("Finding", `${topVenue?.venue || "Top venue"} 是记录数最多的 venue，${topArea?.venue_area || "top field"} 是更大的领域聚集点。`, "Evidence", `${fmt(num(topVenue?.paper_count))} venue papers; ${fmt(num(topArea?.paper_count))} field papers`, "Boundary", "数量榜受设奖历史和数据覆盖影响，不能直接写成会议质量排名。"),
+      claim("Pattern", `${concentratedAreas} 个领域高于或接近领域中位数，说明长期影响记录呈多社区分布而非单一领域垄断。`, "Evidence", "Field map + decade heatmap", "Interpretation", "报告应强调学术社区结构和时间覆盖，而不是只比较总量。")
+    ],
+    "#topic-claims": [
+      claim("Finding", `${topTopic?.topic_label || "Top topic"} 是最常见主题标签，占 ${fmt(num(topTopic?.paper_count))} 篇论文。`, "Evidence", "Topic distribution", "Boundary", "主题来自 API/规则归类，需要代表论文和人工阅读进一步校正。"),
+      claim("Case route", `${broadTopic?.topic_label || "High-breadth topic"} 的平均 breadth proxy 较高，可作为跨领域影响解释入口。`, "Evidence", `avg breadth ${fmt1(num(broadTopic?.avg_impact_breadth_score))}`, "Interpretation", "把主题趋势与代表论文卡结合，比单独展示面积图更适合写报告。")
+    ],
+    "#citation-claims": [
+      claim("Finding", `${fmt(lagAboveMedianCitation)} 篇论文同时具有高于中位数的 recognition lag 和 citation depth。`, "Evidence", "Citation vs lag scatter median guides", "Boundary", "引用深度说明可见影响强度，但不能证明获奖因果。"),
+      claim("Contrast", `${shortTitle(highCitation?.title)} 是 citation-depth 锚点；${shortTitle(highBreadth?.title)} 是 breadth 锚点。`, "Evidence", `${fmt(num(highCitation?.citation_count))} citations vs breadth ${fmt1(num(highBreadth?.impact_breadth_score))}`, "Interpretation", "Depth × breadth 可以把“被大量引用”和“扩散范围广”分开讲。")
+    ],
+    "#network-claims": [
+      claim("Finding", `${topInst?.name || "Top institution"} 是观察到的最高频机构，${topCountry?.country || "top country"} 是最高频国家/地区。`, "Evidence", `${fmt(num(topInst?.paper_count))} institution mentions; ${fmt(num(topCountry?.paper_count))} country mentions`, "Boundary", "机构和国家字段依赖元数据覆盖，适合解释分布线索而非完整合作网络。"),
+      claim("Pattern", `最高频国家/地区约占观察国家/地区计数的 ${fmt1(usShare)}%。`, "Evidence", "Country ranking", "Interpretation", "可用于讨论研究生态集中度，同时需要说明英文数据库和会议覆盖偏差。")
+    ]
+  };
+  for (const [selector, rows] of Object.entries(cards)) renderClaimCards(selector, rows);
+}
+
+function claim(type, text, evidenceLabel, evidence, boundaryLabel, boundary) {
+  return {type, text, evidenceLabel, evidence, boundaryLabel, boundary};
+}
+
+function renderClaimCards(selector, cards) {
+  const target = d3.select(selector);
+  if (target.empty()) return;
+  target.selectAll(".claim-card").data(cards).join("article")
+    .attr("class", "claim-card")
+    .html(d => `
+      <div class="claim-type">${escapeHtml(d.type)}</div>
+      <p class="claim-text">${escapeHtml(d.text)}</p>
+      <div class="claim-evidence"><b>${escapeHtml(d.evidenceLabel)}</b><span>${escapeHtml(d.evidence)}</span></div>
+      <div class="claim-boundary"><b>${escapeHtml(d.boundaryLabel)}</b><span>${escapeHtml(d.boundary)}</span></div>
     `);
 }
 

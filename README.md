@@ -142,6 +142,8 @@ git push -u origin feature/your-name-task
 7. Story Builder：把每个模块转成“问题-证据-so what-owner”的报告展示主线；
 8. Impact Network：机构和国家/地区分布。
 
+B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现拆成 `Finding / Evidence / Boundary` 或 `Case / Evidence / Interpretation`，方便队友直接迁移到最终报告并补充人工案例解释。
+
 这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
 
 ## 本地运行
