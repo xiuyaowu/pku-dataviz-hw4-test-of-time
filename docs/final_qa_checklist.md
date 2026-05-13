@@ -56,7 +56,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/evidence_cards_top12.md` 中 Top 12 代表论文均有 DOI/论文页/辅助证据链接；`docs/evidence_card_presentation_matrix.md` 已标出 8 张展示优先卡和 4 张需人工复核备选卡。
 - [ ] 最终展示前由队友核查关键论断与 award citation，尤其是未列入展示优先组的备选卡。
 - [ ] `docs/methods_and_limitations.md` 已压缩进最终报告或展示。
-- [ ] `docs/presentation_pack.md` 已转成 PPT 或口头展示分工。
+- [x] `docs/presentation_pack.md` 已补齐展示结构；`docs/final_presentation_blueprint.md` 已提供 11 页 PPT 蓝图、speaker notes、截图 fallback 和角色发言边界。最终 PPT 导出仍需人工复制到 slides。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
 - [x] 报告骨架中术语已统一：recognition lag / citation depth / impact breadth / same-field benchmark / OpenAlex proxy。
 - [ ] 最终报告和展示讲稿中术语一致：recognition lag / citation depth / impact breadth。

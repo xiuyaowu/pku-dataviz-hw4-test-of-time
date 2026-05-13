@@ -90,7 +90,7 @@
 
 ## Stretch 5 / Presentation Pack：最终展示包
 
-当前进展：已生成 `docs/presentation_pack.md`，包含 8–10 分钟展示结构、slide outline、speaker checklist 和 backup assets。
+当前进展：已生成 `docs/presentation_pack.md` 和 `docs/final_presentation_blueprint.md`，包含 8–10 分钟展示结构、11 页 PPT 蓝图、逐页 speaker notes、每个模块的 backup screenshot、角色发言边界和离线展示检查清单。
 
 优先级：P1
 

@@ -1,6 +1,6 @@
 # Final Presentation Pack
 
-用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿。
+用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`。
 
 ## Recommended timing: 8–10 minutes
 
@@ -180,6 +180,24 @@ Use these if live demo fails:
 - `docs/demo/explorer-evidence-index.png`
 - `docs/demo/benchmark-lab.png`
 - `docs/demo/network-diffusion.png`
+
+## PPT production handoff
+
+If the team needs to create slides quickly, use `docs/final_presentation_blueprint.md` as the source of truth. It contains:
+
+- 11-slide structure with speaker, timing, title, main takeaway and backup asset;
+- exact slide bullets and speaker notes for each page;
+- module-owner handoff requirements for B–F;
+- safe wording boundaries for proxy metrics and evidence-card claims;
+- offline screenshot checklist matching the files in `docs/demo/`.
+
+Recommended build path:
+
+1. Create a blank 16:9 PPT.
+2. Copy Slide 1–11 titles and bullets from `docs/final_presentation_blueprint.md`.
+3. Insert the matching `docs/demo/*.png` screenshot on each module slide.
+4. Put speaker notes into presenter notes, not on the visual slide.
+5. Before export, run the final rehearsal route in presentation mode: `index.html?present=1`.
 
 ## Speaker checklist
 
