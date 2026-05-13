@@ -24,6 +24,8 @@
 | E | [#6](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/6) | Citation and Impact：引用轨迹、深度和广度 | `data/citation_trajectories.csv`, `data/citing_breadth_metrics.csv`, `docs/evidence_cards_top12.md`, Citation section | citation vs lag、trajectory、depth × breadth、2-3 条影响力发现 | 明确区分 citation depth 和 breadth；说明 OpenAlex 近似指标限制；代表案例只使用已有 evidence URL 支撑的贡献表述 |
 | F | [#7](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/7) | Network / Visual / Presentation：机构国家、视觉统一和展示 | `data/institution_stats.csv`, `data/country_stats.csv`, Network section, CSS/PPT | institution/country 发现、可选网络图升级、视觉统一检查、PPT 大纲 | Network baseline 正常；全站风格不被破坏；展示结构可直接用 |
 
+F 模块补充交付：`docs/network_visual_presentation_handoff.md` 已把 Network 的 3 条 findings、60–70 秒展示话术、每个模块的截图/演示位置、视觉 QA 和 Issue #7 验收映射集中到一处。最终 PPT 制作时可直接复制该文档的 Network 段落和截图对应表。
+
 ## Stretch / presentation-ready updates
 
 - [#20](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/20)：最终展示包已补全为 `docs/presentation_pack.md` + `docs/final_presentation_blueprint.md`。现在包括 11 页 PPT 蓝图、8–10 分钟时间分配、每页主张/截图/speaker notes、B-F 发言准备项、safe wording boundaries 和离线截图 fallback。最终 PPT 只需把蓝图内容复制到 16:9 slides 并插入 `docs/demo/*.png`。

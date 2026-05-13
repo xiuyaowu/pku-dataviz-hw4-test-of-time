@@ -128,6 +128,8 @@ Talking point:
 
 > Institution 和 country/region 分布让我们看到长期影响如何沉淀在研究生态中，但机构元数据存在缺失和归一化误差。
 
+Detailed handoff: `docs/network_visual_presentation_handoff.md` contains the F-module Network findings, a 60–70 second speaking route, screenshot mapping, and visual QA checklist.
+
 Need from F:
 
 - Top institutions / countries

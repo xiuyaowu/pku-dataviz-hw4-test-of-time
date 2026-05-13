@@ -125,6 +125,8 @@
 
 负责人：F
 
+Network / Visual / Presentation 的集中交付见 `docs/network_visual_presentation_handoff.md`，其中包含 F 模块 60–70 秒展示路线、截图对应表和 Issue #7 验收映射。
+
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 长期影响论文在少数北美研究机构中高度可见。 | Top institutions：UC Berkeley 17、CMU 15、Stanford 14、MIT 11；Cornell、IBM Research - Almaden、IBM、UMass Amherst 各 8。 | 这反映了顶级研究机构和工业研究实验室在长期影响论文中的重要位置。 | institution metadata 存在缺失、归并和署名误差，不宜写成完整机构排名。 |
