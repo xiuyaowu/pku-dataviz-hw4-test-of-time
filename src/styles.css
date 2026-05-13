@@ -376,3 +376,68 @@ footer { padding: 34px clamp(20px, 5vw, 72px) 54px; color: var(--muted); border-
   outline: none;
 }
 .mini-note { font-size: 13px; margin-top: 14px; }
+
+.storyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(220px, 1fr));
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 4px 14px;
+  scroll-snap-type: x proximity;
+}
+.story-card {
+  position: relative;
+  min-height: 285px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(184,161,255,0.11), rgba(255,255,255,0.035)),
+    rgba(255,255,255,0.035);
+  text-decoration: none;
+  color: inherit;
+  scroll-snap-align: start;
+}
+.story-card:hover,
+.story-card:focus {
+  border-color: rgba(112,225,212,0.70);
+  background: linear-gradient(180deg, rgba(112,225,212,0.13), rgba(255,255,255,0.045));
+  outline: none;
+}
+.story-step {
+  color: var(--accent-2);
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+}
+.story-owner {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.story-card h3 {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+.story-card p {
+  margin: 0;
+  color: #b8c4d6;
+  font-size: 13px;
+  line-height: 1.58;
+}
+.story-card p b {
+  display: block;
+  color: #eef4ff;
+  margin-bottom: 3px;
+}
+@media (max-width: 920px) {
+  .storyboard-grid { grid-template-columns: 1fr; overflow-x: visible; }
+  .story-card { min-height: auto; }
+}

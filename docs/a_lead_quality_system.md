@@ -44,6 +44,7 @@ A 需要保证三件事：
 
 - `docs/report/report_skeleton.md`：可直接填充的最终报告结构。
 - `docs/demo_script.md`：展示讲解顺序与各模块讲什么。
+- `docs/feature_iteration_system.md`：持续提 feature、开 Issue、PR 完成和文档回填的迭代机制。
 - `docs/report/contribution_A.md`：A 的报告贡献记录。
 - `docs/demo/*.png`：README 预览截图。
 
@@ -57,6 +58,10 @@ A 需要保证三件事：
 4. **分析检查**：至少 2-3 条可以写入报告/展示的发现；避免只有图没有结论。
 5. **边界检查**：citation、impact breadth、network 只能作为公开元数据近似指标，不能写成官方因果结论。
 6. **一致性检查**：术语统一为 Test of Time、recognition lag、citation trajectory、impact breadth、venue area。
+
+### 7. 持续提 feature / 开 Issue / 完成 PR
+
+A 后续可以按 `docs/feature_iteration_system.md` 持续循环：从评分标准和展示效果中发现下一批高收益 feature，写成 GitHub Issue，分配给对应 owner 或由 A 自己完成，再通过 PR 合并并回填 README / work board / 贡献记录。这样项目会持续变厚，而不是停在 baseline。
 
 ## A 在报告中的定位
 

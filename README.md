@@ -84,6 +84,7 @@ git push -u origin feature/your-name-task
 │   ├── module_handoff_cards.md
 │   ├── quality_upgrade_plan.md
 │   ├── stretch_backlog.md
+│   ├── feature_iteration_system.md
 │   ├── evidence_cards_top12.md
 │   ├── methods_and_limitations.md
 │   ├── presentation_pack.md
@@ -130,7 +131,7 @@ git push -u origin feature/your-name-task
 
 仓库已经包含一个可直接运行的 D3 网页基础版：`index.html` + `src/app.js` + `src/styles.css`。
 
-当前页面包含 7 个研究问题模块：
+当前页面包含 8 个研究问题模块：
 
 1. Time：recognition lag 分布和核心时间尺度；
 2. Venue & Field：会议排名和领域分布；
@@ -138,7 +139,8 @@ git push -u origin feature/your-name-task
 4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
 5. Paper Explorer：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
 6. Benchmark Lab：把任意选中论文和全数据集/同领域中位数做 percentile 对比，生成讲解视角；
-7. Impact Network：机构和国家/地区分布。
+7. Story Builder：把每个模块转成“问题-证据-so what-owner”的报告展示主线；
+8. Impact Network：机构和国家/地区分布。
 
 这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
 
@@ -162,7 +164,7 @@ http://127.0.0.1:8765/index.html
 
 详细分工见：`docs/team_division.md`
 
-Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，对应 GitHub Issues #17–#20；已补充的材料包括 `docs/evidence_cards_top12.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，最终整合检查见 `docs/final_qa_checklist.md`。
+Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/evidence_cards_top12.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，最终整合检查见 `docs/final_qa_checklist.md`。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|

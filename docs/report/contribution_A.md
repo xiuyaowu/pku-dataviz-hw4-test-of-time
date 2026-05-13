@@ -2,7 +2,7 @@
 
 ## 贡献概述
 
-A 负责把小组项目从开放选题推进为一个可运行、可协作、可展示的数据可视化系统。前期完成 GitHub 协作仓库、Issue/PR 工作流、数据接入、单页 D3 叙事结构、五个研究模块的 baseline 图表、tooltip/详情卡/reading notes、统一 CSS 视觉系统和 README demo 截图；同时补齐队友任务卡、报告骨架、展示脚本、最终 QA checklist 和贡献记录。这样 B-F 可以在已有模块上并行增强分析，免去从零搭页面或临时拼图的成本。
+A 负责把小组项目从开放选题推进为一个可运行、可协作、可展示的数据可视化系统。前期完成 GitHub 协作仓库、Issue/PR 工作流、数据接入、单页 D3 叙事结构、五个研究模块的 baseline 图表、tooltip/详情卡/reading notes、统一 CSS 视觉系统和 README demo 截图；随后继续补充 Field × Decade Heatmap、Citation Quadrants、Paper Explorer、Benchmark Lab、Story Builder、Network KPIs、Methods & Limitations、Presentation Pack 和 feature iteration system，把项目从“有图”推进到“可检索、可讲解、可追溯、可持续加功能”的完整版本。这样 B-F 可以在已有模块上并行增强分析，免去从零搭页面或临时拼图的成本。
 
 A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸门”：保证主线统一、页面始终可运行、每个模块有明确交付、每个 PR 有验证记录、最终报告能追溯每个人的具体贡献。
 
@@ -40,6 +40,7 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - 编写 `docs/report/report_skeleton.md`，提供最终报告结构和各模块可直接填充的段落框架。
 - 编写 `docs/demo_script.md`，提供 6-8 分钟展示讲解顺序和备选 Q&A。
 - 编写 `docs/a_lead_quality_system.md`，明确 A 的全局 baseline、队友减负和最终质量闸门职责。
+- 编写 `docs/feature_iteration_system.md`，把“继续提 feature、开 Issue、PR 完成、回填文档”的循环固定下来，方便后续持续加功能。
 
 ### 5. GitHub 协作与 PR 流程
 
@@ -65,6 +66,13 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - 统一术语、图表标题、caption、reading notes、限制说明和最终报告口径。
 - 最终提交前按 `docs/final_qa_checklist.md` 做全站检查。
 
+### 8. 高分增强功能与持续迭代
+
+- 补充 `Paper Explorer`，支持按 title / venue / topic / field 检索、按 citation / breadth / lag / year 排序，并点击联动代表论文详情和 benchmark。
+- 补充 `Benchmark Lab`，把任意选中论文转成 citation depth、impact breadth、recognition lag、country span、institution span 的 percentile 对比。
+- 补充 `Story Builder`，自动把各模块组织成“研究问题 → 动态证据 → so what → owner”的展示/报告路线图。
+- 补充 `docs/feature_iteration_system.md`，将后续“发现 feature → 开 GitHub Issue → PR 完成 → 文档回填”的循环制度化。
+
 ## 对应文件 / 记录
 
 - `index.html`
@@ -78,6 +86,7 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - `docs/a_lead_quality_system.md`
 - `docs/module_handoff_cards.md`
 - `docs/demo_script.md`
+- `docs/feature_iteration_system.md`
 - `docs/final_qa_checklist.md`
 - `docs/report/report_skeleton.md`
 - `docs/report/contribution_A.md`

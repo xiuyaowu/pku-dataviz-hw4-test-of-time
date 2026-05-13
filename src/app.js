@@ -49,6 +49,7 @@ Promise.all([
   renderCitationQuadrants(data.timeline);
   renderExplorer(data.papers);
   renderBenchmark(data.papers);
+  renderStoryboard(data);
   renderNetworkKpis(data.institutions, data.countries);
   renderInstitutions(data.institutions);
   renderCountries(data.countries);
@@ -614,6 +615,82 @@ function classifyPaper(citationPct, breadthPct, lagPct) {
   return {title: "Contextual evidence case", body: "This paper is best interpreted through venue, topic, and award context rather than one extreme quantitative score."};
 }
 
+function renderStoryboard(data) {
+  const target = d3.select("#storyboard-grid");
+  if (target.empty()) return;
+  const {papers, venues, areas, topics, institutions, countries} = data;
+  const lagMedian = d3.median(papers, d => d.recognition_lag);
+  const longest = papers.slice().sort((a,b) => d3.descending(a.recognition_lag, b.recognition_lag))[0];
+  const topVenue = venues.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topArea = areas.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topTopic = topics.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topCitation = papers.slice().sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))[0];
+  const topBreadth = papers.slice().sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0];
+  const topInstitution = institutions.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const topCountry = countries.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const cards = [
+    {
+      owner: "B · Time",
+      href: "#time",
+      question: "长期影响需要多久才被看见？",
+      evidence: `Median lag ${fmt1(lagMedian)}y; longest case ${fmt(num(longest?.recognition_lag))}y`,
+      soWhat: "用时间尺度说明 Test of Time 不是即时热度，而是多年后的重新确认。"
+    },
+    {
+      owner: "C · Venue",
+      href: "#venue",
+      question: "长期影响在哪些会议和领域聚集？",
+      evidence: `${topVenue?.venue || "Top venue"} leads venues; ${topArea?.venue_area || "top field"} leads areas`,
+      soWhat: "把数量榜解释为数据覆盖和奖项历史下的结构分布，避免写成会议质量排名。"
+    },
+    {
+      owner: "D · Topic",
+      href: "#topic",
+      question: "哪些主题更容易沉淀成经典？",
+      evidence: `${topTopic?.topic_label || "Top topic"} is the most frequent topic label`,
+      soWhat: "用代表论文卡把抽象 topic 转成可讲的研究问题、方法和影响路径。"
+    },
+    {
+      owner: "E · Citation",
+      href: "#citation",
+      question: "高引用和长期价值是不是一回事？",
+      evidence: `${shortTitle(topCitation?.title)} is the citation-depth anchor`,
+      soWhat: "用 depth × breadth 和 trajectory 说明引用量只是影响力的一种切面。"
+    },
+    {
+      owner: "A/F · Explorer",
+      href: "#explorer",
+      question: "能否让报告结论可追溯到具体论文？",
+      evidence: `${fmt(papers.length)} papers searchable by title, venue, topic, field`,
+      soWhat: "把项目从静态图表升级为证据库，展示时可以现场检索和点击代表论文。"
+    },
+    {
+      owner: "A/E · Benchmark",
+      href: "#benchmark",
+      question: "单篇论文到底强在哪里？",
+      evidence: `${shortTitle(topBreadth?.title)} anchors high-breadth comparison`,
+      soWhat: "用 percentile 语言把代表案例讲清楚：相对全数据集和同领域处在什么位置。"
+    },
+    {
+      owner: "F · Network",
+      href: "#network",
+      question: "长期影响如何跨机构和国家扩散？",
+      evidence: `${topInstitution?.name || "Top institution"} / ${topCountry?.country || "Top country"} lead observed metadata`,
+      soWhat: "把影响力从论文层面扩展到学术共同体分布，同时说明机构元数据限制。"
+    }
+  ];
+  target.selectAll("a.story-card").data(cards).join("a")
+    .attr("class", "story-card")
+    .attr("href", d => d.href)
+    .html((d, i) => `
+      <div class="story-step">${String(i + 1).padStart(2, "0")}</div>
+      <div class="story-owner">${escapeHtml(d.owner)}</div>
+      <h3>${escapeHtml(d.question)}</h3>
+      <p><b>Evidence</b>${escapeHtml(d.evidence)}</p>
+      <p><b>So what</b>${escapeHtml(d.soWhat)}</p>
+    `);
+}
+
 function renderNetworkKpis(institutions, countries) {
   const topInst = institutions.slice().filter(d => d.name).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   const topCountry = countries.slice().filter(d => d.country).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
@@ -682,6 +759,7 @@ function setNotes({papers, venues, areas, topics}) {
   d3.select("#citation-note").text(`The scatter plot separates citation volume from recognition timing: high citation counts and long recognition lags are related but not identical signals.`);
   d3.select("#explorer-note").text(`The explorer turns the dataset into a live evidence index: search by title/topic/venue, sort by citation, lag, breadth, or year, then click any paper to update the shared detail card.`);
   d3.select("#benchmark-note").text(`The benchmark lab converts a selected paper into percentile evidence: citation depth, recognition lag, breadth, collaboration, and field context are shown side by side.`);
+  d3.select("#storyboard-note").text(`The storyboard converts every module into a report-ready chain: research question, live evidence, so-what interpretation, and teammate owner.`);
   d3.select("#network-note").text(`Institution and country rankings show where long-term impact clusters, while also reminding us that metadata coverage is uneven.`);
 }
 
