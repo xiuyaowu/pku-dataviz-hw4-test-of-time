@@ -104,7 +104,8 @@ git push -u origin feature/your-name-task
 │   ├── report/
 │   │   ├── contribution_A.md
 │   │   └── report_skeleton.md
-│   └── data_dictionary.md
+│   ├── data_dictionary.md
+│   └── data_provenance_audit.md
 ├── data/
 │   ├── papers_enriched.csv
 │   ├── award_timeline.csv
@@ -209,7 +210,7 @@ A 会负责主线、review、整合和最终 QA，保证各模块能拼成同一
 - 图表回答了哪个问题；
 - 得到了哪些主要发现。
 
-字段说明见：`docs/data_dictionary.md`
+字段说明见：`docs/data_dictionary.md`。数据来源层级、proxy 指标边界和最终报告推荐口径见：`docs/data_provenance_audit.md`。写报告时请把 `citation_count`、`impact_breadth_score`、institution/country counts 写成公开元数据下的近似观察，不要写成官方评奖原因、完整引用网络或跨领域绝对排名。
 
 ## 手工补充任务
 

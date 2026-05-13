@@ -13,7 +13,7 @@
 
 ## 六人分工总表
 
-补充质量目标：如需进一步提高完成度，按 `docs/quality_upgrade_plan.md` 检查每个模块是否都有“发现、案例、限制、截图/验证”。额外增强板块见 `docs/stretch_backlog.md`，建议作为 #17–#20 分配给完成基础任务较快的成员。持续提 feature、开 Issue、PR 完成和回填文档的循环见 `docs/feature_iteration_system.md`；下一批 feature 已开为 #23–#27，其中 #26 已把 `docs/report/report_skeleton.md` 补成可扩写的 findings matrix，B-F 后续只需核查、补证据链接并压缩成正式报告段落。
+补充质量目标：如需进一步提高完成度，按 `docs/quality_upgrade_plan.md` 检查每个模块是否都有“发现、案例、限制、截图/验证”。额外增强板块见 `docs/stretch_backlog.md`，建议作为 #17–#20 分配给完成基础任务较快的成员。持续提 feature、开 Issue、PR 完成和回填文档的循环见 `docs/feature_iteration_system.md`；下一批 feature 已开为 #23–#27，其中 #26 已把 `docs/report/report_skeleton.md` 补成可扩写的 findings matrix，#27 已新增 `docs/data_provenance_audit.md` 统一数据来源和 proxy 指标口径，B-F 后续只需核查、补证据链接并压缩成正式报告段落。
 
 | 角色 | GitHub Issue | 模块 | 主要文件 | 必须交付 | PR 合并标准 |
 |---|---|---|---|---|---|

@@ -24,7 +24,18 @@
 
 本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。
 
-需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。
+需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
+
+### 2.1 数据来源与指标口径审计摘要
+
+| 层级 | 本项目中的作用 | 报告写作边界 |
+|---|---|---|
+| Award seed | 确定 250 篇可用 Test of Time Award 论文、发表年、获奖年、venue 和 awarded_by | 只能说明当前公开奖项记录中的可见样本，不能代表所有 CS 长期影响论文。 |
+| Public metadata | 补充 citation、concept/topic、institution、country 等可视化字段 | 可观察结构性模式，但字段可能缺失或归并错误。 |
+| Derived metrics | 计算 recognition lag、citation trajectory、impact breadth、same-field benchmark | 用于当前数据集内部比较，不是官方评价或因果证据。 |
+| Manual annotation | 为代表论文补贡献解释、工业影响和 evidence URL | 单篇论文贡献与落地影响必须由人工证据支撑。 |
+
+报告中推荐统一写法：citation depth 是引用规模入口，impact breadth 是 OpenAlex citing works sample 下的扩散广度近似指标，venue / institution / country 数量是当前数据集中的可见分布。避免写成会议排名、机构排名、国家实力排名或获奖原因。
 
 ## 3. 可视化设计
 
@@ -158,6 +169,15 @@
 5. Topic label 来自自动规则和 API 元数据，需要对重点案例做人工校正。
 6. 机构与国家/地区信息依赖论文元数据，不能完整还原真实合作网络。
 7. 可视化展示的是模式和线索，不直接证明某个因素导致论文获得长期认可。
+
+## 7.1 写作口径检查表
+
+- [ ] “recognition lag” 写成获奖确认时间间隔，不写成影响产生时间。
+- [ ] “citation depth” 写成引用规模入口，不写成论文重要性的唯一标准。
+- [ ] “impact breadth” 始终带有 OpenAlex sample / proxy / approximate 边界。
+- [ ] Venue 数量、institution 数量、country 数量只写成当前数据中的可见分布，不写成质量排名或贡献排名。
+- [ ] 代表论文的贡献、工业影响、基础设施落地必须附 evidence URL；未核查时保留为待核查案例。
+- [ ] 结论使用“显示 / 提示 / 反映 / 可观察到”，避免“证明 / 导致 / 决定获奖”。
 
 ## 8. 结论
 
