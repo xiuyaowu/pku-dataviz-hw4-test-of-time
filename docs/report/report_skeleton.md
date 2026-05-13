@@ -24,7 +24,7 @@
 
 本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。
 
-需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
+需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
 
 ### 2.1 数据来源与指标口径审计摘要
 
@@ -81,7 +81,7 @@
 |---|---|---|---|---|
 | Finding 1 | 长期影响论文并不集中在单一技术主题，而是覆盖系统、数据挖掘、视觉、NLP、理论等多个方向。 | Top topics：Database / Systems 67 篇、Data Mining / Web 46 篇、Computer Vision 43 篇、NLP 26 篇、Machine Learning Theory 18 篇。 | Test of Time 不是单一领域现象，而是跨社区的长期知识沉淀。 | topic_label 来自规则/API 元数据，需要对重点论文做人工校正。 |
 | Finding 2 | Computer Vision 的平均 citation count 和 impact breadth 都较高，适合作为“高引用 + 广扩散”主题案例。 | Computer Vision：43 篇，平均 citation count 约 2848.7，平均 breadth 约 61.24；Data Mining / Web 平均 breadth 约 58.41。 | 视觉和数据挖掘类方法更容易通过数据集、算法范式或工具链进入多个应用场景。 | 高引用受领域规模和引用习惯影响，不能直接等同于贡献更大。 |
-| Case | 高引用代表论文可以作为主题解释入口。 | `A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise` citation 19133；`Snakes: Active Contour Models` citation 17009；`Object Recognition from Local Scale-Invariant Features` citation 16147。 | 这些案例适合解释聚类、轮廓模型、局部特征等方法如何成为后续研究共同语言。 | 最终报告必须补 DOI/award citation 或论文主页链接，避免只引用自动统计。 |
+| Case | 高引用代表论文可以作为主题解释入口。 | `A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise` citation 19133；`Snakes: Active Contour Models` citation 17009；`Object Recognition from Local Scale-Invariant Features` citation 16147。 | 这些案例适合解释聚类、轮廓模型、局部特征等方法如何成为后续研究共同语言；Top 12 证据卡已补 DOI/论文页和一句话贡献，可直接作为报告案例草稿。 | 最终报告仍需人工确认 award citation 与具体贡献表述，避免只引用自动统计。 |
 
 可扩写段落：
 
@@ -95,7 +95,7 @@
 |---|---|---|---|---|
 | Finding 1 | 高引用论文经常也是 Test of Time 代表案例，但 citation depth 只能说明被大量引用，不能完整说明“为何经得起时间检验”。 | Top citation papers 包括 DBSCAN 19133、Snakes 17009、SIFT 16147、Association Rules 14771。 | 引用深度可作为影响强度入口，但需要结合方法贡献、应用扩散和 award citation 解释。 | 不同领域引用习惯差异明显，citation count 不能跨领域直接比较价值。 |
 | Finding 2 | 影响广度提供了不同于引用总量的视角：有些论文引用不是最高，但 citing field / institution / country 范围很宽。 | Top breadth：`Graphs over Time` breadth 87.38；`Multitasking without compromise` 86.5；`YAGO` 85.88；`Factorization meets the neighborhood` 84.88。 | depth × breadth 可以区分“在本领域被密集引用”和“跨领域扩散”的不同长期影响形态。 | breadth 来自 OpenAlex 抽样 citing works，是近似指标，不是完整 citation graph。 |
-| Case | 数据库/数据挖掘案例适合说明“方法成为通用工具”的长期影响。 | `Mining Association Rules Between Sets of Items in Large Databases` citation 14771；`Fast Algorithms for Mining Association Rules` citation 9384；`YAGO` breadth 85.88。 | 这些论文可以讲成从具体算法/知识库到后续数据挖掘和 Web 生态的扩散。 | 工业影响或基础设施影响必须有 evidence URL 支撑，不能只靠引用数推断。 |
+| Case | 数据库/数据挖掘案例适合说明“方法成为通用工具”的长期影响。 | `Mining Association Rules Between Sets of Items in Large Databases` citation 14771；`Fast Algorithms for Mining Association Rules` citation 9384；`YAGO` breadth 85.88。 | 这些论文可以讲成从具体算法/知识库到后续数据挖掘和 Web 生态的扩散；association rule 两个代表案例已在证据卡中补入 ACM/VLDB 链接。 | 工业影响或基础设施影响必须有 evidence URL 支撑，不能只靠引用数推断。 |
 
 可扩写段落：
 
@@ -109,7 +109,7 @@
 |---|---|---|---|---|
 | Finding 1 | Explorer 把 250 篇论文变成可检索证据库，适合支撑报告中的“代表案例从哪里来”。 | 页面支持 title / venue / topic / field 搜索，支持按 citation、breadth、lag、year 排序。 | 报告中可以说明案例不是临时挑选，而是从统一数据表中筛选。 | Explorer 是检索和展示工具，不替代人工阅读论文。 |
 | Finding 2 | 排序和筛选可以帮助不同模块快速找到各自案例。 | Time 可按 lag 排序；Topic 可按 topic/field 过滤；Citation 可按 citation 或 breadth 排序。 | 这减少了小组协作中的重复找资料成本，也让展示问答时可以快速回查。 | 搜索结果依赖已有元数据和 topic_label，缺失字段需手工补充。 |
-| Case | 课堂展示时可用 Explorer 快速定位 DBSCAN、SIFT、YAGO、ALOHA 等代表论文。 | 这些论文分别对应高引用、视觉方法、知识库扩散和长 lag。 | 适合作为现场互动：从整体模式跳到单篇论文，再回到模块结论。 | 代表性判断需要在最终报告中写清选择标准。 |
+| Case | 课堂展示时可用 Explorer 快速定位 DBSCAN、SIFT、AODV、Network Information Flow 等代表论文。 | 这些论文分别对应高引用、视觉方法、网络协议和理论框架扩散。 | 适合作为现场互动：从整体模式跳到单篇论文，再回到模块结论；`docs/evidence_cards_top12.md` 给出每篇的代表性理由和证据链接。 | 代表性判断需要在最终报告中写清选择标准，且人工确认后再写工业/落地影响。 |
 
 ### 4.6 Benchmark Lab：单篇论文相对位置解释
 
@@ -196,7 +196,7 @@
 
 ## 10. 待人工完成的小项
 
-- 为最终采用的代表论文补 DOI、award citation、论文主页或可信介绍链接。
+- Top 12 代表论文已补 DOI/论文页/辅助证据链接；最终采用前需人工打开核对 award citation、贡献解释和展示用中文表述。
 - B-F 各自确认本模块 2–3 条 findings 是否与人工阅读一致。
 - 将本骨架压缩成课程要求的最终报告篇幅。
 - 把 `docs/presentation_pack.md` 转成最终 PPT 或演讲稿。

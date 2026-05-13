@@ -13,15 +13,15 @@
 
 ## 六人分工总表
 
-补充质量目标：如需进一步提高完成度，按 `docs/quality_upgrade_plan.md` 检查每个模块是否都有“发现、案例、限制、截图/验证”。额外增强板块见 `docs/stretch_backlog.md`，建议作为 #17–#20 分配给完成基础任务较快的成员。持续提 feature、开 Issue、PR 完成和回填文档的循环见 `docs/feature_iteration_system.md`；下一批 feature 已开为 #23–#27，其中 #26 已把 `docs/report/report_skeleton.md` 补成可扩写的 findings matrix，#27 已新增 `docs/data_provenance_audit.md` 统一数据来源和 proxy 指标口径，B-F 后续只需核查、补证据链接并压缩成正式报告段落。
+补充质量目标：如需进一步提高完成度，按 `docs/quality_upgrade_plan.md` 检查每个模块是否都有“发现、案例、限制、截图/验证”。额外增强板块见 `docs/stretch_backlog.md`，建议作为 #17–#20 分配给完成基础任务较快的成员。持续提 feature、开 Issue、PR 完成和回填文档的循环见 `docs/feature_iteration_system.md`；下一批 feature 已开为 #23–#27，其中 #24 已为 Top 12 代表论文补入 DOI/论文页/辅助证据链接和一句话贡献，#26 已把 `docs/report/report_skeleton.md` 补成可扩写的 findings matrix，#27 已新增 `docs/data_provenance_audit.md` 统一数据来源和 proxy 指标口径，B-F 后续只需核查表述、补少量 award citation 并压缩成正式报告段落。
 
 | 角色 | GitHub Issue | 模块 | 主要文件 | 必须交付 | PR 合并标准 |
 |---|---|---|---|---|---|
 | A | [#2](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/2), [#13](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/13) | 项目架构 / 全站 baseline / 队友减负 / GitHub 协作 / Demo 预览 / Review / 最终整合 QA | `index.html`, `src/app.js`, `src/styles.css`, `README.md`, `.github/*`, `docs/*`, `docs/demo/*`, 全站 QA | baseline 代码、Issues、PR 模板、work board、README demo 截图、队友任务卡、报告骨架、展示脚本、贡献记录、最终检查表、review/merge 记录 | main 页面始终可运行；README 能让未安装环境的读者快速理解成果；队友可以按任务卡直接开工；最终报告能追溯每个人贡献 |
 | B | [#3](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/3) | Time：发表年、获奖年、recognition lag | `data/award_timeline.csv`, `data/recognition_lag_distribution.csv`, `src/app.js` Time functions | lag 分布解释、最长/典型 lag 代表论文、2-3 条时间发现 | Time 两个图正常显示；结论能解释“时间检验”的时间尺度 |
 | C | [#4](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/4) | Venue and Field：会议和领域分布 | `data/venue_stats.csv`, `data/venue_area_stats.csv`, Venue section | Top venues、Top fields、集中度分析、2-3 条会议/领域发现 | 不把数量榜误写成官方排名；说明设奖历史差异限制 |
-| D | [#5](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/5) | Topic Evolution：主题分布、演化和代表论文卡 | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/*`, Topic section | Top topics、topic evolution、5-8 篇代表论文解释、2-3 条主题发现 | Topic 三个视图正常显示；代表论文卡有可展示解释/证据 |
-| E | [#6](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/6) | Citation and Impact：引用轨迹、深度和广度 | `data/citation_trajectories.csv`, `data/citing_breadth_metrics.csv`, Citation section | citation vs lag、trajectory、depth × breadth、2-3 条影响力发现 | 明确区分 citation depth 和 breadth；说明 OpenAlex 近似指标限制 |
+| D | [#5](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/5) | Topic Evolution：主题分布、演化和代表论文卡 | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`, `docs/evidence_cards_top12.md`, Topic section | Top topics、topic evolution、5-8 篇代表论文解释、2-3 条主题发现 | Topic 三个视图正常显示；代表论文卡有可展示解释/证据；最终报告前打开 evidence URL 核对贡献表述 |
+| E | [#6](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/6) | Citation and Impact：引用轨迹、深度和广度 | `data/citation_trajectories.csv`, `data/citing_breadth_metrics.csv`, `docs/evidence_cards_top12.md`, Citation section | citation vs lag、trajectory、depth × breadth、2-3 条影响力发现 | 明确区分 citation depth 和 breadth；说明 OpenAlex 近似指标限制；代表案例只使用已有 evidence URL 支撑的贡献表述 |
 | F | [#7](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/7) | Network / Visual / Presentation：机构国家、视觉统一和展示 | `data/institution_stats.csv`, `data/country_stats.csv`, Network section, CSS/PPT | institution/country 发现、可选网络图升级、视觉统一检查、PPT 大纲 | Network baseline 正常；全站风格不被破坏；展示结构可直接用 |
 
 ## A 已经先完成的一版 baseline

@@ -120,6 +120,7 @@ git push -u origin feature/your-name-task
 │   └── country_stats.csv
 ├── manual_annotations/
 │   ├── manual_paper_annotations_top60_template.csv
+│   ├── manual_paper_annotations_top12_evidence_ready.csv
 │   └── 按方向拆分的 5 份待补充表
 ├── src/
 │   ├── app.js
@@ -214,7 +215,7 @@ A 会负责主线、review、整合和最终 QA，保证各模块能拼成同一
 
 ## 手工补充任务
 
-`manual_annotations/` 中有 Top 60 代表论文的待补充表。手工补充主要用于网页中的论文详情卡和展示案例。
+`manual_annotations/` 中有 Top 60 代表论文的待补充表，也有 `manual_paper_annotations_top12_evidence_ready.csv` 作为已补 DOI/论文页/一句话贡献的代表案例起点。手工补充主要用于网页中的论文详情卡和展示案例。
 
 补充时注意：
 
