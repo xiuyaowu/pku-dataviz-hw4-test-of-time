@@ -48,6 +48,9 @@ http://127.0.0.1:8765/index.html
 - [ ] 每个模块都有 2-3 条发现、1-3 个代表案例、1 条限制说明。
 - [ ] `docs/quality_upgrade_plan.md` 中的模块级优化目标已检查。
 - [ ] 如时间允许，`docs/stretch_backlog.md` 中 P0 增强板块已认领或明确暂缓。
+- [ ] `docs/evidence_cards_top12.md` 中代表论文卡已由队友核查关键论断。
+- [ ] `docs/methods_and_limitations.md` 已压缩进最终报告或展示。
+- [ ] `docs/presentation_pack.md` 已转成 PPT 或口头展示分工。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
 - [ ] 最终报告和展示讲稿中术语一致：recognition lag / citation depth / impact breadth。
 - [ ] 手工补充的工业影响/代表性判断必须有 evidence URL。

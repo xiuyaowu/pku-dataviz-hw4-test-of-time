@@ -10,6 +10,8 @@
 
 ## Stretch 1 / GitHub Pages 在线部署与二维码
 
+当前进展：已准备 `.nojekyll`、README 在线 demo 入口、`docs/qr_online_demo_handoff.md` 和 `docs/demo/online-demo-qr.png`。GitHub Pages 启用后检查线上页面。
+
 优先级：P0
 
 目标：让老师和同学不需要本地运行，也能直接打开完整交互页面。
@@ -29,6 +31,8 @@
 
 ## Stretch 2 / Evidence Cards：代表论文证据卡
 
+当前进展：已生成 `docs/evidence_cards_top12.md` 和 `docs/evidence_cards_top12.csv` 初稿，包含 12 张自动筛选代表论文卡。最终展示前需要队友核查 contribution wording 和 evidence URL。
+
 优先级：P0
 
 目标：把抽象统计结果落到具体论文案例，让展示更像研究分析。
@@ -46,6 +50,8 @@
 - 至少 5 张卡能直接用于课堂展示。
 
 ## Stretch 3 / Methods & Limitations 页面或报告附录
+
+当前进展：已生成 `docs/methods_and_limitations.md`，可直接压缩进报告或 PPT。
 
 优先级：P0
 
@@ -83,6 +89,8 @@
 - 截图状态清晰，不依赖口头解释。
 
 ## Stretch 5 / Presentation Pack：最终展示包
+
+当前进展：已生成 `docs/presentation_pack.md`，包含 8–10 分钟展示结构、slide outline、speaker checklist 和 backup assets。
 
 优先级：P1
 

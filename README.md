@@ -8,6 +8,12 @@
 
 **What Research Stands the Test of Time? Visualizing Long-Term Impact in Computer Science**
 
+## 在线 Demo
+
+GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-of-time/>
+
+如果在线页面暂时不可访问，请按下方“本地运行”启动静态服务器查看。
+
 ## 项目目标
 
 本项目基于 Test of Time Award 论文数据，分析计算机领域中哪些研究在多年后仍然被认为具有重要影响。我们会从时间跨度、会议领域、研究主题、引用轨迹、影响扩散、作者机构网络等角度进行可视化分析。
@@ -74,6 +80,10 @@ git push -u origin feature/your-name-task
 │   ├── module_handoff_cards.md
 │   ├── quality_upgrade_plan.md
 │   ├── stretch_backlog.md
+│   ├── evidence_cards_top12.md
+│   ├── methods_and_limitations.md
+│   ├── presentation_pack.md
+│   ├── qr_online_demo_handoff.md
 │   ├── grading_rubric_full_score_mapping.md
 │   ├── demo_script.md
 │   ├── demo/
@@ -82,7 +92,8 @@ git push -u origin feature/your-name-task
 │   │   ├── venue-and-field.png
 │   │   ├── topic-evolution.png
 │   │   ├── citation-and-impact.png
-│   │   └── network-diffusion.png
+│   │   ├── network-diffusion.png
+│   │   └── online-demo-qr.png
 │   ├── report/
 │   │   ├── contribution_A.md
 │   │   └── report_skeleton.md
@@ -143,7 +154,7 @@ http://127.0.0.1:8765/index.html
 
 详细分工见：`docs/team_division.md`
 
-Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，对应 GitHub Issues #17–#20。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，最终整合检查见 `docs/final_qa_checklist.md`。
+Issue 分工表见：`docs/work_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，对应 GitHub Issues #17–#20；已补充的材料包括 `docs/evidence_cards_top12.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，最终整合检查见 `docs/final_qa_checklist.md`。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
