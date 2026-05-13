@@ -35,6 +35,7 @@
 | Network KPIs | F 模块开头有机构/国家总结卡 | `#network` |
 | Methods & Limitations | 避免把 proxy 指标写成因果结论 | `docs/methods_and_limitations.md` |
 | Presentation Pack | 展示脚本、备选问答、收尾总结可直接用 | `docs/presentation_pack.md` |
+| Final Report Findings Matrix | 把报告骨架补成可扩写半成品：每个模块都有 findings、case、evidence、boundary | `docs/report/report_skeleton.md` |
 
 ## 下一批已开 Issue 的候选 feature
 
@@ -43,7 +44,7 @@
 | [#23](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/23) | Module Claim Cards | B-F 各自模块，A review | 每个模块补发现、代表案例、限制卡 |
 | [#24](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/24) | Evidence URL Completion | D + E | 至少 12 篇代表论文补来源链接 |
 | [#25](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/25) | Presentation Mode Polish | F + A | 投影可读性、截图和展示包升级 |
-| [#26](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/26) | Final Report Findings Matrix | A | 把报告骨架填成可扩写半成品 |
+| [#26](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/26) | Final Report Findings Matrix | A | 已完成：报告骨架已补 findings matrix，B-F 只需核查和扩写 |
 | [#27](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/27) | Data Provenance Audit | A + 各模块 | 统一数据来源、proxy 指标和限制口径 |
 
 ### 1. Module Claim Cards
@@ -67,8 +68,10 @@
 ### 4. Final Report Findings Matrix
 
 - **Owner**：A。
+- **状态**：已完成初版。
 - **目标**：在 `docs/report/report_skeleton.md` 中回填每个模块的发现、案例、限制。
-- **验收**：最终报告不是空骨架，而是可以直接扩写的半成品。
+- **验收**：最终报告不是空骨架，而是可以直接扩写的半成品；每个模块至少有 2–3 条 draft findings、1 个代表案例和限制说明。
+- **后续**：B-F 按各自模块核查案例解释、补 evidence URL，并将矩阵压缩成正式报告段落。
 
 ### 5. Data Provenance Audit
 

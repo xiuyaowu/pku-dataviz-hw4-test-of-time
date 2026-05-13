@@ -47,13 +47,15 @@ http://127.0.0.1:8765/index.html
 - [x] 图表按 Time → Venue/Field → Topic → Citation/Impact → Explorer → Benchmark → Network 组织，避免孤立堆叠。
 - [x] 数据来源和指标局限在 README/footer 中有说明。
 - [ ] 队友补充后的发现需要避免过度因果解释。
-- [ ] 每个模块都有 2-3 条发现、1-3 个代表案例、1 条限制说明。
+- [x] `docs/report/report_skeleton.md` 已有每个模块的 draft findings matrix：2-3 条发现、至少 1 个代表案例、1 条限制说明。
+- [ ] B-F 已人工核查各自模块的代表案例、贡献解释和 evidence URL。
 - [ ] `docs/quality_upgrade_plan.md` 中的模块级优化目标已检查。
 - [ ] 如时间允许，`docs/stretch_backlog.md` 中 P0 增强板块已认领或明确暂缓。
 - [ ] `docs/evidence_cards_top12.md` 中代表论文卡已由队友核查关键论断。
 - [ ] `docs/methods_and_limitations.md` 已压缩进最终报告或展示。
 - [ ] `docs/presentation_pack.md` 已转成 PPT 或口头展示分工。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
+- [x] 报告骨架中术语已统一：recognition lag / citation depth / impact breadth / same-field benchmark / OpenAlex proxy。
 - [ ] 最终报告和展示讲稿中术语一致：recognition lag / citation depth / impact breadth。
 - [ ] 手工补充的工业影响/代表性判断必须有 evidence URL。
 

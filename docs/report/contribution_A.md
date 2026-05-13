@@ -71,6 +71,7 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - 补充 `Paper Explorer`，支持按 title / venue / topic / field 检索、按 citation / breadth / lag / year 排序，并点击联动代表论文详情和 benchmark。
 - 补充 `Benchmark Lab`，把任意选中论文转成 citation depth、impact breadth、recognition lag、country span、institution span 的 percentile 对比。
 - 补充 `Story Builder`，自动把各模块组织成“研究问题 → 动态证据 → so what → owner”的展示/报告路线图。
+- 将 `docs/report/report_skeleton.md` 从空骨架推进为 findings matrix：为 Time、Venue、Topic、Citation、Explorer、Benchmark、Network 各模块补 draft findings、数据证据、代表案例和限制说明。
 - 补充 `docs/feature_iteration_system.md`，将后续“发现 feature → 开 GitHub Issue → PR 完成 → 文档回填”的循环制度化。
 
 ## 对应文件 / 记录
