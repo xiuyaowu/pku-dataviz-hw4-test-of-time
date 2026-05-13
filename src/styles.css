@@ -245,3 +245,86 @@ footer { padding: 34px clamp(20px, 5vw, 72px) 54px; color: var(--muted); border-
 @media (max-width: 920px) {
   .insight-deck, .insight-strip, .wide-strip { grid-template-columns: 1fr; }
 }
+
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 4px 4px 16px;
+}
+.control-row label {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  display: grid;
+  gap: 6px;
+}
+.control-row input,
+.control-row select {
+  min-width: 190px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(8,12,18,0.72);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+}
+.control-row input:focus,
+.control-row select:focus,
+.paper-list-item:focus,
+.archetype-card:focus {
+  border-color: rgba(112,225,212,0.76);
+  box-shadow: 0 0 0 3px rgba(112,225,212,0.16);
+}
+.explorer-grid {
+  display: grid;
+  grid-template-columns: minmax(420px, 1.2fr) minmax(320px, 0.8fr);
+  gap: 18px;
+  align-items: start;
+}
+.paper-list {
+  display: grid;
+  gap: 10px;
+  max-height: 430px;
+  overflow: auto;
+  padding-right: 4px;
+}
+.list-head {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 4px 2px 2px;
+}
+.paper-list-item,
+.archetype-card {
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.paper-list-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.11);
+  background: rgba(255,255,255,0.045);
+  border-radius: 16px;
+  padding: 12px;
+}
+.paper-list-item:hover { background: rgba(112,225,212,0.09); }
+.paper-list-item .rank { color: var(--accent-2); font-weight: 800; }
+.item-main { display: grid; gap: 5px; min-width: 0; }
+.item-main b { font-size: 13px; line-height: 1.3; }
+.item-main small { color: var(--muted); line-height: 1.35; }
+.item-metric {
+  color: var(--accent);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.explorer-dot { mix-blend-mode: screen; }
+@media (max-width: 1100px) {
+  .explorer-grid { grid-template-columns: 1fr; }
+}

@@ -1,6 +1,6 @@
 # 评分标准覆盖表
 
-用途：把作业说明中的评分点逐条映射到当前仓库证据，最终提交前用于确认项目不是“只有页面”，而是覆盖选题、真实性、故事性、细节、报告和分工。
+用途：把作业说明中的评分点逐条映射到当前仓库证据，最终提交前用于确认项目同时覆盖选题、真实性、故事性、细节、报告和分工。
 
 ## 评分结构
 
@@ -18,7 +18,7 @@
 - 题目：哪些计算机研究经得起时间检验？
 - 数据对象：Test of Time Award papers。
 - 核心问题：一篇计算机论文在多年后仍被认为重要，通常具有什么共同特征？
-- 页面结构按研究问题展开：Opening → Time → Venue / Field → Topic → Citation / Impact → Network。
+- 页面结构按研究问题展开：Opening → Time → Venue / Field → Topic → Citation / Impact → Paper Explorer → Network。
 
 证据文件：
 
@@ -63,7 +63,7 @@
 
 - 页面按一个连续叙事组织，而不是无关图表堆叠。
 - 每个模块都有 research question / reading note / detail card 或 insight cards。
-- README 提供 6 张 demo 截图，便于未运行页面时理解作品。
+- README 提供 7 张 demo 截图，便于未运行页面时理解作品。
 
 证据文件：
 
@@ -84,7 +84,7 @@
 
 当前覆盖：
 
-- D3 页面已包含多种图表：histogram、timeline、bar chart、heatmap、scatter、trajectory、ranking cards。
+- D3 页面已包含多种图表与交互：histogram、timeline、bar chart、heatmap、scatter、trajectory、ranking cards、search/filter/sort evidence explorer。
 - 有 tooltip、summary cards、reference/median guides、quadrant cards、selected-paper focus state。
 - CSS 统一暗色视觉、卡片、网格、caption 和 responsive layout。
 
@@ -134,9 +134,10 @@
 3. Venue / Field：不同学术共同体沉淀长期影响的方式不同。
 4. Topic：长期影响主题随计算机领域重心迁移。
 5. Citation / Impact：高引用不等于全部，depth 与 breadth 共同解释影响。
-6. Network：长期影响沉淀在机构、国家和共同体结构中。
-7. Limitations：award history、metadata coverage、OpenAlex sampled proxy。
-8. Conclusion：时间、主题、引用和网络共同刻画“经得起时间检验”。
+6. Paper Explorer：用可检索证据库快速定位代表论文。
+7. Network：长期影响沉淀在机构、国家和共同体结构中。
+8. Limitations：award history、metadata coverage、OpenAlex sampled proxy。
+9. Conclusion：时间、主题、引用、证据案例和网络共同刻画“经得起时间检验”。
 
 证据文件：
 
@@ -152,7 +153,7 @@
 
 ## 7. 当前距“最终提交”还需要队友完成的内容
 
-这些不是仓库 baseline 的缺陷，而是小组协作项目最终成稿前必须补齐的人工内容：
+这些是小组协作项目最终成稿前必须补齐的人工内容：
 
 - B–F 各自补模块发现和代表案例。
 - D 补 5–8 篇代表论文 evidence URL。

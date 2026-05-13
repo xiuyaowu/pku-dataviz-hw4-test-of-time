@@ -45,6 +45,7 @@ Promise.all([
   renderTrajectory(data.citations, data.papers);
   renderBreadth(data.timeline, data.papers);
   renderCitationQuadrants(data.timeline);
+  renderExplorer(data.papers);
   renderNetworkKpis(data.institutions, data.countries);
   renderInstitutions(data.institutions);
   renderCountries(data.countries);
@@ -380,6 +381,118 @@ function renderCitationQuadrants(rows) {
     .html(d => `<div class="metric">${escapeHtml(d.metric)}</div><div class="title">${escapeHtml(d.title)}</div><div class="body">${escapeHtml(d.body)}</div>`);
 }
 
+
+function renderExplorer(papers) {
+  const container = d3.select("#explorer-controls");
+  if (container.empty()) return;
+  const ranked = papers.slice().filter(d => d.title);
+  const archetypes = buildArchetypes(ranked);
+  d3.select("#archetype-cards").selectAll("button")
+    .data(archetypes).join("button")
+    .attr("class", "insight-card archetype-card")
+    .attr("type", "button")
+    .html(d => `<div class="metric">${escapeHtml(d.metric)}</div><div class="title">${escapeHtml(d.title)}</div><div class="body">${escapeHtml(shortTitle(d.paper.title))}</div>`)
+    .on("click", (_, d) => {
+      updateDetail(d.paper);
+      document.querySelector("#topic")?.scrollIntoView({behavior: "smooth", block: "start"});
+    });
+
+  container.html(`
+    <label>Search <input id="paper-search" type="search" placeholder="title / venue / topic" /></label>
+    <label>Sort <select id="paper-sort">
+      <option value="citation_count">citations</option>
+      <option value="impact_breadth_score">impact breadth</option>
+      <option value="recognition_lag">recognition lag</option>
+      <option value="year">publication year</option>
+    </select></label>
+    <label>Field <select id="paper-field"><option value="all">all fields</option></select></label>
+  `);
+  const fields = Array.from(new Set(ranked.map(d => d.venue_area || "Other"))).sort(d3.ascending);
+  d3.select("#paper-field").selectAll("option.field-option").data(fields).join("option")
+    .attr("class", "field-option")
+    .attr("value", d => d).text(d => d);
+
+  const draw = () => {
+    const query = d3.select("#paper-search").property("value").trim().toLowerCase();
+    const sortKey = d3.select("#paper-sort").property("value");
+    const field = d3.select("#paper-field").property("value");
+    const rows = ranked
+      .filter(d => field === "all" || (d.venue_area || "Other") === field)
+      .filter(d => !query || [d.title, d.venue, d.topic_label, d.venue_area].some(v => String(v || "").toLowerCase().includes(query)))
+      .sort((a,b) => d3.descending(num(a[sortKey]), num(b[sortKey])));
+    renderExplorerChart(rows.slice(0, 80), ranked);
+    renderExplorerList(rows.slice(0, 10), sortKey, ranked.length);
+  };
+  d3.select("#paper-search").on("input", draw);
+  d3.select("#paper-sort").on("change", draw);
+  d3.select("#paper-field").on("change", draw);
+  draw();
+}
+
+function buildArchetypes(papers) {
+  const validLag = papers.filter(d => d.recognition_lag > 0);
+  return [
+    {title: "Citation magnet", metric: fmt(num(d3.max(papers, d => d.citation_count))), paper: papers.slice().sort((a,b) => d3.descending(a.citation_count, b.citation_count))[0]},
+    {title: "Slow-burn classic", metric: `${d3.max(validLag, d => d.recognition_lag)}y`, paper: validLag.slice().sort((a,b) => d3.descending(a.recognition_lag, b.recognition_lag))[0]},
+    {title: "Widest diffusion", metric: fmt1(num(d3.max(papers, d => d.impact_breadth_score))), paper: papers.slice().sort((a,b) => d3.descending(a.impact_breadth_score, b.impact_breadth_score))[0]},
+    {title: "Fast recognition", metric: `${d3.min(validLag, d => d.recognition_lag)}y`, paper: validLag.slice().sort((a,b) => d3.ascending(a.recognition_lag, b.recognition_lag))[0]}
+  ].filter(d => d.paper);
+}
+
+function renderExplorerChart(rows, allPapers) {
+  const {svg, width, height} = chartBox("#explorer-chart");
+  const margin = {top: 22, right: 28, bottom: 52, left: 64};
+  const clean = rows.filter(d => d.recognition_lag && d.citation_count);
+  if (!clean.length) {
+    svg.append("text").attr("x", width / 2).attr("y", height / 2).attr("text-anchor", "middle").attr("fill", "#9aa8bd").text("No matching papers");
+    return;
+  }
+  const x = d3.scaleLinear().domain(d3.extent(allPapers.filter(d => d.recognition_lag), d => d.recognition_lag)).nice().range([margin.left, width-margin.right]);
+  const y = d3.scaleLog().domain([1, d3.max(allPapers, d => Math.max(1, num(d.citation_count)))]).range([height-margin.bottom, margin.top]);
+  const r = d3.scaleSqrt().domain(d3.extent(allPapers, d => num(d.impact_breadth_score))).range([4, 14]);
+  svg.append("g").attr("class", "grid").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, ",~s").tickSize(-(width-margin.left-margin.right)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(6));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, ",~s"));
+  svg.append("text").attr("class", "chart-title-small").attr("x", width/2).attr("y", height-8).attr("text-anchor", "middle").text("recognition lag (years)");
+  svg.append("text").attr("class", "chart-title-small").attr("x", -height/2).attr("y", 15).attr("text-anchor", "middle").attr("transform", "rotate(-90)").text("citation count (log)");
+  const mx = d3.median(allPapers, d => d.recognition_lag);
+  const my = d3.median(allPapers, d => Math.max(1, num(d.citation_count)));
+  addReferenceGuides(svg, x(mx), y(my), width, height, margin, "dataset median lag", "dataset median citations");
+  svg.selectAll("circle.explorer-dot").data(clean, d => d.paper_id).join("circle")
+    .attr("class", "dot explorer-dot")
+    .attr("cx", d => x(d.recognition_lag)).attr("cy", d => y(Math.max(1, d.citation_count)))
+    .attr("r", d => r(num(d.impact_breadth_score))).attr("fill", d => color(d.venue_area)).attr("opacity", 0.76)
+    .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>${escapeHtml(d.venue || "")}, ${d.year}<br>${escapeHtml(d.topic_label || "")}`))
+    .on("mouseleave", hideTip)
+    .on("click", (_,d) => updateDetail(d));
+}
+
+function renderExplorerList(rows, sortKey, total) {
+  const metricLabels = {
+    citation_count: "citations",
+    impact_breadth_score: "breadth",
+    recognition_lag: "lag",
+    year: "year"
+  };
+  const list = d3.select("#explorer-list");
+  list.html(`<div class="list-head"><b>${rows.length}</b> shown from ${fmt(total)} papers · sorted by ${metricLabels[sortKey]}</div>`);
+  const items = list.selectAll("button.paper-list-item").data(rows, d => d.paper_id).join("button")
+    .attr("type", "button")
+    .attr("class", "paper-list-item")
+    .on("click", (_, d) => updateDetail(d));
+  items.html((d, i) => `
+    <span class="rank">#${i + 1}</span>
+    <span class="item-main"><b>${escapeHtml(shortTitle(d.title))}</b><small>${escapeHtml(d.venue || "Venue")} · ${d.year || "year"} · ${escapeHtml(d.topic_label || "topic")}</small></span>
+    <span class="item-metric">${formatExplorerMetric(d, sortKey)}</span>
+  `);
+}
+
+function formatExplorerMetric(d, key) {
+  if (key === "impact_breadth_score") return fmt1(num(d[key]));
+  if (key === "recognition_lag") return `${fmt(num(d[key]))}y`;
+  return fmt(num(d[key]));
+}
+
 function renderNetworkKpis(institutions, countries) {
   const topInst = institutions.slice().filter(d => d.name).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   const topCountry = countries.slice().filter(d => d.country).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
@@ -445,6 +558,7 @@ function setNotes({papers, venues, areas, topics}) {
   d3.select("#venue-note").text(`${topVenue.venue} has the largest count among venues, while ${topArea.venue_area} is the largest broader field in this dataset.`);
   d3.select("#topic-note").text(`${topTopic.topic_label} is the most frequent topic label, giving the topic module a natural entry point for representative-paper storytelling.`);
   d3.select("#citation-note").text(`The scatter plot separates citation volume from recognition timing: high citation counts and long recognition lags are related but not identical signals.`);
+  d3.select("#explorer-note").text(`The explorer turns the dataset into a live evidence index: search by title/topic/venue, sort by citation, lag, breadth, or year, then click any paper to update the shared detail card.`);
   d3.select("#network-note").text(`Institution and country rankings show where long-term impact clusters, while also reminding us that metadata coverage is uneven.`);
 }
 

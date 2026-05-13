@@ -34,15 +34,15 @@ http://127.0.0.1:8765/index.html
 - [x] 页面无 `Data loading failed`。
 - [x] 浏览器 console 无 JavaScript error。
 - [x] summary cards 正常渲染。
-- [x] Time / Venue / Topic / Citation / Network 模块均有图表。
-- [x] tooltip 和代表论文 detail card 正常工作。
+- [x] Time / Venue / Topic / Citation / Explorer / Network 模块均有图表或交互组件。
+- [x] Explorer 的 search / sort / field filter / paper list 正常工作。
 - [ ] 最终提交前截图备份关键页面。
 
 ## 3. 内容质量检查
 
 - [x] 页面围绕同一个核心问题展开：哪些计算机研究经得起时间检验。
 - [x] 每个模块都有研究问题和 reading note。
-- [x] 图表按 Time → Venue/Field → Topic → Citation/Impact → Network 组织，避免孤立堆叠。
+- [x] 图表按 Time → Venue/Field → Topic → Citation/Impact → Explorer → Network 组织，避免孤立堆叠。
 - [x] 数据来源和指标局限在 README/footer 中有说明。
 - [ ] 队友补充后的发现需要避免过度因果解释。
 - [ ] 每个模块都有 2-3 条发现、1-3 个代表案例、1 条限制说明。

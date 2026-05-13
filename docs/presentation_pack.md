@@ -7,13 +7,14 @@
 | Segment | Speaker | Time | Main message | Visual asset |
 |---|---:|---:|---|---|
 | Opening | A | 60s | 我们研究哪些 CS 论文经得起时间检验，以及这种长期影响力如何表现。 | README hero / homepage screenshot |
-| Time | B | 70s | 长期影响力通常不是即时确认，而是在多年后被重新认可。 | `docs/demo/time-and-timeline.png` |
+| Time | B | 70s | 长期影响力通常需要多年后重新确认。 | `docs/demo/time-and-timeline.png` |
 | Venue / Field | C | 70s | 不同学术共同体产生长期影响的路径不同，但数量差异需要结合 award history 解释。 | `docs/demo/venue-and-field.png` |
 | Topic | D | 90s | 长期影响主题随 CS 研究重心迁移，代表论文能解释统计背后的具体贡献。 | `docs/demo/topic-evolution.png` + evidence card |
 | Citation / Impact | E | 90s | 高引用不是全部，citation depth 和 impact breadth 描述不同类型的长期影响。 | `docs/demo/citation-and-impact.png` |
+| Paper Explorer | A or D | 50s | 可检索证据库把统计发现落回具体论文，便于展示和答疑。 | `docs/demo/explorer-evidence-index.png` |
 | Network | F | 70s | 长期影响也沉淀在机构、国家/地区和学术共同体结构中。 | `docs/demo/network-diffusion.png` |
 | Methods / Limitations | A or F | 60s | 数据可信但有边界：award history、metadata coverage、sampled breadth。 | methods slide |
-| Conclusion | A | 40s | 时间、主题、引用和网络共同刻画“经得起时间检验”。 | summary slide |
+| Conclusion | A | 40s | 时间、主题、引用、证据案例和网络共同刻画“经得起时间检验”。 | summary slide |
 
 ## Slide outline
 
@@ -25,7 +26,7 @@ Subtitle: Visualizing Long-Term Impact in Computer Science
 
 Talking point:
 
-> 我们不是只看论文当年有多热，而是看哪些研究在多年后仍然被学术共同体重新确认。
+> 我们关注论文当年热度之外的长期确认：哪些研究在多年后仍然被学术共同体重新评价为重要。
 
 ### Slide 2 / Data and question
 
@@ -91,7 +92,20 @@ Need from E:
 - 四象限代表论文
 - OpenAlex proxy 限制说明
 
-### Slide 7 / Network
+### Slide 7 / Paper Explorer
+
+Visual: `docs/demo/explorer-evidence-index.png`
+
+Talking point:
+
+> Paper Explorer 把全部论文做成可检索证据库。展示时可以按 title、venue、topic 搜索，也可以按 citation、breadth、lag、year 排序，用具体论文支撑前面每个统计发现。
+
+Need from A/D:
+
+- 展示时准备 1 个搜索关键词
+- 准备 1 个代表论文点击示例
+
+### Slide 8 / Network
 
 Visual: `docs/demo/network-diffusion.png`
 
@@ -104,7 +118,7 @@ Need from F:
 - Top institutions / countries
 - 视觉统一检查
 
-### Slide 8 / Methods & limitations
+### Slide 9 / Methods & limitations
 
 Use: `docs/methods_and_limitations.md`
 
@@ -116,11 +130,11 @@ Must mention:
 - award history bias
 - causality boundary
 
-### Slide 9 / Conclusion
+### Slide 10 / Conclusion
 
 Suggested wording:
 
-> 这组可视化显示，经得起时间检验的研究通常不是由单一指标定义的。它们往往经历延迟确认，在特定学术共同体中沉淀，并通过引用、主题和机构网络扩散。Test of Time Award 因此提供了一个观察长期科学影响力的窗口。
+> 这组可视化显示，经得起时间检验的研究需要用多维指标观察。它们往往经历延迟确认，在特定学术共同体中沉淀，并通过引用、主题、具体论文案例和机构网络扩散。Test of Time Award 因此提供了一个观察长期科学影响力的窗口。
 
 ## Backup assets
 
@@ -131,6 +145,7 @@ Use these if live demo fails:
 - `docs/demo/venue-and-field.png`
 - `docs/demo/topic-evolution.png`
 - `docs/demo/citation-and-impact.png`
+- `docs/demo/explorer-evidence-index.png`
 - `docs/demo/network-diffusion.png`
 
 ## Speaker checklist
