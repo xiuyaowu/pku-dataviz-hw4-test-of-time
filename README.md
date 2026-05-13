@@ -86,6 +86,7 @@ git push -u origin feature/your-name-task
 │   ├── stretch_backlog.md
 │   ├── feature_iteration_system.md
 │   ├── evidence_cards_top12.md
+│   ├── evidence_card_presentation_matrix.md
 │   ├── methods_and_limitations.md
 │   ├── presentation_pack.md
 │   ├── qr_online_demo_handoff.md
@@ -145,6 +146,8 @@ git push -u origin feature/your-name-task
 8. Impact Network：机构和国家/地区分布。
 
 B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现拆成 `Finding / Evidence / Boundary` 或 `Case / Evidence / Interpretation`，方便队友直接迁移到最终报告并补充人工案例解释。
+
+代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
 
 这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
 

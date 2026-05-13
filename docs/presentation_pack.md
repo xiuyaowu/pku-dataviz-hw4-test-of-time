@@ -77,8 +77,9 @@ Talking point:
 
 Need from D:
 
-- 5–8 篇代表论文解释
+- 优先从 `docs/evidence_card_presentation_matrix.md` 选择 5–8 张 presentation-ready-cautious 卡。
 - evidence URL
+- 对未列入主展示组的卡片，只作为备选或待复核材料。
 
 ### Slide 6 / Citation & Impact
 

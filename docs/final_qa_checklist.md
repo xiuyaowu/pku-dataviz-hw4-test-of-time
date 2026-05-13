@@ -53,7 +53,8 @@ http://127.0.0.1:8765/index.html
 - [ ] B-F 已人工核查各自模块的代表案例、贡献解释和 evidence URL。
 - [ ] `docs/quality_upgrade_plan.md` 中的模块级优化目标已检查。
 - [ ] 如时间允许，`docs/stretch_backlog.md` 中 P0 增强板块已认领或明确暂缓。
-- [ ] `docs/evidence_cards_top12.md` 中 Top 12 代表论文均有 DOI/论文页/辅助证据链接；最终展示前由队友核查关键论断与 award citation。
+- [x] `docs/evidence_cards_top12.md` 中 Top 12 代表论文均有 DOI/论文页/辅助证据链接；`docs/evidence_card_presentation_matrix.md` 已标出 8 张展示优先卡和 4 张需人工复核备选卡。
+- [ ] 最终展示前由队友核查关键论断与 award citation，尤其是未列入展示优先组的备选卡。
 - [ ] `docs/methods_and_limitations.md` 已压缩进最终报告或展示。
 - [ ] `docs/presentation_pack.md` 已转成 PPT 或口头展示分工。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。

@@ -31,7 +31,7 @@
 
 ## Stretch 2 / Evidence Cards：代表论文证据卡
 
-当前进展：已更新 `docs/evidence_cards_top12.md` 和 `docs/evidence_cards_top12.csv`，12 张代表论文卡均包含论文 DOI/ACM/IEEE/PDF 等证据链接、一句话贡献和代表性理由。最终展示前需要队友打开链接核查 award citation 与 contribution wording。
+当前进展：已更新 `docs/evidence_cards_top12.md` 和 `docs/evidence_cards_top12.csv`，12 张代表论文卡均包含论文 DOI/ACM/IEEE/PDF 等证据链接、一句话贡献和代表性理由。`docs/evidence_card_presentation_matrix.md` 已进一步筛出 8 张展示优先卡，并把 4 张需人工复核的备选卡单独列出。最终展示前需要队友打开链接核查 award citation 与 contribution wording。
 
 优先级：P0
 
