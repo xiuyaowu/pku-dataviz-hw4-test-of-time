@@ -150,6 +150,23 @@ Suggested wording:
 
 > 这组可视化显示，经得起时间检验的研究需要用多维指标观察。它们往往经历延迟确认，在特定学术共同体中沉淀，并通过引用、主题、具体论文案例和机构网络扩散。Test of Time Award 因此提供了一个观察长期科学影响力的窗口。
 
+## Live demo mode
+
+For classroom projection, use the projector-friendly mode before taking screenshots or presenting live:
+
+```text
+http://127.0.0.1:8765/index.html?present=1
+```
+
+You can also press `P` on the page to toggle this mode. It increases section spacing, keeps navigation visible, and improves chart-card readability on 16:9 projector screenshots.
+
+Suggested live route:
+
+1. Open the hero in presentation mode and state the core research question.
+2. Use the top nav anchors in order: Time → Venue → Topic → Citation → Explorer → Benchmark → Network.
+3. In Explorer, search or sort for one representative paper, click it, then move to Benchmark Lab to explain its percentile profile.
+4. Close with Methods / Limitations and the conclusion slide.
+
 ## Backup assets
 
 Use these if live demo fails:

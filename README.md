@@ -24,7 +24,7 @@ GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-o
 
 ## Demo 预览图
 
-不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。
+不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。课堂投影或截图时可打开 `http://127.0.0.1:8765/index.html?present=1`，或在页面中按 `P` 切换 Presentation mode。
 
 ![Homepage overview](docs/demo/homepage-overview.png)
 

@@ -12,6 +12,8 @@ const showTip = (event, html) => {
 };
 const hideTip = () => tooltip.attr("hidden", true);
 
+initPresentationMode();
+
 const num = (d, fallback = 0) => {
   const v = +d;
   return Number.isFinite(v) ? v : fallback;
@@ -60,6 +62,27 @@ Promise.all([
   console.error(err);
   document.body.insertAdjacentHTML("afterbegin", `<pre style="padding:20px;color:#ffb4c1">Data loading failed: ${err.message}</pre>`);
 });
+
+function initPresentationMode() {
+  const root = document.body;
+  const toggle = document.getElementById("presentation-toggle");
+  const params = new URLSearchParams(window.location.search);
+  const shouldStart = params.get("present") === "1" || window.location.hash === "#present";
+
+  const setMode = enabled => {
+    root.classList.toggle("presentation-mode", enabled);
+    if (toggle) toggle.setAttribute("aria-pressed", enabled ? "true" : "false");
+  };
+
+  setMode(shouldStart);
+  if (toggle) toggle.addEventListener("click", () => setMode(!root.classList.contains("presentation-mode")));
+  window.addEventListener("keydown", event => {
+    const tag = event.target && event.target.tagName ? event.target.tagName.toLowerCase() : "";
+    if (event.key.toLowerCase() === "p" && !["input", "textarea", "select"].includes(tag)) {
+      setMode(!root.classList.contains("presentation-mode"));
+    }
+  });
+}
 
 function normalize(data) {
   for (const row of data.papers) {

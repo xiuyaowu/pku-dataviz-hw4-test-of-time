@@ -81,7 +81,7 @@
 - 检查 summary cards、五个模块、tooltip、详情卡、reading notes。
 - 检查所有数据文件存在，路径均为相对路径。
 - 检查 README、报告贡献记录、最终 QA checklist。
-- 更新 README demo 截图，让未安装环境的读者能直接看到当前成果。
+- 更新 README demo 截图；截图前建议使用 `?present=1` 或按 `P` 打开 presentation mode，保证投影和 16:9 截图可读。
 - 最终合并所有队友 PR 后再做一次全站截图/展示检查。
 
 ## 报告中 A 的贡献写法
