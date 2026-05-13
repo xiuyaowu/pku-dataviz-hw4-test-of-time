@@ -47,6 +47,7 @@ http://127.0.0.1:8765/index.html
 - [ ] 队友补充后的发现需要避免过度因果解释。
 - [ ] 每个模块都有 2-3 条发现、1-3 个代表案例、1 条限制说明。
 - [ ] `docs/quality_upgrade_plan.md` 中的模块级优化目标已检查。
+- [ ] 如时间允许，`docs/stretch_backlog.md` 中 P0 增强板块已认领或明确暂缓。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
 - [ ] 最终报告和展示讲稿中术语一致：recognition lag / citation depth / impact breadth。
 - [ ] 手工补充的工业影响/代表性判断必须有 evidence URL。
