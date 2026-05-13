@@ -134,6 +134,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 - `data/citation_trajectories.csv`
 - `data/citing_breadth_metrics.csv`
 - `data/papers_enriched.csv`
+- 集中报告底稿：`docs/citation_impact_handoff.md`
 
 ### 最低交付
 
@@ -151,6 +152,8 @@ python3 -m http.server 8765 --bind 127.0.0.1
 ### 报告可写句式
 
 > Citation depth 衡量论文被引用的强度，impact breadth 更接近影响扩散范围。两者结合后，可以区分“在一个社区内被反复引用”和“跨领域扩散”的不同长期影响形态。
+
+当前 `docs/citation_impact_handoff.md` 已经补齐四象限代表论文、trajectory 类型说明、3 条 draft findings 和 60 秒展示话术；E 成员后续主要核查最终采用案例的 evidence URL，并把谨慎表述压缩进正式报告。
 
 ---
 

@@ -95,6 +95,8 @@
 
 负责人：E
 
+详细 handoff：`docs/citation_impact_handoff.md` 已整理 Citation & Impact 模块的 depth / trajectory / breadth 统一定义、核心统计、四象限代表论文、60 秒展示话术和 OpenAlex proxy 写作边界。
+
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 高引用论文经常也是 Test of Time 代表案例，但 citation depth 只能说明被大量引用，不能完整说明“为何经得起时间检验”。 | Top citation papers 包括 DBSCAN 19133、Snakes 17009、SIFT 16147、Association Rules 14771。 | 引用深度可作为影响强度入口，但需要结合方法贡献、应用扩散和 award citation 解释。 | 不同领域引用习惯差异明显，citation count 不能跨领域直接比较价值。 |

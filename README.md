@@ -93,6 +93,7 @@ git push -u origin feature/your-name-task
 │   ├── network_visual_presentation_handoff.md
 │   ├── time_recognition_lag_handoff.md
 │   ├── venue_field_handoff.md
+│   ├── citation_impact_handoff.md
 │   ├── qr_online_demo_handoff.md
 │   ├── grading_rubric_full_score_mapping.md
 │   ├── demo_script.md
@@ -150,6 +151,8 @@ git push -u origin feature/your-name-task
 8. Impact Network：机构和国家/地区分布。
 
 B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现拆成 `Finding / Evidence / Boundary` 或 `Case / Evidence / Interpretation`，方便队友直接迁移到最终报告并补充人工案例解释。
+
+Citation & Impact 模块的报告底稿见 `docs/citation_impact_handoff.md`，其中已给出 citation depth / trajectory / impact breadth 的定义、四象限代表案例、3 条可写入报告的 findings 和 OpenAlex proxy 表述边界。
 
 代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
 
