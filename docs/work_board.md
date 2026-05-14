@@ -26,6 +26,11 @@
 
 F 模块补充交付：`docs/network_visual_presentation_handoff.md` 已把 Network 的 3 条 findings、60–70 秒展示话术、每个模块的截图/演示位置、视觉 QA 和 Issue #7 验收映射集中到一处。最终 PPT 制作时可直接复制该文档的 Network 段落和截图对应表。
 
+
+## Stretch issue routing
+
+新增有意义任务不直接替代 #2-#7，而是作为各 owner 的加分任务保留在 `docs/stretch_issue_assignment_board.md`。当前路由：A → #53/#54/#52，B → #55/#56/#46，C → #57/#58/#50，D → #59/#60/#47，E → #61/#62/#49，F → #63/#64/#48/#51，跨模块 Story Builder → #45。
+
 ## Stretch / presentation-ready updates
 
 - [#20](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/20)：最终展示包已补全为 `docs/presentation_pack.md` + `docs/final_presentation_blueprint.md`。现在包括 11 页 PPT 蓝图、8–10 分钟时间分配、每页主张/截图/speaker notes、B-F 发言准备项、safe wording boundaries 和离线截图 fallback。最终 PPT 只需把蓝图内容复制到 16:9 slides 并插入 `docs/demo/*.png`。

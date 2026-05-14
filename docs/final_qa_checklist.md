@@ -77,3 +77,5 @@ http://127.0.0.1:8765/index.html
 - [ ] 提交前按 `docs/data_readiness_matrix.md` 重新运行数据就绪验证，确认核心 CSV 和 manual annotation 模板行数/字段未被误改。
 - [ ] 按 `docs/final_submission_packaging_checklist.md` 检查最终 zip，确认必需文件存在且无 `.git` / `.DS_Store` / `__pycache__`。
 - [ ] `main` 是最终可提交版本。
+
+- [ ] `docs/stretch_issue_assignment_board.md` 已用于确认 A-F 每个 owner 至少有一个核心 issue 和一个 stretch issue 可做。
