@@ -10,7 +10,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 | B · Time | #3 | #55, #56, #46 | Recognition-lag outliers (`docs/recognition_lag_outlier_cases.md`), Time screenshot annotations (`docs/time_micro_annotations.md`), award lifecycle pre/post citation packet (`docs/award_lifecycle_analysis.md`) |
 | C · Venue / Field | #4 | #57, #58, #50 | Venue-field caveats (`docs/venue_field_imbalance_caveats.md`), venue-year examples (`docs/venue_year_case_studies.md`), Best Paper vs Test-of-Time framing (`docs/best_paper_vs_test_of_time_framing.md`) |
 | D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit (`docs/manual_topic_audit_top12.md`), topic-shift narrative (`docs/topic_shift_narrative.md`), research archetype taxonomy (`docs/research_archetype_taxonomy.md`) |
-| E · Citation / Impact | #6 | #61, #62, #49 | Citation trajectory archetypes (`docs/citation_trajectory_archetypes.md`), impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix (`docs/evidence_coverage_matrix.md`) |
+| E · Citation / Impact | #6 | #61, #62, #49, #86 | Citation trajectory archetypes (`docs/citation_trajectory_archetypes.md`), impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix (`docs/evidence_coverage_matrix.md`), uncertainty / proxy-confidence playbook (`docs/uncertainty_proxy_confidence_playbook.md`) |
 | F · Visual / Presentation | #7 | #63, #64, #48, #51 | Visual consistency (`docs/slide_visual_consistency_audit.md`), live-demo fallback, defense Q&A (`docs/defense_qa_pack.md`), metric glossary (`docs/glossary_metric_explainer.md` + page Glossary section) |
 | Cross-module | #2-#7 | #45 | Story Builder narrative board (`docs/story_builder_board.md`) linking all claims to evidence, boundaries, and owners |
 
@@ -24,7 +24,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 ## Suggested priority order
 
 1. #45 Story Builder: `docs/story_builder_board.md` makes the final report/PPT coherent and gives B-F owners claim rows to verify.
-2. #49 Evidence coverage matrix: exposes the highest-value manual gaps via `docs/evidence_coverage_matrix.md` and the Top 12 coverage CSV.
+2. #49 Evidence coverage matrix and #86 uncertainty playbook: expose the highest-value manual gaps and give the team safe proxy-confidence wording for report/PPT defense.
 3. #48 Defense Q&A: prepares answers for teacher questions.
 4. #47 / #61 / #55 / #56 / #60: gives D/E/B stronger analytical findings, topic-shift narrative material, and screenshot-ready explanations.
 5. #63 / #64: reduces presentation risk.
