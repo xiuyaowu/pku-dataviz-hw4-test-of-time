@@ -103,6 +103,8 @@ git push -u origin feature/your-name-task
 │   ├── venue_year_case_studies.md
 │   ├── venue_year_case_studies.csv
 │   ├── topic_evolution_handoff.md
+│   ├── topic_shift_narrative.md
+│   ├── topic_shift_narrative_cases.csv
 │   ├── citation_impact_handoff.md
 │   ├── citation_trajectory_archetypes.md
 │   ├── impact_breadth_evidence_audit.md
