@@ -94,6 +94,7 @@ git push -u origin feature/your-name-task
 │   ├── presentation_pack.md
 │   ├── final_presentation_blueprint.md
 │   ├── defense_qa_pack.md
+│   ├── story_builder_board.md
 │   ├── glossary_metric_explainer.md
 │   ├── slide_visual_consistency_audit.md
 │   ├── live_demo_fallback_script.md
@@ -185,7 +186,7 @@ Venue & Field 模块的 venue-year case notes 见 `docs/venue_year_case_studies.
 
 Citation & Impact 模块的报告底稿见 `docs/citation_impact_handoff.md`，其中已给出 citation depth / trajectory / impact breadth 的定义、四象限代表案例、3 条可写入报告的 findings 和 OpenAlex proxy 表述边界；citation trajectory 的 observed-window archetype 候选见 `docs/citation_trajectory_archetypes.md` 和 `docs/citation_trajectory_archetypes.csv`；Top 12 代表论文的 breadth 证据分级见 `docs/impact_breadth_evidence_audit.md` 和 `docs/impact_breadth_evidence_audit.csv`；模块 × 证据类型与 Top 12 代表论文的整体覆盖审计见 `docs/evidence_coverage_matrix.md`、`docs/evidence_coverage_matrix.csv` 和 `docs/top12_evidence_coverage_matrix.csv`。术语统一口径见 `docs/glossary_metric_explainer.md`，页面中也加入了 Glossary 速查区，便于展示和答辩时解释 proxy 指标边界。
 
-代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
+Story Builder 的报告叙事板见 `docs/story_builder_board.md`，把 B-F 模块和 Explorer / Benchmark / Network 串成 `question → evidence → interpretation → boundary → owner` 的 10 条报告 claim。代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
 
 这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
 
@@ -209,7 +210,7 @@ http://127.0.0.1:8765/index.html
 
 详细分工见：`docs/team_division.md`
 
-Issue 分工表见：`docs/work_board.md`。新增 stretch 分配表见 `docs/stretch_issue_assignment_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`，PR review 合并标准见 `docs/pr_review_rubric.md`，最终分工证据表见 `docs/contribution_evidence_ledger.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/time_recognition_lag_handoff.md`、`docs/time_micro_annotations.md`、`docs/venue_field_handoff.md`、`docs/venue_field_imbalance_caveats.md`、`docs/venue_year_case_studies.md`、`docs/topic_evolution_handoff.md`、`docs/manual_topic_audit_top12.md`、`docs/evidence_cards_top12.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md`、`docs/final_presentation_blueprint.md`、`docs/defense_qa_pack.md`、`docs/glossary_metric_explainer.md`、`docs/slide_visual_consistency_audit.md`、`docs/live_demo_fallback_script.md`、`docs/final_submission_packaging_checklist.md`、`docs/final_integration_dry_run_log.md`、`docs/contribution_evidence_ledger.md`、`docs/network_visual_presentation_handoff.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，答辩问答准备见 `docs/defense_qa_pack.md`，术语解释见 `docs/glossary_metric_explainer.md`，最终整合检查见 `docs/final_qa_checklist.md`；提交前打包可按 `docs/final_submission_packaging_checklist.md` 和 dry-run log 逐项检查。
+Issue 分工表见：`docs/work_board.md`。新增 stretch 分配表见 `docs/stretch_issue_assignment_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`，PR review 合并标准见 `docs/pr_review_rubric.md`，最终分工证据表见 `docs/contribution_evidence_ledger.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/time_recognition_lag_handoff.md`、`docs/time_micro_annotations.md`、`docs/venue_field_handoff.md`、`docs/venue_field_imbalance_caveats.md`、`docs/venue_year_case_studies.md`、`docs/topic_evolution_handoff.md`、`docs/manual_topic_audit_top12.md`、`docs/evidence_cards_top12.md`、`docs/story_builder_board.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md`、`docs/final_presentation_blueprint.md`、`docs/defense_qa_pack.md`、`docs/glossary_metric_explainer.md`、`docs/slide_visual_consistency_audit.md`、`docs/live_demo_fallback_script.md`、`docs/final_submission_packaging_checklist.md`、`docs/final_integration_dry_run_log.md`、`docs/contribution_evidence_ledger.md`、`docs/network_visual_presentation_handoff.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，Story Builder 叙事板见 `docs/story_builder_board.md`，展示讲稿见 `docs/demo_script.md`，答辩问答准备见 `docs/defense_qa_pack.md`，术语解释见 `docs/glossary_metric_explainer.md`，最终整合检查见 `docs/final_qa_checklist.md`；提交前打包可按 `docs/final_submission_packaging_checklist.md` 和 dry-run log 逐项检查。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|

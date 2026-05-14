@@ -12,7 +12,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 | D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit (`docs/manual_topic_audit_top12.md`), topic-shift narrative (`docs/topic_shift_narrative.md`), research archetype taxonomy |
 | E · Citation / Impact | #6 | #61, #62, #49 | Citation trajectory archetypes (`docs/citation_trajectory_archetypes.md`), impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix (`docs/evidence_coverage_matrix.md`) |
 | F · Visual / Presentation | #7 | #63, #64, #48, #51 | Visual consistency (`docs/slide_visual_consistency_audit.md`), live-demo fallback, defense Q&A (`docs/defense_qa_pack.md`), metric glossary (`docs/glossary_metric_explainer.md` + page Glossary section) |
-| Cross-module | #2-#7 | #45 | Story Builder narrative board linking all claims to evidence and owners |
+| Cross-module | #2-#7 | #45 | Story Builder narrative board (`docs/story_builder_board.md`) linking all claims to evidence, boundaries, and owners |
 
 ## How to use this board
 
@@ -23,7 +23,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 
 ## Suggested priority order
 
-1. #45 Story Builder: makes the final report/PPT coherent.
+1. #45 Story Builder: `docs/story_builder_board.md` makes the final report/PPT coherent and gives B-F owners claim rows to verify.
 2. #49 Evidence coverage matrix: exposes the highest-value manual gaps via `docs/evidence_coverage_matrix.md` and the Top 12 coverage CSV.
 3. #48 Defense Q&A: prepares answers for teacher questions.
 4. #47 / #61 / #55 / #56 / #60: gives D/E/B stronger analytical findings, topic-shift narrative material, and screenshot-ready explanations.
