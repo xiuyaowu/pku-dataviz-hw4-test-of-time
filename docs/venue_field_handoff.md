@@ -106,11 +106,21 @@ Issue #57 的专门说明包见：`docs/venue_field_imbalance_caveats.md`。
 
 推荐展示策略：最终 PPT 选 2–3 个即可，例如 `SIGCOMM 1988` 说明早期网络 cluster，`ICCV 1999` 说明高引用方法 cluster，`SIGMOD 1996` 或 `NSDI 2005` 说明较短 recognition-lag 对比。
 
-## 6. 可复制报告段落
+## 6. Best Paper vs Test of Time framing
 
-> Venue & Field 模块显示，Test of Time Award 论文在当前数据中并不是均匀分布在所有会议和领域。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD、VLDB 等 venue 的可见度较高，Database、Networking、IR、Software Engineering 和 CV 是主要观察入口。更准确的解释不是“这些会议或领域更好”，而是这些社区拥有较稳定的论文归档、奖项传统和可追溯的长期影响记录。Field × decade heatmap 进一步提示，不同年代的长期影响记录会随研究社区和技术议题迁移而变化，但这种变化仍受到奖项设立历史和数据覆盖范围的限制。为了避免只停留在数量榜，报告可以加入 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 venue-year 案例，把“哪些社区更可见”转化为“哪些具体论文 cluster 支撑这个读法”。
+Issue #50 的对照材料见：`docs/best_paper_vs_test_of_time_framing.md`。
 
-## 7. C 模块最终人工检查清单
+C 模块推荐用法：
+
+- Best Paper 只作为“发表当下优秀信号”的概念对照；Test of Time 才是当前数据能系统分析的对象。
+- Venue 数量榜写成 retrospective award visibility，不写成 Best Paper count、venue-quality ranking 或完整 CS 研究分布。
+- 如果最终 PPT 需要开场 bridge，可直接使用该文档里的 40 秒讲法和 3 条 contrast bullets。
+
+## 7. 可复制报告段落
+
+> Venue & Field 模块显示，Test of Time Award 论文在当前数据中并不是均匀分布在所有会议和领域。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD、VLDB 等 venue 的可见度较高，Database、Networking、IR、Software Engineering 和 CV 是主要观察入口。更准确的解释不是“这些会议或领域更好”，而是这些社区拥有较稳定的论文归档、奖项传统和可追溯的长期影响记录。Field × decade heatmap 进一步提示，不同年代的长期影响记录会随研究社区和技术议题迁移而变化，但这种变化仍受到奖项设立历史和数据覆盖范围的限制。为了避免只停留在数量榜，报告可以加入 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 venue-year 案例，把“哪些社区更可见”转化为“哪些具体论文 cluster 支撑这个读法”。如果需要回应 Best Paper framing，应只写成时间尺度对照：Best Paper 关注发表当下的优秀信号，Test of Time Award 关注多年后的长期确认信号；当前数据不支持无 baseline 的 Best Paper 定量比较。
+
+## 8. C 模块最终人工检查清单
 
 - [ ] 打开 2–3 篇代表论文链接，核对题名、venue、年份和一句话贡献。
 - [ ] 如果报告提到某 venue/area 的原因，补一句“当前数据可见分布 / award coverage”边界。

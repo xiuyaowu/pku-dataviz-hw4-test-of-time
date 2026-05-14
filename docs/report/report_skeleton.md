@@ -22,7 +22,7 @@
 
 ## 2. 数据来源与处理
 
-本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。
+本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。Best Paper 与 Test of Time 的概念对照见 `docs/best_paper_vs_test_of_time_framing.md`：本项目只做定性 framing，不在缺少完整 Best Paper baseline 时声称二者存在定量差异。
 
 需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；术语速查和 proxy 指标安全讲法见 `docs/glossary_metric_explainer.md`；获奖年前后 citation-window 分析见 `docs/award_lifecycle_analysis.md`，其中把 citation trajectory 对齐到获奖年 `t=0` 但明确不作因果解释；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`；模块与 Top 12 代表论文的证据覆盖审计见 `docs/evidence_coverage_matrix.md`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
 
@@ -66,6 +66,8 @@
 负责人：C
 
 详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。Issue #57 的解释边界见 `docs/venue_field_imbalance_caveats.md`，其中把 Top 3 / Top 6 venue 集中度和 Top 5 venue-area 占比整理成可复制的 caveats。具体 venue-year 案例见 `docs/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示。
+
+Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of_time_framing.md`。建议在引言或 Venue & Field 小节使用一句话说明：Best Paper 是发表当下的优秀信号，Test of Time 是多年后的长期确认信号；当前数据支持后者的长期影响分析，而不是完整 Best Paper 定量比较。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|

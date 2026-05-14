@@ -54,6 +54,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/story_builder_board.md` 已将 Time / Venue / Topic / Citation / Explorer / Benchmark / Network 串成 10 条 report-ready claim，并为每条 claim 标出 evidence source、owner issue、safe wording boundary 和最终人工检查项。
 - [x] `docs/award_lifecycle_analysis.md` 已补充获奖年前后 citation-window 指标、相对获奖年汇总表和非因果表述边界，可作为 B Time 与 E Citation 的连接材料。
 - [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界；`docs/venue_field_imbalance_caveats.md` 已补齐 Issue #57 的 Top venue / field 集中度解释、3 条 safe explanation bullets 和 copy-ready caveat paragraph，可作为 Issue #4 的阶段性验收材料。
+- [x] `docs/best_paper_vs_test_of_time_framing.md` 已补齐 Issue #50 的 Best Paper vs Test of Time 定性对照、报告段落、PPT 40 秒讲法和 safe wording；最终只作为研究问题转向说明，不作为无 baseline 的定量比较。
 - [x] `docs/venue_year_case_studies.md` / `.csv` 已补齐 Issue #58 的 Venue-year mini case studies，覆盖 SIGCOMM 1988、SIGIR 1999、ICCV 1999、SIGMOD 1996、NSDI 2005；最终报告使用前仍需人工核查选中案例的 award citation / 贡献表述。
 - [x] `docs/topic_evolution_handoff.md` 已补齐 D 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、展示话术和 topic label 边界，可作为 Issue #5 的阶段性验收材料；`docs/manual_topic_audit_top12.md` / `.csv` 已补齐 Issue #59 的 Top 12 API topic vs manual topic audit；`docs/topic_shift_narrative.md` / `.csv` 已补齐 Issue #60 的 decade-level topic-shift narrative、代表论文候选和安全写作边界。
 - [x] `docs/citation_impact_handoff.md` 已补齐 E 模块的 citation depth / trajectory / impact breadth 统计、四象限代表案例、展示话术和 OpenAlex proxy 边界，可作为 Issue #6 的验收材料。

@@ -27,7 +27,7 @@ Subtitle: Visualizing Long-Term Impact in Computer Science
 
 Talking point:
 
-> 我们关注论文当年热度之外的长期确认：哪些研究在多年后仍然被学术共同体重新评价为重要。
+> 我们关注论文当年热度之外的长期确认：Best Paper 更像发表当下的优秀信号，而 Test of Time Award 追问多年后哪些研究仍被重新评价为重要。
 
 ### Slide 2 / Data and question
 
@@ -40,6 +40,8 @@ Show:
 Talking point:
 
 > 核心问题是：一篇 CS 论文在多年后仍被认为重要，通常具有什么共同特征？
+
+Opening contrast source: `docs/best_paper_vs_test_of_time_framing.md` gives a 40-second safe wording paragraph and 3 contrast bullets. Use it qualitatively only unless a complete Best Paper baseline is later added.
 
 ### Slide 3 / Time
 
@@ -61,6 +63,8 @@ Visual: `docs/demo/venue-and-field.png`
 Talking point:
 
 > Venue 和 field 分布展示哪些学术共同体更常通过 Test of Time Award 记录长期影响，但这不是会议排名，还要结合设奖历史和覆盖范围。
+
+Optional bridge: mention that this is a retrospective award visibility map, not a Best Paper count or venue-quality ranking; see `docs/best_paper_vs_test_of_time_framing.md`.
 
 Need from C:
 

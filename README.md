@@ -111,6 +111,7 @@ git push -u origin feature/your-name-task
 │   ├── venue_field_imbalance_caveats.md
 │   ├── venue_year_case_studies.md
 │   ├── venue_year_case_studies.csv
+│   ├── best_paper_vs_test_of_time_framing.md
 │   ├── topic_evolution_handoff.md
 │   ├── topic_shift_narrative.md
 │   ├── topic_shift_narrative_cases.csv
@@ -170,7 +171,7 @@ git push -u origin feature/your-name-task
 当前页面包含 8 个研究问题模块：
 
 1. Time：recognition lag 分布和核心时间尺度；
-2. Venue & Field：会议排名和领域分布；
+2. Venue & Field：会议排名和领域分布；Best Paper vs Test of Time 的研究问题转向说明见 `docs/best_paper_vs_test_of_time_framing.md`；
 3. Topic Evolution：主题分布、主题随年份演化和代表论文详情卡；
 4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
 5. Paper Explorer：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
