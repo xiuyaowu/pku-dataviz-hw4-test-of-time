@@ -52,6 +52,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/topic_evolution_handoff.md` 已补齐 D 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、展示话术和 topic label 边界，可作为 Issue #5 的阶段性验收材料。
 - [x] `docs/citation_impact_handoff.md` 已补齐 E 模块的 citation depth / trajectory / impact breadth 统计、四象限代表案例、展示话术和 OpenAlex proxy 边界，可作为 Issue #6 的验收材料。
 - [x] `docs/data_provenance_audit.md` 已统一 award seed / public metadata / derived metrics / manual annotation 的来源边界。
+- [x] `docs/data_readiness_matrix.md` 已列出核心数据文件、行数、模块用途、必备字段和提交前验证命令。
 - [x] citation depth、impact breadth、institution/country counts 已在 data dictionary、methods 和 report skeleton 中写成近似指标而非官方评价。
 - [ ] B-F 已人工核查各自模块的代表案例、贡献解释和 evidence URL。
 - [ ] `docs/quality_upgrade_plan.md` 中的模块级优化目标已检查。
@@ -73,5 +74,6 @@ http://127.0.0.1:8765/index.html
 - [ ] 无 `__pycache__` / 临时缓存。
 - [ ] 无本地绝对路径。
 - [ ] README、本地运行方式、分工表保持同步。
+- [ ] 提交前按 `docs/data_readiness_matrix.md` 重新运行数据就绪验证，确认核心 CSV 和 manual annotation 模板行数/字段未被误改。
 - [ ] 按 `docs/final_submission_packaging_checklist.md` 检查最终 zip，确认必需文件存在且无 `.git` / `.DS_Store` / `__pycache__`。
 - [ ] `main` 是最终可提交版本。

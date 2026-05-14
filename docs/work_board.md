@@ -13,7 +13,7 @@
 
 ## 六人分工总表
 
-补充质量目标：如需进一步提高完成度，按 `docs/quality_upgrade_plan.md` 检查每个模块是否都有“发现、案例、限制、截图/验证”。额外增强板块见 `docs/stretch_backlog.md`，建议作为 #17–#20 分配给完成基础任务较快的成员。持续提 feature、开 Issue、PR 完成和回填文档的循环见 `docs/feature_iteration_system.md`；下一批 feature 已开为 #23–#27，其中 #24 已为 Top 12 代表论文补入 DOI/论文页/辅助证据链接和一句话贡献，#18 的 `docs/evidence_card_presentation_matrix.md` 已把 8 张展示优先卡和 4 张需复核备选卡分开，#26 已把 `docs/report/report_skeleton.md` 补成可扩写的 findings matrix，#27 已新增 `docs/data_provenance_audit.md` 统一数据来源和 proxy 指标口径，B-F 后续只需核查表述、补少量 award citation 并压缩成正式报告段落。
+补充质量目标：如需进一步提高完成度，按 `docs/quality_upgrade_plan.md` 检查每个模块是否都有“发现、案例、限制、截图/验证”。额外增强板块见 `docs/stretch_backlog.md`，建议作为 #17–#20 分配给完成基础任务较快的成员。持续提 feature、开 Issue、PR 完成和回填文档的循环见 `docs/feature_iteration_system.md`；下一批 feature 已开为 #23–#27，其中 #24 已为 Top 12 代表论文补入 DOI/论文页/辅助证据链接和一句话贡献，#18 的 `docs/evidence_card_presentation_matrix.md` 已把 8 张展示优先卡和 4 张需复核备选卡分开，#26 已把 `docs/report/report_skeleton.md` 补成可扩写的 findings matrix，#27 已新增 `docs/data_provenance_audit.md` 统一数据来源和 proxy 指标口径，#43 已新增 `docs/data_readiness_matrix.md` 汇总核心数据行数、模块用途和提交前字段检查，B-F 后续只需核查表述、补少量 award citation 并压缩成正式报告段落。
 
 | 角色 | GitHub Issue | 模块 | 主要文件 | 必须交付 | PR 合并标准 |
 |---|---|---|---|---|---|
@@ -30,6 +30,7 @@ F 模块补充交付：`docs/network_visual_presentation_handoff.md` 已把 Netw
 
 - [#20](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/20)：最终展示包已补全为 `docs/presentation_pack.md` + `docs/final_presentation_blueprint.md`。现在包括 11 页 PPT 蓝图、8–10 分钟时间分配、每页主张/截图/speaker notes、B-F 发言准备项、safe wording boundaries 和离线截图 fallback。最终 PPT 只需把蓝图内容复制到 16:9 slides 并插入 `docs/demo/*.png`。
 - [#41](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/41)：最终打包检查见 `docs/final_submission_packaging_checklist.md`。提交前按该文档确认 main 分支、页面运行、核心数据、截图、压缩包结构和 archive inspection，避免把缓存、旧 zip 或私有备份放进最终提交材料。
+- [#43](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/43)：数据就绪矩阵见 `docs/data_readiness_matrix.md`。提交前用其中的 validation command 确认核心 CSV/手工模板存在、行数符合当前基线、关键字段没有丢失。
 
 ## A 已经先完成的一版 baseline
 

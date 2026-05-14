@@ -91,6 +91,7 @@ git push -u origin feature/your-name-task
 │   ├── presentation_pack.md
 │   ├── final_presentation_blueprint.md
 │   ├── final_submission_packaging_checklist.md
+│   ├── data_readiness_matrix.md
 │   ├── network_visual_presentation_handoff.md
 │   ├── time_recognition_lag_handoff.md
 │   ├── venue_field_handoff.md
@@ -225,7 +226,7 @@ A 会负责主线、review、整合和最终 QA，保证各模块能拼成同一
 - 图表回答了哪个问题；
 - 得到了哪些主要发现。
 
-字段说明见：`docs/data_dictionary.md`。数据来源层级、proxy 指标边界和最终报告推荐口径见：`docs/data_provenance_audit.md`。写报告时请把 `citation_count`、`impact_breadth_score`、institution/country counts 写成公开元数据下的近似观察，不要写成官方评奖原因、完整引用网络或跨领域绝对排名。
+字段说明见：`docs/data_dictionary.md`。提交前的数据文件行数、模块用途、必备字段和安全表述边界见 `docs/data_readiness_matrix.md`。数据来源层级、proxy 指标边界和最终报告推荐口径见：`docs/data_provenance_audit.md`。写报告时请把 `citation_count`、`impact_breadth_score`、institution/country counts 写成公开元数据下的近似观察，不要写成官方评奖原因、完整引用网络或跨领域绝对排名。
 
 ## 手工补充任务
 
