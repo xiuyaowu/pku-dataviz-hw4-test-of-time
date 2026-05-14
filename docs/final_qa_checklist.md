@@ -81,7 +81,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/final_submission_packaging_checklist.md` 已补齐最终打包流程、压缩包结构、archive inspection 命令和在线/离线展示 fallback。
 - [x] `docs/final_archive_manifest.md` / `.csv` 已列出最终 archive 必需文件、推荐文件、排除项和 machine-readable required-file 检查，可作为 Issue #92 的 A-owner 包装证据。
 - [x] `docs/final_integration_dry_run_log.md` 已记录一次完整本地 dry run：clean main、HTTP 200、presentation mode、DOM section checks、核心数据行数和 archive exclusion scan。
-- [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料；`docs/network_ecosystem_case_notes.md` / `.csv` 已补充 Issue #88 的 Network 具体案例和 metadata-boundary safe wording。
+- [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料；`docs/network_ecosystem_case_notes.md` / `.csv` 已补充 Issue #88 的 Network 具体案例和 metadata-boundary safe wording；`docs/institution_country_attribution_audit.md` / `.csv` 已补充 Issue #104 的 institution / country metadata coverage、case rows 和安全表述边界。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
 - [x] 报告骨架中术语已统一：recognition lag / citation depth / impact breadth / same-field benchmark / OpenAlex proxy。
 - [x] `docs/glossary_metric_explainer.md` 已补齐至少 8 个关键术语、proxy 指标安全说法和展示/报告用词替代表。

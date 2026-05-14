@@ -150,13 +150,14 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：F
 
-Network / Visual / Presentation 的集中交付见 `docs/network_visual_presentation_handoff.md`，其中包含 F 模块 60–70 秒展示路线、截图对应表和 Issue #7 验收映射。
+Network / Visual / Presentation 的集中交付见 `docs/network_visual_presentation_handoff.md`，其中包含 F 模块 60–70 秒展示路线、截图对应表和 Issue #7 验收映射。机构/国家 attribution 的覆盖率、case rows 和 safe wording 见 `docs/institution_country_attribution_audit.md` / `.csv`。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 长期影响论文在少数北美研究机构中高度可见。 | Top institutions：UC Berkeley 17、CMU 15、Stanford 14、MIT 11；Cornell、IBM Research - Almaden、IBM、UMass Amherst 各 8。 | 这反映了顶级研究机构和工业研究实验室在长期影响论文中的重要位置。 | institution metadata 存在缺失、归并和署名误差，不宜写成完整机构排名。 |
 | Finding 2 | 国家/地区分布以美国为主，但加拿大、英国、德国等也有较高可见度。 | Country stats：US 170、CA 20、GB 16、DE 11、IL 5。 | 长期影响论文的生产和传播具有明显的研究生态集中性，同时仍存在跨国扩散。 | country 统计基于作者机构元数据，不能完整反映合作网络和实际贡献比例。 |
 | Case | 工业研究机构和大学共同出现，适合展示 CS 长期影响中的产学研混合生态。 | IBM Research - Almaden 8，IBM (United States) 8，与 Berkeley/CMU/Stanford/MIT 等大学并列在前列。 | 可在展示中说明系统、数据库、网络等方向常见大学与工业实验室共同推动。 | 工业影响强弱需要额外证据，不能只由机构名推断。 |
+| Case | institution / country attribution audit 可把覆盖率问题转成可回答的答辩材料。 | `docs/institution_country_attribution_audit.csv` 提供 multi-institution、international、industry-visible、sparse-metadata 和 non-US case rows。 | 报告可先写 aggregate pattern，再用 1 个具体 case 和 1 个 sparse-metadata case 展示边界。 | 只说 public metadata visibility，不说完整机构排名、国家实力排名或工业落地。 |
 
 可扩写段落：
 
