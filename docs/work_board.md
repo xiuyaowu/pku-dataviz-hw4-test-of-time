@@ -29,6 +29,7 @@ F 模块补充交付：`docs/network_visual_presentation_handoff.md` 已把 Netw
 ## Stretch / presentation-ready updates
 
 - [#20](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/20)：最终展示包已补全为 `docs/presentation_pack.md` + `docs/final_presentation_blueprint.md`。现在包括 11 页 PPT 蓝图、8–10 分钟时间分配、每页主张/截图/speaker notes、B-F 发言准备项、safe wording boundaries 和离线截图 fallback。最终 PPT 只需把蓝图内容复制到 16:9 slides 并插入 `docs/demo/*.png`。
+- [#41](https://github.com/leejamesss/pku-dataviz-hw4-test-of-time/issues/41)：最终打包检查见 `docs/final_submission_packaging_checklist.md`。提交前按该文档确认 main 分支、页面运行、核心数据、截图、压缩包结构和 archive inspection，避免把缓存、旧 zip 或私有备份放进最终提交材料。
 
 ## A 已经先完成的一版 baseline
 
