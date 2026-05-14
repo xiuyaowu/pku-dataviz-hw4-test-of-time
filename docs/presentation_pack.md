@@ -172,7 +172,9 @@ Suggested live route:
 
 ## Backup assets
 
-Use these if live demo fails:
+Use `docs/live_demo_fallback_script.md` as the source-of-truth if the live demo fails. It gives a 2-minute screenshot route, speaker/claim mapping, and the exact sentence for explaining why presentation-mode screenshots are equivalent to the live D3 view.
+
+Use these screenshot assets in that order:
 
 - `docs/demo/homepage-overview.png`
 - `docs/demo/time-and-timeline.png`

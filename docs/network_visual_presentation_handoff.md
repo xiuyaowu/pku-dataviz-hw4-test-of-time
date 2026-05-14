@@ -49,6 +49,7 @@
 
 - README 中的 demo image table 覆盖 homepage、Time、Venue、Topic、Citation、Explorer、Benchmark、Network。
 - Presentation mode 已支持 `index.html?present=1` 和键盘 `P`，适合课堂投影。
+- Live demo 失败时按 `docs/live_demo_fallback_script.md` 切换到截图路线，F 负责提前确认截图可读、顺序正确、PPT 备用页可打开。
 - 页面模块顺序和报告骨架一致：Opening → Time → Venue → Topic → Citation → Explorer → Benchmark → Network → Conclusion。
 - `src/app.js` 中 B-F 模块底部已有 claim cards，可把 `Finding / Evidence / Boundary` 直接迁移到报告。
 - 术语已统一为 recognition lag、citation depth、impact breadth、same-field benchmark、OpenAlex proxy。
