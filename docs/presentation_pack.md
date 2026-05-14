@@ -1,6 +1,6 @@
 # Final Presentation Pack
 
-用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`。
+用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`，截图/幻灯片视觉一致性检查见 `docs/slide_visual_consistency_audit.md`。
 
 ## Recommended timing: 8–10 minutes
 
@@ -194,6 +194,8 @@ If the team needs to create slides quickly, use `docs/final_presentation_bluepri
 - module-owner handoff requirements for B–F;
 - safe wording boundaries for proxy metrics and evidence-card claims;
 - offline screenshot checklist matching the files in `docs/demo/`.
+
+Before exporting the PPT, run the visual consistency pass in `docs/slide_visual_consistency_audit.md`: keep one main claim per slide, use the same screenshot frame style, crop all `1440 × 1000` module screenshots consistently, and preserve the safe wording boundary for each module.
 
 Recommended build path:
 

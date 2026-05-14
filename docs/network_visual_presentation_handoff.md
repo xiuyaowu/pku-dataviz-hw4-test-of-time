@@ -45,7 +45,7 @@
 
 ## 4. 视觉 QA 记录
 
-当前仓库已具备下列统一项，最终提交前只需复核截图是否为最新版本：
+当前仓库已具备下列统一项，最终提交前只需复核截图是否为最新版本。完整截图清单、尺寸、PPT 裁剪规则和安全表述边界见 `docs/slide_visual_consistency_audit.md`：
 
 - README 中的 demo image table 覆盖 homepage、Time、Venue、Topic、Citation、Explorer、Benchmark、Network。
 - Presentation mode 已支持 `index.html?present=1` 和键盘 `P`，适合课堂投影。

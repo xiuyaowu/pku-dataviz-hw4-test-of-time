@@ -1,6 +1,6 @@
 # Final Presentation Blueprint
 
-用途：把 `docs/presentation_pack.md` 进一步压缩成可以直接制作 PPT 的逐页蓝图。每页只保留一个主张、一个视觉证据、一个讲解句和一个备用检查点，避免展示时变成逐图说明。
+用途：把 `docs/presentation_pack.md` 进一步压缩成可以直接制作 PPT 的逐页蓝图。每页只保留一个主张、一个视觉证据、一个讲解句和一个备用检查点，避免展示时变成逐图说明。截图裁剪、统一框架和安全表述的最终检查见 `docs/slide_visual_consistency_audit.md`。
 
 ## 8–10 分钟总节奏
 
@@ -215,6 +215,8 @@ F：负责视觉一致性检查和最终 PPT 截图替换。
 | F | Network slide、截图可读性、PPT 视觉统一 | 不把机构/国家数写成完整合作网络 |
 
 ## Offline backup checklist
+
+Before inserting these assets into slides, use `docs/slide_visual_consistency_audit.md` to confirm purpose, owner, screenshot size, crop/frame consistency, and module-specific safe wording.
 
 - [x] `docs/demo/homepage-overview.png`
 - [x] `docs/demo/time-and-timeline.png`
