@@ -1,6 +1,6 @@
 # E 模块 handoff：Citation & Impact
 
-用途：给 Issue #6 / E 成员一个可直接写报告和展示的 citation depth / trajectory / breadth 分析底稿。这里的数字来自当前 `data/papers_enriched.csv`、`data/citation_trajectories.csv`、`data/citing_breadth_metrics.csv`，最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。
+用途：给 Issue #6 / E 成员一个可直接写报告和展示的 citation depth / trajectory / breadth 分析底稿。这里的数字来自当前 `data/papers_enriched.csv`、`data/citation_trajectories.csv`、`data/citing_breadth_metrics.csv`，最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。Top 12 breadth 证据分级和安全话术见 `docs/impact_breadth_evidence_audit.md`。
 
 ## 1. 模块研究问题
 

@@ -1,0 +1,13 @@
+status,paper_id,title,impact_breadth_score,citing_field_count,citing_institution_count,evidence_status,recommended_use
+safe to say,kdd_1996_1b93ceb4,A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise,81.12,78,121,partial-source-added,strong breadth case
+safe to say,iccv_1987_56f24279,Snakes: Active Contour Models,68.50,77,128,partial-source-added,strong vision breadth case
+safe to say,kdd_2005_ebddb36d,"Graphs over Time: Densification Laws, Shrinking Diameters and Possible Explanations",87.38,86,151,partial-source-added,strongest Top 12 breadth example
+proxy only,oopsla_2001_a9f21d83,Multitasking without compromise: a virtual machine evolution,86.50,96,140,doi-corrected-needs-human-final-check,verify identity before main claim
+proxy only,sigir_1980_e20f7878,Probabilistic Models of Indexing and Searching,58.62,81,53,partial-source-added,long-lag case with cautious breadth wording
+needs human evidence,sigcomm_1974_5f7a35f6,Research Areas in Computer Communication,31.62,34,9,partial-source-added,agenda-setting case only after reading
+proxy only,sigcomm_1998_d2b8808e,Modeling TCP Throughput: A Simple Model and Its Empirical Validation,56.12,64,45,partial-source-added,shorter-lag networking model case
+safe to say,iccv_1999_ac21b391,Object Recognition from Local Scale-Invariant Features,65.88,67,95,partial-source-added,strong presentation case
+safe to say,sigmod_1993_cda45823,Mining Association Rules Between Sets of Items in Large Databases,66.75,73,66,partial-source-added,database/data-mining paradigm case
+needs human evidence,wmcsa_1999_367b771d,Ad-hoc On-Demand Distance Vector Routing,44.25,44,42,partial-source-added,high-depth lower-breadth contrast case
+proxy only,vldb_1994_ba6086d0,Fast Algorithms for Mining Association Rules in Large Databases,58.88,77,59,partial-source-added,method-lineage case with cautious wording
+safe to say,ieee_transactions_on_information_theory_2000_f5a20c28,Network Information Flow,66.38,56,79,partial-source-added,theory-to-networking diffusion case

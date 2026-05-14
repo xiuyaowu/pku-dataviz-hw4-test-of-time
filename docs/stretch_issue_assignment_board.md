@@ -10,7 +10,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 | B · Time | #3 | #55, #56, #46 | Recognition-lag outliers, Time annotations, award lifecycle view |
 | C · Venue / Field | #4 | #57, #58, #50 | Venue-field caveats, venue-year examples, Best Paper vs Test-of-Time framing |
 | D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit, topic-shift narrative, research archetype taxonomy |
-| E · Citation / Impact | #6 | #61, #62, #49 | Citation trajectory archetypes, impact breadth audit, evidence coverage matrix |
+| E · Citation / Impact | #6 | #61, #62, #49 | Citation trajectory archetypes, impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix |
 | F · Visual / Presentation | #7 | #63, #64, #48, #51 | Visual consistency, live-demo fallback, defense Q&A, metric glossary |
 | Cross-module | #2-#7 | #45 | Story Builder narrative board linking all claims to evidence and owners |
 
