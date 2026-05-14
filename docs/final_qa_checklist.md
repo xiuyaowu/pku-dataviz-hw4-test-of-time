@@ -52,6 +52,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界，可作为 Issue #4 的验收材料。
 - [x] `docs/topic_evolution_handoff.md` 已补齐 D 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、展示话术和 topic label 边界，可作为 Issue #5 的阶段性验收材料。
 - [x] `docs/citation_impact_handoff.md` 已补齐 E 模块的 citation depth / trajectory / impact breadth 统计、四象限代表案例、展示话术和 OpenAlex proxy 边界，可作为 Issue #6 的验收材料。
+- [x] `docs/citation_trajectory_archetypes.md` / `.csv` 已补齐 Issue #61 的 citation trajectory archetype 候选表，最终报告使用前仍需人工核查选中案例的 evidence URL。
 - [x] `docs/data_provenance_audit.md` 已统一 award seed / public metadata / derived metrics / manual annotation 的来源边界。
 - [x] `docs/data_readiness_matrix.md` 已列出核心数据文件、行数、模块用途、必备字段和提交前验证命令。
 - [x] citation depth、impact breadth、institution/country counts 已在 data dictionary、methods 和 report skeleton 中写成近似指标而非官方评价。

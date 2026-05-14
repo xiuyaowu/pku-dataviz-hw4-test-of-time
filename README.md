@@ -100,6 +100,7 @@ git push -u origin feature/your-name-task
 │   ├── venue_field_handoff.md
 │   ├── topic_evolution_handoff.md
 │   ├── citation_impact_handoff.md
+│   ├── citation_trajectory_archetypes.md
 │   ├── impact_breadth_evidence_audit.md
 │   ├── qr_online_demo_handoff.md
 │   ├── grading_rubric_full_score_mapping.md
@@ -161,7 +162,7 @@ B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现
 
 Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界。
 
-Citation & Impact 模块的报告底稿见 `docs/citation_impact_handoff.md`，其中已给出 citation depth / trajectory / impact breadth 的定义、四象限代表案例、3 条可写入报告的 findings 和 OpenAlex proxy 表述边界；Top 12 代表论文的 breadth 证据分级见 `docs/impact_breadth_evidence_audit.md` 和 `docs/impact_breadth_evidence_audit.csv`。
+Citation & Impact 模块的报告底稿见 `docs/citation_impact_handoff.md`，其中已给出 citation depth / trajectory / impact breadth 的定义、四象限代表案例、3 条可写入报告的 findings 和 OpenAlex proxy 表述边界；citation trajectory 的 observed-window archetype 候选见 `docs/citation_trajectory_archetypes.md` 和 `docs/citation_trajectory_archetypes.csv`；Top 12 代表论文的 breadth 证据分级见 `docs/impact_breadth_evidence_audit.md` 和 `docs/impact_breadth_evidence_audit.csv`。
 
 代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
 
