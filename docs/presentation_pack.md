@@ -49,12 +49,13 @@ Visual: `docs/demo/time-and-timeline.png`
 
 Talking point:
 
-> Recognition lag 展示了长期影响被正式确认的时间尺度。它提醒我们，Test of Time 关注的是延迟确认，而不是即时热度。
+> Recognition lag 展示了长期影响被正式确认的时间尺度。它提醒我们，Test of Time 关注的是延迟确认，而不是即时热度。具体数据锚点和安全讲法可按 `docs/time_module_demo_claim_cards.md` 选择。
 
 Need from B:
 
 - 典型 lag 区间
 - 最短/最长/典型 lag 代表论文
+- 从 `docs/time_module_demo_claim_cards.md` 选择 3-4 张 claim cards，保留 lifecycle 非因果边界
 
 ### Slide 4 / Venue & Field
 

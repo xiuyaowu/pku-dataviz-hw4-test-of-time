@@ -114,6 +114,8 @@ git push -u origin feature/your-name-task
 │   ├── award_lifecycle_analysis.md
 │   ├── award_lifecycle_prepost_metrics.csv
 │   ├── award_lifecycle_relative_year_summary.csv
+│   ├── time_module_demo_claim_cards.md
+│   ├── time_module_demo_claim_cards.csv
 │   ├── venue_field_handoff.md
 │   ├── venue_field_imbalance_caveats.md
 │   ├── venue_year_case_studies.md
@@ -197,7 +199,7 @@ B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现
 
 Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界；Top 12 代表论文的 topic 人工核查见 `docs/manual_topic_audit_top12.md` 和 `docs/manual_topic_audit_top12.csv`，其中把 API topic 分为 aligned / corrected / needs review。代表论文的 contribution archetype 分类见 `docs/research_archetype_taxonomy.md` 和 `docs/research_archetype_taxonomy_top12.csv`，用于回答“长期留下来的到底是哪类研究贡献”。
 
-Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单；Time 截图中的微注释说明见 `docs/time_micro_annotations.md`，用于解释 dense window、median band 和 long tail 的安全表述。Award lifecycle 补充包见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`，用于把 citation trajectory 按获奖年 `t=0` 对齐，比较获奖前后可见引用窗口，同时保留非因果表述边界。
+Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单；Time 截图中的微注释说明见 `docs/time_micro_annotations.md`，用于解释 dense window、median band 和 long tail 的安全表述。Award lifecycle 补充包见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`，用于把 citation trajectory 按获奖年 `t=0` 对齐，比较获奖前后可见引用窗口，同时保留非因果表述边界。Time 模块展示 claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，把 dataset span、lag 分布、short / typical / long lag cases 和 lifecycle Q&A 连接到确切数据锚点、safe wording 和 B-owner 人工检查。
 
 Venue & Field 模块的 venue-year case notes 见 `docs/venue_year_case_studies.md` 和 `docs/venue_year_case_studies.csv`，可用于把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等具体 cluster 放进报告或展示；数量集中度和解释边界见 `docs/venue_field_imbalance_caveats.md`，其中已整理 Top 3 / Top 6 venue 占比、Top 5 venue-area 占比、safe explanation bullets 和“不是会议排名”的可复制段落。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于把每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和 safe wording boundary 接到 C 模块报告/PPT；venue normalization/count guide 见 `docs/venue_normalization_count_guide.md` / `.csv`，用于给 raw venue counts 增加 publication-span / award-window denominator 读法，避免把数量榜写成会议质量排名。
 
