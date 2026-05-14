@@ -49,7 +49,7 @@
 
 负责人：B
 
-详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。
+详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。Issue #55 的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` / `.csv`，其中补充了 short / typical / long lag 的 6 个候选案例、展示话术和 safe wording。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|

@@ -32,6 +32,8 @@
 
 ## 4. 代表论文候选
 
+更多 short / typical / long lag 案例见 `docs/recognition_lag_outlier_cases.md` 和机器可读表 `docs/recognition_lag_outlier_cases.csv`；该补充文件专门服务 Issue #55 的 Time outlier 展示和报告段落。
+
 | 用途 | 论文 | Venue | Publication → Announcement | Lag | 推荐写法 | 注意边界 |
 |---|---|---|---:|---:|---|---|
 | 较短 lag 案例 | `Modeling TCP Throughput: A Simple Model and Its Empirical Validation` | SIGCOMM | 1998 → 2007 | 9 | 网络测量 / TCP throughput 模型在约十年窗口内被回看确认，可作为“较快形成稳定影响”的案例。 | 最终报告应补 award citation 或论文简介后再解释具体贡献。 |
