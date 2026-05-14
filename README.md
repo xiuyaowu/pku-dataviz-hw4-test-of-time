@@ -102,6 +102,8 @@ git push -u origin feature/your-name-task
 │   ├── data_readiness_matrix.md
 │   ├── uncertainty_proxy_confidence_playbook.md
 │   ├── network_visual_presentation_handoff.md
+│   ├── network_ecosystem_case_notes.md
+│   ├── network_ecosystem_case_notes.csv
 │   ├── time_recognition_lag_handoff.md
 │   ├── time_micro_annotations.md
 │   ├── recognition_lag_outlier_cases.md
@@ -193,7 +195,7 @@ Venue & Field 模块的 venue-year case notes 见 `docs/venue_year_case_studies.
 
 Citation & Impact 模块的报告底稿见 `docs/citation_impact_handoff.md`，其中已给出 citation depth / trajectory / impact breadth 的定义、四象限代表案例、3 条可写入报告的 findings 和 OpenAlex proxy 表述边界；citation trajectory 的 observed-window archetype 候选见 `docs/citation_trajectory_archetypes.md` 和 `docs/citation_trajectory_archetypes.csv`；Top 12 代表论文的 breadth 证据分级见 `docs/impact_breadth_evidence_audit.md` 和 `docs/impact_breadth_evidence_audit.csv`；模块 × 证据类型与 Top 12 代表论文的整体覆盖审计见 `docs/evidence_coverage_matrix.md`、`docs/evidence_coverage_matrix.csv` 和 `docs/top12_evidence_coverage_matrix.csv`。不确定性和 proxy-confidence 统一说明见 `docs/uncertainty_proxy_confidence_playbook.md`，用于区分 data-backed、proxy-only 和仍需人工核查的结论。术语统一口径见 `docs/glossary_metric_explainer.md`，页面中也加入了 Glossary 速查区，便于展示和答辩时解释 proxy 指标边界。
 
-Story Builder 的报告叙事板见 `docs/story_builder_board.md`，把 B-F 模块和 Explorer / Benchmark / Network 串成 `question → evidence → interpretation → boundary → owner` 的 10 条报告 claim。代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
+Story Builder 的报告叙事板见 `docs/story_builder_board.md`，把 B-F 模块和 Explorer / Benchmark / Network 串成 `question → evidence → interpretation → boundary → owner` 的 10 条报告 claim。Network 具体案例见 `docs/network_ecosystem_case_notes.md` / `.csv`，用于把机构、国家/地区、工业实验室可见性和 metadata boundary 转成报告/PPT 可用例子。代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
 
 这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
 

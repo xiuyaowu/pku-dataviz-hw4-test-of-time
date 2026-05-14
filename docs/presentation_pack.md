@@ -13,7 +13,7 @@
 | Citation / Impact | E | 90s | 高引用不是全部，citation depth 和 impact breadth 描述不同类型的长期影响。 | `docs/demo/citation-and-impact.png` |
 | Paper Explorer | A or D | 50s | 可检索证据库把统计发现落回具体论文，便于展示和答疑。 | `docs/demo/explorer-evidence-index.png` |
 | Benchmark Lab | A or D | 50s | 选中论文后展示 percentile 和解释视角，回答“这篇强在哪里”。 | `docs/demo/benchmark-lab.png` |
-| Network | F | 70s | 长期影响也沉淀在机构、国家/地区和学术共同体结构中。 | `docs/demo/network-diffusion.png` |
+| Network | F | 70s | 长期影响也沉淀在机构、国家/地区和学术共同体结构中；具体案例可从 `docs/network_ecosystem_case_notes.md` 选择。 | `docs/demo/network-diffusion.png` |
 | Methods / Limitations | A or F | 60s | 数据可信但有边界：award history、metadata coverage、sampled breadth。 | methods slide |
 | Conclusion | A | 40s | 时间、主题、引用、证据案例、单篇基准和网络共同刻画“经得起时间检验”。 | summary slide |
 

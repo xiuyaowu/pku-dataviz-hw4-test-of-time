@@ -10,6 +10,8 @@
 | Finding 2 | 国家/地区层面呈现明显的美国集中，同时仍能看到加拿大、英国、德国等节点。 | `country_stats.csv` 共 23 个国家/地区；US 170、CA 20、GB 16、DE 11、IL 5；Top 10 国家/地区约占 country mention 的 93.0%。 | country 统计基于作者机构元数据，不代表所有作者贡献比例，也不是国家科研实力排名。 |
 | Finding 3 | 大学与工业研究机构共同出现，适合解释 CS 长期影响的产学研混合生态。 | Top institutions 同时包含 UC Berkeley、CMU、Stanford、MIT、Cornell、UMass Amherst 和 IBM Research - Almaden / IBM 等。 | 是否产生工业落地影响需要单篇 evidence URL 支撑，不能只靠机构名推断。 |
 
+Network ecosystem case notes: 如果需要把 aggregate ranking 转成具体展示案例，使用 `docs/network_ecosystem_case_notes.md` / `.csv`。该表已把 university-cluster、industry-lab visibility、international collaboration、non-US visibility 和 metadata-boundary examples 分开，并附带 safe wording，避免把机构/国家分布误写成排名或因果解释。
+
 推荐报告段落：
 
 > Impact Network 模块把长期影响从单篇论文扩展到研究生态层面。当前数据中，UC Berkeley、CMU、Stanford、MIT 等大学，以及 IBM Research 等工业研究机构都出现在高频机构中，说明长期影响论文常常由稳定研究共同体持续沉淀。国家/地区分布以美国为主，同时也能看到加拿大、英国、德国等节点。由于机构和国家字段依赖 OpenAlex 元数据，这些结果应解释为当前数据集中的可见结构，而不是完整合作网络或机构排名。
@@ -60,6 +62,7 @@
 - [ ] Tooltip、caption 和 reading note 是否没有遮挡。
 - [ ] 所有截图分辨率适合 16:9 PPT。
 - [ ] PPT 中不要把 institution / country 数量写成排名或因果解释。
+- [ ] 如果展示具体论文案例，优先从 `docs/network_ecosystem_case_notes.csv` 选择 2-3 行，并先打开 source URL 做人工核查。
 - [ ] Methods / limitations 页明确提到 OpenAlex metadata coverage。
 
 ## 5. Issue #7 验收映射
@@ -71,5 +74,6 @@
 | 全站视觉 QA | 本文第 4 节；`docs/final_qa_checklist.md`；README demo screenshots |
 | 准备 PPT / demo flow | 本文第 2、3 节；`docs/presentation_pack.md`；`docs/final_presentation_blueprint.md` |
 | 每个模块 1 张最终展示截图或演示位置 | 本文第 3 节 |
+| 将 Network aggregate pattern 转成具体案例 | `docs/network_ecosystem_case_notes.md` / `.csv`；Issue #88 |
 
 剩余人工项：最终 PPT 需要把这里的内容复制到 slides，并在展示前人工打开页面做一次 rehearsal。
