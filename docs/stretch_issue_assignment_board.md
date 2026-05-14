@@ -6,7 +6,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 
 | Owner | Core issue | New stretch issues | Main deliverable |
 |---|---:|---|---|
-| A · Integration / QA | #2 | #53, #54, #52 | Final integration dry run, PR review rubric, contribution evidence ledger |
+| A · Integration / QA | #2 | #53, #54, #52 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger |
 | B · Time | #3 | #55, #56, #46 | Recognition-lag outliers, Time annotations, award lifecycle view |
 | C · Venue / Field | #4 | #57, #58, #50 | Venue-field caveats, venue-year examples, Best Paper vs Test-of-Time framing |
 | D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit, topic-shift narrative, research archetype taxonomy |

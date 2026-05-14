@@ -9,6 +9,7 @@
 - [x] Issues #2–#7 已创建，覆盖六个成员/模块。
 - [x] `docs/work_board.md` 已维护 issue 对照表。
 - [x] PR 模板已添加：`.github/pull_request_template.md`。
+- [x] PR review rubric 已添加：`docs/pr_review_rubric.md`，包含 minimum to merge、nice-to-have 和中性 review comment 模板。
 - [ ] 队友 PR 均已 review / approve / merge。
 - [ ] 每个成员的贡献记录已写入报告或展示材料。
 

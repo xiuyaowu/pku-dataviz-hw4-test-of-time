@@ -48,6 +48,7 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - 创建并细化 Issues #2–#7，对应 A-F 六个成员的工作流。
 - 为每个 Issue 写清研究问题、已有 baseline、相关文件、继续优化任务、报告小节和验收标准。
 - 建立 `.github/pull_request_template.md`，要求每个 PR 说明改动、数据、发现和验证方式。
+- 补充 `docs/pr_review_rubric.md`，把 minimum to merge、nice-to-have、safe wording 和中性 review comment 模板固定下来，让后续 review 有可追溯标准。
 - 维护 README 协作规则，要求 always PR，避免直接修改 `main` 造成覆盖。
 
 ### 6. Demo 预览与展示入口
@@ -81,6 +82,7 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - `src/styles.css`
 - `README.md`
 - `.github/pull_request_template.md`
+- `docs/pr_review_rubric.md`
 - `docs/project_plan.md`
 - `docs/team_division.md`
 - `docs/work_board.md`

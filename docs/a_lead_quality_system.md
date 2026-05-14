@@ -50,7 +50,7 @@ A 需要保证三件事：
 
 ## A 的 review 标准
 
-每个队友 PR 合并前，A 至少检查以下项目：
+详细合并标准和可复制 review comment 见 `docs/pr_review_rubric.md`。每个队友 PR 合并前，A 至少检查以下项目：
 
 1. **运行检查**：`node --check src/app.js` 通过；本地服务器能打开页面。
 2. **数据检查**：所有数据路径为相对路径；没有本地绝对路径；没有提交缓存或 `.DS_Store`。

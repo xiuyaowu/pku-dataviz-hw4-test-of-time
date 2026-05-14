@@ -9,7 +9,8 @@
 3. 每个模块至少交付：可运行页面 + 2-3 条分析发现 + 数据来源说明 + 报告小节草稿。
 4. 如果改 `src/app.js`，本地先跑 `node --check src/app.js`。
 5. 如果改页面，本地启动 `python3 -m http.server 8765 --bind 127.0.0.1`，打开 `http://127.0.0.1:8765/index.html` 检查。
-6. A 负责 review、merge、全站叙事统一和最终 QA。
+6. PR 自查和 A review 统一按 `docs/pr_review_rubric.md` 执行：先满足 minimum to merge，再补 nice-to-have。
+7. A 负责 review、merge、全站叙事统一和最终 QA。
 
 ## 六人分工总表
 
@@ -29,7 +30,7 @@ F 模块补充交付：`docs/network_visual_presentation_handoff.md` 已把 Netw
 
 ## Stretch issue routing
 
-新增有意义任务不直接替代 #2-#7，而是作为各 owner 的加分任务保留在 `docs/stretch_issue_assignment_board.md`。当前路由：A → #53/#54/#52，B → #55/#56/#46，C → #57/#58/#50，D → #59/#60/#47，E → #61/#62/#49，F → #63/#64/#48/#51，跨模块 Story Builder → #45。
+新增有意义任务不直接替代 #2-#7，而是作为各 owner 的加分任务保留在 `docs/stretch_issue_assignment_board.md`。当前路由：A → #53/#54/#52，B → #55/#56/#46，C → #57/#58/#50，D → #59/#60/#47，E → #61/#62/#49，F → #63/#64/#48/#51，跨模块 Story Builder → #45。A 的 PR review rubric 与合并标准见 `docs/pr_review_rubric.md`。
 
 ## Stretch / presentation-ready updates
 
