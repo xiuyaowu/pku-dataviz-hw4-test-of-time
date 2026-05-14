@@ -7,7 +7,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 | Owner | Core issue | New stretch issues | Main deliverable |
 |---|---:|---|---|
 | A · Integration / QA | #2 | #53, #54, #52 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger |
-| B · Time | #3 | #55, #56, #46 | Recognition-lag outliers (`docs/recognition_lag_outlier_cases.md`), Time screenshot annotations (`docs/time_micro_annotations.md`), award lifecycle view |
+| B · Time | #3 | #55, #56, #46 | Recognition-lag outliers (`docs/recognition_lag_outlier_cases.md`), Time screenshot annotations (`docs/time_micro_annotations.md`), award lifecycle pre/post citation packet (`docs/award_lifecycle_analysis.md`) |
 | C · Venue / Field | #4 | #57, #58, #50 | Venue-field caveats (`docs/venue_field_imbalance_caveats.md`), venue-year examples (`docs/venue_year_case_studies.md`), Best Paper vs Test-of-Time framing |
 | D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit (`docs/manual_topic_audit_top12.md`), topic-shift narrative (`docs/topic_shift_narrative.md`), research archetype taxonomy |
 | E · Citation / Impact | #6 | #61, #62, #49 | Citation trajectory archetypes (`docs/citation_trajectory_archetypes.md`), impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix (`docs/evidence_coverage_matrix.md`) |
