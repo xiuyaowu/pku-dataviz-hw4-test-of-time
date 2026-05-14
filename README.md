@@ -123,6 +123,8 @@ git push -u origin feature/your-name-task
 │   ├── venue_field_imbalance_caveats.md
 │   ├── venue_year_case_studies.md
 │   ├── venue_year_case_studies.csv
+│   ├── venue_year_evidence_cards.md
+│   ├── venue_year_evidence_cards.csv
 │   ├── venue_source_traceability_audit.md
 │   ├── venue_source_traceability_audit.csv
 │   ├── venue_normalization_count_guide.md

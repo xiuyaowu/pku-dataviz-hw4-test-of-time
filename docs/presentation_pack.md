@@ -70,6 +70,7 @@ Optional bridge: mention that this is a retrospective award visibility map, not 
 Need from C:
 
 - Top venues / fields
+- 从 `docs/venue_year_evidence_cards.md` 选择 2-3 个 venue-year cards，例如 SIGCOMM 1988、ICCV 1999、SIGIR 1999、SIGMOD 1996 或 NSDI 2005
 - 1 条限制说明
 
 ### Slide 5 / Topic Evolution

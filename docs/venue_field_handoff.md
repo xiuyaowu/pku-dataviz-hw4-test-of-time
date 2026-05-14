@@ -92,7 +92,7 @@ Issue #57 的专门说明包见：`docs/venue_field_imbalance_caveats.md`。
 
 ### Venue-year mini case studies
 
-详细案例包：`docs/venue_year_case_studies.md` / `docs/venue_year_case_studies.csv`。
+详细案例包：`docs/venue_year_case_studies.md` / `docs/venue_year_case_studies.csv`；扩展 evidence-card 表见 `docs/venue_year_evidence_cards.md` / `docs/venue_year_evidence_cards.csv`。
 
 这些案例用于把 venue ranking 和 field × decade heatmap 落回具体证据：
 
@@ -104,7 +104,7 @@ Issue #57 的专门说明包见：`docs/venue_field_imbalance_caveats.md`。
 | SIGMOD 1996 | 2 篇 Database 论文，平均 lag 10.0 年 | 对比 Database / Systems 社区较短 recognition window | lag 是 award timing，不等于影响真正产生的速度。 |
 | NSDI 2005 | 2 篇 Systems/Networking 论文，平均 lag 10.0 年 | 展示较新 venue 也能提供 compact Test-of-Time 案例 | 样本小，只适合作为 bridge example。 |
 
-推荐展示策略：最终 PPT 选 2–3 个即可，例如 `SIGCOMM 1988` 说明早期网络 cluster，`ICCV 1999` 说明高引用方法 cluster，`SIGMOD 1996` 或 `NSDI 2005` 说明较短 recognition-lag 对比。
+推荐展示策略：最终 PPT 选 2–3 个即可，例如 `SIGCOMM 1988` 说明早期网络 cluster，`ICCV 1999` 说明高引用方法 cluster，`SIGIR 1988` 说明更长回看窗口，`SIGMOD 1996` 或 `NSDI 2005` 说明较短 recognition-lag 对比。若需要更系统的 card 字段、source URL 和 safe wording，可直接使用 `docs/venue_year_evidence_cards.csv`。
 
 ### Venue source traceability audit
 
