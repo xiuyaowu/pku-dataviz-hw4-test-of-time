@@ -84,11 +84,27 @@ Database 平均 lag 约 10.1 年，SE 约 10.7 年；IR 约 19.8 年，AI 约 18
 | ICCV | Object Recognition from Local Scale-Invariant Features | 1999 | 16147 | 10 | 可连接 CV 高引用、高扩散和方法范式案例。 |
 | SIGMOD/VLDB | Mining Association Rules Between Sets of Items in Large Databases | 1993 | 14771 | 10 | 可连接数据库/数据挖掘如何成为跨场景分析工具。 |
 
-## 5. 可复制报告段落
+## 5. Venue-year mini case studies
 
-> Venue & Field 模块显示，Test of Time Award 论文在当前数据中并不是均匀分布在所有会议和领域。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD、VLDB 等 venue 的可见度较高，Database、Networking、IR、Software Engineering 和 CV 是主要观察入口。更准确的解释不是“这些会议或领域更好”，而是这些社区拥有较稳定的论文归档、奖项传统和可追溯的长期影响记录。Field × decade heatmap 进一步提示，不同年代的长期影响记录会随研究社区和技术议题迁移而变化，但这种变化仍受到奖项设立历史和数据覆盖范围的限制。
+详细案例包：`docs/venue_year_case_studies.md` / `docs/venue_year_case_studies.csv`。
 
-## 6. C 模块最终人工检查清单
+这些案例用于把 venue ranking 和 field × decade heatmap 落回具体证据：
+
+| Case | Signal | Presentation use | Safe boundary |
+|---|---|---|---|
+| SIGCOMM 1988 | 6 篇 Networking 论文，平均 lag 18.0 年 | 早期网络协议、路由、DNS、Internet architecture 的密集可见 cluster | 只能说当前 award seed 中可见，不能说完整代表 1988 网络研究史。 |
+| SIGIR 1999 | 3 篇 IR 论文，总引用 6,286 | 检索模型、协同过滤、统计翻译形成同一 venue-year 的多主题线索 | 不写成“SIGIR 最重要年份”，只写成一个适合展示的 IR case。 |
+| ICCV 1999 | 4 篇 CV 论文，总引用 22,233，平均 breadth 62.3 | SIFT、texture synthesis、camera calibration 等方法型论文很适合课堂讲解 | citation / breadth 是 OpenAlex proxy，不是获奖原因证明。 |
+| SIGMOD 1996 | 2 篇 Database 论文，平均 lag 10.0 年 | 对比 Database / Systems 社区较短 recognition window | lag 是 award timing，不等于影响真正产生的速度。 |
+| NSDI 2005 | 2 篇 Systems/Networking 论文，平均 lag 10.0 年 | 展示较新 venue 也能提供 compact Test-of-Time 案例 | 样本小，只适合作为 bridge example。 |
+
+推荐展示策略：最终 PPT 选 2–3 个即可，例如 `SIGCOMM 1988` 说明早期网络 cluster，`ICCV 1999` 说明高引用方法 cluster，`SIGMOD 1996` 或 `NSDI 2005` 说明较短 recognition-lag 对比。
+
+## 6. 可复制报告段落
+
+> Venue & Field 模块显示，Test of Time Award 论文在当前数据中并不是均匀分布在所有会议和领域。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD、VLDB 等 venue 的可见度较高，Database、Networking、IR、Software Engineering 和 CV 是主要观察入口。更准确的解释不是“这些会议或领域更好”，而是这些社区拥有较稳定的论文归档、奖项传统和可追溯的长期影响记录。Field × decade heatmap 进一步提示，不同年代的长期影响记录会随研究社区和技术议题迁移而变化，但这种变化仍受到奖项设立历史和数据覆盖范围的限制。为了避免只停留在数量榜，报告可以加入 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 venue-year 案例，把“哪些社区更可见”转化为“哪些具体论文 cluster 支撑这个读法”。
+
+## 7. C 模块最终人工检查清单
 
 - [ ] 打开 2–3 篇代表论文链接，核对题名、venue、年份和一句话贡献。
 - [ ] 如果报告提到某 venue/area 的原因，补一句“当前数据可见分布 / award coverage”边界。

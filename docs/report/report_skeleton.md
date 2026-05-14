@@ -65,17 +65,18 @@
 
 负责人：C
 
-详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。
+详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。具体 venue-year 案例见 `docs/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | Test of Time 论文在少数会议中较集中，但这种集中更像奖项记录密度，不等同于会议质量排名。 | Top venues：SIGIR 35 篇、SIGCOMM 33 篇、ICSE 29 篇、ICCV 24 篇、SIGMOD 24 篇、VLDB 20 篇。 | 不同社区记录长期影响的制度差异会改变可见数量。 | 会议设奖历史、收录范围、数据源完整性都会影响数量。 |
 | Finding 2 | Database、Networking、IR、Software Engineering、CV 是当前数据中最主要的领域入口。 | Top venue areas：Database 44、Networking 38、IR 35、Software Engineering 29、CV 24。 | 这些领域既有强系统/基础设施传统，也有清晰的顶会奖项记录，因此在 Test of Time 数据里更容易形成可见轨迹。 | 数量分布不能说明其他领域缺少长期影响论文，只能说明当前奖项数据覆盖。 |
 | Case | 不同领域的 recognition lag 可能反映奖项机制和研究吸收节奏的差异。 | Database 平均 lag 约 10.1 年，IR 约 19.8 年，CV 约 16.2 年，AI 约 18.6 年。 | 可以比较“系统/数据库较快确认”和“IR/CV/AI 更长回看窗口”的可能原因。 | 需要结合各会议奖项设立年份，避免把制度差异误写成学科本质差异。 |
+| Case | Venue-year mini cases 能把数量榜变成具体证据链。 | SIGCOMM 1988：6 篇；SIGIR 1999：3 篇；ICCV 1999：4 篇且总引用 22,233；SIGMOD 1996 / NSDI 2005：平均 lag 10 年。 | 报告可选 2–3 个 cluster 解释“为什么这些社区在数据中可见”。 | 只说 representative cluster，不说 best year / strongest venue；贡献描述需人工核查 award citation。 |
 
 可扩写段落：
 
-> Venue 与 field 分布反映哪些学术社区更频繁地通过 Test of Time Award 记录长期影响。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD 和 VLDB 在数据中占比较高，但这些数字首先代表“奖项记录和数据覆盖中的可见性”，不能直接当作会议排名。更稳妥的解释是：长期影响论文往往在拥有稳定学术共同体、长期评奖传统和可追溯论文历史的领域中被系统记录下来。
+> Venue 与 field 分布反映哪些学术社区更频繁地通过 Test of Time Award 记录长期影响。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD 和 VLDB 在数据中占比较高，但这些数字首先代表“奖项记录和数据覆盖中的可见性”，不能直接当作会议排名。更稳妥的解释是：长期影响论文往往在拥有稳定学术共同体、长期评奖传统和可追溯论文历史的领域中被系统记录下来。报告中可以补入 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 venue-year cluster，让数量分布回到可解释的具体论文案例。
 
 ### 4.3 Topic Evolution：主题演化与代表论文
 
