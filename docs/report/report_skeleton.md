@@ -65,7 +65,7 @@
 
 负责人：C
 
-详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。Issue #57 的解释边界见 `docs/venue_field_imbalance_caveats.md`，其中把 Top 3 / Top 6 venue 集中度和 Top 5 venue-area 占比整理成可复制的 caveats。具体 venue-year 案例见 `docs/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于检查每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和安全表述边界。
+详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。Issue #57 的解释边界见 `docs/venue_field_imbalance_caveats.md`，其中把 Top 3 / Top 6 venue 集中度和 Top 5 venue-area 占比整理成可复制的 caveats。具体 venue-year 案例见 `docs/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于检查每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和安全表述边界；venue normalization/count guide 见 `docs/venue_normalization_count_guide.md` / `.csv`，用于给 raw count 增加 publication-span / award-window denominator 读法。
 
 Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of_time_framing.md`。建议在引言或 Venue & Field 小节使用一句话说明：Best Paper 是发表当下的优秀信号，Test of Time 是多年后的长期确认信号；当前数据支持后者的长期影响分析，而不是完整 Best Paper 定量比较。
 
@@ -75,6 +75,7 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 | Finding 2 | Database、Networking、IR、Software Engineering、CV 是当前数据中最主要的领域入口。 | Top venue areas：Database 44、Networking 38、IR 35、Software Engineering 29、CV 24。 | 这些领域既有强系统/基础设施传统，也有清晰的顶会奖项记录，因此在 Test of Time 数据里更容易形成可见轨迹。 | 数量分布不能说明其他领域缺少长期影响论文，只能说明当前奖项数据覆盖。 |
 | Case | 不同领域的 recognition lag 可能反映奖项机制和研究吸收节奏的差异。 | Database 平均 lag 约 10.1 年，IR 约 19.8 年，CV 约 16.2 年，AI 约 18.6 年。 | 可以比较“系统/数据库较快确认”和“IR/CV/AI 更长回看窗口”的可能原因。 | 需要结合各会议奖项设立年份，避免把制度差异误写成学科本质差异。 |
 | Case | Venue-year mini cases 能把数量榜变成具体证据链。 | SIGCOMM 1988：6 篇；SIGIR 1999：3 篇；ICCV 1999：4 篇且总引用 22,233；SIGMOD 1996 / NSDI 2005：平均 lag 10 年。 | 报告可选 2–3 个 cluster 解释“为什么这些社区在数据中可见”。 | 只说 representative cluster，不说 best year / strongest venue；贡献描述需人工核查 award citation。 |
+| Boundary check | Raw venue counts 需要 denominator caveat。 | `docs/venue_normalization_count_guide.csv` 记录 27 个 venue 的 publication span、award window、count per publication-span year 和 count per award-window year。 | 报告可以先用 raw count 展示可见度，再补一句“不同 venue 的可见发表窗口和 award window 不同”。 | normalization guide 是解释辅助，不是新的官方排名。 |
 
 可扩写段落：
 

@@ -120,6 +120,8 @@ git push -u origin feature/your-name-task
 │   ├── venue_year_case_studies.csv
 │   ├── venue_source_traceability_audit.md
 │   ├── venue_source_traceability_audit.csv
+│   ├── venue_normalization_count_guide.md
+│   ├── venue_normalization_count_guide.csv
 │   ├── best_paper_vs_test_of_time_framing.md
 │   ├── topic_evolution_handoff.md
 │   ├── topic_shift_narrative.md
@@ -197,7 +199,7 @@ Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其
 
 Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单；Time 截图中的微注释说明见 `docs/time_micro_annotations.md`，用于解释 dense window、median band 和 long tail 的安全表述。Award lifecycle 补充包见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`，用于把 citation trajectory 按获奖年 `t=0` 对齐，比较获奖前后可见引用窗口，同时保留非因果表述边界。
 
-Venue & Field 模块的 venue-year case notes 见 `docs/venue_year_case_studies.md` 和 `docs/venue_year_case_studies.csv`，可用于把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等具体 cluster 放进报告或展示；数量集中度和解释边界见 `docs/venue_field_imbalance_caveats.md`，其中已整理 Top 3 / Top 6 venue 占比、Top 5 venue-area 占比、safe explanation bullets 和“不是会议排名”的可复制段落。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于把每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和 safe wording boundary 接到 C 模块报告/PPT。
+Venue & Field 模块的 venue-year case notes 见 `docs/venue_year_case_studies.md` 和 `docs/venue_year_case_studies.csv`，可用于把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等具体 cluster 放进报告或展示；数量集中度和解释边界见 `docs/venue_field_imbalance_caveats.md`，其中已整理 Top 3 / Top 6 venue 占比、Top 5 venue-area 占比、safe explanation bullets 和“不是会议排名”的可复制段落。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于把每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和 safe wording boundary 接到 C 模块报告/PPT；venue normalization/count guide 见 `docs/venue_normalization_count_guide.md` / `.csv`，用于给 raw venue counts 增加 publication-span / award-window denominator 读法，避免把数量榜写成会议质量排名。
 
 Citation & Impact 模块的报告底稿见 `docs/citation_impact_handoff.md`，其中已给出 citation depth / trajectory / impact breadth 的定义、四象限代表案例、3 条可写入报告的 findings 和 OpenAlex proxy 表述边界；citation trajectory 的 observed-window archetype 候选见 `docs/citation_trajectory_archetypes.md` 和 `docs/citation_trajectory_archetypes.csv`；Top 12 代表论文的 breadth 证据分级见 `docs/impact_breadth_evidence_audit.md` 和 `docs/impact_breadth_evidence_audit.csv`；模块 × 证据类型与 Top 12 代表论文的整体覆盖审计见 `docs/evidence_coverage_matrix.md`、`docs/evidence_coverage_matrix.csv` 和 `docs/top12_evidence_coverage_matrix.csv`。不确定性和 proxy-confidence 统一说明见 `docs/uncertainty_proxy_confidence_playbook.md`，用于区分 data-backed、proxy-only 和仍需人工核查的结论。术语统一口径见 `docs/glossary_metric_explainer.md`，页面中也加入了 Glossary 速查区，便于展示和答辩时解释 proxy 指标边界。
 

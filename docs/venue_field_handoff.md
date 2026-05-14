@@ -112,6 +112,12 @@ Issue #57 的专门说明包见：`docs/venue_field_imbalance_caveats.md`。
 
 这份表按 27 个 venue cluster 汇总 `source_url`、`paper_url`、DOI/OpenAlex 覆盖、年份范围、lag、citation 和 breadth 均值。C 在报告或 PPT 中引用 venue 数量榜时，可以先用它确认该 venue 的数据来源和可讲边界：数量代表当前 Test-of-Time award-history dataset 的可见记录，不是会议质量排名；citation / breadth 是 OpenAlex-derived descriptive proxy，不是获奖原因证明。
 
+### Venue normalization / count guide
+
+数量归一化说明：`docs/venue_normalization_count_guide.md` / `docs/venue_normalization_count_guide.csv`。
+
+这份补充表在 raw venue counts 之外加入 `publication_span_years`、`award_window_years`、`count_per_publication_span_year` 和 `count_per_award_window_year`。它的用途不是制造新的 venue 排名，而是提醒 C 在最终报告/PPT 中解释 denominator：SIGIR、SIGCOMM、ICSE 等 raw count 高，说明它们在当前 award-history data 中可见；FAST、NSDI 等较小 venue 在短窗口内密度高，也只能作为 compact visible cluster 解释，不能推成会议质量结论。
+
 ## 6. Best Paper vs Test of Time framing
 
 Issue #50 的对照材料见：`docs/best_paper_vs_test_of_time_framing.md`。
@@ -130,6 +136,7 @@ C 模块推荐用法：
 
 - [ ] 打开 2–3 篇代表论文链接，核对题名、venue、年份和一句话贡献。
 - [ ] 若使用 venue 数量榜或 field × decade heatmap，先查看 `docs/venue_source_traceability_audit.csv` 的 source / OpenAlex 覆盖和 safe wording boundary。
+- [ ] 若比较 venue counts，补查 `docs/venue_normalization_count_guide.csv` 的 publication-span / award-window denominator，并在报告或 PPT 中至少写一句 denominator caveat。
 - [ ] 如果报告提到某 venue/area 的原因，补一句“当前数据可见分布 / award coverage”边界。
 - [ ] 不使用“官方排名”“最强会议”“最有价值领域”等绝对化表述。
 - [ ] 和 Topic 模块联动时，只说“领域入口”和“主题线索”，不要把 venue_area 等同于论文真实主题。
