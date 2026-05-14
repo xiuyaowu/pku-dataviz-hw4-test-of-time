@@ -84,7 +84,13 @@ Database 平均 lag 约 10.1 年，SE 约 10.7 年；IR 约 19.8 年，AI 约 18
 | ICCV | Object Recognition from Local Scale-Invariant Features | 1999 | 16147 | 10 | 可连接 CV 高引用、高扩散和方法范式案例。 |
 | SIGMOD/VLDB | Mining Association Rules Between Sets of Items in Large Databases | 1993 | 14771 | 10 | 可连接数据库/数据挖掘如何成为跨场景分析工具。 |
 
-## 5. Venue-year mini case studies
+## 5. Imbalance caveats and venue-year mini case studies
+
+Issue #57 的专门说明包见：`docs/venue_field_imbalance_caveats.md`。
+
+这份 caveats packet 把 venue / field 数量集中度单独整理成 report-ready 口径：Top 3 venues 占 97 / 250，Top 6 venues 占 165 / 250，Top 5 venue areas 占 170 / 250。它的核心用途是提醒 C 在报告和 PPT 中把数量榜解释为“当前 award seed 的可见记录密度”，而不是会议质量、领域价值或完整 CS 研究分布。
+
+### Venue-year mini case studies
 
 详细案例包：`docs/venue_year_case_studies.md` / `docs/venue_year_case_studies.csv`。
 

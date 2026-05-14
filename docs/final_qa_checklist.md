@@ -49,7 +49,7 @@ http://127.0.0.1:8765/index.html
 - [x] 数据来源和指标局限在 README/footer 中有说明。
 - [ ] 队友补充后的发现需要避免过度因果解释。
 - [x] `docs/report/report_skeleton.md` 已有每个模块的 draft findings matrix：2-3 条发现、至少 1 个代表案例、1 条限制说明。
-- [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界，可作为 Issue #4 的验收材料。
+- [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界；`docs/venue_field_imbalance_caveats.md` 已补齐 Issue #57 的 Top venue / field 集中度解释、3 条 safe explanation bullets 和 copy-ready caveat paragraph，可作为 Issue #4 的阶段性验收材料。
 - [x] `docs/venue_year_case_studies.md` / `.csv` 已补齐 Issue #58 的 Venue-year mini case studies，覆盖 SIGCOMM 1988、SIGIR 1999、ICCV 1999、SIGMOD 1996、NSDI 2005；最终报告使用前仍需人工核查选中案例的 award citation / 贡献表述。
 - [x] `docs/topic_evolution_handoff.md` 已补齐 D 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、展示话术和 topic label 边界，可作为 Issue #5 的阶段性验收材料；`docs/topic_shift_narrative.md` / `.csv` 已补齐 Issue #60 的 decade-level topic-shift narrative、代表论文候选和安全写作边界。
 - [x] `docs/citation_impact_handoff.md` 已补齐 E 模块的 citation depth / trajectory / impact breadth 统计、四象限代表案例、展示话术和 OpenAlex proxy 边界，可作为 Issue #6 的验收材料。
