@@ -52,6 +52,7 @@ http://127.0.0.1:8765/index.html
 - [ ] 队友补充后的发现需要避免过度因果解释。
 - [x] `docs/report/report_skeleton.md` 已有每个模块的 draft findings matrix：2-3 条发现、至少 1 个代表案例、1 条限制说明。
 - [x] `docs/story_builder_board.md` 已将 Time / Venue / Topic / Citation / Explorer / Benchmark / Network 串成 10 条 report-ready claim，并为每条 claim 标出 evidence source、owner issue、safe wording boundary 和最终人工检查项。
+- [x] `docs/final_report_figure_evidence_index.md` / `.csv` 已将每个主要 D3 模块映射到截图、数据文件、supporting docs、报告段落、owner 和 safe wording boundary。
 - [x] `docs/award_lifecycle_analysis.md` 已补充获奖年前后 citation-window 指标、相对获奖年汇总表和非因果表述边界，可作为 B Time 与 E Citation 的连接材料。
 - [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界；`docs/venue_field_imbalance_caveats.md` 已补齐 Issue #57 的 Top venue / field 集中度解释、3 条 safe explanation bullets 和 copy-ready caveat paragraph；`docs/venue_source_traceability_audit.md` / `.csv` 已补齐 Issue #90 的 venue-level 来源覆盖、OpenAlex 覆盖和 safe wording boundary，可作为 Issue #4 的阶段性验收材料。
 - [x] `docs/best_paper_vs_test_of_time_framing.md` 已补齐 Issue #50 的 Best Paper vs Test of Time 定性对照、报告段落、PPT 40 秒讲法和 safe wording；最终只作为研究问题转向说明，不作为无 baseline 的定量比较。
