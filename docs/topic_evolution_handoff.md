@@ -1,6 +1,6 @@
 # D 模块 handoff：Topic Evolution
 
-用途：给 Issue #5 / D 成员一个可直接写报告和展示的 topic evolution 分析底稿。这里的数字来自当前 `data/topic_stats.csv`、`data/topic_year_stats.csv`、`data/papers_enriched.csv` 和 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`。Top 12 代表论文的 API topic vs manual topic 核查见 `docs/manual_topic_audit_top12.md` / `.csv`；contribution archetype 分类见 `docs/research_archetype_taxonomy.md` / `.csv`。最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。
+用途：给 Issue #5 / D 成员一个可直接写报告和展示的 topic evolution 分析底稿。这里的数字来自当前 `data/topic_stats.csv`、`data/topic_year_stats.csv`、`data/papers_enriched.csv` 和 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`。Top 12 代表论文的 API topic vs manual topic 核查见 `docs/manual_topic_audit_top12.md` / `.csv`；contribution archetype 分类见 `docs/research_archetype_taxonomy.md` / `.csv`；topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`。最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。
 
 ## 1. 模块研究问题
 
@@ -87,6 +87,12 @@ Top 12 evidence-ready 表里已经出现一个重要例子：DBSCAN 的 API topi
 - Database / Systems 样本量最大，但平均 breadth 低于 Computer Vision / Data Mining；报告可以解释为“系统类长期影响常常表现为基础设施沉淀和社区内深度复用，不一定总是最高 breadth”。
 
 写作时注意：breadth 是 OpenAlex citing works sample 近似指标，不能写成完整跨领域引用网络。
+
+## 4b. Topic × venue crosswalk 连接点
+
+`docs/topic_venue_crosswalk.md` / `.csv` 把 250 篇论文汇总成 83 个 venue-area × topic-label 交叉行，其中 26 个交叉行至少有 3 篇论文。D 可以用它把 topic 发现连接到 C 的 Venue/Field 解释：topic label 描述技术线索，venue_area 描述奖项记录中的学术共同体可见性。
+
+报告建议只选 2–3 个交叉行作为桥接案例。安全写法是“当前 Test-of-Time 数据中，某 venue area 下某 topic 更可见”，不要写成“该 venue 更强”或“该 topic 更重要”。如果某行的代表论文在 Top 12 manual topic audit 中已有人工修正，最终报告优先采用人工 topic label。
 
 ## 5. 60 秒展示话术
 

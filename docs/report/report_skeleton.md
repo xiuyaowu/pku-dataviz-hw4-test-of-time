@@ -85,13 +85,14 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：D
 
-详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。Issue #47 的 contribution archetype taxonomy 见 `docs/research_archetype_taxonomy.md` / `.csv`，可用于把 topic 发现扩写为“可复用算法、建模框架、测量模型、系统/协议、基础理论等贡献形态如何留下来”。
+详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。Issue #47 的 contribution archetype taxonomy 见 `docs/research_archetype_taxonomy.md` / `.csv`，可用于把 topic 发现扩写为“可复用算法、建模框架、测量模型、系统/协议、基础理论等贡献形态如何留下来”。Issue #100 的 topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 长期影响论文并不集中在单一技术主题，而是覆盖系统、数据挖掘、视觉、NLP、理论等多个方向。 | Top topics：Database / Systems 67 篇、Data Mining / Web 46 篇、Computer Vision 43 篇、NLP 26 篇、Machine Learning Theory 18 篇。 | Test of Time 不是单一领域现象，而是跨社区的长期知识沉淀。 | topic_label 来自规则/API 元数据，需要对重点论文做人工校正。 |
 | Finding 2 | Computer Vision 的平均 citation count 和 impact breadth 都较高，适合作为“高引用 + 广扩散”主题案例。 | Computer Vision：43 篇，平均 citation count 约 2848.7，平均 breadth 约 61.24；Data Mining / Web 平均 breadth 约 58.41。 | 视觉和数据挖掘类方法更容易通过数据集、算法范式或工具链进入多个应用场景。 | 高引用受领域规模和引用习惯影响，不能直接等同于贡献更大。 |
 | Case | 高引用代表论文可以作为主题解释入口。 | `A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise` citation 19133；`Snakes: Active Contour Models` citation 17009；`Object Recognition from Local Scale-Invariant Features` citation 16147。 | 这些案例适合解释聚类、轮廓模型、局部特征等方法如何成为后续研究共同语言；Top 12 证据卡已补 DOI/论文页和一句话贡献，可直接作为报告案例草稿。 | 最终报告仍需人工确认 award citation 与具体贡献表述，避免只引用自动统计。 |
+| Bridge | Topic × venue crosswalk 可以把主题发现连接到学术共同体可见性。 | `docs/topic_venue_crosswalk.csv` 覆盖 83 个 venue-area × topic-label 交叉行，其中 26 个至少有 3 篇论文。 | 报告可选 2–3 行解释“技术主题如何通过某些 award communities 被记录下来”。 | 交叉行是当前数据可见模式，不是 venue 质量排名或官方 topic taxonomy。 |
 
 可扩写段落：
 
@@ -104,6 +105,10 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 可选加强段落（#47）：
 
 > Topic labels 回答“论文属于哪个技术方向”，而 contribution archetypes 回答“什么类型的贡献经得起时间检验”。Top 12 代表论文中既有 DBSCAN、SIFT、association rules 这类可复用算法范式，也有 TCP throughput 这类测量模型、AODV 这类协议设计、Network Information Flow 这类基础理论，以及 Graphs over Time 这类经验规律。这个分类不用于排名，而是帮助报告把长期影响解释为可复用工具、模型、系统设计和理论框架的沉淀。
+
+可选加强段落（#100）：
+
+> Topic × venue crosswalk 进一步说明，topic label 和 venue_area 应该一起读：前者描述论文的技术主题，后者描述该论文在当前 Test-of-Time award dataset 中由哪个学术共同体记录。这个交叉视角能把 Topic Evolution 和 Venue/Field 连成一段完整解释，但它仍然只是当前数据的可见交叉，不能写成会议质量排名或官方主题分类。
 
 ### 4.4 Citation & Recognition：引用深度、轨迹与影响广度
 
