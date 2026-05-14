@@ -77,6 +77,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/slide_visual_consistency_audit.md` 已列出所有 `docs/demo/*.png` 的 slide purpose、owner、尺寸、裁剪/框架规则和 safe wording boundary，可作为 F 的最终视觉一致性检查。
 - [x] `docs/live_demo_fallback_script.md` 已补齐 live demo 失败时的 2 分钟截图路线、speaker/claim 映射、等价性说明和 F owner 现场检查项。
 - [x] `docs/final_submission_packaging_checklist.md` 已补齐最终打包流程、压缩包结构、archive inspection 命令和在线/离线展示 fallback。
+- [x] `docs/final_archive_manifest.md` / `.csv` 已列出最终 archive 必需文件、推荐文件、排除项和 machine-readable required-file 检查，可作为 Issue #92 的 A-owner 包装证据。
 - [x] `docs/final_integration_dry_run_log.md` 已记录一次完整本地 dry run：clean main、HTTP 200、presentation mode、DOM section checks、核心数据行数和 archive exclusion scan。
 - [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料；`docs/network_ecosystem_case_notes.md` / `.csv` 已补充 Issue #88 的 Network 具体案例和 metadata-boundary safe wording。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
@@ -95,6 +96,7 @@ http://127.0.0.1:8765/index.html
 - [ ] 最终提交前重新运行并更新 `docs/final_integration_dry_run_log.md`，确认所有队友 PR 合并后的页面和数据仍然通过检查。
 - [ ] 提交前按 `docs/data_readiness_matrix.md` 重新运行数据就绪验证，确认核心 CSV 和 manual annotation 模板行数/字段未被误改。
 - [ ] 按 `docs/final_submission_packaging_checklist.md` 检查最终 zip，确认必需文件存在且无 `.git` / `.DS_Store` / `__pycache__`。
+- [ ] 按 `docs/final_archive_manifest.md` 运行 manifest validation，确认 required 文件没有遗漏。
 - [ ] `main` 是最终可提交版本。
 
 - [ ] `docs/stretch_issue_assignment_board.md` 已用于确认 A-F 每个 owner 至少有一个核心 issue 和一个 stretch issue 可做。

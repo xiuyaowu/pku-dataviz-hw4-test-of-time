@@ -6,7 +6,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 
 | Owner | Core issue | New stretch issues | Main deliverable |
 |---|---:|---|---|
-| A · Integration / QA | #2 | #53, #54, #52 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger |
+| A · Integration / QA | #2 | #53, #54, #52, #92 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger, final archive manifest (`docs/final_archive_manifest.md`) |
 | B · Time | #3 | #55, #56, #46 | Recognition-lag outliers (`docs/recognition_lag_outlier_cases.md`), Time screenshot annotations (`docs/time_micro_annotations.md`), award lifecycle pre/post citation packet (`docs/award_lifecycle_analysis.md`) |
 | C · Venue / Field | #4 | #57, #58, #50, #90 | Venue-field caveats (`docs/venue_field_imbalance_caveats.md`), venue-year examples (`docs/venue_year_case_studies.md`), Best Paper vs Test-of-Time framing (`docs/best_paper_vs_test_of_time_framing.md`), venue source traceability audit (`docs/venue_source_traceability_audit.md`) |
 | D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit (`docs/manual_topic_audit_top12.md`), topic-shift narrative (`docs/topic_shift_narrative.md`), research archetype taxonomy (`docs/research_archetype_taxonomy.md`) |
@@ -29,7 +29,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 4. #48 Defense Q&A: prepares answers for teacher questions.
 5. #47 / #61 / #55 / #56 / #60: gives D/E/B stronger analytical findings, topic-shift narrative material, and screenshot-ready explanations.
 6. #63 / #64: reduces presentation risk.
-7. #52 / #53 / #54: makes contribution and integration evidence easy to show.
+7. #52 / #53 / #54 / #92: makes contribution, integration, review, and final packaging evidence easy to show.
 
 ## Public wording rule
 

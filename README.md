@@ -99,6 +99,8 @@ git push -u origin feature/your-name-task
 │   ├── slide_visual_consistency_audit.md
 │   ├── live_demo_fallback_script.md
 │   ├── final_submission_packaging_checklist.md
+│   ├── final_archive_manifest.md
+│   ├── final_archive_file_manifest.csv
 │   ├── data_readiness_matrix.md
 │   ├── uncertainty_proxy_confidence_playbook.md
 │   ├── network_visual_presentation_handoff.md

@@ -59,6 +59,8 @@ http://127.0.0.1:8765/index.html?present=1
 
 最终展示前，B-F 各模块负责人需要人工打开关键 evidence URL，确认论文贡献描述和展示话术没有超过证据范围。
 
+更完整的 archive 必需文件清单见 `docs/final_archive_manifest.md` 和 `docs/final_archive_file_manifest.csv`；最终打包前可先运行 manifest validation，确认所有 required 文件仍然存在。
+
 ## 4. 压缩包建议结构
 
 如果老师要求上传完整项目文件夹，建议压缩以下内容：
