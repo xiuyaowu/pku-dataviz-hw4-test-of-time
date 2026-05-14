@@ -6,7 +6,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 
 | Owner | Core issue | New stretch issues | Main deliverable |
 |---|---:|---|---|
-| A · Integration / QA | #2 | #53, #54, #52, #92, #94 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger, final archive manifest (`docs/final_archive_manifest.md`), final report figure/evidence index (`docs/final_report_figure_evidence_index.md`) |
+| A · Integration / QA | #2 | #53, #54, #52, #92, #94, #108 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger, final archive manifest (`docs/final_archive_manifest.md`), final report figure/evidence index (`docs/final_report_figure_evidence_index.md`), final report claim bank (`docs/final_report_claim_bank.md`) |
 | B · Time | #3 | #55, #56, #46, #98 | Recognition-lag outliers (`docs/recognition_lag_outlier_cases.md`), Time screenshot annotations (`docs/time_micro_annotations.md`), award lifecycle pre/post citation packet (`docs/award_lifecycle_analysis.md`), Time demo claim cards (`docs/time_module_demo_claim_cards.md`) |
 | C · Venue / Field | #4 | #57, #58, #50, #90, #96, #106 | Venue-field caveats (`docs/venue_field_imbalance_caveats.md`), venue-year examples (`docs/venue_year_case_studies.md`), venue-year evidence cards (`docs/venue_year_evidence_cards.md`), Best Paper vs Test-of-Time framing (`docs/best_paper_vs_test_of_time_framing.md`), venue source traceability audit (`docs/venue_source_traceability_audit.md`), venue normalization/count guide (`docs/venue_normalization_count_guide.md`) |
 | D · Topic Evolution | #5 | #59, #60, #47, #100 | Manual topic audit (`docs/manual_topic_audit_top12.md`), topic-shift narrative (`docs/topic_shift_narrative.md`), research archetype taxonomy (`docs/research_archetype_taxonomy.md`), topic × venue crosswalk (`docs/topic_venue_crosswalk.md`) |
@@ -24,7 +24,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 ## Suggested priority order
 
 1. #45 Story Builder: `docs/story_builder_board.md` makes the final report/PPT coherent and gives B-F owners claim rows to verify.
-2. #49 Evidence coverage matrix and #86 uncertainty playbook: expose the highest-value manual gaps and give the team safe proxy-confidence wording for report/PPT defense.
+2. #49 Evidence coverage matrix, #86 uncertainty playbook, and #108 final report claim bank: expose manual gaps, give the team safe proxy-confidence wording, and convert evidence docs into copy-ready final report claims.
 3. #90 Venue source traceability audit, #96 venue normalization/count guide, and #106 venue-year evidence cards: gives C provenance, denominator-aware language, and concrete report/PPT cases for venue-count and field-distribution defense.
 4. #48 Defense Q&A: prepares answers for teacher questions.
 5. #47 / #100 / #61 / #55 / #56 / #60 / #98: gives D/E/B stronger analytical findings, topic-to-venue bridge material, topic-shift narrative material, and screenshot-ready explanations.

@@ -104,6 +104,8 @@ git push -u origin feature/your-name-task
 │   ├── final_archive_file_manifest.csv
 │   ├── final_report_figure_evidence_index.md
 │   ├── final_report_figure_evidence_index.csv
+│   ├── final_report_claim_bank.md
+│   ├── final_report_claim_bank.csv
 │   ├── data_readiness_matrix.md
 │   ├── uncertainty_proxy_confidence_playbook.md
 │   ├── network_visual_presentation_handoff.md

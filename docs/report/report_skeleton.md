@@ -39,7 +39,7 @@
 
 ## 3. 可视化设计
 
-网页采用单页滚动式叙事结构：Opening summary 先给出数据概览，再依次进入 Time、Venue & Field、Topic Evolution、Citation & Recognition、Paper Explorer、Benchmark Lab、Story Builder、Impact Network。每个模块包含图表、hover tooltip、reading note、claim cards 或代表论文详情卡，使读者既能看到总体模式，也能回到具体论文案例。Story Builder 的文档版叙事板见 `docs/story_builder_board.md`，其中把 10 条主要 claim 映射到 evidence source、owner issue、safe wording boundary 和最终人工检查项；最终写报告或做 PPT 前，再用 `docs/final_report_figure_evidence_index.md` / `.csv` 检查每个图表对应的截图、数据文件、报告段落和 safe wording boundary。
+网页采用单页滚动式叙事结构：Opening summary 先给出数据概览，再依次进入 Time、Venue & Field、Topic Evolution、Citation & Recognition、Paper Explorer、Benchmark Lab、Story Builder、Impact Network。每个模块包含图表、hover tooltip、reading note、claim cards 或代表论文详情卡，使读者既能看到总体模式，也能回到具体论文案例。Story Builder 的文档版叙事板见 `docs/story_builder_board.md`，其中把 10 条主要 claim 映射到 evidence source、owner issue、safe wording boundary 和最终人工检查项；最终写报告或做 PPT 前，再用 `docs/final_report_figure_evidence_index.md` / `.csv` 检查每个图表对应的截图、数据文件、报告段落和 safe wording boundary，并用 `docs/final_report_claim_bank.md` / `.csv` 选择可直接写进最终报告的 A-F claim。
 
 设计目标不是把所有指标堆在一起，而是让读者沿着一条报告主线阅读：长期影响先表现为时间上的延迟确认，再落入不同学术社区和主题结构，随后通过引用深度、跨领域扩散和机构网络形成可追踪的影响痕迹。
 

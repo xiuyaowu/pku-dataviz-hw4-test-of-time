@@ -40,6 +40,8 @@ docs/contribution_evidence_ledger.md,report,yes,A-F contribution evidence ledger
 docs/story_builder_board.md,report,yes,Cross-module claim board for report/PPT route
 docs/final_report_figure_evidence_index.md,report,yes,Chart-to-claim crosswalk linking modules screenshots data files report sections owners and safe wording
 docs/final_report_figure_evidence_index.csv,report,yes,Machine-readable figure/evidence index for final report and PPT checks
+docs/final_report_claim_bank.md,report,yes,Copy-ready A-F final report claim bank with evidence sources safe wording and human checks
+docs/final_report_claim_bank.csv,report,yes,Machine-readable final report claim bank for report assembly validation
 docs/presentation_pack.md,presentation,yes,Demo and presentation route pack
 docs/final_presentation_blueprint.md,presentation,yes,Slide-by-slide production blueprint
 docs/defense_qa_pack.md,presentation,yes,Teacher/classmate Q&A answer bank
