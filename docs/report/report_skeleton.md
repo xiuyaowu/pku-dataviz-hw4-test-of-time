@@ -65,7 +65,7 @@
 
 负责人：C
 
-详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。Issue #57 的解释边界见 `docs/venue_field_imbalance_caveats.md`，其中把 Top 3 / Top 6 venue 集中度和 Top 5 venue-area 占比整理成可复制的 caveats。具体 venue-year 案例见 `docs/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示。
+详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。Issue #57 的解释边界见 `docs/venue_field_imbalance_caveats.md`，其中把 Top 3 / Top 6 venue 集中度和 Top 5 venue-area 占比整理成可复制的 caveats。具体 venue-year 案例见 `docs/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于检查每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和安全表述边界。
 
 Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of_time_framing.md`。建议在引言或 Venue & Field 小节使用一句话说明：Best Paper 是发表当下的优秀信号，Test of Time 是多年后的长期确认信号；当前数据支持后者的长期影响分析，而不是完整 Best Paper 定量比较。
 
