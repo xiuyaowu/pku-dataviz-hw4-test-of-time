@@ -63,6 +63,7 @@ http://127.0.0.1:8765/index.html
 - [ ] 如时间允许，`docs/stretch_backlog.md` 中 P0 增强板块已认领或明确暂缓。
 - [x] `docs/evidence_cards_top12.md` 中 Top 12 代表论文均有 DOI/论文页/辅助证据链接；`docs/evidence_card_presentation_matrix.md` 已标出 8 张展示优先卡和 4 张需人工复核备选卡。
 - [x] `docs/impact_breadth_evidence_audit.md` 已将 Top 12 impact breadth 案例分为 `safe to say` / `proxy only` / `needs human evidence`，并给出可复制的安全表述。
+- [x] `docs/evidence_coverage_matrix.md` / `.csv` 已把 B-F 模块证据和 Top 12 代表论文覆盖状态分级，标出 final human check、proxy-only 和展示前需补的 gap。
 - [ ] 最终展示前由队友核查关键论断与 award citation，尤其是未列入展示优先组的备选卡。
 - [ ] `docs/methods_and_limitations.md` 已压缩进最终报告或展示。
 - [x] `docs/presentation_pack.md` 已补齐展示结构；`docs/final_presentation_blueprint.md` 已提供 11 页 PPT 蓝图、speaker notes、截图 fallback 和角色发言边界。最终 PPT 导出仍需人工复制到 slides。
