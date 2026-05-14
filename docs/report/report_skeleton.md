@@ -114,7 +114,7 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：E
 
-详细 handoff：`docs/citation_impact_handoff.md` 已整理 Citation & Impact 模块的 depth / trajectory / breadth 统一定义、核心统计、四象限代表论文、60 秒展示话术和 OpenAlex proxy 写作边界；Issue #61 的 citation trajectory 分类候选见 `docs/citation_trajectory_archetypes.md` / `.csv`。
+详细 handoff：`docs/citation_impact_handoff.md` 已整理 Citation & Impact 模块的 depth / trajectory / breadth 统一定义、核心统计、四象限代表论文、60 秒展示话术和 OpenAlex proxy 写作边界；Issue #61 的 citation trajectory 分类候选见 `docs/citation_trajectory_archetypes.md` / `.csv`；Issue #110 的 final case-selection risk register 见 `docs/final_case_selection_risk_register.md` / `.csv`，用于在最终 report/PPT 中优先选择低风险代表案例，并标出 backup cases 的人工核查项。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
