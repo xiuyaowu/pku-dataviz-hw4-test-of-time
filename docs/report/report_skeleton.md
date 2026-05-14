@@ -82,7 +82,7 @@
 
 负责人：D
 
-详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。
+详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
