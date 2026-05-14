@@ -24,7 +24,7 @@ GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-o
 
 ## Demo 预览图
 
-不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。课堂投影或截图时可打开 `http://127.0.0.1:8765/index.html?present=1`，或在页面中按 `P` 切换 Presentation mode。
+不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。课堂投影或截图时可打开 `http://127.0.0.1:8765/index.html?present=1`，或在页面中按 `P` 切换 Presentation mode。最终展示前可按 `docs/final_demo_rehearsal_runbook.md` 做一次 10 分钟路线彩排，确认 live demo、截图 fallback 和安全表述都一致。
 
 ![Homepage overview](docs/demo/homepage-overview.png)
 
@@ -93,6 +93,7 @@ git push -u origin feature/your-name-task
 │   ├── methods_and_limitations.md
 │   ├── presentation_pack.md
 │   ├── final_presentation_blueprint.md
+│   ├── final_demo_rehearsal_runbook.md
 │   ├── defense_qa_pack.md
 │   ├── story_builder_board.md
 │   ├── glossary_metric_explainer.md

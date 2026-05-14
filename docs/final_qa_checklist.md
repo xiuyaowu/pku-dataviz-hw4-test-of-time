@@ -77,6 +77,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/defense_qa_pack.md` 已补齐答辩问答准备，覆盖数据来源、proxy 指标、人工核查、因果边界、分工贡献和 live demo fallback。
 - [x] `docs/slide_visual_consistency_audit.md` 已列出所有 `docs/demo/*.png` 的 slide purpose、owner、尺寸、裁剪/框架规则和 safe wording boundary，可作为 F 的最终视觉一致性检查。
 - [x] `docs/live_demo_fallback_script.md` 已补齐 live demo 失败时的 2 分钟截图路线、speaker/claim 映射、等价性说明和 F owner 现场检查项。
+- [x] `docs/final_demo_rehearsal_runbook.md` 已补齐 10 分钟最终彩排路线、speaker handoff、fallback triggers、F/A 检查项和 safe wording 边界。
 - [x] `docs/final_submission_packaging_checklist.md` 已补齐最终打包流程、压缩包结构、archive inspection 命令和在线/离线展示 fallback。
 - [x] `docs/final_archive_manifest.md` / `.csv` 已列出最终 archive 必需文件、推荐文件、排除项和 machine-readable required-file 检查，可作为 Issue #92 的 A-owner 包装证据。
 - [x] `docs/final_integration_dry_run_log.md` 已记录一次完整本地 dry run：clean main、HTTP 200、presentation mode、DOM section checks、核心数据行数和 archive exclusion scan。
