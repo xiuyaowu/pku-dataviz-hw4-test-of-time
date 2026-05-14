@@ -137,12 +137,13 @@ function chartBox(sel) {
 function renderLag(rows) {
   const {svg, width, height} = chartBox("#lag-chart");
   const margin = {top: 18, right: 22, bottom: 46, left: 52};
-  const x = d3.scaleBand().domain(rows.map(d => d.lag_bin)).range([margin.left, width - margin.right]).padding(0.18);
-  const y = d3.scaleLinear().domain([0, d3.max(rows, d => d.paper_count)]).nice().range([height - margin.bottom, margin.top]);
+  const orderedRows = rows.slice().sort((a, b) => d3.ascending(lagBinStart(a.lag_bin), lagBinStart(b.lag_bin)));
+  const x = d3.scaleBand().domain(orderedRows.map(d => d.lag_bin)).range([margin.left, width - margin.right]).padding(0.18);
+  const y = d3.scaleLinear().domain([0, d3.max(orderedRows, d => d.paper_count)]).nice().range([height - margin.bottom, margin.top]);
   svg.append("g").attr("class", "grid").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(width-margin.left-margin.right)).tickFormat(""));
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5));
-  svg.selectAll("rect.bar").data(rows).join("rect")
+  svg.selectAll("rect.bar").data(orderedRows).join("rect")
     .attr("class", "bar")
     .attr("x", d => x(d.lag_bin)).attr("y", d => y(d.paper_count))
     .attr("width", x.bandwidth()).attr("height", d => y(0) - y(d.paper_count))
@@ -150,6 +151,18 @@ function renderLag(rows) {
     .on("mousemove", (e,d) => showTip(e, `<b>${d.lag_bin}</b><br>${d.paper_count} papers<br>Recognition lag = announcement year − publication year<br>Avg citations: ${fmt(num(d.avg_citation_count))}`))
     .on("mouseleave", hideTip);
   addGradient(svg, "lagGrad", "#70e1d4", "#3d8ee8");
+
+  const peak = orderedRows.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const medianBand = orderedRows.find(d => d.lag_bin === "(10, 15]");
+  const longTail = orderedRows.find(d => d.lag_bin === "(30, 40]");
+  if (peak) addCallout(svg, x(peak.lag_bin) + x.bandwidth() * 0.52, y(peak.paper_count), "Dense window · 5–10y", 18, -22);
+  if (medianBand) addCallout(svg, x(medianBand.lag_bin) + x.bandwidth() * 0.48, y(medianBand.paper_count), "Median sits here · 12y", 18, -26);
+  if (longTail) addCallout(svg, x(longTail.lag_bin) + x.bandwidth() * 0.54, y(longTail.paper_count), "Long tail · 30y+", -112, -18);
+}
+
+function lagBinStart(label) {
+  const match = String(label).match(/\d+/);
+  return match ? Number(match[0]) : Number.POSITIVE_INFINITY;
 }
 
 function renderAwardTimeline(rows, papers) {

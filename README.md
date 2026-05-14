@@ -97,6 +97,7 @@ git push -u origin feature/your-name-task
 │   ├── data_readiness_matrix.md
 │   ├── network_visual_presentation_handoff.md
 │   ├── time_recognition_lag_handoff.md
+│   ├── time_micro_annotations.md
 │   ├── recognition_lag_outlier_cases.md
 │   ├── venue_field_handoff.md
 │   ├── venue_year_case_studies.md
@@ -168,7 +169,7 @@ B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现
 
 Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界。
 
-Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单。
+Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单；Time 截图中的微注释说明见 `docs/time_micro_annotations.md`，用于解释 dense window、median band 和 long tail 的安全表述。
 
 Venue & Field 模块的 venue-year case notes 见 `docs/venue_year_case_studies.md` 和 `docs/venue_year_case_studies.csv`，可用于把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等具体 cluster 放进报告或展示，同时保留“当前 award seed 可见分布、不是会议排名”的边界。
 
@@ -198,7 +199,7 @@ http://127.0.0.1:8765/index.html
 
 详细分工见：`docs/team_division.md`
 
-Issue 分工表见：`docs/work_board.md`。新增 stretch 分配表见：`docs/stretch_issue_assignment_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`，PR review 合并标准见 `docs/pr_review_rubric.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/time_recognition_lag_handoff.md`、`docs/venue_field_handoff.md`、`docs/venue_year_case_studies.md`、`docs/topic_evolution_handoff.md`、`docs/evidence_cards_top12.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md`、`docs/final_presentation_blueprint.md`、`docs/slide_visual_consistency_audit.md`、`docs/live_demo_fallback_script.md`、`docs/final_submission_packaging_checklist.md`、`docs/network_visual_presentation_handoff.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，最终整合检查见 `docs/final_qa_checklist.md`；提交前打包可按 `docs/final_submission_packaging_checklist.md` 逐项检查。
+Issue 分工表见：`docs/work_board.md`。新增 stretch 分配表见：`docs/stretch_issue_assignment_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`，PR review 合并标准见 `docs/pr_review_rubric.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/time_recognition_lag_handoff.md`、`docs/time_micro_annotations.md`、`docs/venue_field_handoff.md`、`docs/venue_year_case_studies.md`、`docs/topic_evolution_handoff.md`、`docs/evidence_cards_top12.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md`、`docs/final_presentation_blueprint.md`、`docs/slide_visual_consistency_audit.md`、`docs/live_demo_fallback_script.md`、`docs/final_submission_packaging_checklist.md`、`docs/network_visual_presentation_handoff.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，展示讲稿见 `docs/demo_script.md`，最终整合检查见 `docs/final_qa_checklist.md`；提交前打包可按 `docs/final_submission_packaging_checklist.md` 逐项检查。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
