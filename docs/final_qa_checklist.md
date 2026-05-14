@@ -36,6 +36,7 @@ http://127.0.0.1:8765/index.html
 - [x] 浏览器 console 无 JavaScript error。
 - [x] summary cards 正常渲染。
 - [x] Time / Venue / Topic / Citation / Explorer / Benchmark / Network 模块均有图表或交互组件。
+- [x] Glossary 区已加入页面导航和正文，可快速解释 recognition lag / citation depth / impact breadth / OpenAlex proxy 等术语。
 - [x] Explorer 的 search / sort / field filter / paper list 正常工作。
 - [x] Benchmark Lab 的 percentile bars / interpretation lens / same-field peers 正常工作。
 - [x] B-F 主要模块末尾有 report claim cards，可复制为最终报告发现。
@@ -74,6 +75,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
 - [x] 报告骨架中术语已统一：recognition lag / citation depth / impact breadth / same-field benchmark / OpenAlex proxy。
+- [x] `docs/glossary_metric_explainer.md` 已补齐至少 8 个关键术语、proxy 指标安全说法和展示/报告用词替代表。
 - [ ] 最终报告和展示讲稿中术语一致：recognition lag / citation depth / impact breadth。
 - [ ] 手工补充的工业影响/代表性判断必须有 evidence URL。
 

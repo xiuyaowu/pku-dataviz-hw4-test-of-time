@@ -24,7 +24,7 @@
 
 本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。
 
-需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`；模块与 Top 12 代表论文的证据覆盖审计见 `docs/evidence_coverage_matrix.md`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
+需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；术语速查和 proxy 指标安全讲法见 `docs/glossary_metric_explainer.md`；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`；模块与 Top 12 代表论文的证据覆盖审计见 `docs/evidence_coverage_matrix.md`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
 
 ### 2.1 数据来源与指标口径审计摘要
 
@@ -186,6 +186,8 @@ Network / Visual / Presentation 的集中交付见 `docs/network_visual_presenta
 7. 可视化展示的是模式和线索，不直接证明某个因素导致论文获得长期认可。
 
 ## 7.1 写作口径检查表
+
+术语解释和替代表统一参考：`docs/glossary_metric_explainer.md`。
 
 - [ ] “recognition lag” 写成获奖确认时间间隔，不写成影响产生时间。
 - [ ] “citation depth” 写成引用规模入口，不写成论文重要性的唯一标准。

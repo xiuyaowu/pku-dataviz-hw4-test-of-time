@@ -1,6 +1,6 @@
 # Final Presentation Pack
 
-用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`，答辩问答准备见 `docs/defense_qa_pack.md`，截图/幻灯片视觉一致性检查见 `docs/slide_visual_consistency_audit.md`。
+用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`，答辩问答准备见 `docs/defense_qa_pack.md`，术语和指标安全讲法见 `docs/glossary_metric_explainer.md`，截图/幻灯片视觉一致性检查见 `docs/slide_visual_consistency_audit.md`。
 
 ## Recommended timing: 8–10 minutes
 
@@ -146,6 +146,8 @@ Must mention:
 - OpenAlex coverage
 - award history bias
 - causality boundary
+
+Use `docs/glossary_metric_explainer.md` as the wording source for recognition lag, citation depth, impact breadth, OpenAlex proxy, same-field benchmark, topic label, and evidence-card readiness. The live page also has a Glossary section for quick Q&A reference.
 
 ### Slide 11 / Conclusion
 
