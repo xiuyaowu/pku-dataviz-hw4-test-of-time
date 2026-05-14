@@ -84,7 +84,7 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：D
 
-详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。
+详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。Issue #47 的 contribution archetype taxonomy 见 `docs/research_archetype_taxonomy.md` / `.csv`，可用于把 topic 发现扩写为“可复用算法、建模框架、测量模型、系统/协议、基础理论等贡献形态如何留下来”。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
@@ -99,6 +99,10 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 可选加强段落（#60）：
 
 > 从年代看，Topic evolution 更像“稳定基础层 + 后续应用生态扩展”的迁移故事，而不是旧主题被新主题简单替代。Database / Systems 在 1970s–2000s 都保持可见，说明基础设施、协议和数据管理方法容易成为后续研究的技术基底；1990s–2000s 中 Data Mining / Web、视觉和语言相关主题更明显，则反映大规模数据、互联网和可复用算法范式在后期样本中的上升。这个结论只描述当前 Test-of-Time award seed 中的可见模式，具体代表论文仍需用人工 topic 和 evidence URL 核查。
+
+可选加强段落（#47）：
+
+> Topic labels 回答“论文属于哪个技术方向”，而 contribution archetypes 回答“什么类型的贡献经得起时间检验”。Top 12 代表论文中既有 DBSCAN、SIFT、association rules 这类可复用算法范式，也有 TCP throughput 这类测量模型、AODV 这类协议设计、Network Information Flow 这类基础理论，以及 Graphs over Time 这类经验规律。这个分类不用于排名，而是帮助报告把长期影响解释为可复用工具、模型、系统设计和理论框架的沉淀。
 
 ### 4.4 Citation & Recognition：引用深度、轨迹与影响广度
 

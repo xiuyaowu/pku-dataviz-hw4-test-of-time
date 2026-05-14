@@ -77,11 +77,12 @@ Visual: `docs/demo/topic-evolution.png`
 
 Talking point:
 
-> Topic evolution 把长期影响放回 CS 研究重心变化中看。代表论文卡片则把抽象主题落回具体贡献。
+> Topic evolution 把长期影响放回 CS 研究重心变化中看。代表论文卡片和 archetype taxonomy 则把抽象主题落回具体贡献类型：算法、模型、测量、系统、理论或研究议程。
 
 Need from D:
 
 - 优先从 `docs/evidence_card_presentation_matrix.md` 选择 5–8 张 presentation-ready-cautious 卡。
+- 用 `docs/research_archetype_taxonomy.md` 选择 2–3 个 contribution archetype 作为“什么类型的贡献留下来”的解释。
 - evidence URL
 - 对未列入主展示组的卡片，只作为备选或待复核材料。
 

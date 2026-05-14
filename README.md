@@ -117,6 +117,8 @@ git push -u origin feature/your-name-task
 │   ├── topic_shift_narrative_cases.csv
 │   ├── manual_topic_audit_top12.md
 │   ├── manual_topic_audit_top12.csv
+│   ├── research_archetype_taxonomy.md
+│   ├── research_archetype_taxonomy_top12.csv
 │   ├── citation_impact_handoff.md
 │   ├── citation_trajectory_archetypes.md
 │   ├── impact_breadth_evidence_audit.md
@@ -172,7 +174,7 @@ git push -u origin feature/your-name-task
 
 1. Time：recognition lag 分布和核心时间尺度；
 2. Venue & Field：会议排名和领域分布；Best Paper vs Test of Time 的研究问题转向说明见 `docs/best_paper_vs_test_of_time_framing.md`；
-3. Topic Evolution：主题分布、主题随年份演化和代表论文详情卡；
+3. Topic Evolution：主题分布、主题随年份演化、代表论文详情卡和 contribution archetype 分类；
 4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
 5. Paper Explorer：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
 6. Benchmark Lab：把任意选中论文和全数据集/同领域中位数做 percentile 对比，生成讲解视角；
@@ -182,7 +184,7 @@ git push -u origin feature/your-name-task
 
 B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现拆成 `Finding / Evidence / Boundary` 或 `Case / Evidence / Interpretation`，方便队友直接迁移到最终报告并补充人工案例解释。
 
-Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界；Top 12 代表论文的 topic 人工核查见 `docs/manual_topic_audit_top12.md` 和 `docs/manual_topic_audit_top12.csv`，其中把 API topic 分为 aligned / corrected / needs review。
+Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界；Top 12 代表论文的 topic 人工核查见 `docs/manual_topic_audit_top12.md` 和 `docs/manual_topic_audit_top12.csv`，其中把 API topic 分为 aligned / corrected / needs review。代表论文的 contribution archetype 分类见 `docs/research_archetype_taxonomy.md` 和 `docs/research_archetype_taxonomy_top12.csv`，用于回答“长期留下来的到底是哪类研究贡献”。
 
 Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单；Time 截图中的微注释说明见 `docs/time_micro_annotations.md`，用于解释 dense window、median band 和 long tail 的安全表述。Award lifecycle 补充包见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`，用于把 citation trajectory 按获奖年 `t=0` 对齐，比较获奖前后可见引用窗口，同时保留非因果表述边界。
 
