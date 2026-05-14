@@ -1,6 +1,6 @@
 # Final Presentation Pack
 
-用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`，截图/幻灯片视觉一致性检查见 `docs/slide_visual_consistency_audit.md`。
+用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`，答辩问答准备见 `docs/defense_qa_pack.md`，截图/幻灯片视觉一致性检查见 `docs/slide_visual_consistency_audit.md`。
 
 ## Recommended timing: 8–10 minutes
 
@@ -218,6 +218,7 @@ Each speaker should prepare:
 
 - [ ] Page opens online or locally.
 - [ ] Backup screenshots are available.
+- [ ] Q&A owner rehearses likely data / metric / limitation questions from `docs/defense_qa_pack.md`.
 - [ ] Every speaker knows their exact slide.
 - [ ] No speaker spends time explaining implementation details unless asked.
 - [ ] Limitations are mentioned before Q&A.

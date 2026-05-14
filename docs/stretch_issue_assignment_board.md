@@ -11,7 +11,7 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 | C · Venue / Field | #4 | #57, #58, #50 | Venue-field caveats (`docs/venue_field_imbalance_caveats.md`), venue-year examples (`docs/venue_year_case_studies.md`), Best Paper vs Test-of-Time framing |
 | D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit (`docs/manual_topic_audit_top12.md`), topic-shift narrative (`docs/topic_shift_narrative.md`), research archetype taxonomy |
 | E · Citation / Impact | #6 | #61, #62, #49 | Citation trajectory archetypes (`docs/citation_trajectory_archetypes.md`), impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix (`docs/evidence_coverage_matrix.md`) |
-| F · Visual / Presentation | #7 | #63, #64, #48, #51 | Visual consistency (`docs/slide_visual_consistency_audit.md`), live-demo fallback, defense Q&A, metric glossary |
+| F · Visual / Presentation | #7 | #63, #64, #48, #51 | Visual consistency (`docs/slide_visual_consistency_audit.md`), live-demo fallback, defense Q&A (`docs/defense_qa_pack.md`), metric glossary |
 | Cross-module | #2-#7 | #45 | Story Builder narrative board linking all claims to evidence and owners |
 
 ## How to use this board
