@@ -10,6 +10,7 @@
 - [x] `docs/work_board.md` 已维护 issue 对照表。
 - [x] PR 模板已添加：`.github/pull_request_template.md`。
 - [x] PR review rubric 已添加：`docs/pr_review_rubric.md`，包含 minimum to merge、nice-to-have 和中性 review comment 模板。
+- [x] Contribution evidence ledger 已添加：`docs/contribution_evidence_ledger.md`，把 A-F owner、核心文件、展示/报告位置和最终人工检查项对应起来。
 - [ ] 队友 PR 均已 review / approve / merge。
 - [ ] 每个成员的贡献记录已写入报告或展示材料。
 
@@ -86,6 +87,7 @@ http://127.0.0.1:8765/index.html
 - [ ] 无 `__pycache__` / 临时缓存。
 - [ ] 无本地绝对路径。
 - [ ] README、本地运行方式、分工表保持同步。
+- [ ] `docs/contribution_evidence_ledger.md` 已按最终 PR / 文件状态更新，并能支撑报告贡献说明。
 - [ ] 最终提交前重新运行并更新 `docs/final_integration_dry_run_log.md`，确认所有队友 PR 合并后的页面和数据仍然通过检查。
 - [ ] 提交前按 `docs/data_readiness_matrix.md` 重新运行数据就绪验证，确认核心 CSV 和 manual annotation 模板行数/字段未被误改。
 - [ ] 按 `docs/final_submission_packaging_checklist.md` 检查最终 zip，确认必需文件存在且无 `.git` / `.DS_Store` / `__pycache__`。
