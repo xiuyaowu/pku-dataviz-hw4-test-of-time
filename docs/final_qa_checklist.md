@@ -74,6 +74,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/evidence_coverage_matrix.md` / `.csv` 已把 B-F 模块证据和 Top 12 代表论文覆盖状态分级，标出 final human check、proxy-only 和展示前需补的 gap。
 - [x] `docs/uncertainty_proxy_confidence_playbook.md` 已集中说明 award seed、public metadata、citation depth、impact breadth、topic label、network attribution 和 screenshot fallback 的 confidence / proxy / human-check 边界。
 - [x] `docs/final_case_selection_risk_register.md` / `.csv` 已把 Top 12 代表论文按 report/PPT 使用风险分成 recommended、backup 和 human-check cases，帮助 E 选择更安全的最终案例。
+- [x] `docs/final_evidence_verification_queue.md` / `.csv` 已把 Top 12 代表论文转成 `ready-cautious` / `verify-before-final` / `avoid-without-extra-evidence` 队列，帮助 E 在最终报告/PPT 前逐篇打开 evidence URL 并保留 proxy safe wording。
 - [ ] 最终展示前由队友核查关键论断与 award citation，尤其是未列入展示优先组的备选卡。
 - [ ] `docs/methods_and_limitations.md` 已压缩进最终报告或展示。
 - [x] `docs/presentation_pack.md` 已补齐展示结构；`docs/final_presentation_blueprint.md` 已提供 11 页 PPT 蓝图、speaker notes、截图 fallback 和角色发言边界。最终 PPT 导出仍需人工复制到 slides。

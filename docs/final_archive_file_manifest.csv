@@ -35,6 +35,8 @@ docs/evidence_cards_top12.md,evidence,yes,Representative evidence-card notes for
 docs/evidence_card_presentation_matrix.md,evidence,yes,Presentation-ready vs needs-check evidence-card matrix
 docs/evidence_coverage_matrix.md,evidence,yes,B-F and Top-12 evidence coverage audit
 docs/top12_evidence_coverage_matrix.csv,evidence,yes,Machine-readable Top-12 evidence coverage matrix
+docs/final_evidence_verification_queue.md,evidence,yes,Final human evidence verification queue for Top-12 representative-paper claims
+docs/final_evidence_verification_queue.csv,evidence,yes,Machine-readable final evidence verification queue with ready cautious and avoid buckets
 docs/report/report_skeleton.md,report,yes,Final report skeleton and module findings matrix
 docs/report/contribution_A.md,report,yes,A contribution evidence paragraph and artifact list
 docs/contribution_evidence_ledger.md,report,yes,A-F contribution evidence ledger

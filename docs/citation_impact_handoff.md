@@ -1,6 +1,6 @@
 # E 模块 handoff：Citation & Impact
 
-用途：给 Issue #6 / E 成员一个可直接写报告和展示的 citation depth / trajectory / breadth 分析底稿。这里的数字来自当前 `data/papers_enriched.csv`、`data/citation_trajectories.csv`、`data/citing_breadth_metrics.csv`，最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。Trajectory archetype 候选表见 `docs/citation_trajectory_archetypes.md` / `.csv`；Top 12 breadth 证据分级和安全话术见 `docs/impact_breadth_evidence_audit.md`；metric sensitivity notes 见 `docs/citation_metric_sensitivity_notes.md` / `.csv`，用于比较 citation depth、impact breadth 和 recognition lag 的一致与分歧；模块和 Top 12 代表论文的整体证据覆盖状态见 `docs/evidence_coverage_matrix.md` / `.csv`；不确定性与 proxy-confidence 统一口径见 `docs/uncertainty_proxy_confidence_playbook.md`；最终 report/PPT 选哪些代表案例可按 `docs/final_case_selection_risk_register.md` / `.csv` 做风险筛选。
+用途：给 Issue #6 / E 成员一个可直接写报告和展示的 citation depth / trajectory / breadth 分析底稿。这里的数字来自当前 `data/papers_enriched.csv`、`data/citation_trajectories.csv`、`data/citing_breadth_metrics.csv`，最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。Trajectory archetype 候选表见 `docs/citation_trajectory_archetypes.md` / `.csv`；Top 12 breadth 证据分级和安全话术见 `docs/impact_breadth_evidence_audit.md`；metric sensitivity notes 见 `docs/citation_metric_sensitivity_notes.md` / `.csv`，用于比较 citation depth、impact breadth 和 recognition lag 的一致与分歧；模块和 Top 12 代表论文的整体证据覆盖状态见 `docs/evidence_coverage_matrix.md` / `.csv`；不确定性与 proxy-confidence 统一口径见 `docs/uncertainty_proxy_confidence_playbook.md`；最终 report/PPT 选哪些代表案例可按 `docs/final_case_selection_risk_register.md` / `.csv` 做风险筛选；最后一轮逐篇 evidence URL 和贡献表述检查见 `docs/final_evidence_verification_queue.md` / `.csv`。
 
 ## 1. 模块研究问题
 
@@ -87,3 +87,4 @@ Depth × breadth 的四象限能把长期影响拆成不同形态。当前四象
 - [ ] 按 `docs/uncertainty_proxy_confidence_playbook.md` 复核最终报告/PPT 的 confidence 口径：citation depth、impact breadth、topic label、network attribution 和 screenshot fallback 不写成完整事实或因果解释。
 - [ ] 按 `docs/final_case_selection_risk_register.md` 先选 `low` / `medium` 风险案例；如果使用 backup case，先完成对应 evidence URL 和贡献表述核查。
 - [ ] 按 `docs/citation_metric_sensitivity_notes.md` 检查最终案例是否只依赖单一指标；如使用 depth / breadth 分歧案例，明确写成 proxy sensitivity 而不是论文优劣判断。
+- [ ] 按 `docs/final_evidence_verification_queue.md` 从 `ready-cautious` 桶优先选择代表论文，并为每个最终命名案例完成一次 evidence URL open-and-wording check。
