@@ -1,6 +1,6 @@
 # D 模块 handoff：Topic Evolution
 
-用途：给 Issue #5 / D 成员一个可直接写报告和展示的 topic evolution 分析底稿。这里的数字来自当前 `data/topic_stats.csv`、`data/topic_year_stats.csv`、`data/papers_enriched.csv` 和 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`。Top 12 代表论文的 API topic vs manual topic 核查见 `docs/manual_topic_audit_top12.md` / `.csv`；contribution archetype 分类见 `docs/research_archetype_taxonomy.md` / `.csv`；topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`。最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。
+用途：给 Issue #5 / D 成员一个可直接写报告和展示的 topic evolution 分析底稿。这里的数字来自当前 `data/topic_stats.csv`、`data/topic_year_stats.csv`、`data/papers_enriched.csv` 和 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`。Top 12 代表论文的 API topic vs manual topic 核查见 `docs/manual_topic_audit_top12.md` / `.csv`；contribution archetype 分类见 `docs/research_archetype_taxonomy.md` / `.csv`；topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`；topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`。最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。
 
 ## 1. 模块研究问题
 

@@ -141,6 +141,8 @@ git push -u origin feature/your-name-task
 │   ├── manual_topic_audit_top12.csv
 │   ├── research_archetype_taxonomy.md
 │   ├── research_archetype_taxonomy_top12.csv
+│   ├── topic_presentation_case_shortlist.md
+│   ├── topic_presentation_case_shortlist.csv
 │   ├── topic_venue_crosswalk.md
 │   ├── topic_venue_crosswalk.csv
 │   ├── citation_impact_handoff.md
@@ -210,7 +212,7 @@ git push -u origin feature/your-name-task
 
 B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现拆成 `Finding / Evidence / Boundary` 或 `Case / Evidence / Interpretation`，方便队友直接迁移到最终报告并补充人工案例解释。
 
-Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界；Top 12 代表论文的 topic 人工核查见 `docs/manual_topic_audit_top12.md` 和 `docs/manual_topic_audit_top12.csv`，其中把 API topic 分为 aligned / corrected / needs review。代表论文的 contribution archetype 分类见 `docs/research_archetype_taxonomy.md` 和 `docs/research_archetype_taxonomy_top12.csv`，用于回答“长期留下来的到底是哪类研究贡献”。Topic × Venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来，同时保留“不是 venue 排名 / 不是官方 topic taxonomy”的边界。
+Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界；Top 12 代表论文的 topic 人工核查见 `docs/manual_topic_audit_top12.md` 和 `docs/manual_topic_audit_top12.csv`，其中把 API topic 分为 aligned / corrected / needs review。代表论文的 contribution archetype 分类见 `docs/research_archetype_taxonomy.md` 和 `docs/research_archetype_taxonomy_top12.csv`，用于回答“长期留下来的到底是哪类研究贡献”。Topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`，把 8 个可展示代表案例连接到人工 topic label、证据 URL、slide use 和 safe wording。Topic × Venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来，同时保留“不是 venue 排名 / 不是官方 topic taxonomy”的边界。
 
 Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单；Time 截图中的微注释说明见 `docs/time_micro_annotations.md`，用于解释 dense window、median band 和 long tail 的安全表述。Award lifecycle 补充包见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`，用于把 citation trajectory 按获奖年 `t=0` 对齐，比较获奖前后可见引用窗口，同时保留非因果表述；publication-era cohort 对照见 `docs/award_era_cohort_comparison.md` / `.csv`，用于解释不同发表年代的 observed recognition window 和 award-history / right-censoring 边界。Time 模块展示 claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，把 dataset span、lag 分布、short / typical / long lag cases 和 lifecycle Q&A 连接到确切数据锚点、safe wording 和 B-owner 人工检查。
 

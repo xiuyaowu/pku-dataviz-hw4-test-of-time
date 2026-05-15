@@ -85,6 +85,7 @@ Need from D:
 
 - 优先从 `docs/evidence_card_presentation_matrix.md` 选择 5–8 张 presentation-ready-cautious 卡。
 - 用 `docs/research_archetype_taxonomy.md` 选择 2–3 个 contribution archetype 作为“什么类型的贡献留下来”的解释。
+- 用 `docs/topic_presentation_case_shortlist.md` / `.csv` 从 8 个 Topic slide-ready 代表案例中挑 3–4 个，并保留 safe wording。
 - evidence URL
 - 对未列入主展示组的卡片，只作为备选或待复核材料。
 
