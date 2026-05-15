@@ -10,6 +10,7 @@ docs/work_board.md,collaboration,yes,Primary issue-to-owner work board
 docs/stretch_issue_assignment_board.md,collaboration,yes,Stretch issue routing back to A-F owner containers
 docs/final_qa_checklist.md,qa,yes,Final repository and presentation QA checklist
 docs/final_submission_packaging_checklist.md,qa,yes,Archive creation and exclusion checklist
+docs/final_submission_readiness_scorecard.md,qa,yes,Final pass/warn/blocker readiness scorecard before archive creation
 docs/final_archive_manifest.md,qa,yes,Human-readable final archive manifest and evidence map
 docs/final_archive_file_manifest.csv,qa,yes,Machine-readable required-file manifest
 docs/final_integration_dry_run_log.md,qa,yes,Latest integration dry-run results and remaining human checks

@@ -83,6 +83,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/final_demo_rehearsal_runbook.md` 已补齐 10 分钟最终彩排路线、speaker handoff、fallback triggers、F/A 检查项和 safe wording 边界。
 - [x] `docs/final_submission_packaging_checklist.md` 已补齐最终打包流程、压缩包结构、archive inspection 命令和在线/离线展示 fallback。
 - [x] `docs/final_archive_manifest.md` / `.csv` 已列出最终 archive 必需文件、推荐文件、排除项和 machine-readable required-file 检查，可作为 Issue #92 的 A-owner 包装证据。
+- [x] `docs/final_submission_readiness_scorecard.md` 已把页面运行、核心数据、report evidence、presentation support、archive packaging 和剩余 human checks 汇总成最终 go/no-go 页面。
 - [x] `docs/final_integration_dry_run_log.md` 已记录一次完整本地 dry run：clean main、HTTP 200、presentation mode、DOM section checks、核心数据行数和 archive exclusion scan。
 - [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料；`docs/network_ecosystem_case_notes.md` / `.csv` 已补充 Issue #88 的 Network 具体案例和 metadata-boundary safe wording；`docs/institution_country_attribution_audit.md` / `.csv` 已补充 Issue #104 的 institution / country metadata coverage、case rows 和安全表述边界。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
@@ -103,6 +104,7 @@ http://127.0.0.1:8765/index.html
 - [ ] 提交前按 `docs/data_readiness_matrix.md` 重新运行数据就绪验证，确认核心 CSV 和 manual annotation 模板行数/字段未被误改。
 - [ ] 按 `docs/final_submission_packaging_checklist.md` 检查最终 zip，确认必需文件存在且无 `.git` / `.DS_Store` / `__pycache__`。
 - [ ] 按 `docs/final_archive_manifest.md` 运行 manifest validation，确认 required 文件没有遗漏。
+- [ ] 按 `docs/final_submission_readiness_scorecard.md` 做最后一次 pass/warn/blocker review，确认 human-owned checks 没有被误写成已完成。
 - [ ] `main` 是最终可提交版本。
 
 - [ ] `docs/stretch_issue_assignment_board.md` 已用于确认 A-F 每个 owner 至少有一个核心 issue 和一个 stretch issue 可做。

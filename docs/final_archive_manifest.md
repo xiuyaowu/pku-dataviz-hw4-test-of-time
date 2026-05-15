@@ -1,6 +1,6 @@
 # Final archive manifest
 
-Purpose: give A and the whole group one fast packaging evidence map before the final coursework upload. Use this with `docs/final_submission_packaging_checklist.md`; the checklist explains how to build and inspect the zip, while this manifest names the files that should survive into the archive.
+Purpose: give A and the whole group one fast packaging evidence map before the final coursework upload. Use this with `docs/final_submission_packaging_checklist.md` and `docs/final_submission_readiness_scorecard.md`; the checklist explains how to build and inspect the zip, the scorecard summarizes pass/warn/blocker readiness, and this manifest names the files that should survive into the archive.
 
 Machine-readable companion: `docs/final_archive_file_manifest.csv`.
 
@@ -18,7 +18,7 @@ Keep the submission archive focused on the runnable D3 page, local data, public 
 | Report support | `docs/report/report_skeleton.md`, `docs/story_builder_board.md`, `docs/final_report_figure_evidence_index.md`, `docs/final_report_claim_bank.md`, module handoff docs, `docs/contribution_evidence_ledger.md` |
 | Presentation support | `docs/presentation_pack.md`, `docs/final_presentation_blueprint.md`, `docs/defense_qa_pack.md`, `docs/live_demo_fallback_script.md`, `docs/demo/*.png` |
 | Data provenance and limitations | `docs/data_dictionary.md`, `docs/data_provenance_audit.md`, `docs/time_data_quality_audit.md`, `docs/evidence_coverage_matrix.md`, `docs/uncertainty_proxy_confidence_playbook.md` |
-| Final QA | `docs/final_qa_checklist.md`, `docs/final_submission_packaging_checklist.md`, this manifest |
+| Final QA | `docs/final_qa_checklist.md`, `docs/final_submission_packaging_checklist.md`, `docs/final_submission_readiness_scorecard.md`, this manifest |
 
 ### Recommended but not blocking
 

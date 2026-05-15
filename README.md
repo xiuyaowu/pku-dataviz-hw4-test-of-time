@@ -100,6 +100,7 @@ git push -u origin feature/your-name-task
 │   ├── slide_visual_consistency_audit.md
 │   ├── live_demo_fallback_script.md
 │   ├── final_submission_packaging_checklist.md
+│   ├── final_submission_readiness_scorecard.md
 │   ├── final_archive_manifest.md
 │   ├── final_archive_file_manifest.csv
 │   ├── final_report_figure_evidence_index.md
