@@ -70,6 +70,7 @@ http://127.0.0.1:8765/index.html
 - [ ] 如时间允许，`docs/stretch_backlog.md` 中 P0 增强板块已认领或明确暂缓。
 - [x] `docs/evidence_cards_top12.md` 中 Top 12 代表论文均有 DOI/论文页/辅助证据链接；`docs/evidence_card_presentation_matrix.md` 已标出 8 张展示优先卡和 4 张需人工复核备选卡。
 - [x] `docs/impact_breadth_evidence_audit.md` 已将 Top 12 impact breadth 案例分为 `safe to say` / `proxy only` / `needs human evidence`，并给出可复制的安全表述。
+- [x] `docs/citation_metric_sensitivity_notes.md` / `.csv` 已把 citation depth、impact breadth 和 recognition lag 的一致/分歧案例整理成 E 模块报告安全表述，避免最终报告依赖单一 proxy。
 - [x] `docs/evidence_coverage_matrix.md` / `.csv` 已把 B-F 模块证据和 Top 12 代表论文覆盖状态分级，标出 final human check、proxy-only 和展示前需补的 gap。
 - [x] `docs/uncertainty_proxy_confidence_playbook.md` 已集中说明 award seed、public metadata、citation depth、impact breadth、topic label、network attribution 和 screenshot fallback 的 confidence / proxy / human-check 边界。
 - [x] `docs/final_case_selection_risk_register.md` / `.csv` 已把 Top 12 代表论文按 report/PPT 使用风险分成 recommended、backup 和 human-check cases，帮助 E 选择更安全的最终案例。

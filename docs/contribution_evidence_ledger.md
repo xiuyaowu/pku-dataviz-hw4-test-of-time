@@ -12,7 +12,7 @@ Use this together with `docs/work_board.md`, `docs/report/report_skeleton.md`, a
 | B | #3 | Time and recognition lag | `data/award_timeline.csv`, `data/recognition_lag_distribution.csv`, `docs/time_recognition_lag_handoff.md`, `docs/recognition_lag_outlier_cases.md`, `docs/time_micro_annotations.md` | Time section: publication-award timeline, lag distribution, short/typical/long cases | Check 2-3 selected paper pages or award citations before final wording |
 | C | #4 | Venue and field distribution | `data/venue_stats.csv`, `data/venue_area_stats.csv`, `docs/venue_field_handoff.md`, `docs/venue_field_imbalance_caveats.md`, `docs/venue_year_case_studies.md`, `docs/venue_year_case_studies.csv` | Venue / field section: concentration, field coverage, venue-year examples | Keep venue counts as dataset coverage, not official venue quality rankings |
 | D | #5 | Topic evolution and representative papers | `data/topic_stats.csv`, `data/topic_year_stats.csv`, `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`, `docs/topic_evolution_handoff.md`, `docs/manual_topic_audit_top12.md`, `docs/topic_shift_narrative.md` | Topic section: top topics, decade shifts, corrected manual-topic examples | Prefer manual-topic labels for Top 12 cases; verify contribution text from evidence URLs |
-| E | #6 | Citation depth, trajectory, and impact breadth | `data/citation_trajectories.csv`, `data/citing_breadth_metrics.csv`, `docs/citation_impact_handoff.md`, `docs/citation_trajectory_archetypes.md`, `docs/impact_breadth_evidence_audit.md`, `docs/evidence_coverage_matrix.md` | Citation / impact section: trajectory archetypes, depth-vs-breadth examples, proxy limitations | State impact breadth as OpenAlex sampled proxy, not complete citation graph or award reason |
+| E | #6 | Citation depth, trajectory, and impact breadth | `data/citation_trajectories.csv`, `data/citing_breadth_metrics.csv`, `docs/citation_impact_handoff.md`, `docs/citation_trajectory_archetypes.md`, `docs/impact_breadth_evidence_audit.md`, `docs/evidence_coverage_matrix.md`, `docs/citation_metric_sensitivity_notes.md` | Citation / impact section: trajectory archetypes, depth-vs-breadth examples, metric sensitivity, proxy limitations | State impact breadth as OpenAlex sampled proxy, not complete citation graph or award reason |
 | F | #7 | Network, visual consistency, and presentation readiness | `data/institution_stats.csv`, `data/country_stats.csv`, `docs/network_visual_presentation_handoff.md`, `docs/presentation_pack.md`, `docs/final_presentation_blueprint.md`, `docs/slide_visual_consistency_audit.md`, `docs/live_demo_fallback_script.md`, `docs/defense_qa_pack.md`, `docs/glossary_metric_explainer.md` | Network section, slide production, Q&A, live-demo fallback | Confirm screenshot crop/readability, speaker notes, and safe wording before class demo |
 
 ## Evidence by workstream
@@ -117,20 +117,23 @@ Evidence files:
 - `docs/impact_breadth_evidence_audit.md` / `.csv`
 - `docs/evidence_coverage_matrix.md` / `.csv`
 - `docs/top12_evidence_coverage_matrix.csv`
+- `docs/citation_metric_sensitivity_notes.md` / `.csv`
 
 Relevant issue / PR evidence:
 - Core owner issue: #6.
-- Stretch issues: #61 citation trajectory archetypes, #62 impact breadth evidence audit, #49 evidence coverage matrix.
+- Stretch issues: #61 citation trajectory archetypes, #62 impact breadth evidence audit, #49 evidence coverage matrix, #116 citation metric sensitivity notes.
 - Merged PRs: #39 citation impact handoff, #68 impact breadth evidence audit, #70 citation trajectory archetypes, #73 evidence coverage matrix.
 
 Report / presentation slot:
 - Separate citation depth, trajectory shape, and breadth proxy.
 - Use evidence coverage matrix to decide which Top 12 paper claims are presentation-ready.
+- Use metric sensitivity notes to explain agreement and mismatch between depth, breadth, and recognition lag.
 
 Remaining checkboxes:
 - [ ] For each selected paper, classify claim strength as safe, proxy-only, or needs human evidence.
 - [ ] Do not describe OpenAlex sampled breadth as a complete citation network.
 - [ ] Keep trajectory archetypes as observed-window categories.
+- [ ] If using a metric-mismatch case, frame it as proxy sensitivity rather than paper quality ranking.
 
 ### F · Network / visual / presentation
 

@@ -115,17 +115,22 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：E
 
-详细 handoff：`docs/citation_impact_handoff.md` 已整理 Citation & Impact 模块的 depth / trajectory / breadth 统一定义、核心统计、四象限代表论文、60 秒展示话术和 OpenAlex proxy 写作边界；Issue #61 的 citation trajectory 分类候选见 `docs/citation_trajectory_archetypes.md` / `.csv`；Issue #110 的 final case-selection risk register 见 `docs/final_case_selection_risk_register.md` / `.csv`，用于在最终 report/PPT 中优先选择低风险代表案例，并标出 backup cases 的人工核查项。
+详细 handoff：`docs/citation_impact_handoff.md` 已整理 Citation & Impact 模块的 depth / trajectory / breadth 统一定义、核心统计、四象限代表论文、60 秒展示话术和 OpenAlex proxy 写作边界；Issue #61 的 citation trajectory 分类候选见 `docs/citation_trajectory_archetypes.md` / `.csv`；Issue #110 的 final case-selection risk register 见 `docs/final_case_selection_risk_register.md` / `.csv`，用于在最终 report/PPT 中优先选择低风险代表案例，并标出 backup cases 的人工核查项；Issue #116 的 citation metric sensitivity notes 见 `docs/citation_metric_sensitivity_notes.md` / `.csv`，用于解释 citation depth、impact breadth 和 recognition lag 何时一致、何时分歧。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 高引用论文经常也是 Test of Time 代表案例，但 citation depth 只能说明被大量引用，不能完整说明“为何经得起时间检验”。 | Top citation papers 包括 DBSCAN 19133、Snakes 17009、SIFT 16147、Association Rules 14771。 | 引用深度可作为影响强度入口，但需要结合方法贡献、应用扩散和 award citation 解释。 | 不同领域引用习惯差异明显，citation count 不能跨领域直接比较价值。 |
 | Finding 2 | 影响广度提供了不同于引用总量的视角：有些论文引用不是最高，但 citing field / institution / country 范围很宽。 | Top breadth：`Graphs over Time` breadth 87.38；`Multitasking without compromise` 86.5；`YAGO` 85.88；`Factorization meets the neighborhood` 84.88。 | depth × breadth 可以区分“在本领域被密集引用”和“跨领域扩散”的不同长期影响形态。 | breadth 来自 OpenAlex 抽样 citing works，是近似指标，不是完整 citation graph。 |
 | Case | 数据库/数据挖掘案例适合说明“方法成为通用工具”的长期影响。 | `Mining Association Rules Between Sets of Items in Large Databases` citation 14771；`Fast Algorithms for Mining Association Rules` citation 9384；`YAGO` breadth 85.88。 | 这些论文可以讲成从具体算法/知识库到后续数据挖掘和 Web 生态的扩散；association rule 两个代表案例已在证据卡中补入 ACM/VLDB 链接。 | 工业影响或基础设施影响必须有 evidence URL 支撑，不能只靠引用数推断。 |
+| Sensitivity | depth、breadth、lag 不总是给出同一种排序。 | `docs/citation_metric_sensitivity_notes.csv` 覆盖 high depth + high breadth、high depth + moderate breadth、moderate depth + high breadth、long recognition lag、proxy-limited examples。 | 报告可把分歧写成“不同 proxy 回答不同问题”，提升 Citation 模块的防守性。 | 不把 metric mismatch 写成论文优劣判断；OpenAlex sampled proxy 不能代表完整引用网络。 |
 
 可扩写段落：
 
 > Citation depth 衡量论文被引用的强度，impact breadth 更接近影响扩散范围。两者结合后，可以区分“在一个社区内被反复引用”和“跨领域扩散”的不同长期影响形态。最终报告应避免把高引用直接写成官方获奖原因，而应把引用曲线、breadth 指标和具体论文贡献结合起来解释。
+
+可选加强段落（#116）：
+
+> Citation metric sensitivity notes 进一步提醒我们，不同指标回答的是不同问题：citation depth 更像引用规模入口，impact breadth 更像公开元数据中的扩散范围，recognition lag 则是奖项确认时间。三者一致时可以作为较稳妥的代表案例；三者分歧时，更适合写成“长期影响有多种表现形态”，而不是把某个单项指标当作论文质量或获奖原因。
 
 ### 4.5 Paper Explorer：证据索引与案例回查
 
