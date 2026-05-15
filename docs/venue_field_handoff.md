@@ -84,13 +84,69 @@ Database 平均 lag 约 10.1 年，SE 约 10.7 年；IR 约 19.8 年，AI 约 18
 | ICCV | Object Recognition from Local Scale-Invariant Features | 1999 | 16147 | 10 | 可连接 CV 高引用、高扩散和方法范式案例。 |
 | SIGMOD/VLDB | Mining Association Rules Between Sets of Items in Large Databases | 1993 | 14771 | 10 | 可连接数据库/数据挖掘如何成为跨场景分析工具。 |
 
-## 5. 可复制报告段落
+## 5. Imbalance caveats and venue-year mini case studies
 
-> Venue & Field 模块显示，Test of Time Award 论文在当前数据中并不是均匀分布在所有会议和领域。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD、VLDB 等 venue 的可见度较高，Database、Networking、IR、Software Engineering 和 CV 是主要观察入口。更准确的解释不是“这些会议或领域更好”，而是这些社区拥有较稳定的论文归档、奖项传统和可追溯的长期影响记录。Field × decade heatmap 进一步提示，不同年代的长期影响记录会随研究社区和技术议题迁移而变化，但这种变化仍受到奖项设立历史和数据覆盖范围的限制。
+Issue #57 的专门说明包见：`docs/venue_field_imbalance_caveats.md`。
 
-## 6. C 模块最终人工检查清单
+这份 caveats packet 把 venue / field 数量集中度单独整理成 report-ready 口径：Top 3 venues 占 97 / 250，Top 6 venues 占 165 / 250，Top 5 venue areas 占 170 / 250。它的核心用途是提醒 C 在报告和 PPT 中把数量榜解释为“当前 award seed 的可见记录密度”，而不是会议质量、领域价值或完整 CS 研究分布。
+
+### Venue-year mini case studies
+
+详细案例包：`docs/venue_year_case_studies.md` / `docs/venue_year_case_studies.csv`；扩展 evidence-card 表见 `docs/venue_year_evidence_cards.md` / `docs/venue_year_evidence_cards.csv`。
+
+这些案例用于把 venue ranking 和 field × decade heatmap 落回具体证据：
+
+| Case | Signal | Presentation use | Safe boundary |
+|---|---|---|---|
+| SIGCOMM 1988 | 6 篇 Networking 论文，平均 lag 18.0 年 | 早期网络协议、路由、DNS、Internet architecture 的密集可见 cluster | 只能说当前 award seed 中可见，不能说完整代表 1988 网络研究史。 |
+| SIGIR 1999 | 3 篇 IR 论文，总引用 6,286 | 检索模型、协同过滤、统计翻译形成同一 venue-year 的多主题线索 | 不写成“SIGIR 最重要年份”，只写成一个适合展示的 IR case。 |
+| ICCV 1999 | 4 篇 CV 论文，总引用 22,233，平均 breadth 62.3 | SIFT、texture synthesis、camera calibration 等方法型论文很适合课堂讲解 | citation / breadth 是 OpenAlex proxy，不是获奖原因证明。 |
+| SIGMOD 1996 | 2 篇 Database 论文，平均 lag 10.0 年 | 对比 Database / Systems 社区较短 recognition window | lag 是 award timing，不等于影响真正产生的速度。 |
+| NSDI 2005 | 2 篇 Systems/Networking 论文，平均 lag 10.0 年 | 展示较新 venue 也能提供 compact Test-of-Time 案例 | 样本小，只适合作为 bridge example。 |
+
+推荐展示策略：最终 PPT 选 2–3 个即可，例如 `SIGCOMM 1988` 说明早期网络 cluster，`ICCV 1999` 说明高引用方法 cluster，`SIGIR 1988` 说明更长回看窗口，`SIGMOD 1996` 或 `NSDI 2005` 说明较短 recognition-lag 对比。若需要更系统的 card 字段、source URL 和 safe wording，可直接使用 `docs/venue_year_evidence_cards.csv`。
+
+### Venue source traceability audit
+
+来源覆盖审计：`docs/venue_source_traceability_audit.md` / `docs/venue_source_traceability_audit.csv`。
+
+这份表按 27 个 venue cluster 汇总 `source_url`、`paper_url`、DOI/OpenAlex 覆盖、年份范围、lag、citation 和 breadth 均值。C 在报告或 PPT 中引用 venue 数量榜时，可以先用它确认该 venue 的数据来源和可讲边界：数量代表当前 Test-of-Time award-history dataset 的可见记录，不是会议质量排名；citation / breadth 是 OpenAlex-derived descriptive proxy，不是获奖原因证明。
+
+最终参考文献和 slide source note 可使用 `docs/source_citation_appendix.md` / `docs/source_citation_appendix.csv`。这份 appendix 把 award seed、paper/DOI pages、OpenAlex metadata、citation/breadth derived tables 和 manual representative evidence 分成不同 source layers，适合在报告 Methods / References 中避免把 proxy 指标和人工证据混写。
+
+### Venue normalization / count guide
+
+数量归一化说明：`docs/venue_normalization_count_guide.md` / `docs/venue_normalization_count_guide.csv`。
+
+这份补充表在 raw venue counts 之外加入 `publication_span_years`、`award_window_years`、`count_per_publication_span_year` 和 `count_per_award_window_year`。它的用途不是制造新的 venue 排名，而是提醒 C 在最终报告/PPT 中解释 denominator：SIGIR、SIGCOMM、ICSE 等 raw count 高，说明它们在当前 award-history data 中可见；FAST、NSDI 等较小 venue 在短窗口内密度高，也只能作为 compact visible cluster 解释，不能推成会议质量结论。
+
+### Topic × venue crosswalk
+
+D/C 联动材料：`docs/topic_venue_crosswalk.md` / `docs/topic_venue_crosswalk.csv`。
+
+这份表按 `venue_area` × `topic_label` 汇总论文数量、venue 数、年份跨度、lag、citation、breadth 和代表论文。C 在解释 field 分布时可以用它补一句“venue area 是 award-community 可见性，topic_label 是技术主题线索”，避免把 Venue & Field 模块和 Topic Evolution 模块讲成两张互不相干的图。最终报告仍需保留 denominator caveat，并且不能把 crosswalk 行写成 venue 质量或 topic 重要性排名。
+
+## 6. Best Paper vs Test of Time framing
+
+Issue #50 的对照材料见：`docs/best_paper_vs_test_of_time_framing.md`。
+
+C 模块推荐用法：
+
+- Best Paper 只作为“发表当下优秀信号”的概念对照；Test of Time 才是当前数据能系统分析的对象。
+- Venue 数量榜写成 retrospective award visibility，不写成 Best Paper count、venue-quality ranking 或完整 CS 研究分布。
+- 如果最终 PPT 需要开场 bridge，可直接使用该文档里的 40 秒讲法和 3 条 contrast bullets。
+
+## 7. 可复制报告段落
+
+> Venue & Field 模块显示，Test of Time Award 论文在当前数据中并不是均匀分布在所有会议和领域。SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD、VLDB 等 venue 的可见度较高，Database、Networking、IR、Software Engineering 和 CV 是主要观察入口。更准确的解释不是“这些会议或领域更好”，而是这些社区拥有较稳定的论文归档、奖项传统和可追溯的长期影响记录。Field × decade heatmap 进一步提示，不同年代的长期影响记录会随研究社区和技术议题迁移而变化，但这种变化仍受到奖项设立历史和数据覆盖范围的限制。为了避免只停留在数量榜，报告可以加入 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 venue-year 案例，把“哪些社区更可见”转化为“哪些具体论文 cluster 支撑这个读法”。如果需要回应 Best Paper framing，应只写成时间尺度对照：Best Paper 关注发表当下的优秀信号，Test of Time Award 关注多年后的长期确认信号；当前数据不支持无 baseline 的 Best Paper 定量比较。
+
+## 8. C 模块最终人工检查清单
 
 - [ ] 打开 2–3 篇代表论文链接，核对题名、venue、年份和一句话贡献。
+- [ ] 若使用 venue 数量榜或 field × decade heatmap，先查看 `docs/venue_source_traceability_audit.csv` 的 source / OpenAlex 覆盖和 safe wording boundary。
+- [ ] 若写最终参考文献或 slide source note，先查看 `docs/source_citation_appendix.csv`，把 award seed、OpenAlex metadata、paper pages 和 manual evidence 分开引用。
+- [ ] 若比较 venue counts，补查 `docs/venue_normalization_count_guide.csv` 的 publication-span / award-window denominator，并在报告或 PPT 中至少写一句 denominator caveat。
+- [ ] 若把 Venue/Field 和 Topic Evolution 联动，先查看 `docs/topic_venue_crosswalk.csv`，只选择 2–3 个代表性交叉行，并保留“当前数据可见交叉”的表述边界。
 - [ ] 如果报告提到某 venue/area 的原因，补一句“当前数据可见分布 / award coverage”边界。
 - [ ] 不使用“官方排名”“最强会议”“最有价值领域”等绝对化表述。
 - [ ] 和 Topic 模块联动时，只说“领域入口”和“主题线索”，不要把 venue_area 等同于论文真实主题。

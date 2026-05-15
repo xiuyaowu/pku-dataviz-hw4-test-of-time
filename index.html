@@ -18,6 +18,7 @@
       <a href="#explorer">Explorer</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#storyboard">Storyboard</a>
+      <a href="#glossary">Glossary</a>
       <a href="#network">Network</a>
     </nav>
     <button id="presentation-toggle" class="presentation-toggle" type="button" aria-pressed="false" title="Toggle projector-friendly presentation mode with P">
@@ -218,6 +219,55 @@
         </div>
         <div id="storyboard-grid" class="storyboard-grid" aria-label="Report and presentation storyboard"></div>
       </div>
+    </section>
+
+    <section id="glossary" class="section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">Shared language</p>
+          <h2>展示和报告中怎样解释这些指标？</h2>
+        </div>
+        <p class="reading-note">Use this as a quick metric explainer during Q&A: proxy metrics are useful visual signals, but paper-level claims still need evidence cards or award-citation checks.</p>
+      </div>
+      <div class="glossary-grid" aria-label="Metric glossary and safe wording">
+        <article class="glossary-card">
+          <h3>Recognition lag</h3>
+          <p>发表年份到获奖年份的间隔，说明“正式回看确认”花了多久。</p>
+          <b>Safe wording</b>
+          <span>Measures delayed formal recognition, not when impact first appeared.</span>
+        </article>
+        <article class="glossary-card">
+          <h3>Citation depth</h3>
+          <p>公开学术元数据中的引用规模，用来观察后续研究吸收强度。</p>
+          <b>Safe wording</b>
+          <span>A useful influence signal, not the only definition of importance.</span>
+        </article>
+        <article class="glossary-card">
+          <h3>Impact breadth</h3>
+          <p>基于 OpenAlex citing works 抽样估计跨领域、机构、国家和年份的扩散范围。</p>
+          <b>Safe wording</b>
+          <span>An OpenAlex sampled proxy for diffusion, not a complete citation graph.</span>
+        </article>
+        <article class="glossary-card">
+          <h3>Same-field benchmark</h3>
+          <p>把选中论文和同领域/同主题邻近论文比较，减少跨领域引用习惯误读。</p>
+          <b>Safe wording</b>
+          <span>A contextual comparison within this dataset, not a universal ranking.</span>
+        </article>
+        <article class="glossary-card">
+          <h3>Topic label</h3>
+          <p>由 API concepts 和规则归一化得到的初步主题标签，代表论文需要人工核查。</p>
+          <b>Safe wording</b>
+          <span>Good for trend visualization; final case claims should use manual topic checks.</span>
+        </article>
+        <article class="glossary-card">
+          <h3>Evidence card</h3>
+          <p>把代表论文的贡献、证据链接、展示状态和人工检查要求集中成一张卡。</p>
+          <b>Safe wording</b>
+          <span>Use presentation-ready cards first; keep human-check cards cautious.</span>
+        </article>
+      </div>
+      <p class="glossary-footer">Full glossary: <a href="docs/glossary_metric_explainer.md">docs/glossary_metric_explainer.md</a></p>
     </section>
 
     <section id="network" class="section">

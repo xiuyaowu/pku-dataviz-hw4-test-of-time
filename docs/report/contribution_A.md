@@ -65,6 +65,9 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - 检查是否出现 `Data loading failed`、空图、tooltip 报错、样式溢出或数据路径错误。
 - 检查每个模块是否至少有 2-3 条可写进报告/展示的发现。
 - 统一术语、图表标题、caption、reading notes、限制说明和最终报告口径。
+- 维护 `docs/final_integration_dry_run_log.md`，记录 clean main、本地服务器、presentation mode、DOM section checks、核心数据行数、archive exclusion scan 和最终剩余人工核查项。
+- 维护 `docs/contribution_evidence_ledger.md`，把 A-F owner issue、核心文件、报告/展示位置、PR 证据和最终人工检查项集中到一个可引用的贡献证据表。
+- 维护 `docs/final_submission_readiness_scorecard.md`，把页面、数据、报告证据、展示材料、archive packaging 和剩余 human checks 汇总成最终 pass/warn/blocker review。
 - 最终提交前按 `docs/final_qa_checklist.md` 做全站检查。
 
 ### 8. 高分增强功能与持续迭代
@@ -91,6 +94,9 @@ A 的职责包含组织，但重心是承担项目的“系统底座 + 质量闸
 - `docs/demo_script.md`
 - `docs/feature_iteration_system.md`
 - `docs/final_qa_checklist.md`
+- `docs/final_integration_dry_run_log.md`
+- `docs/final_submission_readiness_scorecard.md`
+- `docs/contribution_evidence_ledger.md`
 - `docs/report/report_skeleton.md`
 - `docs/report/contribution_A.md`
 - `docs/demo/*.png`

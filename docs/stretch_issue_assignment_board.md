@@ -6,13 +6,13 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 
 | Owner | Core issue | New stretch issues | Main deliverable |
 |---|---:|---|---|
-| A · Integration / QA | #2 | #53, #54, #52 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger |
-| B · Time | #3 | #55, #56, #46 | Recognition-lag outliers, Time annotations, award lifecycle view |
-| C · Venue / Field | #4 | #57, #58, #50 | Venue-field caveats, venue-year examples, Best Paper vs Test-of-Time framing |
-| D · Topic Evolution | #5 | #59, #60, #47 | Manual topic audit, topic-shift narrative, research archetype taxonomy |
-| E · Citation / Impact | #6 | #61, #62, #49 | Citation trajectory archetypes, impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix |
-| F · Visual / Presentation | #7 | #63, #64, #48, #51 | Visual consistency (`docs/slide_visual_consistency_audit.md`), live-demo fallback, defense Q&A, metric glossary |
-| Cross-module | #2-#7 | #45 | Story Builder narrative board linking all claims to evidence and owners |
+| A · Integration / QA | #2 | #53, #54, #52, #92, #94, #108, #122 | Final integration dry run, PR review rubric (`docs/pr_review_rubric.md`), contribution evidence ledger, final archive manifest (`docs/final_archive_manifest.md`), final report figure/evidence index (`docs/final_report_figure_evidence_index.md`), final report claim bank (`docs/final_report_claim_bank.md`), final submission readiness scorecard (`docs/final_submission_readiness_scorecard.md`) |
+| B · Time | #3 | #55, #56, #46, #98, #112, #118 | Recognition-lag outliers (`docs/recognition_lag_outlier_cases.md`), Time screenshot annotations (`docs/time_micro_annotations.md`), award lifecycle pre/post citation packet (`docs/award_lifecycle_analysis.md`), Time demo claim cards (`docs/time_module_demo_claim_cards.md`), award-era cohort comparison (`docs/award_era_cohort_comparison.md`), Time data quality audit (`docs/time_data_quality_audit.md`) |
+| C · Venue / Field | #4 | #57, #58, #50, #90, #96, #106, #128 | Venue-field caveats (`docs/venue_field_imbalance_caveats.md`), venue-year examples (`docs/venue_year_case_studies.md`), venue-year evidence cards (`docs/venue_year_evidence_cards.md`), Best Paper vs Test-of-Time framing (`docs/best_paper_vs_test_of_time_framing.md`), venue source traceability audit (`docs/venue_source_traceability_audit.md`), venue normalization/count guide (`docs/venue_normalization_count_guide.md`), final source citation appendix (`docs/source_citation_appendix.md`) |
+| D · Topic Evolution | #5 | #59, #60, #47, #100, #114, #120 | Manual topic audit (`docs/manual_topic_audit_top12.md`), topic-shift narrative (`docs/topic_shift_narrative.md`), research archetype taxonomy (`docs/research_archetype_taxonomy.md`), topic presentation case shortlist (`docs/topic_presentation_case_shortlist.md`), topic × venue crosswalk (`docs/topic_venue_crosswalk.md`), topic-label consistency check (`docs/topic_label_consistency_check.md`) |
+| E · Citation / Impact | #6 | #61, #62, #49, #86, #110, #116, #124 | Citation trajectory archetypes (`docs/citation_trajectory_archetypes.md`), impact breadth audit (`docs/impact_breadth_evidence_audit.md`), evidence coverage matrix (`docs/evidence_coverage_matrix.md`), uncertainty / proxy-confidence playbook (`docs/uncertainty_proxy_confidence_playbook.md`), final case-selection risk register (`docs/final_case_selection_risk_register.md`), citation metric sensitivity notes (`docs/citation_metric_sensitivity_notes.md`), final evidence verification queue (`docs/final_evidence_verification_queue.md`) |
+| F · Visual / Presentation | #7 | #63, #64, #48, #51, #88, #102, #104, #126 | Visual consistency (`docs/slide_visual_consistency_audit.md`), live-demo fallback, defense Q&A (`docs/defense_qa_pack.md`), metric glossary (`docs/glossary_metric_explainer.md` + page Glossary section), Network ecosystem cases (`docs/network_ecosystem_case_notes.md`), final demo rehearsal runbook (`docs/final_demo_rehearsal_runbook.md`), institution/country attribution audit (`docs/institution_country_attribution_audit.md`), keyboard-accessible D3 marks for demo/review (`src/app.js`, `src/styles.css`) |
+| Cross-module | #2-#7 | #45 | Story Builder narrative board (`docs/story_builder_board.md`) linking all claims to evidence, boundaries, and owners |
 
 ## How to use this board
 
@@ -23,12 +23,13 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 
 ## Suggested priority order
 
-1. #45 Story Builder: makes the final report/PPT coherent.
-2. #49 Evidence coverage matrix: exposes the highest-value manual gaps.
-3. #48 Defense Q&A: prepares answers for teacher questions.
-4. #47 / #61 / #55: gives D/E/B stronger analytical findings.
-5. #63 / #64: reduces presentation risk.
-6. #52 / #53 / #54: makes contribution and integration evidence easy to show.
+1. #45 Story Builder: `docs/story_builder_board.md` makes the final report/PPT coherent and gives B-F owners claim rows to verify.
+2. #49 Evidence coverage matrix, #86 uncertainty playbook, #108 final report claim bank, #110 final case-selection risk register, #116 citation metric sensitivity notes, #122 final submission readiness scorecard, and #124 final evidence verification queue: expose manual gaps, give the team safe proxy-confidence wording, convert evidence docs into copy-ready final report claims, help E choose safer representative cases without over-relying on one metric, give A one final pass/warn/blocker review page, and turn Top 12 paper cases into a last human URL-check queue.
+3. #90 Venue source traceability audit, #96 venue normalization/count guide, #106 venue-year evidence cards, and #128 source citation appendix: gives C provenance, denominator-aware language, concrete report/PPT cases, and final-reference source layers for venue-count and field-distribution defense.
+4. #48 Defense Q&A: prepares answers for teacher questions.
+5. #47 / #100 / #120 / #61 / #55 / #56 / #60 / #98 / #112 / #118: gives D/E/B stronger analytical findings, topic-to-venue bridge material, topic-label consistency checks, topic-shift narrative material, screenshot-ready explanations, Time cohort-comparison context, and Time data-quality boundaries.
+6. #63 / #64 / #102 / #126: reduces presentation risk, gives F a concrete live-demo rehearsal route, and makes the main SVG marks keyboard focusable for review/demo accessibility.
+7. #94 Final report figure/evidence index: use it before writing slides/report paragraphs so every chart claim points to a screenshot, data file, owner, and safe wording boundary.
 
 ## Public wording rule
 

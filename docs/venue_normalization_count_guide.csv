@@ -1,0 +1,28 @@
+venue,venue_area,paper_count,raw_count_rank,first_publication_year,last_publication_year,publication_span_years,count_per_publication_span_year,pub_span_normalized_rank,first_award_year,last_award_year,award_window_years,count_per_award_window_year,award_window_normalized_rank,avg_recognition_lag,avg_citation_count,avg_impact_breadth_score,safe_wording_boundary
+SIGIR,IR,35,1,1980,2006,27,1.296,4,2014,2018,5,7.000,1,19.8,951.1,53.6,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+SIGCOMM,Networking,33,2,1974,2008,35,0.943,21,2006,2018,13,2.538,3,15.2,1284.8,52.8,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+ICSE,Software Engineering,29,3,1975,2007,33,0.879,23,1989,2017,29,1.000,15,10.7,333.0,57.0,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+ICCV,CV,24,4,1987,2005,19,1.263,5,2009,2017,9,2.667,2,16.2,3314.9,62.4,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+SIGMOD,Database,24,5,1988,2008,21,1.143,6,1999,2018,20,1.200,7,10.2,1340.3,56.8,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+VLDB,Database,20,6,1985,2004,20,1.000,18,1995,2014,20,1.000,23,10.0,1562.5,56.4,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+AAAI,AI,19,7,1980,2000,21,0.905,22,1999,2018,20,0.950,26,18.6,585.1,55.6,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+OOPSLA,Programming Languages,14,8,1987,2007,21,0.667,24,2007,2017,11,1.273,6,11.7,623.1,58.1,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+ICDM,DM/Web,8,9,2001,2008,8,1.000,11,2010,2017,8,1.000,13,9.0,1162.4,63.0,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+FAST,Systems,7,10,2002,2004,3,2.333,1,2012,2018,7,1.000,11,12.3,541.7,51.4,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+NSDI,Systems/Networking,7,11,2004,2008,5,1.400,3,2014,2018,5,1.400,5,10.0,833.6,58.4,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+USENIX Security,Security,6,12,1998,2006,9,0.667,25,2013,2018,6,1.000,22,13.7,1101.2,44.4,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+KDD,DM/Web,5,13,1996,2008,13,0.385,27,2014,2018,5,1.000,19,12.6,5889.6,74.1,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+CCR,Networking,4,14,1996,2005,10,0.400,26,2007,2015,9,0.444,27,10.2,757.8,62.2,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+EMNLP,NLP,2,15,2002,2002,1,2.000,2,2018,2018,1,2.000,4,16.0,2540.0,64.1,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+ICML,ML,2,16,2007,2008,2,1.000,12,2017,2018,2,1.000,14,10.0,3583.0,64.1,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+ACL,CS,1,17,2002,2002,1,1.000,7,2018,2018,1,1.000,8,16.0,542.0,71.8,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+ACM MobiCom,CS,1,18,2002,2002,1,1.000,8,2018,2018,1,1.000,9,16.0,8135.0,75.9,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+ACM SenSys,CS,1,19,2006,2006,1,1.000,9,2018,2018,1,1.000,10,12.0,225.0,77.0,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+HPCA,Architecture,1,20,1999,1999,1,1.000,10,2018,2018,1,1.000,12,19.0,297.0,49.4,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+IEEE Personal Communications,CS,1,21,2001,2001,1,1.000,13,2018,2018,1,1.000,16,17.0,2415.0,75.1,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+IEEE Transactions on Information Theory,CS,1,22,2000,2000,1,1.000,14,2018,2018,1,1.000,17,18.0,7857.0,66.4,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+IMC,Networking,1,23,2007,2007,1,1.000,15,2017,2017,1,1.000,18,10.0,3073.0,60.0,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+NIPS,ML,1,24,2007,2007,1,1.000,16,2017,2017,1,1.000,20,10.0,2663.0,69.2,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+Sixth Data Comm.Symposium,CS,1,25,1979,1979,1,1.000,17,2006,2006,1,1.000,21,27.0,22.0,41.1,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+WMCSA,CS,1,26,1999,1999,1,1.000,19,2018,2018,1,1.000,24,19.0,10309.0,44.2,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.
+WWW,Web,1,27,2007,2007,1,1.000,20,2018,2018,1,1.000,25,11.0,1186.0,85.9,Award-history visibility within this Test-of-Time dataset; not a venue quality ranking.

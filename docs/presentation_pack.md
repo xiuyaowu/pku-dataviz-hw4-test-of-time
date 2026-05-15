@@ -1,6 +1,6 @@
 # Final Presentation Pack
 
-用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`，截图/幻灯片视觉一致性检查见 `docs/slide_visual_consistency_audit.md`。
+用途：课堂展示前，把网页、截图、每个人的发言和备用材料统一起来。当前版本是可直接改成 PPT 的结构草稿；逐页可粘贴版本见 `docs/final_presentation_blueprint.md`，最终彩排路线见 `docs/final_demo_rehearsal_runbook.md`，答辩问答准备见 `docs/defense_qa_pack.md`，术语和指标安全讲法见 `docs/glossary_metric_explainer.md`，截图/幻灯片视觉一致性检查见 `docs/slide_visual_consistency_audit.md`。
 
 ## Recommended timing: 8–10 minutes
 
@@ -13,7 +13,7 @@
 | Citation / Impact | E | 90s | 高引用不是全部，citation depth 和 impact breadth 描述不同类型的长期影响。 | `docs/demo/citation-and-impact.png` |
 | Paper Explorer | A or D | 50s | 可检索证据库把统计发现落回具体论文，便于展示和答疑。 | `docs/demo/explorer-evidence-index.png` |
 | Benchmark Lab | A or D | 50s | 选中论文后展示 percentile 和解释视角，回答“这篇强在哪里”。 | `docs/demo/benchmark-lab.png` |
-| Network | F | 70s | 长期影响也沉淀在机构、国家/地区和学术共同体结构中。 | `docs/demo/network-diffusion.png` |
+| Network | F | 70s | 长期影响也沉淀在机构、国家/地区和学术共同体结构中；具体案例可从 `docs/network_ecosystem_case_notes.md` 选择，metadata 覆盖和安全表述按 `docs/institution_country_attribution_audit.md` 复核。 | `docs/demo/network-diffusion.png` |
 | Methods / Limitations | A or F | 60s | 数据可信但有边界：award history、metadata coverage、sampled breadth。 | methods slide |
 | Conclusion | A | 40s | 时间、主题、引用、证据案例、单篇基准和网络共同刻画“经得起时间检验”。 | summary slide |
 
@@ -27,7 +27,7 @@ Subtitle: Visualizing Long-Term Impact in Computer Science
 
 Talking point:
 
-> 我们关注论文当年热度之外的长期确认：哪些研究在多年后仍然被学术共同体重新评价为重要。
+> 我们关注论文当年热度之外的长期确认：Best Paper 更像发表当下的优秀信号，而 Test of Time Award 追问多年后哪些研究仍被重新评价为重要。
 
 ### Slide 2 / Data and question
 
@@ -41,18 +41,21 @@ Talking point:
 
 > 核心问题是：一篇 CS 论文在多年后仍被认为重要，通常具有什么共同特征？
 
+Opening contrast source: `docs/best_paper_vs_test_of_time_framing.md` gives a 40-second safe wording paragraph and 3 contrast bullets. Use it qualitatively only unless a complete Best Paper baseline is later added.
+
 ### Slide 3 / Time
 
 Visual: `docs/demo/time-and-timeline.png`
 
 Talking point:
 
-> Recognition lag 展示了长期影响被正式确认的时间尺度。它提醒我们，Test of Time 关注的是延迟确认，而不是即时热度。
+> Recognition lag 展示了长期影响被正式确认的时间尺度。它提醒我们，Test of Time 关注的是延迟确认，而不是即时热度。具体数据锚点和安全讲法可按 `docs/time_module_demo_claim_cards.md` 选择。
 
 Need from B:
 
 - 典型 lag 区间
 - 最短/最长/典型 lag 代表论文
+- 从 `docs/time_module_demo_claim_cards.md` 选择 3-4 张 claim cards，保留 lifecycle 非因果边界
 
 ### Slide 4 / Venue & Field
 
@@ -62,9 +65,12 @@ Talking point:
 
 > Venue 和 field 分布展示哪些学术共同体更常通过 Test of Time Award 记录长期影响，但这不是会议排名，还要结合设奖历史和覆盖范围。
 
+Optional bridge: mention that this is a retrospective award visibility map, not a Best Paper count or venue-quality ranking; see `docs/best_paper_vs_test_of_time_framing.md`.
+
 Need from C:
 
 - Top venues / fields
+- 从 `docs/venue_year_evidence_cards.md` 选择 2-3 个 venue-year cards，例如 SIGCOMM 1988、ICCV 1999、SIGIR 1999、SIGMOD 1996 或 NSDI 2005
 - 1 条限制说明
 
 ### Slide 5 / Topic Evolution
@@ -73,11 +79,13 @@ Visual: `docs/demo/topic-evolution.png`
 
 Talking point:
 
-> Topic evolution 把长期影响放回 CS 研究重心变化中看。代表论文卡片则把抽象主题落回具体贡献。
+> Topic evolution 把长期影响放回 CS 研究重心变化中看。代表论文卡片和 archetype taxonomy 则把抽象主题落回具体贡献类型：算法、模型、测量、系统、理论或研究议程。
 
 Need from D:
 
 - 优先从 `docs/evidence_card_presentation_matrix.md` 选择 5–8 张 presentation-ready-cautious 卡。
+- 用 `docs/research_archetype_taxonomy.md` 选择 2–3 个 contribution archetype 作为“什么类型的贡献留下来”的解释。
+- 用 `docs/topic_presentation_case_shortlist.md` / `.csv` 从 8 个 Topic slide-ready 代表案例中挑 3–4 个，并保留 safe wording。
 - evidence URL
 - 对未列入主展示组的卡片，只作为备选或待复核材料。
 
@@ -146,6 +154,8 @@ Must mention:
 - OpenAlex coverage
 - award history bias
 - causality boundary
+
+Use `docs/glossary_metric_explainer.md` as the wording source for recognition lag, citation depth, impact breadth, OpenAlex proxy, same-field benchmark, topic label, and evidence-card readiness. The live page also has a Glossary section for quick Q&A reference.
 
 ### Slide 11 / Conclusion
 
@@ -218,6 +228,7 @@ Each speaker should prepare:
 
 - [ ] Page opens online or locally.
 - [ ] Backup screenshots are available.
+- [ ] Q&A owner rehearses likely data / metric / limitation questions from `docs/defense_qa_pack.md`.
 - [ ] Every speaker knows their exact slide.
 - [ ] No speaker spends time explaining implementation details unless asked.
 - [ ] Limitations are mentioned before Q&A.

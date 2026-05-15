@@ -10,6 +10,7 @@
 - [x] `docs/work_board.md` 已维护 issue 对照表。
 - [x] PR 模板已添加：`.github/pull_request_template.md`。
 - [x] PR review rubric 已添加：`docs/pr_review_rubric.md`，包含 minimum to merge、nice-to-have 和中性 review comment 模板。
+- [x] Contribution evidence ledger 已添加：`docs/contribution_evidence_ledger.md`，把 A-F owner、核心文件、展示/报告位置和最终人工检查项对应起来。
 - [ ] 队友 PR 均已 review / approve / merge。
 - [ ] 每个成员的贡献记录已写入报告或展示材料。
 
@@ -36,8 +37,10 @@ http://127.0.0.1:8765/index.html
 - [x] 浏览器 console 无 JavaScript error。
 - [x] summary cards 正常渲染。
 - [x] Time / Venue / Topic / Citation / Explorer / Benchmark / Network 模块均有图表或交互组件。
+- [x] Glossary 区已加入页面导航和正文，可快速解释 recognition lag / citation depth / impact breadth / OpenAlex proxy 等术语。
 - [x] Explorer 的 search / sort / field filter / paper list 正常工作。
 - [x] Benchmark Lab 的 percentile bars / interpretation lens / same-field peers 正常工作。
+- [x] 主 SVG 交互 marks 已加入 keyboard focus、`role="button"` 和 `aria-label`；最终展示前可用 Tab + Enter/Space 抽查 timeline / bar / scatter / breadth marks。
 - [x] B-F 主要模块末尾有 report claim cards，可复制为最终报告发现。
 - [ ] 最终提交前用 presentation mode 备份关键页面截图：`http://127.0.0.1:8765/index.html?present=1`，或进入页面后按 `P`。
 
@@ -49,10 +52,19 @@ http://127.0.0.1:8765/index.html
 - [x] 数据来源和指标局限在 README/footer 中有说明。
 - [ ] 队友补充后的发现需要避免过度因果解释。
 - [x] `docs/report/report_skeleton.md` 已有每个模块的 draft findings matrix：2-3 条发现、至少 1 个代表案例、1 条限制说明。
-- [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界，可作为 Issue #4 的验收材料。
-- [x] `docs/topic_evolution_handoff.md` 已补齐 D 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、展示话术和 topic label 边界，可作为 Issue #5 的阶段性验收材料。
+- [x] `docs/story_builder_board.md` 已将 Time / Venue / Topic / Citation / Explorer / Benchmark / Network 串成 10 条 report-ready claim，并为每条 claim 标出 evidence source、owner issue、safe wording boundary 和最终人工检查项。
+- [x] `docs/final_report_figure_evidence_index.md` / `.csv` 已将每个主要 D3 模块映射到截图、数据文件、supporting docs、报告段落、owner 和 safe wording boundary。
+- [x] `docs/final_report_claim_bank.md` / `.csv` 已把 A-F 最安全的最终报告论断整理成 claim bank，逐条映射 owner、报告章节、证据来源、safe wording boundary 和剩余人工检查。
+- [x] `docs/award_lifecycle_analysis.md` 已补充获奖年前后 citation-window 指标、相对获奖年汇总表和非因果表述边界，可作为 B Time 与 E Citation 的连接材料。
+- [x] `docs/venue_field_handoff.md` 已补齐 C 模块的 venue / area 核心统计、field × decade 读法、代表论文候选和避免过度解释的写作边界；`docs/venue_field_imbalance_caveats.md` 已补齐 Issue #57 的 Top venue / field 集中度解释、3 条 safe explanation bullets 和 copy-ready caveat paragraph；`docs/venue_source_traceability_audit.md` / `.csv` 已补齐 Issue #90 的 venue-level 来源覆盖、OpenAlex 覆盖和 safe wording boundary；`docs/venue_normalization_count_guide.md` / `.csv` 已补齐 Issue #96 的 venue count denominator 口径，可作为 Issue #4 的阶段性验收材料。
+- [x] `docs/best_paper_vs_test_of_time_framing.md` 已补齐 Issue #50 的 Best Paper vs Test of Time 定性对照、报告段落、PPT 40 秒讲法和 safe wording；最终只作为研究问题转向说明，不作为无 baseline 的定量比较。
+- [x] `docs/venue_year_case_studies.md` / `.csv` 已补齐 Issue #58 的 Venue-year mini case studies，覆盖 SIGCOMM 1988、SIGIR 1999、ICCV 1999、SIGMOD 1996、NSDI 2005；`docs/venue_year_evidence_cards.md` / `.csv` 已补齐 Issue #106 的 8 张 report/PPT evidence cards，补充 source URL、safe wording 和 final human-check 字段；最终报告使用前仍需人工核查选中案例的 award citation / 贡献表述。
+- [x] `docs/topic_evolution_handoff.md` 已补齐 D 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、展示话术和 topic label 边界，可作为 Issue #5 的阶段性验收材料；`docs/manual_topic_audit_top12.md` / `.csv` 已补齐 Issue #59 的 Top 12 API topic vs manual topic audit；`docs/topic_shift_narrative.md` / `.csv` 已补齐 Issue #60 的 decade-level topic-shift narrative、代表论文候选和安全写作边界；`docs/research_archetype_taxonomy.md` / `.csv` 已补齐 Issue #47 的 Top 12 contribution archetype 分类；`docs/topic_presentation_case_shortlist.md` / `.csv` 已补齐 Issue #114 的 Topic slide/report 代表案例 shortlist；`docs/topic_venue_crosswalk.md` / `.csv` 已补齐 Issue #100 的 topic × venue-area 交叉表；`docs/topic_label_consistency_check.md` / `.csv` 已补齐 Issue #120 的 automatic topic 与 manual audit 一致性 review queue。最终报告使用前仍需人工核查 evidence URL，并避免把交叉行或 topic label 写成 venue 排名、topic 重要性排名或官方 taxonomy。
 - [x] `docs/citation_impact_handoff.md` 已补齐 E 模块的 citation depth / trajectory / impact breadth 统计、四象限代表案例、展示话术和 OpenAlex proxy 边界，可作为 Issue #6 的验收材料。
+- [x] `docs/citation_trajectory_archetypes.md` / `.csv` 已补齐 Issue #61 的 citation trajectory archetype 候选表，最终报告使用前仍需人工核查选中案例的 evidence URL。
+- [x] `docs/recognition_lag_outlier_cases.md` / `.csv` 已补齐 Issue #55 的 Time outlier cases，覆盖 short / typical / long lag、展示话术和 safe wording；`docs/time_micro_annotations.md` 已补齐 Issue #56 的 Time 截图微注释、dense / median / long-tail 讲法和限制边界；`docs/time_module_demo_claim_cards.md` / `.csv` 已补齐 Issue #98 的 Time 展示 claim cards、数据锚点和 safe wording；`docs/award_era_cohort_comparison.md` / `.csv` 已补齐 Issue #112 的 publication-era cohort 对照，用于解释 observed recognition window 和 award-history / right-censoring 边界；`docs/time_data_quality_audit.md` / `.csv` 已补齐 Issue #118 的 Time 数据质量审计，确认 timing metadata 覆盖、source coverage 和 lag sanity check；最终报告使用前仍需人工核查 2-3 个选中案例的 award citation。
 - [x] `docs/data_provenance_audit.md` 已统一 award seed / public metadata / derived metrics / manual annotation 的来源边界。
+- [x] `docs/source_citation_appendix.md` / `.csv` 已把 award seed、paper/DOI pages、OpenAlex metadata、citation/breadth derived tables 和 manual evidence 分成 final-report source layers；最终参考文献需按这些层级分开写。
 - [x] `docs/data_readiness_matrix.md` 已列出核心数据文件、行数、模块用途、必备字段和提交前验证命令。
 - [x] citation depth、impact breadth、institution/country counts 已在 data dictionary、methods 和 report skeleton 中写成近似指标而非官方评价。
 - [ ] B-F 已人工核查各自模块的代表案例、贡献解释和 evidence URL。
@@ -60,16 +72,28 @@ http://127.0.0.1:8765/index.html
 - [ ] 如时间允许，`docs/stretch_backlog.md` 中 P0 增强板块已认领或明确暂缓。
 - [x] `docs/evidence_cards_top12.md` 中 Top 12 代表论文均有 DOI/论文页/辅助证据链接；`docs/evidence_card_presentation_matrix.md` 已标出 8 张展示优先卡和 4 张需人工复核备选卡。
 - [x] `docs/impact_breadth_evidence_audit.md` 已将 Top 12 impact breadth 案例分为 `safe to say` / `proxy only` / `needs human evidence`，并给出可复制的安全表述。
+- [x] `docs/citation_metric_sensitivity_notes.md` / `.csv` 已把 citation depth、impact breadth 和 recognition lag 的一致/分歧案例整理成 E 模块报告安全表述，避免最终报告依赖单一 proxy。
+- [x] `docs/evidence_coverage_matrix.md` / `.csv` 已把 B-F 模块证据和 Top 12 代表论文覆盖状态分级，标出 final human check、proxy-only 和展示前需补的 gap。
+- [x] `docs/uncertainty_proxy_confidence_playbook.md` 已集中说明 award seed、public metadata、citation depth、impact breadth、topic label、network attribution 和 screenshot fallback 的 confidence / proxy / human-check 边界。
+- [x] `docs/final_case_selection_risk_register.md` / `.csv` 已把 Top 12 代表论文按 report/PPT 使用风险分成 recommended、backup 和 human-check cases，帮助 E 选择更安全的最终案例。
+- [x] `docs/final_evidence_verification_queue.md` / `.csv` 已把 Top 12 代表论文转成 `ready-cautious` / `verify-before-final` / `avoid-without-extra-evidence` 队列，帮助 E 在最终报告/PPT 前逐篇打开 evidence URL 并保留 proxy safe wording。
 - [ ] 最终展示前由队友核查关键论断与 award citation，尤其是未列入展示优先组的备选卡。
 - [ ] `docs/methods_and_limitations.md` 已压缩进最终报告或展示。
 - [x] `docs/presentation_pack.md` 已补齐展示结构；`docs/final_presentation_blueprint.md` 已提供 11 页 PPT 蓝图、speaker notes、截图 fallback 和角色发言边界。最终 PPT 导出仍需人工复制到 slides。
+- [x] `docs/defense_qa_pack.md` 已补齐答辩问答准备，覆盖数据来源、proxy 指标、人工核查、因果边界、分工贡献和 live demo fallback。
 - [x] `docs/slide_visual_consistency_audit.md` 已列出所有 `docs/demo/*.png` 的 slide purpose、owner、尺寸、裁剪/框架规则和 safe wording boundary，可作为 F 的最终视觉一致性检查。
 - [x] `docs/live_demo_fallback_script.md` 已补齐 live demo 失败时的 2 分钟截图路线、speaker/claim 映射、等价性说明和 F owner 现场检查项。
+- [x] `docs/final_demo_rehearsal_runbook.md` 已补齐 10 分钟最终彩排路线、speaker handoff、fallback triggers、F/A 检查项和 safe wording 边界。
 - [x] `docs/final_submission_packaging_checklist.md` 已补齐最终打包流程、压缩包结构、archive inspection 命令和在线/离线展示 fallback。
-- [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料。
+- [x] `docs/final_archive_manifest.md` / `.csv` 已列出最终 archive 必需文件、推荐文件、排除项和 machine-readable required-file 检查，可作为 Issue #92 的 A-owner 包装证据。
+- [x] `docs/final_submission_readiness_scorecard.md` 已把页面运行、核心数据、report evidence、presentation support、archive packaging 和剩余 human checks 汇总成最终 go/no-go 页面。
+- [x] `docs/final_integration_dry_run_log.md` 已记录一次完整本地 dry run：clean main、HTTP 200、presentation mode、DOM section checks、核心数据行数和 archive exclusion scan。
+- [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料；`docs/network_ecosystem_case_notes.md` / `.csv` 已补充 Issue #88 的 Network 具体案例和 metadata-boundary safe wording；`docs/institution_country_attribution_audit.md` / `.csv` 已补充 Issue #104 的 institution / country metadata coverage、case rows 和安全表述边界；Issue #126 已补充主 SVG marks 的键盘可达性和 focus 样式，便于现场 demo/review 抽查。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
 - [x] 报告骨架中术语已统一：recognition lag / citation depth / impact breadth / same-field benchmark / OpenAlex proxy。
+- [x] `docs/glossary_metric_explainer.md` 已补齐至少 8 个关键术语、proxy 指标安全说法和展示/报告用词替代表。
 - [ ] 最终报告和展示讲稿中术语一致：recognition lag / citation depth / impact breadth。
+- [ ] Venue 数量图和报告段落至少保留一句 denominator caveat：不同 venue 的 publication-span / award-window 可见范围不同，raw count 不是会议质量排名。
 - [ ] 手工补充的工业影响/代表性判断必须有 evidence URL。
 
 ## 4. 提交前文件检查
@@ -78,8 +102,12 @@ http://127.0.0.1:8765/index.html
 - [ ] 无 `__pycache__` / 临时缓存。
 - [ ] 无本地绝对路径。
 - [ ] README、本地运行方式、分工表保持同步。
+- [ ] `docs/contribution_evidence_ledger.md` 已按最终 PR / 文件状态更新，并能支撑报告贡献说明。
+- [ ] 最终提交前重新运行并更新 `docs/final_integration_dry_run_log.md`，确认所有队友 PR 合并后的页面和数据仍然通过检查。
 - [ ] 提交前按 `docs/data_readiness_matrix.md` 重新运行数据就绪验证，确认核心 CSV 和 manual annotation 模板行数/字段未被误改。
 - [ ] 按 `docs/final_submission_packaging_checklist.md` 检查最终 zip，确认必需文件存在且无 `.git` / `.DS_Store` / `__pycache__`。
+- [ ] 按 `docs/final_archive_manifest.md` 运行 manifest validation，确认 required 文件没有遗漏。
+- [ ] 按 `docs/final_submission_readiness_scorecard.md` 做最后一次 pass/warn/blocker review，确认 human-owned checks 没有被误写成已完成。
 - [ ] `main` 是最终可提交版本。
 
 - [ ] `docs/stretch_issue_assignment_board.md` 已用于确认 A-F 每个 owner 至少有一个核心 issue 和一个 stretch issue 可做。

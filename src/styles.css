@@ -186,10 +186,17 @@ h2 { font-size: clamp(28px, 4vw, 50px); line-height: 1.04; margin: 8px 0 14px; l
 .axis text { fill: #9ba8ba; font-size: 11px; }
 .axis path, .axis line { stroke: rgba(255,255,255,0.15); }
 .grid line { stroke: rgba(255,255,255,0.08); }
-.bar { cursor: pointer; transition: opacity .2s ease; }
+.bar { cursor: pointer; transition: opacity .2s ease, filter .2s ease; }
 .bar:hover { opacity: .78; }
-.dot { cursor: pointer; stroke: #0c1118; stroke-width: 1.2; }
+.dot { cursor: pointer; stroke: #0c1118; stroke-width: 1.2; transition: filter .2s ease, stroke-width .2s ease; }
 .dot.selected-paper { stroke: var(--accent-2); stroke-width: 2.8; filter: drop-shadow(0 0 8px rgba(246,189,96,.65)); }
+.keyboard-mark:focus-visible,
+.keyboard-mark.keyboard-focus {
+  outline: none;
+  stroke: var(--accent-2);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 9px rgba(246,189,96,.72));
+}
 .line-path { fill: none; stroke-width: 2.4; opacity: .82; }
 .topic-area { cursor: crosshair; transition: opacity .2s ease; }
 .topic-area:hover { opacity: .92; }
@@ -529,6 +536,46 @@ footer { padding: 34px clamp(20px, 5vw, 72px) 54px; color: var(--muted); border-
   margin-bottom: 3px;
 }
 
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.glossary-card {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(246,189,96,0.09), rgba(112,225,212,0.045)),
+    rgba(255,255,255,0.035);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.20);
+}
+.glossary-card h3 {
+  margin: 0 0 9px;
+  font-size: 19px;
+  letter-spacing: -0.025em;
+}
+.glossary-card p,
+.glossary-card span {
+  color: #b8c4d6;
+  font-size: 13px;
+  line-height: 1.58;
+}
+.glossary-card b {
+  display: block;
+  margin: 14px 0 5px;
+  color: var(--accent-2);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.glossary-footer {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.glossary-footer a { color: var(--accent); }
+
 .claim-panel {
   border: 1px solid rgba(255,255,255,0.11);
   border-radius: var(--radius);
@@ -594,6 +641,7 @@ footer { padding: 34px clamp(20px, 5vw, 72px) 54px; color: var(--muted); border-
 .claim-boundary b { color: #b8a1ff; }
 @media (max-width: 920px) {
   .storyboard-grid { grid-template-columns: 1fr; overflow-x: visible; }
+  .glossary-grid { grid-template-columns: 1fr; }
   .story-card { min-height: auto; }
   .claim-panel-head { display: block; }
   .claim-grid { grid-template-columns: 1fr; }
