@@ -12,6 +12,22 @@ const showTip = (event, html) => {
 };
 const hideTip = () => tooltip.attr("hidden", true);
 
+function makeKeyboardMarks(selection, labelFn, activateFn) {
+  selection
+    .attr("tabindex", 0)
+    .attr("role", "button")
+    .attr("aria-label", d => labelFn(d).replace(/\s+/g, " ").trim())
+    .classed("keyboard-mark", true)
+    .on("focus.accessibility", function() { d3.select(this).classed("keyboard-focus", true); })
+    .on("blur.accessibility", function() { d3.select(this).classed("keyboard-focus", false); hideTip(); })
+    .on("keydown.accessibility", (event, d) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        if (activateFn) activateFn(d);
+      }
+    });
+}
+
 initPresentationMode();
 
 const num = (d, fallback = 0) => {
@@ -177,13 +193,18 @@ function renderAwardTimeline(rows, papers) {
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d3.format("d")));
   svg.append("text").attr("class", "chart-title-small").attr("x", width/2).attr("y", height-8).attr("text-anchor", "middle").text("publication year");
   svg.append("text").attr("class", "chart-title-small").attr("x", -height/2).attr("y", 14).attr("text-anchor", "middle").attr("transform", "rotate(-90)").text("award year");
-  svg.selectAll("circle.timeline-dot").data(clean).join("circle")
+  const timelineMarks = svg.selectAll("circle.timeline-dot").data(clean).join("circle")
     .attr("class", "dot timeline-dot")
     .attr("cx", d => x(d.year)).attr("cy", d => y(d.announcement_year))
     .attr("r", d => r(d.citation_count)).attr("fill", d => color(d.venue_area)).attr("opacity", 0.68)
     .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>${d.venue} · ${d.year} → ${d.announcement_year}<br>Lag: ${d.recognition_lag} years<br>Citations: ${fmt(d.citation_count)}`))
     .on("mouseleave", hideTip)
     .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
+  makeKeyboardMarks(
+    timelineMarks,
+    d => `Timeline paper ${d.title}. ${d.venue}, publication ${d.year}, award ${d.announcement_year}, recognition lag ${d.recognition_lag} years. Press Enter to show details.`,
+    d => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d)
+  );
   const longest = clean.slice().sort((a,b) => d3.descending(a.recognition_lag,b.recognition_lag))[0];
   if (longest) addCallout(svg, x(longest.year), y(longest.announcement_year), `Longest lag · ${longest.recognition_lag}y`, 18, -18);
 }
@@ -245,7 +266,7 @@ function horizontalBars(sel, rows, labelKey, valueKey, fill, tip, onClick) {
   svg.append("g").attr("class", "grid").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5).tickSize(-(height-margin.top-margin.bottom)).tickFormat(""));
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).tickSize(0)).call(g => g.select(".domain").remove());
-  svg.selectAll("rect.bar").data(rows).join("rect")
+  const barMarks = svg.selectAll("rect.bar").data(rows).join("rect")
     .attr("class", "bar")
     .attr("x", margin.left).attr("y", d => y(d[labelKey]))
     .attr("height", y.bandwidth()).attr("width", d => x(num(d[valueKey])) - margin.left)
@@ -253,6 +274,11 @@ function horizontalBars(sel, rows, labelKey, valueKey, fill, tip, onClick) {
     .on("mousemove", (e,d) => showTip(e, `<b>${d[labelKey]}</b><br>${tip(d)}`))
     .on("mouseleave", hideTip)
     .on("click", (_,d) => onClick && onClick(d));
+  makeKeyboardMarks(
+    barMarks,
+    d => `${d[labelKey]} bar, value ${fmt(num(d[valueKey]))}. ${onClick ? "Press Enter to update details." : "Focusable chart value for keyboard review."}`,
+    d => onClick && onClick(d)
+  );
   svg.selectAll("text.value").data(rows).join("text")
     .attr("x", d => x(num(d[valueKey])) + 6).attr("y", d => y(d[labelKey]) + y.bandwidth()/2 + 4)
     .attr("fill", "#cdd6e5").attr("font-size", 11).text(d => fmt(num(d[valueKey])));
@@ -280,7 +306,7 @@ function renderScatter(timeline, papers) {
   const my = d3.median(rows, d => d.citation_count);
   addReferenceGuides(svg, x(mx), y(my), width, height, margin, "median lag", "median citations");
   svg.append("text").attr("class", "quadrant-label").attr("x", x(mx)+8).attr("y", y(my)-12).text("high citation · long recognition");
-  svg.selectAll("circle.dot").data(rows).join("circle")
+  const scatterMarks = svg.selectAll("circle.dot").data(rows).join("circle")
     .attr("class", "dot")
     .attr("cx", d => x(d.recognition_lag)).attr("cy", d => y(d.citation_count))
     .attr("r", d => 3 + Math.sqrt(Math.max(0, num(d.impact_breadth_score))) / 3)
@@ -288,6 +314,11 @@ function renderScatter(timeline, papers) {
     .on("mousemove", (e,d) => showTip(e, `<b>${d.title}</b><br>${d.venue} · ${d.year} → ${d.announcement_year}<br>Lag: ${d.recognition_lag} years<br>Citations: ${fmt(d.citation_count)}`))
     .on("mouseleave", hideTip)
     .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
+  makeKeyboardMarks(
+    scatterMarks,
+    d => `Citation scatter paper ${d.title}. Recognition lag ${d.recognition_lag} years, citations ${fmt(d.citation_count)}. Press Enter to show details.`,
+    d => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d)
+  );
 }
 
 function renderTrajectory(rows, papers) {
@@ -325,7 +356,7 @@ function renderBreadth(rows, papers) {
   const my = d3.median(clean, d => d.citation_count);
   addReferenceGuides(svg, x(mx), y(my), width, height, margin, "median breadth", "median citations");
   svg.append("text").attr("class", "quadrant-label").attr("x", x(mx)+8).attr("y", y(my)-12).text("broad and deep impact");
-  svg.selectAll("circle.breadth-dot").data(clean).join("circle")
+  const breadthMarks = svg.selectAll("circle.breadth-dot").data(clean).join("circle")
     .attr("class", "dot breadth-dot")
     .attr("cx", d => x(d.impact_breadth_score)).attr("cy", d => y(d.citation_count))
     .attr("r", d => 3 + Math.sqrt(num(d.citing_country_count)) * 1.2)
@@ -333,6 +364,11 @@ function renderBreadth(rows, papers) {
     .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>Breadth: ${fmt1(d.impact_breadth_score)}<br>Citing fields: ${fmt(d.citing_field_count)}<br>Citing countries: ${fmt(d.citing_country_count)}<br>Citations: ${fmt(d.citation_count)}`))
     .on("mouseleave", hideTip)
     .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
+  makeKeyboardMarks(
+    breadthMarks,
+    d => `Breadth chart paper ${d.title}. Impact breadth score ${fmt1(d.impact_breadth_score)}, citations ${fmt(d.citation_count)}. Press Enter to show details.`,
+    d => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d)
+  );
   const high = clean.slice().sort((a,b) => d3.descending(a.impact_breadth_score,b.impact_breadth_score))[0];
   if (high) addCallout(svg, x(high.impact_breadth_score), y(high.citation_count), "Widest diffusion", -96, -20);
 }

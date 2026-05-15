@@ -247,7 +247,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 http://127.0.0.1:8765/index.html
 ```
 
-修改 `src/app.js` 或 `src/styles.css` 后，刷新网页即可查看效果。
+修改 `src/app.js` 或 `src/styles.css` 后，刷新网页即可查看效果。展示或 review 时也可以用键盘抽查交互：按 Tab 聚焦主要 SVG marks，Enter/Space 可触发可选论文/更新 detail panel；这属于 demo 可达性增强，不代表完整 WCAG 认证。
 
 ## 分工概览
 

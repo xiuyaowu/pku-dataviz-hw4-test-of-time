@@ -40,6 +40,7 @@ http://127.0.0.1:8765/index.html
 - [x] Glossary 区已加入页面导航和正文，可快速解释 recognition lag / citation depth / impact breadth / OpenAlex proxy 等术语。
 - [x] Explorer 的 search / sort / field filter / paper list 正常工作。
 - [x] Benchmark Lab 的 percentile bars / interpretation lens / same-field peers 正常工作。
+- [x] 主 SVG 交互 marks 已加入 keyboard focus、`role="button"` 和 `aria-label`；最终展示前可用 Tab + Enter/Space 抽查 timeline / bar / scatter / breadth marks。
 - [x] B-F 主要模块末尾有 report claim cards，可复制为最终报告发现。
 - [ ] 最终提交前用 presentation mode 备份关键页面截图：`http://127.0.0.1:8765/index.html?present=1`，或进入页面后按 `P`。
 
@@ -86,7 +87,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/final_archive_manifest.md` / `.csv` 已列出最终 archive 必需文件、推荐文件、排除项和 machine-readable required-file 检查，可作为 Issue #92 的 A-owner 包装证据。
 - [x] `docs/final_submission_readiness_scorecard.md` 已把页面运行、核心数据、report evidence、presentation support、archive packaging 和剩余 human checks 汇总成最终 go/no-go 页面。
 - [x] `docs/final_integration_dry_run_log.md` 已记录一次完整本地 dry run：clean main、HTTP 200、presentation mode、DOM section checks、核心数据行数和 archive exclusion scan。
-- [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料；`docs/network_ecosystem_case_notes.md` / `.csv` 已补充 Issue #88 的 Network 具体案例和 metadata-boundary safe wording；`docs/institution_country_attribution_audit.md` / `.csv` 已补充 Issue #104 的 institution / country metadata coverage、case rows 和安全表述边界。
+- [x] `docs/network_visual_presentation_handoff.md` 已补齐 F 模块的 Network findings、展示话术、截图映射和视觉 QA，可作为 Issue #7 的验收材料；`docs/network_ecosystem_case_notes.md` / `.csv` 已补充 Issue #88 的 Network 具体案例和 metadata-boundary safe wording；`docs/institution_country_attribution_audit.md` / `.csv` 已补充 Issue #104 的 institution / country metadata coverage、case rows 和安全表述边界；Issue #126 已补充主 SVG marks 的键盘可达性和 focus 样式，便于现场 demo/review 抽查。
 - [ ] `docs/grading_rubric_full_score_mapping.md` 中的评分点覆盖表已逐项确认。
 - [x] 报告骨架中术语已统一：recognition lag / citation depth / impact breadth / same-field benchmark / OpenAlex proxy。
 - [x] `docs/glossary_metric_explainer.md` 已补齐至少 8 个关键术语、proxy 指标安全说法和展示/报告用词替代表。
