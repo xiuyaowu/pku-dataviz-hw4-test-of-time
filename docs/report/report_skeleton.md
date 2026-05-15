@@ -49,7 +49,7 @@
 
 负责人：B
 
-详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。Issue #55 的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` / `.csv`，其中补充了 short / typical / long lag 的 6 个候选案例、展示话术和 safe wording。Issue #98 的 Time demo claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，可把 Time 小节每条展示句追溯到 evidence source、chart/report use、safe boundary 和 remaining human check。
+详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。Issue #55 的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` / `.csv`，其中补充了 short / typical / long lag 的 6 个候选案例、展示话术和 safe wording。Issue #98 的 Time demo claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，可把 Time 小节每条展示句追溯到 evidence source、chart/report use、safe boundary 和 remaining human check。Issue #112 的 award-era cohort comparison 见 `docs/award_era_cohort_comparison.md` / `.csv`，可用于解释不同发表年代的 observed recognition window，并提醒 award-history / right-censoring 限制。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
