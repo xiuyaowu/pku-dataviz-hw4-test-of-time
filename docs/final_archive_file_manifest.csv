@@ -17,6 +17,8 @@ docs/final_integration_dry_run_log.md,qa,yes,Latest integration dry-run results 
 docs/grading_rubric_full_score_mapping.md,grading,yes,Rubric-to-evidence mapping for final review
 docs/data_dictionary.md,data,yes,Field definitions and metric explanations
 docs/data_provenance_audit.md,data,yes,Source and proxy provenance audit
+docs/source_citation_appendix.md,data,yes,Final report source-layer citation appendix
+docs/source_citation_appendix.csv,data,yes,Machine-readable source-layer coverage and safe wording table
 data/papers_enriched.csv,data,yes,Primary enriched Test-of-Time paper table
 data/award_timeline.csv,data,yes,Publication-to-award timeline data
 data/recognition_lag_distribution.csv,data,yes,Recognition-lag distribution for Time module

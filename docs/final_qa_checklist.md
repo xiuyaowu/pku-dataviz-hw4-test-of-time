@@ -64,6 +64,7 @@ http://127.0.0.1:8765/index.html
 - [x] `docs/citation_trajectory_archetypes.md` / `.csv` 已补齐 Issue #61 的 citation trajectory archetype 候选表，最终报告使用前仍需人工核查选中案例的 evidence URL。
 - [x] `docs/recognition_lag_outlier_cases.md` / `.csv` 已补齐 Issue #55 的 Time outlier cases，覆盖 short / typical / long lag、展示话术和 safe wording；`docs/time_micro_annotations.md` 已补齐 Issue #56 的 Time 截图微注释、dense / median / long-tail 讲法和限制边界；`docs/time_module_demo_claim_cards.md` / `.csv` 已补齐 Issue #98 的 Time 展示 claim cards、数据锚点和 safe wording；`docs/award_era_cohort_comparison.md` / `.csv` 已补齐 Issue #112 的 publication-era cohort 对照，用于解释 observed recognition window 和 award-history / right-censoring 边界；`docs/time_data_quality_audit.md` / `.csv` 已补齐 Issue #118 的 Time 数据质量审计，确认 timing metadata 覆盖、source coverage 和 lag sanity check；最终报告使用前仍需人工核查 2-3 个选中案例的 award citation。
 - [x] `docs/data_provenance_audit.md` 已统一 award seed / public metadata / derived metrics / manual annotation 的来源边界。
+- [x] `docs/source_citation_appendix.md` / `.csv` 已把 award seed、paper/DOI pages、OpenAlex metadata、citation/breadth derived tables 和 manual evidence 分成 final-report source layers；最终参考文献需按这些层级分开写。
 - [x] `docs/data_readiness_matrix.md` 已列出核心数据文件、行数、模块用途、必备字段和提交前验证命令。
 - [x] citation depth、impact breadth、institution/country counts 已在 data dictionary、methods 和 report skeleton 中写成近似指标而非官方评价。
 - [ ] B-F 已人工核查各自模块的代表案例、贡献解释和 evidence URL。

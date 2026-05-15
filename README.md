@@ -109,6 +109,8 @@ git push -u origin feature/your-name-task
 │   ├── final_report_claim_bank.csv
 │   ├── data_readiness_matrix.md
 │   ├── uncertainty_proxy_confidence_playbook.md
+│   ├── source_citation_appendix.md
+│   ├── source_citation_appendix.csv
 │   ├── network_visual_presentation_handoff.md
 │   ├── network_ecosystem_case_notes.md
 │   ├── network_ecosystem_case_notes.csv
@@ -179,7 +181,8 @@ git push -u origin feature/your-name-task
 │   │   ├── contribution_A.md
 │   │   └── report_skeleton.md
 │   ├── data_dictionary.md
-│   └── data_provenance_audit.md
+│   ├── data_provenance_audit.md
+│   └── source_citation_appendix.md
 ├── data/
 │   ├── papers_enriched.csv
 │   ├── award_timeline.csv
@@ -296,7 +299,7 @@ A 会负责主线、review、整合和最终 QA，保证各模块能拼成同一
 - 图表回答了哪个问题；
 - 得到了哪些主要发现。
 
-字段说明见：`docs/data_dictionary.md`。提交前的数据文件行数、模块用途、必备字段和安全表述边界见 `docs/data_readiness_matrix.md`。数据来源层级、proxy 指标边界和最终报告推荐口径见：`docs/data_provenance_audit.md`。模块与代表论文证据覆盖状态见 `docs/evidence_coverage_matrix.md`，可用于确认哪些 claims 已可谨慎展示、哪些仍需人工核查。写报告时请把 `citation_count`、`impact_breadth_score`、institution/country counts 写成公开元数据下的近似观察，不要写成官方评奖原因、完整引用网络或跨领域绝对排名。
+字段说明见：`docs/data_dictionary.md`。提交前的数据文件行数、模块用途、必备字段和安全表述边界见 `docs/data_readiness_matrix.md`。数据来源层级、proxy 指标边界和最终报告推荐口径见：`docs/data_provenance_audit.md`；最终参考文献和 slide source note 可按 `docs/source_citation_appendix.md` / `.csv` 把 award seed、paper pages、OpenAlex metadata、derived tables 和 manual evidence 分层引用。模块与代表论文证据覆盖状态见 `docs/evidence_coverage_matrix.md`，可用于确认哪些 claims 已可谨慎展示、哪些仍需人工核查。写报告时请把 `citation_count`、`impact_breadth_score`、institution/country counts 写成公开元数据下的近似观察，不要写成官方评奖原因、完整引用网络或跨领域绝对排名。
 
 ## 手工补充任务
 

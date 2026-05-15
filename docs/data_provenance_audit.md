@@ -29,6 +29,7 @@
 |---|---|---|
 | `README.md` | 数据使用说明已指向数据字典和 provenance audit。 | 新增指标或图表时同步更新数据说明和限制。 |
 | `docs/data_dictionary.md` | 每个核心数据文件说明字段、来源层级和使用边界。 | 不新增没有定义的派生指标；新增字段需写清来源。 |
+| `docs/source_citation_appendix.md` | 把 award seed、paper pages、OpenAlex metadata、derived citation/breadth tables 和 manual evidence 分成最终报告可引用的 source layers。 | 最终参考文献和 slide source notes 应分层引用，不把 proxy metric 写成 paper-specific evidence。 |
 | `docs/methods_and_limitations.md` | 方法段统一解释 seed、OpenAlex/public metadata、derived metrics 和 manual annotations。 | 最终报告压缩时保留“proxy / not causal / not official ranking”口径。 |
 | `docs/report/report_skeleton.md` | 模块 findings matrix 已加入 metric boundary 提醒。 | B-F 补案例时必须为人工判断添加 evidence URL。 |
 | `docs/final_qa_checklist.md` | 提交前检查加入 provenance 与 metric wording 项。 | 最终提交前逐项勾选，并检查无本地绝对路径。 |

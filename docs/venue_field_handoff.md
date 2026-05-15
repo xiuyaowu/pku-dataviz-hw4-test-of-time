@@ -112,6 +112,8 @@ Issue #57 的专门说明包见：`docs/venue_field_imbalance_caveats.md`。
 
 这份表按 27 个 venue cluster 汇总 `source_url`、`paper_url`、DOI/OpenAlex 覆盖、年份范围、lag、citation 和 breadth 均值。C 在报告或 PPT 中引用 venue 数量榜时，可以先用它确认该 venue 的数据来源和可讲边界：数量代表当前 Test-of-Time award-history dataset 的可见记录，不是会议质量排名；citation / breadth 是 OpenAlex-derived descriptive proxy，不是获奖原因证明。
 
+最终参考文献和 slide source note 可使用 `docs/source_citation_appendix.md` / `docs/source_citation_appendix.csv`。这份 appendix 把 award seed、paper/DOI pages、OpenAlex metadata、citation/breadth derived tables 和 manual representative evidence 分成不同 source layers，适合在报告 Methods / References 中避免把 proxy 指标和人工证据混写。
+
 ### Venue normalization / count guide
 
 数量归一化说明：`docs/venue_normalization_count_guide.md` / `docs/venue_normalization_count_guide.csv`。
@@ -142,6 +144,7 @@ C 模块推荐用法：
 
 - [ ] 打开 2–3 篇代表论文链接，核对题名、venue、年份和一句话贡献。
 - [ ] 若使用 venue 数量榜或 field × decade heatmap，先查看 `docs/venue_source_traceability_audit.csv` 的 source / OpenAlex 覆盖和 safe wording boundary。
+- [ ] 若写最终参考文献或 slide source note，先查看 `docs/source_citation_appendix.csv`，把 award seed、OpenAlex metadata、paper pages 和 manual evidence 分开引用。
 - [ ] 若比较 venue counts，补查 `docs/venue_normalization_count_guide.csv` 的 publication-span / award-window denominator，并在报告或 PPT 中至少写一句 denominator caveat。
 - [ ] 若把 Venue/Field 和 Topic Evolution 联动，先查看 `docs/topic_venue_crosswalk.csv`，只选择 2–3 个代表性交叉行，并保留“当前数据可见交叉”的表述边界。
 - [ ] 如果报告提到某 venue/area 的原因，补一句“当前数据可见分布 / award coverage”边界。
