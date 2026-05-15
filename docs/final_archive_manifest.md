@@ -17,7 +17,7 @@ Keep the submission archive focused on the runnable D3 page, local data, public 
 | Collaboration evidence | `docs/work_board.md`, `docs/stretch_issue_assignment_board.md`, `.github/pull_request_template.md` |
 | Report support | `docs/report/report_skeleton.md`, `docs/story_builder_board.md`, `docs/final_report_figure_evidence_index.md`, `docs/final_report_claim_bank.md`, module handoff docs, `docs/contribution_evidence_ledger.md` |
 | Presentation support | `docs/presentation_pack.md`, `docs/final_presentation_blueprint.md`, `docs/defense_qa_pack.md`, `docs/live_demo_fallback_script.md`, `docs/demo/*.png` |
-| Data provenance and limitations | `docs/data_dictionary.md`, `docs/data_provenance_audit.md`, `docs/evidence_coverage_matrix.md`, `docs/uncertainty_proxy_confidence_playbook.md` |
+| Data provenance and limitations | `docs/data_dictionary.md`, `docs/data_provenance_audit.md`, `docs/time_data_quality_audit.md`, `docs/evidence_coverage_matrix.md`, `docs/uncertainty_proxy_confidence_playbook.md` |
 | Final QA | `docs/final_qa_checklist.md`, `docs/final_submission_packaging_checklist.md`, this manifest |
 
 ### Recommended but not blocking

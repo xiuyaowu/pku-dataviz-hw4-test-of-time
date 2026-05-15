@@ -34,7 +34,7 @@
 
 更多 short / typical / long lag 案例见 `docs/recognition_lag_outlier_cases.md` 和机器可读表 `docs/recognition_lag_outlier_cases.csv`；该补充文件专门服务 Issue #55 的 Time outlier 展示和报告段落。
 
-Award lifecycle 的获奖前后引用窗口补充见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`；它把 citation trajectory 对齐到 award announcement year (`t=0`)，用于说明“认可发生在引用生命周期的哪个阶段”，但不能写成奖项导致引用变化。课堂展示和报告写作的 claim-card packet 见 `docs/time_module_demo_claim_cards.md` / `.csv`，其中把 dataset span、lag 分布、短/典型/长 lag 案例和 lifecycle Q&A 统一到 evidence source、safe wording 和人工检查。Publication-era cohort 对照见 `docs/award_era_cohort_comparison.md` / `.csv`，用于补充“不同发表年代 observed recognition window 是否不同”的报告讨论，并保留 award-history / right-censoring 边界。
+Award lifecycle 的获奖前后引用窗口补充见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`；它把 citation trajectory 对齐到 award announcement year (`t=0`)，用于说明“认可发生在引用生命周期的哪个阶段”，但不能写成奖项导致引用变化。课堂展示和报告写作的 claim-card packet 见 `docs/time_module_demo_claim_cards.md` / `.csv`，其中把 dataset span、lag 分布、短/典型/长 lag 案例和 lifecycle Q&A 统一到 evidence source、safe wording 和人工检查。Publication-era cohort 对照见 `docs/award_era_cohort_comparison.md` / `.csv`，用于补充“不同发表年代 observed recognition window 是否不同”的报告讨论，并保留 award-history / right-censoring 边界。Time data quality audit 见 `docs/time_data_quality_audit.md` / `.csv`，用于核对 250 行 timing metadata、source coverage、OpenAlex coverage 和 lag sanity check。
 
 | 用途 | 论文 | Venue | Publication → Announcement | Lag | 推荐写法 | 注意边界 |
 |---|---|---|---:|---:|---|---|
@@ -70,3 +70,4 @@ Award lifecycle 的获奖前后引用窗口补充见 `docs/award_lifecycle_analy
 - [ ] 页面展示时指向 Time 模块的 lag histogram 和 publication → award timeline，而不是只读文字。
 - [ ] 最终报告避免使用“证明”“导致获奖”等因果词。可用“显示”“提示”“在当前样本中呈现”。
 - [ ] 按 `docs/time_module_demo_claim_cards.md` 选择 5-7 张可展示 claim cards，并确认每张卡的 human check 是否完成。
+- [ ] 用 `docs/time_data_quality_audit.md` 的 coverage/sanity-check 句式说明 recognition lag 是当前数据集的 award-timing metadata。

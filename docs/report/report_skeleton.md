@@ -24,7 +24,7 @@
 
 本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。Best Paper 与 Test of Time 的概念对照见 `docs/best_paper_vs_test_of_time_framing.md`：本项目只做定性 framing，不在缺少完整 Best Paper baseline 时声称二者存在定量差异。
 
-需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；术语速查和 proxy 指标安全讲法见 `docs/glossary_metric_explainer.md`；不确定性和 proxy-confidence 统一检查见 `docs/uncertainty_proxy_confidence_playbook.md`；获奖年前后 citation-window 分析见 `docs/award_lifecycle_analysis.md`，其中把 citation trajectory 对齐到获奖年 `t=0` 但明确不作因果解释；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`；模块与 Top 12 代表论文的证据覆盖审计见 `docs/evidence_coverage_matrix.md`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
+需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；Time 数据质量审计见 `docs/time_data_quality_audit.md` / `.csv`，其中确认当前 250 行均有可计算的 publication-year、announcement-year 和 matching recognition lag；术语速查和 proxy 指标安全讲法见 `docs/glossary_metric_explainer.md`；不确定性和 proxy-confidence 统一检查见 `docs/uncertainty_proxy_confidence_playbook.md`；获奖年前后 citation-window 分析见 `docs/award_lifecycle_analysis.md`，其中把 citation trajectory 对齐到获奖年 `t=0` 但明确不作因果解释；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`；模块与 Top 12 代表论文的证据覆盖审计见 `docs/evidence_coverage_matrix.md`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
 
 ### 2.1 数据来源与指标口径审计摘要
 
@@ -49,7 +49,7 @@
 
 负责人：B
 
-详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。Issue #55 的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` / `.csv`，其中补充了 short / typical / long lag 的 6 个候选案例、展示话术和 safe wording。Issue #98 的 Time demo claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，可把 Time 小节每条展示句追溯到 evidence source、chart/report use、safe boundary 和 remaining human check。Issue #112 的 award-era cohort comparison 见 `docs/award_era_cohort_comparison.md` / `.csv`，可用于解释不同发表年代的 observed recognition window，并提醒 award-history / right-censoring 限制。
+详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。Issue #55 的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` / `.csv`，其中补充了 short / typical / long lag 的 6 个候选案例、展示话术和 safe wording。Issue #98 的 Time demo claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，可把 Time 小节每条展示句追溯到 evidence source、chart/report use、safe boundary 和 remaining human check。Issue #112 的 award-era cohort comparison 见 `docs/award_era_cohort_comparison.md` / `.csv`，可用于解释不同发表年代的 observed recognition window，并提醒 award-history / right-censoring 限制。Issue #118 的 Time data quality audit 见 `docs/time_data_quality_audit.md` / `.csv`，可用于报告开头说明 recognition-lag 计算覆盖、source coverage 和 lag sanity check。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|

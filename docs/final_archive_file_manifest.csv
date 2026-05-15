@@ -56,6 +56,8 @@ docs/demo/explorer-evidence-index.png,demo,yes,Explorer evidence screenshot for 
 docs/demo/benchmark-lab.png,demo,yes,Benchmark Lab screenshot for README/PPT fallback
 docs/demo/network-diffusion.png,demo,yes,Network screenshot for README/PPT fallback
 docs/demo/online-demo-qr.png,demo,recommended,QR image for optional online demo handoff
+docs/time_data_quality_audit.md,module-handoff,recommended,B Time data-quality audit for recognition-lag coverage timing sanity checks and source coverage
+docs/time_data_quality_audit.csv,module-handoff,recommended,Machine-readable Time data-quality audit metrics
 docs/time_recognition_lag_handoff.md,module-handoff,yes,B owner handoff with metric definition and findings
 docs/venue_field_handoff.md,module-handoff,yes,C owner handoff with venue/field findings and caveats
 docs/topic_evolution_handoff.md,module-handoff,yes,D owner handoff with topic findings and manual-audit route
