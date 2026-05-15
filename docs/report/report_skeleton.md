@@ -85,7 +85,7 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：D
 
-详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。Issue #47 的 contribution archetype taxonomy 见 `docs/research_archetype_taxonomy.md` / `.csv`，可用于把 topic 发现扩写为“可复用算法、建模框架、测量模型、系统/协议、基础理论等贡献形态如何留下来”。Issue #114 的 topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`，可直接挑 3–4 个 slide/report 代表案例。Issue #100 的 topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来。
+详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。Issue #47 的 contribution archetype taxonomy 见 `docs/research_archetype_taxonomy.md` / `.csv`，可用于把 topic 发现扩写为“可复用算法、建模框架、测量模型、系统/协议、基础理论等贡献形态如何留下来”。Issue #114 的 topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`，可直接挑 3–4 个 slide/report 代表案例。Issue #100 的 topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来。Issue #120 的 topic-label consistency check 见 `docs/topic_label_consistency_check.md` / `.csv`，用于把 aggregate automatic topic bucket 与 paper-level manual topic 区分开。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
@@ -110,6 +110,10 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 可选加强段落（#100）：
 
 > Topic × venue crosswalk 进一步说明，topic label 和 venue_area 应该一起读：前者描述论文的技术主题，后者描述该论文在当前 Test-of-Time award dataset 中由哪个学术共同体记录。这个交叉视角能把 Topic Evolution 和 Venue/Field 连成一段完整解释，但它仍然只是当前数据的可见交叉，不能写成会议质量排名或官方主题分类。
+
+可选加强段落（#120）：
+
+> Topic label consistency check 进一步区分了“aggregate chart 的自动标签”和“代表论文的人工解释标签”。当前 250 篇论文可用于展示主题总体分布，但 Top-12 代表案例需要优先采用 manual topic audit 中的 aligned / corrected 标签。这样写能保留主题图的总体可读性，同时避免把 OpenAlex metadata 或规则标签误写成官方主题 taxonomy。
 
 ### 4.4 Citation & Recognition：引用深度、轨迹与影响广度
 

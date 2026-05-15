@@ -1,6 +1,6 @@
 # D 模块 handoff：Topic Evolution
 
-用途：给 Issue #5 / D 成员一个可直接写报告和展示的 topic evolution 分析底稿。这里的数字来自当前 `data/topic_stats.csv`、`data/topic_year_stats.csv`、`data/papers_enriched.csv` 和 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`。Top 12 代表论文的 API topic vs manual topic 核查见 `docs/manual_topic_audit_top12.md` / `.csv`；contribution archetype 分类见 `docs/research_archetype_taxonomy.md` / `.csv`；topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`；topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`。最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。
+用途：给 Issue #5 / D 成员一个可直接写报告和展示的 topic evolution 分析底稿。这里的数字来自当前 `data/topic_stats.csv`、`data/topic_year_stats.csv`、`data/papers_enriched.csv` 和 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv`。Top 12 代表论文的 API topic vs manual topic 核查见 `docs/manual_topic_audit_top12.md` / `.csv`；contribution archetype 分类见 `docs/research_archetype_taxonomy.md` / `.csv`；topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`；topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`；automatic topic 与 manual audit 的一致性检查见 `docs/topic_label_consistency_check.md` / `.csv`。最终报告采用前仍建议打开代表论文 evidence URL 与 award citation 做人工核查。
 
 ## 1. 模块研究问题
 
@@ -76,7 +76,7 @@ Top 12 evidence-ready 表里已经出现一个重要例子：DBSCAN 的 API topi
 | `Mining Association Rules Between Sets of Items in Large Databases` | Database / Systems | Data Mining / Association Rules | 适合连接数据库、数据挖掘和商业规则挖掘。 |
 | `Graphs over Time: Densification Laws, Shrinking Diameters and Possible Explanations` | Data Mining / Web | Data Mining / Network Science | breadth proxy 87.38，适合讲跨领域网络分析框架。 |
 
-安全边界：代表论文贡献解释可以先使用 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv` 的草稿，但最终报告仍需要人工打开 DOI/论文页核查。
+安全边界：代表论文贡献解释可以先使用 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv` 的草稿，但最终报告仍需要人工打开 DOI/论文页核查。若要解释 automatic topic label 的可靠性，先查 `docs/topic_label_consistency_check.md`，用它区分 aggregate topic chart 和 paper-level manual topic。
 
 ## 4. Topic × citation breadth 连接点
 
