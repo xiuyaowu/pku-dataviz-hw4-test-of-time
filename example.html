@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test of Time — Representative Cases</title>
+  <link rel="icon" href="data:," />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #151b24;
+      --text: #eef4ff;
+      --muted: #9aa8bd;
+      --line: rgba(255, 255, 255, 0.10);
+      --accent: #70e1d4;
+      --accent-2: #f6bd60;
+      --accent-3: #b8a1ff;
+      --short: #f6bd60;
+      --typical: #b8a1ff;
+      --long: #70e1d4;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(112, 225, 212, 0.18), transparent 32rem),
+        radial-gradient(circle at 90% 8%, rgba(184, 161, 255, 0.18), transparent 34rem),
+        linear-gradient(180deg, #0b0f16 0%, var(--bg) 45%, #0a0d12 100%);
+      color: var(--text);
+    }
+    a { color: inherit; }
+
+    .back-link {
+      position: fixed;
+      top: 24px;
+      left: clamp(20px, 5vw, 72px);
+      z-index: 10;
+      text-decoration: none;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      transition: border-color .2s, color .2s;
+    }
+    .back-link:hover { color: var(--text); border-color: rgba(112,225,212,0.6); }
+
+    .page {
+      padding: 80px clamp(20px, 5vw, 72px) 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-copy {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.04;
+      margin: 10px 0 18px;
+      letter-spacing: -0.045em;
+    }
+    .section-copy p {
+      color: #c5cfde;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    .cases-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .case-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.035));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .case-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 28px 0;
+    }
+    .case-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .case-badge.short {
+      background: rgba(246, 189, 96, 0.18);
+      color: var(--short);
+      border: 1px solid rgba(246, 189, 96, 0.30);
+    }
+    .case-badge.typical {
+      background: rgba(184, 161, 255, 0.18);
+      color: var(--typical);
+      border: 1px solid rgba(184, 161, 255, 0.30);
+    }
+    .case-badge.long {
+      background: rgba(112, 225, 212, 0.18);
+      color: var(--long);
+      border: 1px solid rgba(112, 225, 212, 0.30);
+    }
+    .case-lag-years {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-left: auto;
+    }
+    .case-lag-years span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .case-body {
+      padding: 20px 28px 28px;
+    }
+
+    .paper-title-display {
+      font-size: 22px;
+      line-height: 1.25;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      color: #d6deea;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .paper-url {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(112,225,212,0.35);
+      transition: border-color .2s;
+      margin-top: 6px;
+    }
+    .paper-url:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .detail-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .detail-stat {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .detail-stat b {
+      display: block;
+      font-size: 22px;
+      color: var(--accent-2);
+    }
+    .detail-stat span {
+      color: var(--muted);
+      font-size: 12px;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .authors-text {
+      color: #c8d2e1;
+      line-height: 1.6;
+      font-size: 13px;
+      margin: 14px 0;
+    }
+    .abstract-text {
+      color: #c8d2e1;
+      line-height: 1.65;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    .interpretation-box {
+      margin-top: 18px;
+      padding: 14px 18px;
+      border-left: 3px solid var(--accent);
+      background: rgba(112,225,212,0.07);
+      border-radius: 10px;
+      font-size: 13px;
+      color: #bcc7da;
+      line-height: 1.6;
+    }
+    .interpretation-box b {
+      color: var(--accent);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 120px 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .detail-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .detail-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html#time" class="back-link">&larr; 返回总览</a>
+
+  <div class="page">
+    <div class="section-copy">
+      <p class="section-kicker">RQ1 · Time — Representative Cases</p>
+      <h1>Recognition Lag 典型案例解读</h1>
+      <p>从 short（&lt;10 年）、typical（10–18 年）、long（&gt;18 年）三个档位中各选一篇高引用代表论文，展示其详细信息并解读不同滞后时长背后的研究特征。</p>
+    </div>
+
+    <div id="cases-container" class="cases-grid">
+      <div class="loading">Loading representative cases…</div>
+    </div>
+  </div>
+
+  <script>
+    const fmt = d3.format(",");
+    const fmt1 = d3.format(".1f");
+    const num = (d, fallback = 0) => {
+      const v = +d;
+      return Number.isFinite(v) ? v : fallback;
+    };
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[ch]));
+    }
+
+    function shortTitle(title) {
+      const t = String(title || "No title");
+      return t.length > 78 ? `${t.slice(0, 78)}…` : t;
+    }
+
+    function lagCategory(lag) {
+      if (!Number.isFinite(lag)) return "typical";
+      if (lag < 10) return "short";
+      if (lag <= 18) return "typical";
+      return "long";
+    }
+
+    function categoryLabel(cat) {
+      if (cat === "short") return "Short Recognition Lag";
+      if (cat === "typical") return "Typical Recognition Lag";
+      return "Long Recognition Lag";
+    }
+
+    function categoryDesc(cat, lag) {
+      if (cat === "short") return `这篇论文在发表后仅 ${lag} 年即获得 Test of Time 奖项认可，属于快速被确认为经典的研究——通常这类工作解决了当时亟待突破的核心问题，其贡献在较短时间内便被学界广泛接受。`;
+      if (cat === "typical") return `这篇论文以 ${lag} 年的典型滞后时长获奖，代表了大多数 Test of Time 论文的认可节奏——经过 10–18 年的检验周期，研究的长期价值得到了充分验证。`;
+      return `这篇论文等待了 ${lag} 年才获得 Test of Time 认可，属于"慢燃型"经典——基础性、前瞻性的工作往往需要后续研究生态的成熟才能被重新发现其深远意义。`;
+    }
+
+    function renderCases(container, cases) {
+      container.html(cases.map((d, i) => {
+        const cat = d.category;
+        const authors = d.authors
+          ? (Array.isArray(d.authors) ? d.authors.slice(0, 6).join(", ") : String(d.authors).replace(/[\[\]']/g, ""))
+          : "Unknown";
+        const paperUrls = {
+          short: "https://ieeexplore.ieee.org/document/4781121",
+          typical: "https://www2.cs.uh.edu/~ceick/7363/Papers/dbscan.pdf",
+          long: "https://math.ucla.edu/~lvese/285j.1.09f/Snakes.pdf"
+        };
+        const abstract = (d.abstract || "No abstract available.");
+        const interpretation = categoryDesc(cat, d.recognition_lag);
+
+        return `
+          <article class="case-card">
+            <div class="case-header">
+              <div class="case-badge ${cat}">${categoryLabel(cat)}</div>
+              <div class="case-lag-years">${fmt1(d.recognition_lag)}<span> years</span></div>
+            </div>
+            <div class="case-body">
+              <div class="paper-title-display">${escapeHtml(d.title || "Untitled")}</div>
+              <div class="paper-meta">
+                <span class="chip">${escapeHtml(d.venue || "Unknown venue")}</span>
+                <span class="chip">${d.year || "?"} → ${d.announcement_year || "?"} (award)</span>
+                <span class="chip">${escapeHtml(d.venue_area || d.topic_label || "N/A")}</span>
+                <span class="chip">${escapeHtml(d.topic_label || "N/A")}</span>
+              </div>
+              <a class="paper-url" href="${paperUrls[cat]}" target="_blank" rel="noopener">查看论文原文 ↗</a>
+              <div class="detail-stats">
+                <div class="detail-stat">
+                  <b>${fmt1(num(d.recognition_lag))}y</b>
+                  <span>recognition lag</span>
+                </div>
+                <div class="detail-stat">
+                  <b>${fmt(num(d.citation_count))}</b>
+                  <span>citations</span>
+                </div>
+                <div class="detail-stat">
+                  <b>${fmt1(num(d.impact_breadth_score))}</b>
+                  <span>impact breadth</span>
+                </div>
+                <div class="detail-stat">
+                  <b>${fmt(num(d.citing_country_count))}</b>
+                  <span>citing countries</span>
+                </div>
+              </div>
+              <div class="authors-text"><strong>Authors:</strong> ${escapeHtml(authors)}${d.author_count > 6 ? ` +${d.author_count - 6} more` : ""}</div>
+              <div class="authors-text"><strong>Institutions:</strong> ${escapeHtml(Array.isArray(d.institutions) ? d.institutions.slice(0, 4).join(", ") : String(d.institutions || "N/A").replace(/[\[\]']/g, ""))}</div>
+              <p class="abstract-text">${escapeHtml(abstract.slice(0, 800))}${abstract.length > 800 ? "…" : ""}</p>
+              <div class="interpretation-box">
+                <b>解读</b>&ensp;${interpretation}
+              </div>
+            </div>
+          </article>
+        `;
+      }));
+    }
+
+    Promise.all([
+      d3.csv("data/papers_enriched.csv", d3.autoType),
+      d3.csv("data/award_timeline.csv", d3.autoType)
+    ]).then(([papers, timeline]) => {
+      for (const row of papers) {
+        row.year = num(row.year);
+        row.announcement_year = num(row.announcement_year);
+        row.recognition_lag = num(row.recognition_lag);
+        row.citation_count = num(row.citation_count);
+        row.impact_breadth_score = num(row.impact_breadth_score);
+        row.author_count = num(row.author_count);
+      }
+      for (const row of timeline) {
+        row.recognition_lag = num(row.recognition_lag);
+        row.citation_count = num(row.citation_count);
+        row.impact_breadth_score = num(row.impact_breadth_score);
+      }
+
+      const valid = papers.filter(d => d.recognition_lag > 0 && d.title);
+
+      // Pick highest-cited paper in each lag category
+      const shortPapers = valid.filter(d => lagCategory(d.recognition_lag) === "short");
+      const typicalPapers = valid.filter(d => lagCategory(d.recognition_lag) === "typical");
+      const longPapers = valid.filter(d => lagCategory(d.recognition_lag) === "long");
+
+      const pick = (arr) => arr.slice().sort((a, b) => d3.descending(a.citation_count, b.citation_count))[0];
+
+      const cases = [
+        { ...pick(shortPapers), category: "short" },
+        { ...pick(typicalPapers), category: "typical" },
+        { ...pick(longPapers), category: "long" }
+      ];
+
+      renderCases(d3.select("#cases-container"), cases);
+    }).catch(err => {
+      console.error(err);
+      d3.select("#cases-container").html(
+        `<pre style="padding:20px;color:#ffb4c1">Data loading failed: ${err.message}</pre>`
+      );
+    });
+  </script>
+</body>
+</html>

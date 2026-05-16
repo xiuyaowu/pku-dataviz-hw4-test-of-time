@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test of Time — Recognition Lag</title>
+  <link rel="icon" href="data:," />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #151b24;
+      --text: #eef4ff;
+      --muted: #9aa8bd;
+      --line: rgba(255, 255, 255, 0.10);
+      --accent: #70e1d4;
+      --accent-2: #f6bd60;
+      --accent-3: #b8a1ff;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(112, 225, 212, 0.18), transparent 32rem),
+        radial-gradient(circle at 90% 8%, rgba(184, 161, 255, 0.18), transparent 34rem),
+        linear-gradient(180deg, #0b0f16 0%, var(--bg) 45%, #0a0d12 100%);
+      color: var(--text);
+    }
+    a { color: inherit; }
+
+    .back-link {
+      position: fixed;
+      top: 24px;
+      left: clamp(20px, 5vw, 72px);
+      z-index: 10;
+      text-decoration: none;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      transition: border-color .2s, color .2s;
+    }
+    .back-link:hover { color: var(--text); border-color: rgba(112,225,212,0.6); }
+
+    .page {
+      padding: 80px clamp(20px, 5vw, 72px) 70px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-copy {
+      margin-bottom: 32px;
+    }
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.04;
+      margin: 10px 0 18px;
+      letter-spacing: -0.045em;
+    }
+    .section-copy p { color: #c5cfde; line-height: 1.7; max-width: 780px; font-size: 16px; }
+
+    .reading-note {
+      border-left: 3px solid var(--accent);
+      background: rgba(112,225,212,0.08);
+      padding: 12px 14px;
+      border-radius: 12px;
+      margin: 16px 0 0;
+      font-size: 14px;
+      color: #c5cfde;
+      line-height: 1.7;
+      max-width: 780px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.85fr) minmax(500px, 1.15fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .detail-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.035));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      padding: 20px;
+      min-height: 520px;
+      position: sticky;
+      top: 100px;
+    }
+    .detail-panel .placeholder {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      padding-top: 180px;
+    }
+    .paper-title-display {
+      font-size: 20px;
+      line-height: 1.25;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      color: #d6deea;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .detail-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .detail-stat {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .detail-stat b { display: block; font-size: 22px; color: var(--accent-2); }
+    .detail-stat span { color: var(--muted); font-size: 12px; }
+    .authors-text { color: #c8d2e1; line-height: 1.6; font-size: 13px; margin: 14px 0; }
+    .abstract-text { color: #c8d2e1; line-height: 1.65; font-size: 14px; }
+
+    .chart-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.035));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      padding: 18px 18px 12px;
+    }
+    .chart-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      padding: 4px 4px 12px;
+    }
+    .chart-head h3 { margin: 0; font-size: 18px; letter-spacing: -0.02em; }
+    .chart-head span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.11em; }
+    .chart { width: 100%; min-height: 520px; }
+
+    /* D3 chart styles */
+    .axis text { fill: #9ba8ba; font-size: 11px; }
+    .axis path, .axis line { stroke: rgba(255,255,255,0.15); }
+    .grid line { stroke: rgba(255,255,255,0.08); }
+    .bar { cursor: pointer; transition: opacity .2s ease; }
+    .bar:hover { opacity: .78; }
+    .bar-label { fill: #cdd6e5; font-size: 11px; }
+    .ref-line { stroke: var(--accent-3); stroke-width: 1.5; stroke-dasharray: 6 4; }
+    .ref-label { fill: var(--accent-3); font-size: 11px; }
+
+    .tooltip {
+      position: fixed;
+      z-index: 20;
+      pointer-events: none;
+      max-width: 320px;
+      background: rgba(8, 12, 18, 0.94);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--text);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .tooltip b { color: var(--accent); }
+
+    @media (max-width: 920px) {
+      .main-grid { grid-template-columns: 1fr; }
+      .detail-panel { position: static; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html#time" class="back-link">&larr; 返回总览</a>
+
+  <div class="page">
+    <div class="section-copy">
+      <p class="section-kicker">RQ1 · Time</p>
+      <h1>时间检验奖通常隔多久才颁发？</h1>
+      <p>recognition lag 直接刻画"经得起时间检验"的时间尺度：从论文发表到多年后被重新认可，中间间隔了多久。下方条形图展示了滞后时长最长的十篇论文，揭示哪些研究需要最长时间才能获得认可。</p>
+      <div class="reading-note" id="avg-note"></div>
+    </div>
+
+    <div class="main-grid">
+      <div class="detail-panel" id="detail-panel">
+        <div class="placeholder">点击右侧条形查看论文详细信息</div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Top 10 Longest Recognition Lag</h3>
+          <span>bars = papers · sorted by lag</span>
+        </div>
+        <div id="lag-bar-chart" class="chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+
+  <script>
+    const fmt = d3.format(",");
+    const fmt1 = d3.format(".1f");
+    const num = (d, fallback = 0) => {
+      const v = +d;
+      return Number.isFinite(v) ? v : fallback;
+    };
+
+    const tooltip = d3.select("#tooltip");
+    const showTip = (event, html) => {
+      tooltip.html(html).attr("hidden", null)
+        .style("left", `${Math.min(event.clientX + 16, window.innerWidth - 340)}px`)
+        .style("top", `${event.clientY + 16}px`);
+    };
+    const hideTip = () => tooltip.attr("hidden", true);
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[ch]));
+    }
+
+    function truncateTitle(title, maxLen) {
+      if (title.length <= maxLen) return title;
+      return title.slice(0, maxLen).replace(/,?\s*\S*$/, "") + "…";
+    }
+
+    Promise.all([
+      d3.csv("data/award_timeline.csv", d3.autoType),
+      d3.csv("data/papers_enriched.csv", d3.autoType)
+    ]).then(([timeline, papers]) => {
+      // Normalize
+      for (const row of timeline) {
+        row.recognition_lag = num(row.recognition_lag);
+        row.year = num(row.year);
+        row.announcement_year = num(row.announcement_year);
+        row.citation_count = num(row.citation_count);
+        row.impact_breadth_score = num(row.impact_breadth_score);
+      }
+      for (const row of papers) {
+        row.year = num(row.year);
+        row.announcement_year = num(row.announcement_year);
+        row.recognition_lag = num(row.recognition_lag);
+        row.citation_count = num(row.citation_count);
+        row.impact_breadth_score = num(row.impact_breadth_score);
+      }
+
+      // Top 10 by recognition_lag descending
+      const top10 = timeline.slice()
+        .filter(d => d.recognition_lag > 0)
+        .sort((a, b) => d3.descending(a.recognition_lag, b.recognition_lag))
+        .slice(0, 10);
+
+      const avgLag = d3.mean(timeline, d => d.recognition_lag);
+
+      // Summary note
+      d3.select("#avg-note")
+        .text(`全部论文的 recognition lag 平均值为 ${fmt1(avgLag)} 年（图中紫色虚线参考线）。最长的十篇论文滞后时长为 ${top10[0].recognition_lag} 至 ${top10[top10.length-1].recognition_lag} 年。`);
+
+      renderChart(top10, avgLag, papers);
+      updateDetail(papers.find(p => p.paper_id === top10[0].paper_id) || top10[0], papers);
+    }).catch(err => {
+      console.error(err);
+      document.querySelector(".chart-card").insertAdjacentHTML("afterbegin",
+        `<pre style="padding:20px;color:#ffb4c1">Data loading failed: ${err.message}</pre>`);
+    });
+
+    function renderChart(top10, avgLag, papers) {
+      const sel = d3.select("#lag-bar-chart");
+      const node = sel.node();
+      const width = Math.max(400, node.getBoundingClientRect().width || 700);
+      const height = 540;
+      sel.selectAll("*").remove();
+
+      const svg = sel.append("svg").attr("viewBox", [0, 0, width, height]);
+
+      const margin = { top: 20, right: 30, bottom: 30, left: 30 };
+      const labelArea = 280; // space for label text on the left
+
+      // y domain: paper labels (descending order)
+      const yDomain = top10.map(d => d.paper_id);
+
+      const x = d3.scaleLinear()
+        .domain([0, d3.max(top10, d => d.recognition_lag) * 1.12])
+        .range([margin.left + labelArea, width - margin.right]);
+
+      const y = d3.scaleBand()
+        .domain(yDomain)
+        .range([margin.top, height - margin.bottom])
+        .padding(0.28);
+
+      // Color scale based on venue_area — sorted domain matches index.html
+      const allAreas = [...new Set(timeline.map(d => d.venue_area))].sort();
+      const areaColor = d3.scaleOrdinal()
+        .domain(allAreas)
+        .range(["#70e1d4", "#f6bd60", "#b8a1ff", "#ff7a90", "#8bd17c", "#7cc9ff", "#f39ac7", "#c6d66f"]);
+
+      // Grid lines
+      svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).ticks(8).tickSize(-(height - margin.top - margin.bottom)).tickFormat(""))
+        .call(g => g.select(".domain").remove());
+
+      // X axis
+      svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).ticks(8))
+        .append("text")
+          .attr("fill", "#9ba8ba")
+          .attr("font-size", 12)
+          .attr("x", width - margin.right)
+          .attr("y", 26)
+          .attr("text-anchor", "end")
+          .text("recognition lag (years)");
+
+      // Average reference line
+      const avgX = x(avgLag);
+      svg.append("line")
+        .attr("class", "ref-line")
+        .attr("x1", avgX)
+        .attr("x2", avgX)
+        .attr("y1", margin.top - 8)
+        .attr("y2", height - margin.bottom + 4);
+
+      svg.append("text")
+        .attr("class", "ref-label")
+        .attr("x", avgX)
+        .attr("y", margin.top - 12)
+        .attr("text-anchor", "middle")
+        .text(`mean = ${fmt1(avgLag)}y`);
+
+      // Bars
+      svg.selectAll("rect.bar")
+        .data(top10).join("rect")
+        .attr("class", "bar")
+        .attr("x", x(0))
+        .attr("y", d => y(d.paper_id))
+        .attr("width", d => Math.max(0, x(d.recognition_lag) - x(0)))
+        .attr("height", y.bandwidth())
+        .attr("rx", 6)
+        .attr("fill", d => areaColor(d.venue_area))
+        .on("mousemove", (e, d) => {
+          showTip(e, `<b>${escapeHtml(d.title)}</b><br>
+            Field: ${d.venue_area || "N/A"}<br>
+            Published: ${d.year} · Awarded: ${d.announcement_year}<br>
+            Lag: ${d.recognition_lag} years<br>
+            Citations: ${fmt(d.citation_count)}`);
+        })
+        .on("mouseleave", hideTip)
+        .on("click", (_, d) => {
+          const full = papers.find(p => p.paper_id === d.paper_id) || d;
+          updateDetail(full, papers);
+        });
+
+      // Y-axis labels (paper short title) on the left of bars
+      svg.selectAll("text.y-label")
+        .data(top10).join("text")
+        .attr("class", "y-label")
+        .attr("x", margin.left + labelArea - 8)
+        .attr("y", d => y(d.paper_id) + y.bandwidth() / 2 + 4)
+        .attr("text-anchor", "end")
+        .attr("fill", "#eef4ff")
+        .attr("font-size", 12)
+        .attr("font-weight", 500)
+        .text(d => truncateTitle(d.title, 38));
+
+      // Tag labels beside each bar: field, pub→award years, lag
+      svg.selectAll("text.bar-label")
+        .data(top10).join("text")
+        .attr("class", "bar-label")
+        .attr("x", d => x(d.recognition_lag) + 8)
+        .attr("y", d => y(d.paper_id) + y.bandwidth() / 2 + 4)
+        .text(d => {
+          const field = (d.topic_label || d.venue_area || "").length > 18
+            ? (d.topic_label || d.venue_area || "").slice(0, 18) + "…"
+            : (d.topic_label || d.venue_area || "");
+          return `${field}  ·  ${d.year}→${d.announcement_year}  ·  ${d.recognition_lag}y`;
+        });
+    }
+
+    function updateDetail(d, papers) {
+      if (!d) return;
+      const panel = d3.select("#detail-panel");
+
+      // Enrich with papers_enriched data if available
+      const enriched = papers ? (papers.find(p => p.paper_id === d.paper_id) || d) : d;
+      const authors = enriched.authors
+        ? (Array.isArray(enriched.authors) ? enriched.authors.join(", ") : String(enriched.authors).replace(/[\[\]']/g, ""))
+        : "Unknown";
+      const institutions = enriched.institutions
+        ? (Array.isArray(enriched.institutions) ? enriched.institutions.join(", ") : String(enriched.institutions).replace(/[\[\]']/g, ""))
+        : "";
+      const abstract = enriched.abstract || "No abstract available.";
+      const countries = enriched.countries
+        ? (Array.isArray(enriched.countries) ? enriched.countries.join(", ") : String(enriched.countries).replace(/[\[\]']/g, ""))
+        : "";
+
+      panel.html(`
+        <div class="paper-title-display">${escapeHtml(d.title || "Untitled")}</div>
+        <div class="paper-meta">
+          <span class="chip">${escapeHtml(d.venue || "Unknown venue")}</span>
+          <span class="chip">${d.year || "?"} → ${d.announcement_year || "?"} (award)</span>
+          <span class="chip">${escapeHtml(d.venue_area || d.topic_label || "N/A")}</span>
+        </div>
+        <div class="detail-stats">
+          <div class="detail-stat"><b>${fmt1(num(d.recognition_lag))}y</b><span>recognition lag</span></div>
+          <div class="detail-stat"><b>${fmt(num(d.citation_count))}</b><span>citations</span></div>
+          <div class="detail-stat"><b>${fmt1(num(d.impact_breadth_score))}</b><span>impact breadth</span></div>
+          <div class="detail-stat"><b>${fmt(num(d.citing_country_count))}</b><span>citing countries</span></div>
+        </div>
+        <div class="authors-text"><strong>Authors:</strong> ${escapeHtml(authors)}</div>
+        ${institutions ? `<div class="authors-text"><strong>Institutions:</strong> ${escapeHtml(institutions)}</div>` : ""}
+        ${countries ? `<div class="authors-text"><strong>Countries:</strong> ${escapeHtml(countries)}</div>` : ""}
+        <p class="abstract-text">${escapeHtml(abstract.slice(0, 600))}${abstract.length > 600 ? "…" : ""}</p>
+      `);
+    }
+  </script>
+</body>
+</html>

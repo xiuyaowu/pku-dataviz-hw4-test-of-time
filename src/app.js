@@ -50,11 +50,12 @@ Promise.all([
 ]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries]) => {
   const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries };
   normalize(data);
+  color.domain([...new Set(data.papers.map(d => d.venue_area))].sort());
   activePapers = data.papers;
   renderSummary(data);
   renderInsightDeck(data);
   renderTimeExtremes(data.papers);
-  renderLag(data.lag);
+  renderLag(data.lag, data.papers);
   renderAwardTimeline(data.timeline, data.papers);
   renderVenue(data.venues);
   renderAreas(data.areas);
@@ -150,27 +151,47 @@ function chartBox(sel) {
   return {svg: d3.select(sel).append("svg").attr("viewBox", [0,0,width,height]), width, height};
 }
 
-function renderLag(rows) {
+function renderLag(rows, papers) {
   const {svg, width, height} = chartBox("#lag-chart");
-  const margin = {top: 18, right: 22, bottom: 46, left: 52};
-  const orderedRows = rows.slice().sort((a, b) => d3.ascending(lagBinStart(a.lag_bin), lagBinStart(b.lag_bin)));
-  const x = d3.scaleBand().domain(orderedRows.map(d => d.lag_bin)).range([margin.left, width - margin.right]).padding(0.18);
-  const y = d3.scaleLinear().domain([0, d3.max(orderedRows, d => d.paper_count)]).nice().range([height - margin.bottom, margin.top]);
+  const margin = {top: 28, right: 22, bottom: 46, left: 52};
+  const parseLower = bin => +bin.match(/\((\d+)/)[1];
+  const sorted = rows.slice().sort((a, b) => d3.ascending(parseLower(a.lag_bin), parseLower(b.lag_bin)));
+  const x = d3.scaleBand().domain(sorted.map(d => d.lag_bin)).range([margin.left, width - margin.right]).padding(0.18);
+  const y = d3.scaleLinear().domain([0, d3.max(sorted, d => d.paper_count)]).nice().range([height - margin.bottom, margin.top]);
   svg.append("g").attr("class", "grid").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(width-margin.left-margin.right)).tickFormat(""));
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5));
-  svg.selectAll("rect.bar").data(orderedRows).join("rect")
+  svg.selectAll("rect.bar").data(sorted).join("rect")
     .attr("class", "bar")
     .attr("x", d => x(d.lag_bin)).attr("y", d => y(d.paper_count))
     .attr("width", x.bandwidth()).attr("height", d => y(0) - y(d.paper_count))
     .attr("rx", 8).attr("fill", "url(#lagGrad)")
     .on("mousemove", (e,d) => showTip(e, `<b>${d.lag_bin}</b><br>${d.paper_count} papers<br>Recognition lag = announcement year − publication year<br>Avg citations: ${fmt(num(d.avg_citation_count))}`))
     .on("mouseleave", hideTip);
+  svg.selectAll("text.val").data(sorted).join("text")
+    .attr("class", "val")
+    .attr("x", d => x(d.lag_bin) + x.bandwidth() / 2)
+    .attr("y", d => y(d.paper_count) - 6)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#eef4ff")
+    .attr("font-size", 12)
+    .attr("font-weight", 600)
+    .text(d => d.paper_count);
+  const lagMedian = d3.median(papers, d => d.recognition_lag);
+  const lagMean = d3.mean(papers, d => d.recognition_lag);
+  svg.append("text")
+    .attr("x", width - margin.right)
+    .attr("y", margin.top - 6)
+    .attr("text-anchor", "end")
+    .attr("fill", "#f6bd60")
+    .attr("font-size", 12)
+    .attr("font-weight", 600)
+    .text(`Median: ${fmt1(lagMedian)}y  ·  Mean: ${fmt1(lagMean)}y`);
   addGradient(svg, "lagGrad", "#70e1d4", "#3d8ee8");
 
-  const peak = orderedRows.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
-  const medianBand = orderedRows.find(d => d.lag_bin === "(10, 15]");
-  const longTail = orderedRows.find(d => d.lag_bin === "(30, 40]");
+  const peak = sorted.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
+  const medianBand = sorted.find(d => d.lag_bin === "(10, 15]");
+  const longTail = sorted.find(d => d.lag_bin === "(30, 40]");
   if (peak) addCallout(svg, x(peak.lag_bin) + x.bandwidth() * 0.52, y(peak.paper_count), "Dense window · 5–10y", 18, -22);
   if (medianBand) addCallout(svg, x(medianBand.lag_bin) + x.bandwidth() * 0.48, y(medianBand.paper_count), "Median sits here · 12y", 18, -26);
   if (longTail) addCallout(svg, x(longTail.lag_bin) + x.bandwidth() * 0.54, y(longTail.paper_count), "Long tail · 30y+", -112, -18);
@@ -183,11 +204,20 @@ function lagBinStart(label) {
 
 function renderAwardTimeline(rows, papers) {
   const {svg, width, height} = chartBox("#timeline-chart");
-  const margin = {top: 18, right: 26, bottom: 48, left: 58};
+  const margin = {top: 18, right: 150, bottom: 48, left: 58};
   const clean = rows.filter(d => d.year && d.announcement_year);
   const x = d3.scaleLinear().domain(d3.extent(clean, d => d.year)).nice().range([margin.left, width-margin.right]);
   const y = d3.scaleLinear().domain(d3.extent(clean, d => d.announcement_year)).nice().range([height-margin.bottom, margin.top]);
   const r = d3.scaleSqrt().domain(d3.extent(clean, d => d.citation_count)).range([3, 11]);
+  function lagCategory(lag) {
+    if (!Number.isFinite(lag)) return "typical recognition lag";
+    if (lag < 10) return "short recognition lag";
+    if (lag <= 18) return "typical recognition lag";
+    return "long recognition lag";
+  }
+  const lagColor = d3.scaleOrdinal()
+    .domain(["short recognition lag", "typical recognition lag", "long recognition lag"])
+    .range(["#f6bd60", "#b8a1ff", "#70e1d4"]);
   svg.append("g").attr("class", "grid").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(width-margin.left-margin.right)).tickFormat(""));
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d")));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d3.format("d")));
@@ -196,7 +226,7 @@ function renderAwardTimeline(rows, papers) {
   const timelineMarks = svg.selectAll("circle.timeline-dot").data(clean).join("circle")
     .attr("class", "dot timeline-dot")
     .attr("cx", d => x(d.year)).attr("cy", d => y(d.announcement_year))
-    .attr("r", d => r(d.citation_count)).attr("fill", d => color(d.venue_area)).attr("opacity", 0.68)
+    .attr("r", d => r(d.citation_count)).attr("fill", d => lagColor(lagCategory(d.recognition_lag))).attr("opacity", 0.68)
     .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>${d.venue} · ${d.year} → ${d.announcement_year}<br>Lag: ${d.recognition_lag} years<br>Citations: ${fmt(d.citation_count)}`))
     .on("mouseleave", hideTip)
     .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
@@ -205,8 +235,29 @@ function renderAwardTimeline(rows, papers) {
     d => `Timeline paper ${d.title}. ${d.venue}, publication ${d.year}, award ${d.announcement_year}, recognition lag ${d.recognition_lag} years. Press Enter to show details.`,
     d => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d)
   );
+  const lagCategories = ["short recognition lag", "typical recognition lag", "long recognition lag"];
+  const legendX = width - margin.right + 14;
+  const legendY = margin.top + 4;
+  svg.append("rect")
+    .attr("x", legendX - 10).attr("y", legendY - 6)
+    .attr("width", 170).attr("height", lagCategories.length * 20 + 12)
+    .attr("rx", 6).attr("fill", "rgba(18,22,36,0.78)").attr("stroke", "rgba(255,255,255,0.12)");
+  const legend = svg.append("g").attr("transform", `translate(${legendX},${legendY})`);
+  legend.selectAll("g").data(lagCategories).join("g")
+    .attr("transform", (_, i) => `translate(0, ${i * 20})`)
+    .each(function(d) {
+      const g = d3.select(this);
+      g.append("rect").attr("width", 10).attr("height", 10).attr("rx", 2).attr("fill", lagColor(d)).attr("opacity", 0.68);
+      g.append("text").attr("x", 16).attr("y", 9).attr("fill", "#cdd6e5").attr("font-size", 11).text(d);
+    });
   const longest = clean.slice().sort((a,b) => d3.descending(a.recognition_lag,b.recognition_lag))[0];
   if (longest) addCallout(svg, x(longest.year), y(longest.announcement_year), `Longest lag · ${longest.recognition_lag}y`, 18, -18);
+  svg.append("text")
+    .attr("x", margin.left)
+    .attr("y", height - margin.bottom + 26)
+    .attr("fill", "#9aa8bd")
+    .attr("font-size", 11)
+    .text("Color thresholds: short < 10y, typical 10–18y, long > 18y (recognition lag = announcement year − publication year)");
 }
 
 function renderVenue(rows) {
