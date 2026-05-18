@@ -134,10 +134,28 @@ function initPresentationMode() {
 
   const setDockCollapsed = collapsed => {
     if (!actionDock || !dockToggle) return;
+    actionDock.classList.remove("dock-hidden");
     actionDock.classList.toggle("dock-collapsed", collapsed);
     actionDock.classList.toggle("dock-expanded", !collapsed);
     dockToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
     dockToggle.textContent = collapsed ? "Tools" : "Close";
+  };
+
+  const setDockHidden = hidden => {
+    if (!actionDock || !dockToggle) return;
+    actionDock.classList.toggle("dock-hidden", hidden);
+    if (hidden) {
+      actionDock.classList.add("dock-collapsed");
+      actionDock.classList.remove("dock-expanded");
+      dockToggle.setAttribute("aria-expanded", "false");
+      dockToggle.textContent = "Tools";
+    }
+  };
+
+  const toggleDockHidden = () => {
+    if (!actionDock) return;
+    if (actionDock.classList.contains("dock-hidden")) setDockCollapsed(true);
+    else setDockHidden(true);
   };
 
   const setMode = enabled => {
@@ -320,7 +338,7 @@ function initPresentationMode() {
   setMode(shouldStart);
   if (shouldStart) setTimeout(startTour, 250);
   if (dockToggle) dockToggle.addEventListener("click", () => setDockCollapsed(!actionDock.classList.contains("dock-collapsed")));
-  if (dockHide) dockHide.addEventListener("click", () => setDockCollapsed(true));
+  if (dockHide) dockHide.addEventListener("click", () => setDockHidden(true));
   if (toggle) toggle.addEventListener("click", () => setMode(!root.classList.contains("presentation-mode")));
   if (tourToggle) tourToggle.addEventListener("click", startTour);
   document.getElementById("tour-prev")?.addEventListener("click", () => moveTour(-1));
@@ -351,7 +369,7 @@ function initPresentationMode() {
     const tag = event.target && event.target.tagName ? event.target.tagName.toLowerCase() : "";
     if (["input", "textarea", "select"].includes(tag)) return;
     if (event.key.toLowerCase() === "p") setMode(!root.classList.contains("presentation-mode"));
-    if (event.key.toLowerCase() === "h") setDockCollapsed(true);
+    if (event.key.toLowerCase() === "h") toggleDockHidden();
     if (!controls?.hidden && event.key === "ArrowRight") moveTour(1);
     if (!controls?.hidden && event.key === "ArrowLeft") moveTour(-1);
     if (event.key === "Escape") {

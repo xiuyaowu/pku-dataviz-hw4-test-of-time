@@ -1007,12 +1007,20 @@ body.exporting .tour-active { outline: none; background: transparent; }
   visibility: hidden;
 }
 .action-dock.dock-expanded .floating-actions { opacity: 1; transform: none; visibility: visible; }
+.action-dock.dock-hidden {
+  opacity: 0;
+  transform: translateY(18px) scale(.98);
+  pointer-events: none;
+  visibility: hidden;
+}
 .presentation-toggle.ghost {
   background: rgba(0,0,0,.34);
   color: var(--muted);
 }
 .presentation-mode .action-dock:not(.dock-expanded) { opacity: .38; }
 .presentation-mode .action-dock:not(.dock-expanded):hover { opacity: 1; }
+.tour-controls[hidden],
+body.exporting .tour-controls,
 body.exporting .action-dock { display: none !important; }
 
 @media (max-width: 980px) {
