@@ -21,19 +21,26 @@
       <a href="#glossary">Glossary</a>
       <a href="#network">Network</a>
     </nav>
-    <div class="floating-actions" aria-label="Presentation tools">
-      <button id="presentation-toggle" class="presentation-toggle" type="button" aria-pressed="false" title="Toggle projector-friendly presentation mode with P">
-        Presentation mode
-        <span>press P</span>
-      </button>
-      <button id="tour-toggle" class="presentation-toggle secondary" type="button" aria-pressed="false" title="Start guided presentation tour">
-        Guided tour
-        <span>→</span>
-      </button>
-      <button id="screenshot-toggle" class="presentation-toggle secondary" type="button" title="Open polished one-click export studio">
-        Export deck
-        <span>PNG/ZIP</span>
-      </button>
+    <div id="action-dock" class="action-dock dock-collapsed" aria-label="Presentation tools">
+      <button id="dock-toggle" class="dock-toggle" type="button" aria-expanded="false" title="Show presentation tools">Tools</button>
+      <div class="floating-actions" aria-label="Presentation actions">
+        <button id="presentation-toggle" class="presentation-toggle" type="button" aria-pressed="false" title="Toggle projector-friendly presentation mode with P">
+          Present
+          <span>P</span>
+        </button>
+        <button id="tour-toggle" class="presentation-toggle secondary" type="button" aria-pressed="false" title="Start guided presentation tour">
+          Tour
+          <span>→</span>
+        </button>
+        <button id="screenshot-toggle" class="presentation-toggle secondary" type="button" title="Open polished one-click export studio">
+          Export
+          <span>ZIP</span>
+        </button>
+        <button id="dock-hide" class="presentation-toggle secondary ghost" type="button" title="Hide this toolbar">
+          Hide
+          <span>H</span>
+        </button>
+      </div>
     </div>
     <div id="tour-controls" class="tour-controls" hidden aria-live="polite">
       <div>

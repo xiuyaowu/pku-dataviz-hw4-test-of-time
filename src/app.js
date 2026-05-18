@@ -86,6 +86,9 @@ Promise.all([
 
 function initPresentationMode() {
   const root = document.body;
+  const actionDock = document.getElementById("action-dock");
+  const dockToggle = document.getElementById("dock-toggle");
+  const dockHide = document.getElementById("dock-hide");
   const toggle = document.getElementById("presentation-toggle");
   const tourToggle = document.getElementById("tour-toggle");
   const screenshotToggle = document.getElementById("screenshot-toggle");
@@ -129,9 +132,18 @@ function initPresentationMode() {
   const exportPreviewTitle = document.getElementById("export-preview-title");
   const exportPreviewMeta = document.getElementById("export-preview-meta");
 
+  const setDockCollapsed = collapsed => {
+    if (!actionDock || !dockToggle) return;
+    actionDock.classList.toggle("dock-collapsed", collapsed);
+    actionDock.classList.toggle("dock-expanded", !collapsed);
+    dockToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    dockToggle.textContent = collapsed ? "Tools" : "Close";
+  };
+
   const setMode = enabled => {
     root.classList.toggle("presentation-mode", enabled);
     if (toggle) toggle.setAttribute("aria-pressed", enabled ? "true" : "false");
+    if (enabled) setDockCollapsed(true);
   };
 
   const renderTourStep = () => {
@@ -154,11 +166,14 @@ function initPresentationMode() {
     tourIndex = Math.max(0, steps.findIndex(s => `#${s.id}` === window.location.hash));
     if (tourIndex < 0) tourIndex = 0;
     renderTourStep();
+    setDockCollapsed(true);
   };
-  const exitTour = () => {
+  const exitTour = (leavePresentation = true) => {
     document.querySelectorAll(".tour-active").forEach(el => el.classList.remove("tour-active"));
     if (controls) controls.hidden = true;
     if (tourToggle) tourToggle.setAttribute("aria-pressed", "false");
+    if (leavePresentation) setMode(false);
+    if (window.location.hash === "#present") history.replaceState(null, "", window.location.pathname + window.location.search);
   };
   const moveTour = delta => {
     tourIndex = Math.max(0, Math.min(steps.length - 1, tourIndex + delta));
@@ -304,11 +319,13 @@ function initPresentationMode() {
 
   setMode(shouldStart);
   if (shouldStart) setTimeout(startTour, 250);
+  if (dockToggle) dockToggle.addEventListener("click", () => setDockCollapsed(!actionDock.classList.contains("dock-collapsed")));
+  if (dockHide) dockHide.addEventListener("click", () => setDockCollapsed(true));
   if (toggle) toggle.addEventListener("click", () => setMode(!root.classList.contains("presentation-mode")));
   if (tourToggle) tourToggle.addEventListener("click", startTour);
   document.getElementById("tour-prev")?.addEventListener("click", () => moveTour(-1));
   document.getElementById("tour-next")?.addEventListener("click", () => moveTour(1));
-  document.getElementById("tour-exit")?.addEventListener("click", exitTour);
+  document.getElementById("tour-exit")?.addEventListener("click", () => exitTour(true));
   if (screenshotToggle && screenshotPanel) screenshotToggle.addEventListener("click", () => {
     screenshotPanel.hidden = false;
     setMode(true);
@@ -334,10 +351,11 @@ function initPresentationMode() {
     const tag = event.target && event.target.tagName ? event.target.tagName.toLowerCase() : "";
     if (["input", "textarea", "select"].includes(tag)) return;
     if (event.key.toLowerCase() === "p") setMode(!root.classList.contains("presentation-mode"));
+    if (event.key.toLowerCase() === "h") setDockCollapsed(true);
     if (!controls?.hidden && event.key === "ArrowRight") moveTour(1);
     if (!controls?.hidden && event.key === "ArrowLeft") moveTour(-1);
     if (event.key === "Escape") {
-      exitTour();
+      exitTour(true);
       if (screenshotPanel) screenshotPanel.hidden = true;
       closeEvidenceModal();
     }
