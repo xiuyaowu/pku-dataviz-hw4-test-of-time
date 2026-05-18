@@ -101,12 +101,27 @@ function initPresentationMode() {
     {id: "benchmark", title: "Benchmark Lab", takeaway: "Percentiles make a selected case explainable relative to the dataset and its field."},
     {id: "network", title: "Network / closing", takeaway: "Institution and country views extend the story to visible metadata, while keeping proxy limits explicit."}
   ];
+  const exportTargets = [
+    {id: "hero", selector: ".hero", filename: "dataviz-hw4-hero-overview.png"},
+    {id: "time", selector: "#time", filename: "dataviz-hw4-time-lag.png"},
+    {id: "venue", selector: "#venue", filename: "dataviz-hw4-venue-field.png"},
+    {id: "topic", selector: "#topic", filename: "dataviz-hw4-topic-evolution.png"},
+    {id: "citation", selector: "#citation", filename: "dataviz-hw4-citation-compare.png"},
+    {id: "explorer", selector: "#explorer", filename: "dataviz-hw4-paper-explorer.png"},
+    {id: "benchmark", selector: "#benchmark", filename: "dataviz-hw4-benchmark-lab.png"},
+    {id: "storyboard", selector: "#storyboard", filename: "dataviz-hw4-storyboard.png"},
+    {id: "network", selector: "#network", filename: "dataviz-hw4-network.png"}
+  ];
   let tourIndex = 0;
 
   const controls = document.getElementById("tour-controls");
   const stepCount = document.getElementById("tour-step-count");
   const tourTitle = document.getElementById("tour-title");
   const tourTakeaway = document.getElementById("tour-takeaway");
+  const exportSelect = document.getElementById("export-target");
+  const exportCurrent = document.getElementById("export-current-png");
+  const exportAll = document.getElementById("export-all-png");
+  const exportStatus = document.getElementById("export-status");
 
   const setMode = enabled => {
     root.classList.toggle("presentation-mode", enabled);
@@ -144,6 +159,61 @@ function initPresentationMode() {
     renderTourStep();
   };
 
+  const setExportStatus = (message, state = "") => {
+    if (!exportStatus) return;
+    exportStatus.textContent = message;
+    exportStatus.dataset.state = state;
+  };
+
+  const selectedExportTarget = () => exportTargets.find(d => d.id === exportSelect?.value) || exportTargets[0];
+
+  const downloadDataUrl = (dataUrl, filename) => {
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = dataUrl;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
+  const waitFrame = () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+  const exportTargetPng = async (target, index = 0, total = 1) => {
+    if (!window.htmlToImage?.toPng) throw new Error("PNG exporter failed to load. Refresh the page and try again.");
+    const node = document.querySelector(target.selector);
+    if (!node) throw new Error(`Export target not found: ${target.selector}`);
+    setExportStatus(`Rendering ${index + 1}/${total}: ${target.filename} ...`, "working");
+    document.body.classList.add("exporting");
+    root.classList.remove("presentation-mode");
+    node.scrollIntoView({behavior: "auto", block: "start"});
+    await waitFrame();
+    const dataUrl = await window.htmlToImage.toPng(node, {
+      pixelRatio: 2,
+      cacheBust: true,
+      backgroundColor: "#0b0f16",
+      filter: el => !el.classList?.contains("floating-actions") && !el.classList?.contains("tour-controls") && !el.classList?.contains("modal-shell")
+    });
+    downloadDataUrl(dataUrl, target.filename);
+    return target.filename;
+  };
+
+  const runExport = async (targets) => {
+    if (exportCurrent) exportCurrent.disabled = true;
+    if (exportAll) exportAll.disabled = true;
+    try {
+      const files = [];
+      for (let i = 0; i < targets.length; i++) files.push(await exportTargetPng(targets[i], i, targets.length));
+      setExportStatus(`Done. Downloaded ${files.length} PNG file${files.length > 1 ? "s" : ""}: ${files.join(", ")}`, "done");
+    } catch (err) {
+      console.error(err);
+      setExportStatus(`Export failed: ${err.message}`, "error");
+    } finally {
+      document.body.classList.remove("exporting");
+      if (exportCurrent) exportCurrent.disabled = false;
+      if (exportAll) exportAll.disabled = false;
+    }
+  };
+
   setMode(shouldStart);
   if (shouldStart) setTimeout(startTour, 250);
   if (toggle) toggle.addEventListener("click", () => setMode(!root.classList.contains("presentation-mode")));
@@ -151,7 +221,15 @@ function initPresentationMode() {
   document.getElementById("tour-prev")?.addEventListener("click", () => moveTour(-1));
   document.getElementById("tour-next")?.addEventListener("click", () => moveTour(1));
   document.getElementById("tour-exit")?.addEventListener("click", exitTour);
-  if (screenshotToggle && screenshotPanel) screenshotToggle.addEventListener("click", () => { screenshotPanel.hidden = false; setMode(true); });
+  if (screenshotToggle && screenshotPanel) screenshotToggle.addEventListener("click", () => {
+    screenshotPanel.hidden = false;
+    setMode(true);
+    const activeStep = document.querySelector(".tour-active")?.id;
+    if (exportSelect && activeStep && exportTargets.some(d => d.id === activeStep)) exportSelect.value = activeStep;
+    setExportStatus("Choose a module, then download a clean high-resolution PNG.");
+  });
+  if (exportCurrent) exportCurrent.addEventListener("click", () => runExport([selectedExportTarget()]));
+  if (exportAll) exportAll.addEventListener("click", () => runExport(exportTargets));
   document.querySelectorAll("[data-close-screenshot]").forEach(el => el.addEventListener("click", () => { if (screenshotPanel) screenshotPanel.hidden = true; }));
 
   window.addEventListener("keydown", event => {

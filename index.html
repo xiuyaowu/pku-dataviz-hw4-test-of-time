@@ -30,9 +30,9 @@
         Guided tour
         <span>→</span>
       </button>
-      <button id="screenshot-toggle" class="presentation-toggle secondary" type="button" title="Open screenshot and offline backup guide">
-        Screenshot backup
-        <span>⌘⇧4</span>
+      <button id="screenshot-toggle" class="presentation-toggle secondary" type="button" title="Open one-click PNG export panel">
+        Export PNG
+        <span>1-click</span>
       </button>
     </div>
     <div id="tour-controls" class="tour-controls" hidden aria-live="polite">
@@ -344,20 +344,34 @@
     <article class="evidence-modal-card screenshot-card">
       <button class="modal-close" type="button" data-close-screenshot aria-label="Close screenshot guide">×</button>
       <p class="section-kicker">Offline backup</p>
-      <h2 id="screenshot-title">Screenshot Export / Backup</h2>
-      <p>Use this route before the final presentation to capture stable views for PPT and fallback.</p>
-      <ol class="backup-steps">
-        <li>Enter <b>Guided tour</b> or open <code>index.html?present=1</code>.</li>
-        <li>Use <b>Next</b> to move to the target module.</li>
-        <li>On macOS press <b>⌘ ⇧ 4</b> and capture the highlighted section.</li>
-        <li>Name files like <code>dataviz-hw4-citation-compare.png</code>.</li>
-      </ol>
-      <p class="reading-note mini-note">If live demo fails, follow <a href="docs/live_demo_fallback_script.md">docs/live_demo_fallback_script.md</a>. This button is a lightweight offline backup入口 without adding heavy screenshot dependencies.</p>
+      <h2 id="screenshot-title">One-click PNG Export</h2>
+      <p>Export clean, PPT-ready screenshots directly from the dashboard. No manual cropping, no keyboard shortcut, no broken numbered checklist.</p>
+      <div class="export-panel">
+        <label for="export-target">Choose slide / module</label>
+        <select id="export-target" class="export-select">
+          <option value="hero">Hero overview</option>
+          <option value="time">Time · recognition lag</option>
+          <option value="venue">Venue & field</option>
+          <option value="topic">Topic evolution</option>
+          <option value="citation">Citation & compare panel</option>
+          <option value="explorer">Paper explorer</option>
+          <option value="benchmark">Benchmark lab</option>
+          <option value="storyboard">Storyboard / division of labor</option>
+          <option value="network">Network</option>
+        </select>
+        <div class="export-actions">
+          <button id="export-current-png" class="export-primary" type="button">Download selected PNG</button>
+          <button id="export-all-png" class="export-secondary" type="button">Download all slide PNGs</button>
+        </div>
+        <div id="export-status" class="export-status" role="status" aria-live="polite">Ready. Files will download automatically as high-resolution PNGs.</div>
+      </div>
+      <p class="reading-note mini-note">Fallback script remains available at <a href="docs/live_demo_fallback_script.md">docs/live_demo_fallback_script.md</a>, but the intended workflow is now one-click export.</p>
     </article>
   </div>
   <footer>
     <p>Data source: Test of Time Award records enriched with public scholarly metadata. Metrics such as impact breadth are approximate indicators for visualization.</p>
   </footer>
+  <script src="src/vendor/html-to-image.min.js"></script>
   <script src="src/app.js"></script>
 </body>
 </html>

@@ -821,3 +821,72 @@ body.presentation-mode .tour-active { opacity: 1 !important; }
   .paper-list-item { grid-template-columns: auto 1fr; }
   .item-actions { grid-column: 1 / -1; justify-content: flex-start; }
 }
+
+.export-panel {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(112,225,212,.22);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(112,225,212,.10), rgba(255,255,255,.035));
+}
+.export-panel label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.export-select {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+  background: rgba(8,12,18,.78);
+  color: var(--text);
+  padding: 12px 14px;
+  font: inherit;
+}
+.export-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.export-primary,
+.export-secondary {
+  border: 1px solid rgba(112,225,212,.36);
+  border-radius: 999px;
+  padding: 12px 14px;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+}
+.export-primary { background: linear-gradient(135deg, rgba(112,225,212,.28), rgba(184,161,255,.18)); }
+.export-secondary { background: rgba(255,255,255,.06); }
+.export-primary:hover,
+.export-secondary:hover { border-color: rgba(112,225,212,.85); background-color: rgba(112,225,212,.12); }
+.export-primary:disabled,
+.export-secondary:disabled { opacity: .55; cursor: wait; }
+.export-status {
+  min-height: 42px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+  color: #c8d2e1;
+  padding: 11px 12px;
+  line-height: 1.45;
+}
+.export-status[data-state="working"] { color: var(--accent-2); border-color: rgba(246,189,96,.32); }
+.export-status[data-state="done"] { color: var(--accent); border-color: rgba(112,225,212,.34); }
+.export-status[data-state="error"] { color: #ffb4c1; border-color: rgba(255,122,144,.36); }
+body.exporting .floating-actions,
+body.exporting .tour-controls,
+body.exporting .modal-shell,
+body.exporting .tooltip { display: none !important; }
+body.exporting main .section { opacity: 1 !important; }
+body.exporting .tour-active { outline: none; background: transparent; }
+
+@media (max-width: 760px) {
+  .export-actions { grid-template-columns: 1fr; }
+}
