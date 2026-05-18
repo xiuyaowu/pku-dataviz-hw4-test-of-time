@@ -21,10 +21,32 @@
       <a href="#glossary">Glossary</a>
       <a href="#network">Network</a>
     </nav>
-    <button id="presentation-toggle" class="presentation-toggle" type="button" aria-pressed="false" title="Toggle projector-friendly presentation mode with P">
-      Presentation mode
-      <span>press P</span>
-    </button>
+    <div class="floating-actions" aria-label="Presentation tools">
+      <button id="presentation-toggle" class="presentation-toggle" type="button" aria-pressed="false" title="Toggle projector-friendly presentation mode with P">
+        Presentation mode
+        <span>press P</span>
+      </button>
+      <button id="tour-toggle" class="presentation-toggle secondary" type="button" aria-pressed="false" title="Start guided presentation tour">
+        Guided tour
+        <span>→</span>
+      </button>
+      <button id="screenshot-toggle" class="presentation-toggle secondary" type="button" title="Open screenshot and offline backup guide">
+        Screenshot backup
+        <span>⌘⇧4</span>
+      </button>
+    </div>
+    <div id="tour-controls" class="tour-controls" hidden aria-live="polite">
+      <div>
+        <span id="tour-step-count" class="tour-step-count"></span>
+        <strong id="tour-title"></strong>
+        <p id="tour-takeaway"></p>
+      </div>
+      <div class="tour-buttons">
+        <button id="tour-prev" type="button">Prev</button>
+        <button id="tour-next" type="button">Next</button>
+        <button id="tour-exit" type="button">Exit</button>
+      </div>
+    </div>
     <p class="eyebrow">PKU Data Visualization HW4 · Test of Time Award</p>
     <h1>哪些计算机研究经得起时间检验？</h1>
     <p class="subtitle">Visualizing long-term impact in computer science through award timing, research fields, topic evolution, citation trajectories, and institutional diffusion.</p>
@@ -152,6 +174,15 @@
         </div>
       </div>
       <div id="citation-quadrants" class="insight-strip wide-strip"></div>
+      <div class="chart-card wide-card compare-card">
+        <div class="chart-head">
+          <h3>Case Compare Panel</h3>
+          <span>depth · breadth · lag · evidence</span>
+        </div>
+        <p class="reading-note mini-note">Pick a high-depth/high-breadth anchor and a depth/breadth mismatch case. The note is phrased as proxy sensitivity, not paper ranking.</p>
+        <div id="compare-controls" class="control-row compare-controls"></div>
+        <div id="case-compare-panel" class="case-compare-panel" aria-live="polite"></div>
+      </div>
       <div class="claim-panel wide-card">
         <div class="claim-panel-head">
           <p class="section-kicker">Report claims</p>
@@ -301,6 +332,29 @@
   </main>
 
   <div id="tooltip" class="tooltip" hidden></div>
+  <div id="evidence-modal" class="modal-shell" hidden role="dialog" aria-modal="true" aria-labelledby="evidence-modal-title">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="evidence-modal-card">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close evidence card">×</button>
+      <div id="evidence-modal-content"></div>
+    </article>
+  </div>
+  <div id="screenshot-panel" class="modal-shell" hidden role="dialog" aria-modal="true" aria-labelledby="screenshot-title">
+    <div class="modal-backdrop" data-close-screenshot></div>
+    <article class="evidence-modal-card screenshot-card">
+      <button class="modal-close" type="button" data-close-screenshot aria-label="Close screenshot guide">×</button>
+      <p class="section-kicker">Offline backup</p>
+      <h2 id="screenshot-title">Screenshot Export / Backup</h2>
+      <p>Use this route before the final presentation to capture stable views for PPT and fallback.</p>
+      <ol class="backup-steps">
+        <li>Enter <b>Guided tour</b> or open <code>index.html?present=1</code>.</li>
+        <li>Use <b>Next</b> to move to the target module.</li>
+        <li>On macOS press <b>⌘ ⇧ 4</b> and capture the highlighted section.</li>
+        <li>Name files like <code>dataviz-hw4-citation-compare.png</code>.</li>
+      </ol>
+      <p class="reading-note mini-note">If live demo fails, follow <a href="docs/live_demo_fallback_script.md">docs/live_demo_fallback_script.md</a>. This button is a lightweight offline backup入口 without adding heavy screenshot dependencies.</p>
+    </article>
+  </div>
   <footer>
     <p>Data source: Test of Time Award records enriched with public scholarly metadata. Metrics such as impact breadth are approximate indicators for visualization.</p>
   </footer>

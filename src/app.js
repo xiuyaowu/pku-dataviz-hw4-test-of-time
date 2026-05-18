@@ -4,6 +4,7 @@ const color = d3.scaleOrdinal()
   .range(["#70e1d4", "#f6bd60", "#b8a1ff", "#ff7a90", "#8bd17c", "#7cc9ff", "#f39ac7", "#c6d66f"]);
 
 let activePapers = [];
+let compareSelection = {a: null, b: null};
 const tooltip = d3.select("#tooltip");
 const showTip = (event, html) => {
   tooltip.html(html).attr("hidden", null)
@@ -46,10 +47,12 @@ Promise.all([
   d3.csv("data/citation_trajectories.csv", d3.autoType),
   d3.csv("data/citing_breadth_metrics.csv", d3.autoType),
   d3.csv("data/institution_stats.csv", d3.autoType),
-  d3.csv("data/country_stats.csv", d3.autoType)
-]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries]) => {
-  const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries };
+  d3.csv("data/country_stats.csv", d3.autoType),
+  d3.csv("manual_annotations/manual_paper_annotations_top12_evidence_ready.csv", d3.autoType)
+]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries, evidence]) => {
+  const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries, evidence };
   normalize(data);
+  mergeEvidence(data);
   color.domain([...new Set(data.papers.map(d => d.venue_area))].sort());
   activePapers = data.papers;
   renderSummary(data);
@@ -67,6 +70,7 @@ Promise.all([
   renderBreadth(data.timeline, data.papers);
   renderCitationQuadrants(data.timeline);
   renderExplorer(data.papers);
+  renderComparePanel(data.papers);
   renderBenchmark(data.papers);
   renderStoryboard(data);
   renderNetworkKpis(data.institutions, data.countries);
@@ -83,20 +87,83 @@ Promise.all([
 function initPresentationMode() {
   const root = document.body;
   const toggle = document.getElementById("presentation-toggle");
+  const tourToggle = document.getElementById("tour-toggle");
+  const screenshotToggle = document.getElementById("screenshot-toggle");
+  const screenshotPanel = document.getElementById("screenshot-panel");
   const params = new URLSearchParams(window.location.search);
   const shouldStart = params.get("present") === "1" || window.location.hash === "#present";
+  const steps = [
+    {id: "time", title: "Time · recognition lag", takeaway: "Test-of-Time recognition is usually delayed, so the project starts from the time gap between publication and award."},
+    {id: "venue", title: "Venue & Field", takeaway: "Venue and field counts show where this award history is visible, not a conference quality ranking."},
+    {id: "topic", title: "Topic Evolution", takeaway: "Long-term impact appears across several technical lineages, so representative papers matter more than a single topic label."},
+    {id: "citation", title: "Citation & Impact", takeaway: "Citation depth is important, but breadth and trajectory show why high citation is not the whole story."},
+    {id: "explorer", title: "Paper Explorer", takeaway: "The dashboard doubles as an evidence index: every claim can be traced back to searchable papers."},
+    {id: "benchmark", title: "Benchmark Lab", takeaway: "Percentiles make a selected case explainable relative to the dataset and its field."},
+    {id: "network", title: "Network / closing", takeaway: "Institution and country views extend the story to visible metadata, while keeping proxy limits explicit."}
+  ];
+  let tourIndex = 0;
+
+  const controls = document.getElementById("tour-controls");
+  const stepCount = document.getElementById("tour-step-count");
+  const tourTitle = document.getElementById("tour-title");
+  const tourTakeaway = document.getElementById("tour-takeaway");
 
   const setMode = enabled => {
     root.classList.toggle("presentation-mode", enabled);
     if (toggle) toggle.setAttribute("aria-pressed", enabled ? "true" : "false");
   };
 
+  const renderTourStep = () => {
+    const step = steps[tourIndex];
+    document.querySelectorAll(".tour-active").forEach(el => el.classList.remove("tour-active"));
+    const target = document.getElementById(step.id);
+    if (target) {
+      target.classList.add("tour-active");
+      target.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+    if (controls) controls.hidden = false;
+    if (stepCount) stepCount.textContent = `${tourIndex + 1}/${steps.length}`;
+    if (tourTitle) tourTitle.textContent = step.title;
+    if (tourTakeaway) tourTakeaway.textContent = step.takeaway;
+    if (tourToggle) tourToggle.setAttribute("aria-pressed", "true");
+    setMode(true);
+  };
+
+  const startTour = () => {
+    tourIndex = Math.max(0, steps.findIndex(s => `#${s.id}` === window.location.hash));
+    if (tourIndex < 0) tourIndex = 0;
+    renderTourStep();
+  };
+  const exitTour = () => {
+    document.querySelectorAll(".tour-active").forEach(el => el.classList.remove("tour-active"));
+    if (controls) controls.hidden = true;
+    if (tourToggle) tourToggle.setAttribute("aria-pressed", "false");
+  };
+  const moveTour = delta => {
+    tourIndex = Math.max(0, Math.min(steps.length - 1, tourIndex + delta));
+    renderTourStep();
+  };
+
   setMode(shouldStart);
+  if (shouldStart) setTimeout(startTour, 250);
   if (toggle) toggle.addEventListener("click", () => setMode(!root.classList.contains("presentation-mode")));
+  if (tourToggle) tourToggle.addEventListener("click", startTour);
+  document.getElementById("tour-prev")?.addEventListener("click", () => moveTour(-1));
+  document.getElementById("tour-next")?.addEventListener("click", () => moveTour(1));
+  document.getElementById("tour-exit")?.addEventListener("click", exitTour);
+  if (screenshotToggle && screenshotPanel) screenshotToggle.addEventListener("click", () => { screenshotPanel.hidden = false; setMode(true); });
+  document.querySelectorAll("[data-close-screenshot]").forEach(el => el.addEventListener("click", () => { if (screenshotPanel) screenshotPanel.hidden = true; }));
+
   window.addEventListener("keydown", event => {
     const tag = event.target && event.target.tagName ? event.target.tagName.toLowerCase() : "";
-    if (event.key.toLowerCase() === "p" && !["input", "textarea", "select"].includes(tag)) {
-      setMode(!root.classList.contains("presentation-mode"));
+    if (["input", "textarea", "select"].includes(tag)) return;
+    if (event.key.toLowerCase() === "p") setMode(!root.classList.contains("presentation-mode"));
+    if (!controls?.hidden && event.key === "ArrowRight") moveTour(1);
+    if (!controls?.hidden && event.key === "ArrowLeft") moveTour(-1);
+    if (event.key === "Escape") {
+      exitTour();
+      if (screenshotPanel) screenshotPanel.hidden = true;
+      closeEvidenceModal();
     }
   });
 }
@@ -124,6 +191,23 @@ function normalize(data) {
     row.publication_year = num(row.publication_year);
     row.paper_count = num(row.paper_count);
     row.proportion = num(row.proportion);
+  }
+}
+
+
+function mergeEvidence(data) {
+  const byId = new Map((data.evidence || []).map(d => [d.paper_id, d]));
+  for (const paper of data.papers) {
+    const ev = byId.get(paper.paper_id);
+    if (!ev) continue;
+    paper.manual_topic_label = ev.manual_topic_label || paper.manual_topic_label;
+    paper.one_sentence_contribution_zh = ev.one_sentence_contribution_zh || paper.one_sentence_contribution_zh;
+    paper.why_time_tested_zh = ev.why_time_tested_zh || paper.why_time_tested_zh;
+    paper.evidence_url_1 = ev.evidence_url_1 || paper.evidence_url_1;
+    paper.evidence_url_2 = ev.evidence_url_2 || paper.evidence_url_2;
+    paper.display_priority = ev.display_priority || paper.display_priority;
+    paper.evidence_checked = ev.checked || paper.evidence_checked;
+    paper.archetype_rationale = ev.archetype_rationale || paper.archetype_rationale;
   }
 }
 
@@ -612,7 +696,18 @@ function renderExplorerList(rows, sortKey, total) {
     <span class="rank">#${i + 1}</span>
     <span class="item-main"><b>${escapeHtml(shortTitle(d.title))}</b><small>${escapeHtml(d.venue || "Venue")} · ${d.year || "year"} · ${escapeHtml(d.topic_label || "topic")}</small></span>
     <span class="item-metric">${formatExplorerMetric(d, sortKey)}</span>
+    <span class="item-actions"><button type="button" data-action="compare-a" data-paper-id="${escapeHtml(d.paper_id)}">A</button><button type="button" data-action="compare-b" data-paper-id="${escapeHtml(d.paper_id)}">B</button><button type="button" data-action="evidence" data-paper-id="${escapeHtml(d.paper_id)}">Why?</button></span>
   `);
+  items.selectAll(".item-actions button").on("click", (event) => {
+    event.stopPropagation();
+    const id = event.currentTarget.getAttribute("data-paper-id");
+    const action = event.currentTarget.getAttribute("data-action");
+    const paper = activePapers.find(d => d.paper_id === id);
+    if (!paper) return;
+    if (action === "compare-a") setComparePaper("a", paper);
+    if (action === "compare-b") setComparePaper("b", paper);
+    if (action === "evidence") openEvidenceCard(paper);
+  });
 }
 
 function formatExplorerMetric(d, key) {
@@ -621,6 +716,133 @@ function formatExplorerMetric(d, key) {
   return fmt(num(d[key]));
 }
 
+
+function renderComparePanel(papers) {
+  const controls = d3.select("#compare-controls");
+  if (controls.empty()) return;
+  const sorted = papers.slice().filter(d => d.title).sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)));
+  const highDepthBreadth = sorted.slice().filter(d => num(d.citation_count) && num(d.impact_breadth_score))
+    .sort((a,b) => d3.descending(num(a.citation_count) * num(a.impact_breadth_score), num(b.citation_count) * num(b.impact_breadth_score)))[0];
+  const citationQ = d3.quantile(sorted.map(d => num(d.citation_count)).filter(Boolean).sort(d3.ascending), 0.75) || 0;
+  const breadthMed = d3.median(sorted, d => num(d.impact_breadth_score)) || 0;
+  const mismatch = sorted.slice()
+    .filter(d => num(d.citation_count) >= citationQ && num(d.impact_breadth_score) <= breadthMed)
+    .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))[0]
+    || sorted.find(d => d.paper_id !== highDepthBreadth?.paper_id);
+  compareSelection = {a: highDepthBreadth || sorted[0], b: mismatch || sorted[1] || sorted[0]};
+
+  const options = sorted.slice(0, 80).map(d => `<option value="${escapeHtml(d.paper_id)}">${escapeHtml(shortTitle(d.title))} · ${escapeHtml(d.venue || "")}</option>`).join("");
+  controls.html(`
+    <label>Main case <select id="compare-a-select">${options}</select></label>
+    <label>Contrast case <select id="compare-b-select">${options}</select></label>
+    <button id="compare-open-a" type="button" class="small-action">Why A?</button>
+    <button id="compare-open-b" type="button" class="small-action">Why B?</button>
+  `);
+  d3.select("#compare-a-select").property("value", compareSelection.a?.paper_id).on("change", function() { setComparePaper("a", sorted.find(d => d.paper_id === this.value)); });
+  d3.select("#compare-b-select").property("value", compareSelection.b?.paper_id).on("change", function() { setComparePaper("b", sorted.find(d => d.paper_id === this.value)); });
+  d3.select("#compare-open-a").on("click", () => openEvidenceCard(compareSelection.a));
+  d3.select("#compare-open-b").on("click", () => openEvidenceCard(compareSelection.b));
+  updateComparePanel();
+}
+
+function setComparePaper(slot, paper) {
+  if (!paper) return;
+  compareSelection[slot] = paper;
+  d3.select(`#compare-${slot}-select`).property("value", paper.paper_id);
+  updateComparePanel();
+}
+
+function updateComparePanel() {
+  const target = d3.select("#case-compare-panel");
+  if (target.empty()) return;
+  const a = compareSelection.a;
+  const b = compareSelection.b;
+  if (!a || !b) {
+    target.html(`<p class="reading-note mini-note">Select two papers to compare.</p>`);
+    return;
+  }
+  const citDiff = num(a.citation_count) - num(b.citation_count);
+  const breadthDiff = num(a.impact_breadth_score) - num(b.impact_breadth_score);
+  const note = Math.abs(citDiff) < 1000 && Math.abs(breadthDiff) > 5
+    ? "两篇论文 citation depth 接近，但 sampled breadth 有明显差异，适合说明 breadth 不是 citation count 的简单替代。"
+    : "这组对比把 citation depth、sampled impact breadth 和 recognition lag 分开读，避免把单一引用数写成长期影响的完整解释。";
+  target.html(`
+    ${compareCaseHtml(a, "Main case")}
+    <div class="compare-note">
+      <div class="compare-symbol">↔</div>
+      <p>${escapeHtml(note)}</p>
+      <span>Proxy wording: impact breadth = OpenAlex sampled diffusion signal, not official award reason.</span>
+    </div>
+    ${compareCaseHtml(b, "Contrast case")}
+  `);
+  target.selectAll("[data-compare-evidence]").on("click", function() {
+    const id = this.getAttribute("data-compare-evidence");
+    openEvidenceCard(activePapers.find(d => d.paper_id === id));
+  });
+}
+
+function compareCaseHtml(p, label) {
+  return `<article class="compare-case">
+    <div class="claim-type">${escapeHtml(label)}</div>
+    <h3>${escapeHtml(shortTitle(p.title))}</h3>
+    <div class="paper-meta">
+      <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
+      <span class="chip">${p.year || "Year"} → ${p.announcement_year || "Award"}</span>
+      <span class="chip">${escapeHtml(p.manual_topic_label || p.topic_label || "Topic")}</span>
+    </div>
+    <div class="detail-stats compact-stats">
+      <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>citation depth</span></div>
+      <div class="detail-stat"><b>${fmt1(num(p.impact_breadth_score))}</b><span>breadth proxy</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>recognition lag</span></div>
+      <div class="detail-stat"><b>${escapeHtml(p.display_priority || p.evidence_checked || "check")}</b><span>evidence status</span></div>
+    </div>
+    <p class="abstract">${escapeHtml(p.one_sentence_contribution_zh || p.why_time_tested_zh || "Use evidence card / paper page before writing a paper-specific contribution claim.")}</p>
+    <button type="button" class="small-action" data-compare-evidence="${escapeHtml(p.paper_id)}">Why this paper lasted?</button>
+  </article>`;
+}
+
+function evidenceLinks(p) {
+  return [p.evidence_url_1, p.evidence_url_2, p.paper_url, p.pdf_url, p.doi ? `https://doi.org/${p.doi}` : "", p.source_url]
+    .filter(Boolean)
+    .filter((v, i, arr) => arr.indexOf(v) === i)
+    .slice(0, 4);
+}
+
+function openEvidenceCard(p) {
+  if (!p) return;
+  const modal = document.getElementById("evidence-modal");
+  const content = document.getElementById("evidence-modal-content");
+  if (!modal || !content) return;
+  const links = evidenceLinks(p);
+  content.innerHTML = `
+    <p class="section-kicker">Why this paper lasted?</p>
+    <h2 id="evidence-modal-title">${escapeHtml(shortTitle(p.title))}</h2>
+    <div class="paper-meta">
+      <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
+      <span class="chip">${p.year || "Year"} → ${p.announcement_year || "Award"}</span>
+      <span class="chip">${escapeHtml(p.manual_topic_label || p.topic_label || "Topic")}</span>
+      <span class="chip">${escapeHtml(p.display_priority || p.evidence_checked || "needs check")}</span>
+    </div>
+    <div class="detail-stats">
+      <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>citation depth</span></div>
+      <div class="detail-stat"><b>${fmt1(num(p.impact_breadth_score))}</b><span>impact breadth proxy</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>recognition lag</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.citing_field_count || p.country_count))}</b><span>visible breadth fields/countries</span></div>
+    </div>
+    <div class="evidence-section"><b>Contribution</b><p>${escapeHtml(p.one_sentence_contribution_zh || p.abstract || "Needs check before final contribution wording.")}</p></div>
+    <div class="evidence-section"><b>Why it lasted</b><p>${escapeHtml(p.why_time_tested_zh || p.archetype_rationale || "Use as a descriptive case after reading evidence links.")}</p></div>
+    <div class="evidence-links"><b>Evidence links</b>${links.length ? links.map((url, i) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Evidence ${i + 1}</a>`).join("") : `<span>needs check</span>`}</div>
+    <p class="reading-note mini-note">Safe wording: 该案例用于说明数据中的长期影响线索，不直接等同于官方评奖原因；breadth 仍是 OpenAlex sampled proxy。</p>
+  `;
+  modal.hidden = false;
+}
+
+function closeEvidenceModal() {
+  const modal = document.getElementById("evidence-modal");
+  if (modal) modal.hidden = true;
+}
+
+document.querySelectorAll("[data-close-modal]").forEach(el => el.addEventListener("click", closeEvidenceModal));
 
 function renderBenchmark(papers) {
   const target = d3.select("#benchmark-chart");
@@ -927,7 +1149,18 @@ function updateDetail(p) {
       <div class="detail-stat"><b>${fmt(num(p.country_count || p.citing_country_count))}</b><span>countries</span></div>
     </div>
     <p class="abstract">${escapeHtml((p.abstract || "No abstract available.").slice(0, 520))}${(p.abstract || "").length > 520 ? "…" : ""}</p>
+    <div class="detail-actions">
+      <button type="button" data-detail-action="evidence">Why this paper lasted?</button>
+      <button type="button" data-detail-action="compare-a">Compare A</button>
+      <button type="button" data-detail-action="compare-b">Compare B</button>
+    </div>
   `);
+  d3.selectAll("#paper-detail [data-detail-action]").on("click", function() {
+    const action = this.getAttribute("data-detail-action");
+    if (action === "evidence") openEvidenceCard(p);
+    if (action === "compare-a") setComparePaper("a", p);
+    if (action === "compare-b") setComparePaper("b", p);
+  });
   updateBenchmark(p);
 }
 
