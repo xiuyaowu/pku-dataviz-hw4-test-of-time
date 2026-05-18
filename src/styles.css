@@ -810,8 +810,6 @@ body.presentation-mode .tour-active { opacity: 1 !important; }
   padding: 8px 10px;
   font-size: 13px;
 }
-.backup-steps { color: #c8d2e1; line-height: 1.75; }
-.backup-steps code { color: var(--accent-2); }
 
 @media (max-width: 980px) {
   .case-compare-panel { grid-template-columns: 1fr; }
