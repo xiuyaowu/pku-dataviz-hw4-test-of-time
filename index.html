@@ -30,9 +30,9 @@
         Guided tour
         <span>→</span>
       </button>
-      <button id="screenshot-toggle" class="presentation-toggle secondary" type="button" title="Open one-click PNG export panel">
-        Export PNG
-        <span>1-click</span>
+      <button id="screenshot-toggle" class="presentation-toggle secondary" type="button" title="Open polished one-click export studio">
+        Export deck
+        <span>PNG/ZIP</span>
       </button>
     </div>
     <div id="tour-controls" class="tour-controls" hidden aria-live="polite">
@@ -343,35 +343,55 @@
     <div class="modal-backdrop" data-close-screenshot></div>
     <article class="evidence-modal-card screenshot-card">
       <button class="modal-close" type="button" data-close-screenshot aria-label="Close screenshot guide">×</button>
-      <p class="section-kicker">Offline backup</p>
-      <h2 id="screenshot-title">One-click PNG Export</h2>
-      <p>Export clean, PPT-ready screenshots directly from the dashboard. Choose one module or export the full slide set in one click.</p>
+      <p class="section-kicker">Export studio</p>
+      <h2 id="screenshot-title">Presentation Export Studio</h2>
+      <p>一键生成 PPT-ready 备份图：选单页导出 PNG，或把完整展示路线打包成一个 ZIP。导出时会自动隐藏浮动按钮、tour 控件和弹窗。</p>
       <div class="export-panel">
-        <label for="export-target">Choose slide / module</label>
-        <select id="export-target" class="export-select">
-          <option value="hero">Hero overview</option>
-          <option value="time">Time · recognition lag</option>
-          <option value="venue">Venue & field</option>
-          <option value="topic">Topic evolution</option>
-          <option value="citation">Citation & compare panel</option>
-          <option value="explorer">Paper explorer</option>
-          <option value="benchmark">Benchmark lab</option>
-          <option value="storyboard">Storyboard / division of labor</option>
-          <option value="network">Network</option>
-        </select>
-        <div class="export-actions">
-          <button id="export-current-png" class="export-primary" type="button">Download selected PNG</button>
-          <button id="export-all-png" class="export-secondary" type="button">Download all slide PNGs</button>
+        <div class="export-toolbar">
+          <label for="export-target">Slide / module</label>
+          <select id="export-target" class="export-select">
+            <option value="hero">Hero overview</option>
+            <option value="time">Time · recognition lag</option>
+            <option value="venue">Venue & field</option>
+            <option value="topic">Topic evolution</option>
+            <option value="citation">Citation & compare panel</option>
+            <option value="explorer">Paper explorer</option>
+            <option value="benchmark">Benchmark lab</option>
+            <option value="storyboard">Storyboard / division of labor</option>
+            <option value="network">Network</option>
+          </select>
+          <label for="export-quality">Quality</label>
+          <select id="export-quality" class="export-select compact-select">
+            <option value="2">2× sharp</option>
+            <option value="3">3× ultra</option>
+            <option value="1.5">1.5× fast</option>
+          </select>
         </div>
-        <div id="export-status" class="export-status" role="status" aria-live="polite">Ready. Files will download automatically as high-resolution PNGs.</div>
+        <div class="export-studio-grid">
+          <div class="export-slide-list" id="export-slide-list" aria-label="Exportable slides"></div>
+          <div class="export-preview-card">
+            <div class="export-preview-head">
+              <b id="export-preview-title">Preview</b>
+              <span id="export-preview-meta">PNG · PPT-ready</span>
+            </div>
+            <div id="export-preview" class="export-preview">Open the panel to generate a quick preview.</div>
+          </div>
+        </div>
+        <div class="export-actions pro-actions">
+          <button id="export-current-png" class="export-primary" type="button">Download selected PNG</button>
+          <button id="export-tour-png" class="export-secondary" type="button">Export current tour step</button>
+          <button id="export-all-png" class="export-secondary" type="button">Download all as ZIP</button>
+        </div>
+        <div id="export-status" class="export-status" role="status" aria-live="polite">Ready. Pick a slide, preview it, then export PNG or ZIP.</div>
       </div>
-      <p class="reading-note mini-note">Fallback script remains available at <a href="docs/live_demo_fallback_script.md">docs/live_demo_fallback_script.md</a>, but the intended workflow is now one-click export.</p>
+      <p class="reading-note mini-note">Fallback doc: <a href="docs/live_demo_fallback_script.md">docs/live_demo_fallback_script.md</a>. Normal workflow should use this export studio.</p>
     </article>
   </div>
   <footer>
     <p>Data source: Test of Time Award records enriched with public scholarly metadata. Metrics such as impact breadth are approximate indicators for visualization.</p>
   </footer>
   <script src="src/vendor/html-to-image.min.js"></script>
+  <script src="src/vendor/jszip.min.js"></script>
   <script src="src/app.js"></script>
 </body>
 </html>

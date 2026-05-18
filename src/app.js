@@ -120,8 +120,14 @@ function initPresentationMode() {
   const tourTakeaway = document.getElementById("tour-takeaway");
   const exportSelect = document.getElementById("export-target");
   const exportCurrent = document.getElementById("export-current-png");
+  const exportTour = document.getElementById("export-tour-png");
   const exportAll = document.getElementById("export-all-png");
+  const exportQuality = document.getElementById("export-quality");
   const exportStatus = document.getElementById("export-status");
+  const exportSlideList = document.getElementById("export-slide-list");
+  const exportPreview = document.getElementById("export-preview");
+  const exportPreviewTitle = document.getElementById("export-preview-title");
+  const exportPreviewMeta = document.getElementById("export-preview-meta");
 
   const setMode = enabled => {
     root.classList.toggle("presentation-mode", enabled);
@@ -166,6 +172,11 @@ function initPresentationMode() {
   };
 
   const selectedExportTarget = () => exportTargets.find(d => d.id === exportSelect?.value) || exportTargets[0];
+  const currentTourTarget = () => {
+    const activeId = document.querySelector(".tour-active")?.id;
+    return exportTargets.find(d => d.id === activeId) || selectedExportTarget();
+  };
+  const exportPixelRatio = () => Math.max(1, Number(exportQuality?.value || 2));
 
   const downloadDataUrl = (dataUrl, filename) => {
     const link = document.createElement("a");
@@ -175,10 +186,70 @@ function initPresentationMode() {
     link.click();
     link.remove();
   };
+  const downloadBlob = (blob, filename) => {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  };
 
   const waitFrame = () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  const exportFilter = el => !el.classList?.contains("floating-actions") && !el.classList?.contains("tour-controls") && !el.classList?.contains("modal-shell") && !el.classList?.contains("tooltip");
 
-  const exportTargetPng = async (target, index = 0, total = 1) => {
+  const renderExportSlideList = () => {
+    if (!exportSlideList) return;
+    exportSlideList.innerHTML = exportTargets.map((target, i) => `
+      <button type="button" class="export-slide-pill" data-export-target="${target.id}">
+        <span>${String(i + 1).padStart(2, "0")}</span>
+        <b>${target.filename.replace("dataviz-hw4-", "").replace(".png", "").replaceAll("-", " ")}</b>
+      </button>
+    `).join("");
+    exportSlideList.querySelectorAll("[data-export-target]").forEach(button => {
+      button.addEventListener("click", () => {
+        if (exportSelect) exportSelect.value = button.dataset.exportTarget;
+        updateExportSelection();
+      });
+    });
+  };
+
+  const updateExportSelection = () => {
+    const target = selectedExportTarget();
+    if (exportPreviewTitle) exportPreviewTitle.textContent = target.filename.replace(".png", "");
+    if (exportPreviewMeta) exportPreviewMeta.textContent = `${target.selector} · ${exportPixelRatio()}× PNG`;
+    exportSlideList?.querySelectorAll(".export-slide-pill").forEach(button => button.classList.toggle("active", button.dataset.exportTarget === target.id));
+    schedulePreview(target);
+  };
+
+  let previewTimer = null;
+  const schedulePreview = target => {
+    if (!exportPreview) return;
+    clearTimeout(previewTimer);
+    exportPreview.innerHTML = `<span>Rendering preview...</span>`;
+    previewTimer = setTimeout(() => renderPreview(target), 120);
+  };
+
+  const renderPreview = async target => {
+    try {
+      if (!window.htmlToImage?.toPng) throw new Error("Exporter not loaded");
+      const node = document.querySelector(target.selector);
+      if (!node) throw new Error("Target missing");
+      const dataUrl = await window.htmlToImage.toPng(node, {
+        pixelRatio: 0.45,
+        cacheBust: true,
+        backgroundColor: "#0b0f16",
+        filter: exportFilter
+      });
+      exportPreview.innerHTML = `<img src="${dataUrl}" alt="Preview of ${target.filename}" />`;
+    } catch (err) {
+      exportPreview.innerHTML = `<span>Preview unavailable. Export still works after the charts finish loading.</span>`;
+    }
+  };
+
+  const targetToPngDataUrl = async (target, index = 0, total = 1) => {
     if (!window.htmlToImage?.toPng) throw new Error("PNG exporter failed to load. Refresh the page and try again.");
     const node = document.querySelector(target.selector);
     if (!node) throw new Error(`Export target not found: ${target.selector}`);
@@ -187,30 +258,47 @@ function initPresentationMode() {
     root.classList.remove("presentation-mode");
     node.scrollIntoView({behavior: "auto", block: "start"});
     await waitFrame();
-    const dataUrl = await window.htmlToImage.toPng(node, {
-      pixelRatio: 2,
+    return window.htmlToImage.toPng(node, {
+      pixelRatio: exportPixelRatio(),
       cacheBust: true,
       backgroundColor: "#0b0f16",
-      filter: el => !el.classList?.contains("floating-actions") && !el.classList?.contains("tour-controls") && !el.classList?.contains("modal-shell")
+      filter: exportFilter
     });
+  };
+
+  const exportTargetPng = async (target, index = 0, total = 1) => {
+    const dataUrl = await targetToPngDataUrl(target, index, total);
     downloadDataUrl(dataUrl, target.filename);
     return target.filename;
   };
 
-  const runExport = async (targets) => {
-    if (exportCurrent) exportCurrent.disabled = true;
-    if (exportAll) exportAll.disabled = true;
+  const dataUrlToBase64 = dataUrl => dataUrl.split(",")[1];
+
+  const runExport = async (targets, mode = "png") => {
+    [exportCurrent, exportTour, exportAll].forEach(button => { if (button) button.disabled = true; });
     try {
-      const files = [];
-      for (let i = 0; i < targets.length; i++) files.push(await exportTargetPng(targets[i], i, targets.length));
-      setExportStatus(`Done. Downloaded ${files.length} PNG file${files.length > 1 ? "s" : ""}: ${files.join(", ")}`, "done");
+      if (mode === "zip") {
+        if (!window.JSZip) throw new Error("ZIP exporter failed to load. Refresh the page and try again.");
+        const zip = new window.JSZip();
+        for (let i = 0; i < targets.length; i++) {
+          const dataUrl = await targetToPngDataUrl(targets[i], i, targets.length);
+          zip.file(targets[i].filename, dataUrlToBase64(dataUrl), {base64: true});
+        }
+        setExportStatus("Packaging ZIP ...", "working");
+        const blob = await zip.generateAsync({type: "blob"});
+        downloadBlob(blob, "dataviz-hw4-presentation-slides.zip");
+        setExportStatus(`Done. Downloaded ZIP with ${targets.length} PPT-ready PNG slides.`, "done");
+      } else {
+        const files = [];
+        for (let i = 0; i < targets.length; i++) files.push(await exportTargetPng(targets[i], i, targets.length));
+        setExportStatus(`Done. Downloaded ${files.length} PNG file${files.length > 1 ? "s" : ""}: ${files.join(", ")}`, "done");
+      }
     } catch (err) {
       console.error(err);
       setExportStatus(`Export failed: ${err.message}`, "error");
     } finally {
       document.body.classList.remove("exporting");
-      if (exportCurrent) exportCurrent.disabled = false;
-      if (exportAll) exportAll.disabled = false;
+      [exportCurrent, exportTour, exportAll].forEach(button => { if (button) button.disabled = false; });
     }
   };
 
@@ -226,10 +314,20 @@ function initPresentationMode() {
     setMode(true);
     const activeStep = document.querySelector(".tour-active")?.id;
     if (exportSelect && activeStep && exportTargets.some(d => d.id === activeStep)) exportSelect.value = activeStep;
-    setExportStatus("Choose a module, then download a clean high-resolution PNG.");
+    setExportStatus("Choose a module, preview it, then export PNG or full ZIP.");
+    updateExportSelection();
   });
-  if (exportCurrent) exportCurrent.addEventListener("click", () => runExport([selectedExportTarget()]));
-  if (exportAll) exportAll.addEventListener("click", () => runExport(exportTargets));
+  renderExportSlideList();
+  if (exportSelect) exportSelect.addEventListener("change", updateExportSelection);
+  if (exportQuality) exportQuality.addEventListener("change", updateExportSelection);
+  if (exportCurrent) exportCurrent.addEventListener("click", () => runExport([selectedExportTarget()], "png"));
+  if (exportTour) exportTour.addEventListener("click", () => {
+    const target = currentTourTarget();
+    if (exportSelect) exportSelect.value = target.id;
+    updateExportSelection();
+    runExport([target], "png");
+  });
+  if (exportAll) exportAll.addEventListener("click", () => runExport(exportTargets, "zip"));
   document.querySelectorAll("[data-close-screenshot]").forEach(el => el.addEventListener("click", () => { if (screenshotPanel) screenshotPanel.hidden = true; }));
 
   window.addEventListener("keydown", event => {
