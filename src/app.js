@@ -604,14 +604,48 @@ function renderTopicEvolution(rows) {
   });
 }
 
+function wrapText(text, maxWidth) {
+  const words = text.split(/\s+/);
+  const lines = [];
+  let currentLine = words[0];
+  for (let i = 1; i < words.length; i++) {
+    const word = words[i];
+    if (currentLine.length + word.length + 1 <= maxWidth) {
+      currentLine += " " + word;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+  lines.push(currentLine);
+  return lines;
+}
+
 function horizontalBars(sel, rows, labelKey, valueKey, fill, tip, onClick) {
   const {svg, width, height} = chartBox(sel);
-  const margin = {top: 16, right: 26, bottom: 34, left: 132};
+  const margin = {top: 16, right: 26, bottom: 34, left: 152};
   const x = d3.scaleLinear().domain([0, d3.max(rows, d => num(d[valueKey]))]).nice().range([margin.left, width - margin.right]);
   const y = d3.scaleBand().domain(rows.map(d => d[labelKey])).range([margin.top, height - margin.bottom]).padding(0.22);
   svg.append("g").attr("class", "grid").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5).tickSize(-(height-margin.top-margin.bottom)).tickFormat(""));
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).tickSize(0)).call(g => g.select(".domain").remove());
+  svg.selectAll(".axis text").remove();
+  svg.selectAll(".tick-label").data(rows).join("g")
+    .attr("class", "tick-label")
+    .attr("transform", d => `translate(${margin.left - 8},${y(d[labelKey]) + y.bandwidth()/2})`)
+    .each(function(d) {
+      const lines = wrapText(d[labelKey], 16);
+      const g = d3.select(this);
+      lines.forEach((line, i) => {
+        g.append("text")
+          .attr("x", -4)
+          .attr("y", (i - (lines.length - 1) / 2) * 14)
+          .attr("fill", "#cdd6e5")
+          .attr("font-size", 11)
+          .attr("text-anchor", "end")
+          .text(line);
+      });
+    });
   const barMarks = svg.selectAll("rect.bar").data(rows).join("rect")
     .attr("class", "bar")
     .attr("x", margin.left).attr("y", d => y(d[labelKey]))
