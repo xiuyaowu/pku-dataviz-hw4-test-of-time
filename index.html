@@ -318,16 +318,27 @@
         <p class="reading-note" id="network-note"></p>
       </div>
       <div id="network-kpis" class="insight-strip wide-strip"></div>
+      
+      <!-- 综合可视化：机构-国家分布气泡图 -->
+      <div class="chart-card wide-card">
+        <div class="chart-head">
+          <h3>Global Research Impact Distribution</h3>
+          <span>bubble size = papers · color = type · x = country · y = institution</span>
+        </div>
+        <div id="institution-country-bubble" class="chart tall"></div>
+      </div>
+      
       <div class="grid-2">
         <div class="chart-card">
-          <div class="chart-head"><h3>Institutions</h3><span>paper count</span></div>
-          <div id="institution-chart" class="chart tall"></div>
+          <div class="chart-head"><h3>🏫 Academic Institutions</h3><span>universities & research institutes</span></div>
+          <div id="academic-chart" class="chart tall"></div>
         </div>
         <div class="chart-card">
-          <div class="chart-head"><h3>Countries / Regions</h3><span>paper count</span></div>
-          <div id="country-chart" class="chart tall"></div>
+          <div class="chart-head"><h3>🏢 Industry Labs</h3><span>corporate research labs</span></div>
+          <div id="industry-chart" class="chart tall"></div>
         </div>
       </div>
+      
       <div class="claim-panel wide-card">
         <div class="claim-panel-head">
           <p class="section-kicker">Report claims</p>

@@ -75,8 +75,7 @@ Promise.all([
   renderStoryboard(data);
   renderNetworkKpis(data.institutions, data.countries);
   renderModuleClaims(data);
-  renderInstitutions(data.institutions);
-  renderCountries(data.countries);
+  renderInstitutions(data.institutions, data.papers);
   updateDetail(topPaper(data.papers));
   setNotes(data);
 }).catch(err => {
@@ -720,14 +719,637 @@ function renderBreadth(rows, papers) {
   if (high) addCallout(svg, x(high.impact_breadth_score), y(high.citation_count), "Widest diffusion", -96, -20);
 }
 
-function renderInstitutions(rows) {
-  const top = rows.slice().filter(d => d.name).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 12);
-  horizontalBars("#institution-chart", top, "name", "paper_count", "#70e1d4", d => `${d.country || "country unknown"}<br>${d.paper_count} papers<br>Centrality: ${num(d.centrality)}`);
+const countryEmojis = {
+  US: { emoji: "🇺🇸", name: "United States" },
+  CA: { emoji: "🇨🇦", name: "Canada" },
+  GB: { emoji: "🇬🇧", name: "United Kingdom" },
+  DE: { emoji: "🇩🇪", name: "Germany" },
+  IL: { emoji: "🇮🇱", name: "Israel" },
+  FR: { emoji: "🇫🇷", name: "France" },
+  AU: { emoji: "🇦🇺", name: "Australia" },
+  IT: { emoji: "🇮🇹", name: "Italy" },
+  CH: { emoji: "🇨🇭", name: "Switzerland" },
+  NL: { emoji: "🇳🇱", name: "Netherlands" },
+  ES: { emoji: "🇪🇸", name: "Spain" },
+  MX: { emoji: "🇲🇽", name: "Mexico" },
+  CN: { emoji: "🇨🇳", name: "China" },
+  BE: { emoji: "🇧🇪", name: "Belgium" },
+  KR: { emoji: "🇰🇷", name: "South Korea" },
+  TW: { emoji: "🇹🇼", name: "Taiwan" },
+  SG: { emoji: "🇸🇬", name: "Singapore" },
+  AT: { emoji: "🇦🇹", name: "Austria" },
+  IS: { emoji: "🇮🇸", name: "Iceland" },
+  IN: { emoji: "🇮🇳", name: "India" },
+  FI: { emoji: "🇫🇮", name: "Finland" },
+  DK: { emoji: "🇩🇰", name: "Denmark" },
+  VG: { emoji: "🏴", name: "British Virgin Islands" }
+};
+
+function shortenInstitution(name) {
+  const abbreviations = {
+    "University of California, Berkeley": "UC Berkeley",
+    "Carnegie Mellon University": "CMU",
+    "Stanford University": "Stanford",
+    "Massachusetts Institute of Technology": "MIT",
+    "Cornell University": "Cornell",
+    "IBM Research - Almaden": "IBM Almaden",
+    "IBM (United States)": "IBM",
+    "University of Massachusetts Amherst": "UMass Amherst",
+    "University of Washington": "UW",
+    "International Computer Science Institute": "ICSI",
+    "Intel (United States)": "Intel",
+    "Nokia (United States)": "Nokia",
+    "University of Toronto": "U of Toronto",
+    "University of British Columbia": "UBC",
+    "AT&T (United States)": "AT&T",
+    "Microsoft (United States)": "Microsoft",
+    "Hewlett-Packard (United States)": "HP",
+    "University of California, San Diego": "UC San Diego",
+    "Princeton University": "Princeton",
+    "University of Southern California": "USC",
+    "University of Michigan–Ann Arbor": "U Michigan",
+    "University of Cambridge": "Cambridge",
+    "University of Maryland, College Park": "UMD",
+    "The University of Texas at Austin": "UT Austin",
+    "University of California, Irvine": "UC Irvine",
+    "Duke University": "Duke",
+    "California Institute of Technology": "Caltech",
+    "Centre National de la Recherche Scientifique": "CNRS",
+    "University of Wisconsin–Madison": "UW Madison",
+    "University of Colorado Boulder": "CU Boulder",
+    "Simon Fraser University": "SFU",
+    "University of Chicago": "U Chicago",
+    "University of Oxford": "Oxford",
+    "Harvard University": "Harvard",
+    "ETH Zurich": "ETH Zurich",
+    "Imperial College London": "Imperial"
+  };
+  return abbreviations[name] || name.replace(/\(.*?\)/g, '').trim();
 }
 
-function renderCountries(rows) {
-  const top = rows.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 12);
-  horizontalBars("#country-chart", top, "country", "paper_count", "#f6bd60", d => `${d.paper_count} papers<br>Avg citations: ${fmt(num(d.avg_citation_count))}`);
+function isIndustryInstitution(name) {
+  const academicNames = ['Stanford', 'Berkeley', 'Carnegie Mellon', 'MIT', 'Cornell', 'Harvard',
+    'Princeton', 'Yale', 'Columbia', 'University of California', 'University of Washington',
+    'University of Michigan', 'University of Texas', 'University of Chicago', 'Cambridge',
+    'Oxford', 'ETH Zurich', 'EPFL', 'University of Toronto', 'University of British Columbia',
+    'Australian National University', 'Technion', 'Tel Aviv', 'Technische', 'TU Berlin',
+    'Ludwig Maximilian', 'University of Paris', 'Sorbonne', 'University of Tokyo', 'Kyoto',
+    'National University of Singapore', 'Nanyang', 'Indian Institute', 'IIT', 'University College',
+    'Imperial College', 'University of Amsterdam', 'Leiden', 'Utrecht', 'University of Helsinki',
+    'University of Copenhagen', 'University of Oslo', 'University of Stockholm', 'KTH',
+    'Chalmers', 'University of Manchester', 'University of Edinburgh', 'University of Glasgow',
+    'University of Birmingham', 'University of Bristol', 'University of Leeds', 'University of Sheffield',
+    'University of Liverpool', 'University of Nottingham', 'University of Southampton', 'King\'s College',
+    'University College London', 'University of Illinois', 'University of Wisconsin', 'University of Maryland',
+    'Pennsylvania State', 'Ohio State', 'Purdue', 'Rice', 'Duke', 'Johns Hopkins', 'Northwestern',
+    'University of Southern California', 'Georgia Tech', 'Virginia Tech', 'Colorado', 'Arizona',
+    'Rutgers', 'State University', 'California Institute of Technology', 'Caltech', 'Swiss Federal',
+    'ETH', 'Max Planck', 'CNRS', 'INRIA', 'CSIRO', 'National Research Council'];
+  
+  const industryKeywords = ['IBM', 'Intel', 'Microsoft', 'AT&T', 'HP', 'Hewlett-Packard', 'Nokia', 
+    'Bell', 'Oracle', 'Yahoo', 'Google', 'Amazon', 'Facebook', 'Apple', 'Samsung', 'Huawei',
+    'Alcatel', 'Cisco', 'Ericsson', 'NEC', 'Fujitsu', 'Toshiba', 'Sony', 'Philips',
+    'Siemens', 'Nortel', 'Lucent', 'Qualcomm', 'Broadcom', 'NVIDIA', 'AMD', 'Dell',
+    'Schlumberger', 'Ford', 'Tandem', 'Unisys', 'Citigroup', 'Tamedia', 'Digital Wave',
+    'Research International', 'Tellabs', 'Space Telescope', 'Aerospace', 'Naval', 'NIST',
+    'Pittsburgh Supercomputing', 'San Diego Supercomputer', 'Ames Research', 'Lawrence',
+    'SRI International', 'Palo Alto Research', 'PARC'];
+  
+  if (academicNames.some(namePart => name.toLowerCase().includes(namePart.toLowerCase()))) {
+    return false;
+  }
+  
+  return industryKeywords.some(keyword => name.toLowerCase().includes(keyword.toLowerCase()));
+}
+
+function getInstitutionCountry(name, papers) {
+  // 从机构名称推断国家（优先）
+  if (name.includes('(United States)')) return 'US';
+  if (name.includes('(United Kingdom)')) return 'GB';
+  if (name.includes('(Canada)')) return 'CA';
+  if (name.includes('(Germany)')) return 'DE';
+  if (name.includes('(France)')) return 'FR';
+  if (name.includes('(Switzerland)')) return 'CH';
+  if (name.includes('(Australia)')) return 'AU';
+  if (name.includes('(Israel)')) return 'IL';
+  if (name.includes('(Mexico)')) return 'MX';
+  if (name.includes('(China)')) return 'CN';
+  if (name.includes('(South Korea)')) return 'KR';
+  if (name.includes('(Taiwan)')) return 'TW';
+  if (name.includes('(Singapore)')) return 'SG';
+  if (name.includes('(Austria)')) return 'AT';
+  if (name.includes('(Iceland)')) return 'IS';
+  if (name.includes('(India)')) return 'IN';
+  if (name.includes('(Finland)')) return 'FI';
+  if (name.includes('(Denmark)')) return 'DK';
+  if (name.includes('(Belgium)')) return 'BE';
+  if (name.includes('(Italy)')) return 'IT';
+  if (name.includes('(Netherlands)')) return 'NL';
+  if (name.includes('(Spain)')) return 'ES';
+  if (name.includes('(British Virgin Islands)')) return 'VG';
+  if (name.includes('(Hong Kong)')) return 'CN';
+  
+  // 从论文数据中提取机构的国家信息（JSON数组格式）
+  for (const paper of papers) {
+    if (paper.institutions && paper.countries) {
+      let insts, countries;
+      try {
+        insts = JSON.parse(paper.institutions);
+        countries = JSON.parse(paper.countries);
+      } catch {
+        continue;
+      }
+      
+      if (Array.isArray(insts) && Array.isArray(countries)) {
+        for (let i = 0; i < insts.length; i++) {
+          const instName = typeof insts[i] === 'string' ? insts[i].trim() : '';
+          const country = typeof countries[i] === 'string' ? countries[i].trim() : '';
+          if (instName === name && country) {
+            return country;
+          }
+        }
+      }
+    }
+  }
+  
+  // 从机构名称中的关键词推断 - 更多国家支持
+  if (name.includes('ETH Zurich') || name.includes('Swiss Federal') || name.includes('Tamedia')) return 'CH';
+  if (name.includes('University of Toronto') || name.includes('University of British Columbia') || 
+      name.includes('Western University') || name.includes('Simon Fraser') || name.includes('University of Waterloo') ||
+      name.includes('University of Alberta') || name.includes('Carleton University') || name.includes('Bell (Canada)') ||
+      name.includes('National Research Council Canada') || name.includes('Tellabs (Canada)') || name.includes('IBM (Canada)')) return 'CA';
+  if (name.includes('University of Cambridge') || name.includes('University of Oxford') || 
+      name.includes('Imperial College') || name.includes('University of Edinburgh') ||
+      name.includes('Birkbeck') || name.includes('Yahoo (United Kingdom)') || name.includes('Intel (United Kingdom)')) return 'GB';
+  if (name.includes('Technion') || name.includes('Hebrew University') || name.includes('Weizmann')) return 'IL';
+  if (name.includes('Australian National') || name.includes('University of Sydney') || name.includes('Macquarie')) return 'AU';
+  if (name.includes('National University of Singapore') || name.includes('Institute for Infocomm')) return 'SG';
+  if (name.includes('Max Planck') || name.includes('TU Berlin') || name.includes('University of Mannheim') ||
+      name.includes('Bielefeld') || name.includes('Leipzig') || name.includes('Apple (Germany)') ||
+      name.includes('Alcatel Lucent') || name.includes('Digital Equipment (Germany)') || name.includes('Ludwig-Maximilians')) return 'DE';
+  if (name.includes('CNRS') || name.includes('INRIA') || name.includes('Sorbonne') ||
+      name.includes('Université Grenoble') || name.includes('Université de Montpellier') ||
+      name.includes('Laboratoire') || name.includes('Conservatoire National')) return 'FR';
+  if (name.includes('Politecnico di Milano') || name.includes('Università') || 
+      name.includes('Polytechnic University of Turin') || name.includes('Consorzio Nazionale')) return 'IT';
+  if (name.includes('Universiteit') || name.includes('Centrum Wiskunde')) return 'NL';
+  if (name.includes('Universidad') || name.includes('Barcelona') || name.includes('Pompeu Fabra')) return 'ES';
+  if (name.includes('Korea Advanced') || name.includes('Kyungpook')) return 'KR';
+  if (name.includes('Indian Institute') || name.includes('IIT')) return 'IN';
+  if (name.includes('Chinese University') || name.includes('Academia Sinica') || 
+      name.includes('Institute of Automation')) return 'CN';
+  if (name.includes('University of Copenhagen')) return 'DK';
+  if (name.includes('University of Helsinki') || name.includes('Tampere')) return 'FI';
+  if (name.includes('Reykjavík')) return 'IS';
+  if (name.includes('Vrije Universiteit Brussel') || name.includes('Ghent')) return 'BE';
+  if (name.includes('Universidad Autónoma') || name.includes('Instituto Tecnologico')) return 'MX';
+  if (name.includes('University of York')) return 'GB';
+  
+  // 如果都匹配不到，检查是否有明显的非美国关键词
+  const nonUSKeywords = [
+    {country: 'CA', keywords: ['Toronto', 'British Columbia', 'Alberta', 'Manitoba', 'Saskatchewan', 'Ontario']},
+    {country: 'GB', keywords: ['Cambridge', 'Oxford', 'Imperial', 'Edinburgh', 'London', 'Manchester']},
+    {country: 'DE', keywords: ['Munich', 'Berlin', 'Heidelberg', 'Stuttgart', 'Karlsruhe']},
+    {country: 'FR', keywords: ['Paris', 'Lyon', 'Grenoble', 'Montpellier']},
+    {country: 'CH', keywords: ['Zurich', 'Geneva', 'Lausanne', 'ETH']},
+    {country: 'AU', keywords: ['Sydney', 'Melbourne', 'Brisbane', 'Perth']},
+    {country: 'IL', keywords: ['Jerusalem', 'Haifa', 'Tel Aviv']},
+    {country: 'SG', keywords: ['Singapore']},
+    {country: 'KR', keywords: ['Seoul', 'Daejeon', 'Pohang']},
+    {country: 'IN', keywords: ['Bangalore', 'Mumbai', 'Delhi', 'Chennai']},
+    {country: 'CN', keywords: ['Hong Kong', 'Beijing', 'Shanghai', 'Taipei']},
+    {country: 'DK', keywords: ['Copenhagen', 'Aarhus']},
+    {country: 'FI', keywords: ['Helsinki', 'Espoo', 'Tampere']},
+    {country: 'IT', keywords: ['Milan', 'Rome', 'Turin', 'Florence']},
+    {country: 'NL', keywords: ['Amsterdam', 'Rotterdam', 'Utrecht']},
+    {country: 'ES', keywords: ['Madrid', 'Barcelona', 'Valencia']},
+    {country: 'BE', keywords: ['Brussels', 'Antwerp', 'Ghent']}
+  ];
+  
+  for (const {country, keywords} of nonUSKeywords) {
+    if (keywords.some(kw => name.includes(kw))) {
+      return country;
+    }
+  }
+  
+  return 'US'; // 默认美国，因为大部分是美国机构
+}
+
+function renderInstitutions(rows, papers) {
+  // 为每个机构添加国家信息和类型
+  const enrichedRows = rows.filter(d => d.name).map(d => ({
+    ...d,
+    country: getInstitutionCountry(d.name, papers),
+    isIndustry: isIndustryInstitution(d.name)
+  }));
+  
+  const academic = enrichedRows.filter(d => !d.isIndustry).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 10);
+  const industry = enrichedRows.filter(d => d.isIndustry).sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 10);
+  
+  renderInstitutionList("#academic-chart", academic, "#60a5fa", papers);
+  renderInstitutionList("#industry-chart", industry, "#a78bfa", papers);
+  
+  // 渲染综合气泡图
+  renderInstitutionCountryBubble(enrichedRows, papers);
+}
+
+function renderInstitutionList(selector, rows, color, papers) {
+  const {svg, width, height} = chartBox(selector);
+  const margin = {top: 16, right: 40, bottom: 34, left: 12};
+  
+  const x = d3.scaleLinear().domain([0, d3.max(rows, d => num(d.paper_count))]).nice().range([margin.left + 100, width - margin.right]);
+  const y = d3.scaleBand().domain(rows.map(d => d.name)).range([margin.top, height - margin.bottom]).padding(0.22);
+  
+  // 网格线
+  svg.append("g").attr("class", "grid").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(4).tickSize(-(height-margin.top-margin.bottom)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(4));
+  
+  // 机构名称（左边）
+  const nameGroup = svg.append("g").attr("transform", `translate(${margin.left}, 0)`);
+  nameGroup.selectAll("g.inst-label").data(rows).join("g")
+    .attr("class", "inst-label")
+    .attr("transform", d => `translate(0, ${y(d.name) + y.bandwidth()/2})`)
+    .each(function(d) {
+      const g = d3.select(this);
+      const countryInfo = countryEmojis[d.country] || { emoji: "🌍", name: d.country };
+      
+      // 国旗emoji
+      g.append("text")
+        .attr("x", 0)
+        .attr("y", 4)
+        .attr("text-anchor", "start")
+        .attr("fill", "#eef4ff")
+        .attr("font-size", 13)
+        .text(countryInfo.emoji);
+      
+      // 机构简称
+      g.append("text")
+        .attr("x", 20)
+        .attr("y", 4)
+        .attr("text-anchor", "start")
+        .attr("fill", "#cdd6e5")
+        .attr("font-size", 11)
+        .attr("font-weight", 500)
+        .text(shortenInstitution(d.name));
+    });
+  
+  // 条形
+  const barMarks = svg.selectAll("rect.bar").data(rows).join("rect")
+    .attr("class", "bar")
+    .attr("x", margin.left + 100)
+    .attr("y", d => y(d.name))
+    .attr("height", y.bandwidth())
+    .attr("width", d => x(num(d.paper_count)) - (margin.left + 100))
+    .attr("rx", 6)
+    .attr("fill", color)
+    .on("mousemove", (e,d) => {
+      const countryInfo = countryEmojis[d.country] || { emoji: "🌍", name: d.country };
+      showTip(e, `<b>${countryInfo.emoji} ${d.name}</b><br>${countryInfo.name}<br>${d.paper_count} papers<br>Centrality: ${num(d.centrality)}`);
+    })
+    .on("mouseleave", hideTip);
+  
+  makeKeyboardMarks(barMarks, d => `${shortenInstitution(d.name)} bar, ${d.paper_count} papers.`, null);
+  
+  // 数值标签
+  svg.selectAll("text.value").data(rows).join("text")
+    .attr("x", d => x(num(d.paper_count)) + 6)
+    .attr("y", d => y(d.name) + y.bandwidth()/2 + 4)
+    .attr("fill", "#cdd6e5")
+    .attr("font-size", 10)
+    .text(d => fmt(num(d.paper_count)));
+}
+
+const countryColors = {
+  US: "#8b5cf6",
+  CA: "#06b6d4",
+  GB: "#f472b6",
+  DE: "#fbbf24",
+  IL: "#fb923c",
+  FR: "#34d399",
+  AU: "#a78bfa",
+  IT: "#fb7185",
+  CH: "#38bdf8",
+  NL: "#facc15",
+  ES: "#4ade80",
+  MX: "#f43f5e",
+  CN: "#0ea5e9",
+  BE: "#eab308",
+  KR: "#22c55e",
+  TW: "#ec4899",
+  SG: "#06b6d4",
+  AT: "#d946ef",
+  IS: "#f97316",
+  IN: "#10b981",
+  FI: "#8b5cf6",
+  DK: "#0ea5e9",
+  VG: "#a855f7"
+};
+
+function getCountryColor(country) {
+  return countryColors[country] || "#64748b";
+}
+
+function renderInstitutionCountryBubble(rows, papers) {
+  const {svg, width, height} = chartBox("#institution-country-bubble");
+  const margin = {top: 60, right: 200, bottom: 80, left: 80};
+  
+  const countryGroups = d3.group(rows, d => d.country);
+  const countryData = Array.from(countryGroups, ([country, insts]) => ({
+    country,
+    totalPapers: d3.sum(insts, d => num(d.paper_count)),
+    institutions: insts.length,
+    academicCount: insts.filter(d => !d.isIndustry).length,
+    industryCount: insts.filter(d => d.isIndustry).length,
+    topInstitutions: insts.sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 5),
+    avgCentrality: d3.mean(insts, d => num(d.centrality)) || 0
+  })).sort((a,b) => d3.descending(a.totalPapers, b.totalPapers));
+  
+  const allCountries = countryData.filter(d => d.totalPapers > 0);
+  let displayCountries = allCountries;
+  
+  const showWithoutUS = () => {
+    if (toggleButton.classed("active")) {
+      displayCountries = allCountries.filter(d => d.country !== "US");
+    } else {
+      displayCountries = allCountries;
+    }
+    updateChart();
+  };
+  
+  const toggleButton = svg.append("g")
+    .attr("class", "toggle-button")
+    .attr("transform", `translate(${margin.left}, ${margin.top - 35})`)
+    .style("cursor", "pointer")
+    .on("click", function() {
+      toggleButton.classed("active", !toggleButton.classed("active"));
+      showWithoutUS();
+    });
+  
+  toggleButton.append("rect")
+    .attr("width", 16)
+    .attr("height", 16)
+    .attr("rx", 3)
+    .attr("fill", "#374151")
+    .attr("stroke", "#64748b");
+  
+  toggleButton.append("text")
+    .attr("x", 22)
+    .attr("y", 12)
+    .attr("fill", "#9ca3af")
+    .attr("font-size", 12)
+    .text("Exclude USA");
+  
+  let activeCountry = null;
+
+  const updateChart = () => {
+    svg.selectAll(".chart-content").remove();
+    svg.selectAll(".institution-bubble-group").remove();
+    svg.selectAll(".institution-label").remove();
+    activeCountry = null;
+    
+    const content = svg.append("g").attr("class", "chart-content");
+    
+    const x = d3.scalePoint()
+      .domain(displayCountries.map(d => d.country))
+      .range([margin.left, width - margin.right])
+      .padding(0.35);
+    
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(displayCountries, d => d.totalPapers) * 1.2])
+      .nice()
+      .range([height - margin.bottom, margin.top]);
+    
+    const r = d3.scaleSqrt()
+      .domain([0, d3.max(displayCountries, d => d.institutions)])
+      .range([8, 45]);
+    
+    content.append("g").attr("class", "grid")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).ticks(6).tickSize(-(width-margin.left-margin.right)).tickFormat(""));
+    
+    content.append("g").attr("class", "axis")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).ticks(6));
+    
+    const xAxis = content.append("g").attr("class", "axis")
+      .attr("transform", `translate(0,${height-margin.bottom})`);
+    
+    xAxis.selectAll("g.country-x-label").data(displayCountries).join("g")
+      .attr("class", "country-x-label")
+      .attr("transform", d => `translate(${x(d.country)}, 0)`)
+      .each(function(d) {
+        const g = d3.select(this);
+        const countryInfo = countryEmojis[d.country] || { emoji: "🌍", name: d.country };
+        
+        g.append("text")
+          .attr("y", 22)
+          .attr("text-anchor", "middle")
+          .attr("fill", "#eef4ff")
+          .attr("font-size", 16)
+          .text(countryInfo.emoji);
+        
+        g.append("text")
+          .attr("y", 42)
+          .attr("text-anchor", "middle")
+          .attr("fill", "#9aa8bd")
+          .attr("font-size", 9)
+          .text(countryInfo.name.length > 10 ? countryInfo.name.slice(0, 10) + "…" : countryInfo.name);
+      });
+    
+    const toggleInstitutionBubbles = (countryData) => {
+      svg.selectAll(".institution-bubble-group").remove();
+      svg.selectAll(".institution-label").remove();
+      
+      if (activeCountry === countryData.country) {
+        activeCountry = null;
+        return;
+      }
+      
+      activeCountry = countryData.country;
+      
+      const centerX = x(countryData.country);
+      const centerY = y(countryData.totalPapers);
+      const countryRadius = r(countryData.institutions);
+      
+      const institutions = countryData.topInstitutions.slice(0, 6);
+      const maxPapers = d3.max(institutions, d => num(d.paper_count));
+      
+      const angleStep = (2 * Math.PI) / institutions.length;
+      const offsetRadius = countryRadius + 35;
+      
+      institutions.forEach((inst, i) => {
+        const angle = angleStep * i - Math.PI / 2;
+        const instRadius = Math.max(10, Math.sqrt(num(inst.paper_count) / maxPapers) * 22);
+        const instX = centerX + Math.cos(angle) * offsetRadius;
+        const instY = centerY + Math.sin(angle) * offsetRadius;
+        
+        const instBubble = svg.append("g")
+          .attr("class", "institution-bubble-group")
+          .attr("transform", `translate(${instX}, ${instY})`);
+        
+        instBubble.append("circle")
+          .attr("class", "institution-bubble")
+          .attr("r", 0)
+          .attr("fill", inst.isIndustry ? "#f472b6" : "#60a5fa")
+          .attr("opacity", 0.85)
+          .attr("stroke", "rgba(255,255,255,0.6)")
+          .attr("stroke-width", 2)
+          .style("cursor", "pointer")
+          .transition()
+          .duration(500)
+          .delay(i * 100)
+          .attr("r", instRadius);
+        
+        instBubble.append("text")
+          .attr("class", "institution-bubble-papers")
+          .attr("y", 4)
+          .attr("text-anchor", "middle")
+          .attr("fill", "#0d1117")
+          .attr("font-size", instRadius > 14 ? 11 : instRadius > 10 ? 8 : 6)
+          .attr("font-weight", 700)
+          .text(num(inst.paper_count))
+          .style("opacity", 0)
+          .transition()
+          .duration(400)
+          .delay(i * 100 + 250)
+          .style("opacity", 1);
+        
+        const labelX = instX + (Math.cos(angle) * (instRadius + 12));
+        const labelY = instY + (Math.sin(angle) * (instRadius + 12));
+        
+        svg.append("text")
+          .attr("class", "institution-label")
+          .attr("x", labelX)
+          .attr("y", labelY + 4)
+          .attr("text-anchor", "middle")
+          .attr("fill", "#e5e7eb")
+          .attr("font-size", 11)
+          .attr("font-weight", 500)
+          .style("opacity", 0)
+          .text(shortenInstitution(inst.name))
+          .transition()
+          .duration(400)
+          .delay(i * 100 + 250)
+          .style("opacity", 1);
+        
+        instBubble.select("circle").on("mousemove", function(e) {
+          d3.select(this)
+            .transition().duration(150)
+            .attr("opacity", 1)
+            .attr("stroke-width", 3);
+          
+          showTip(e, `<b>${shortenInstitution(inst.name)}</b><br>
+            ${inst.paper_count} papers<br>
+            Centrality: ${num(inst.centrality)}<br>
+            Type: ${inst.isIndustry ? "Industry" : "Academic"}`);
+        })
+        .on("mouseleave", function() {
+          d3.select(this)
+            .transition().duration(150)
+            .attr("opacity", 0.85)
+            .attr("stroke-width", 2);
+          hideTip();
+        });
+      });
+      
+      const clickOutsideHandler = function(e) {
+        const target = d3.select(e.target);
+        if (!target.closest(".institution-bubble-group") && 
+            !target.classed("bubble")) {
+          svg.selectAll(".institution-bubble-group").remove();
+          svg.selectAll(".institution-label").remove();
+          activeCountry = null;
+          svg.on("click", null);
+        }
+      };
+      
+      svg.on("click", clickOutsideHandler);
+    };
+    
+    const bubbles = content.selectAll("circle.bubble").data(displayCountries).join("circle")
+      .attr("class", "bubble")
+      .attr("cx", d => x(d.country))
+      .attr("cy", d => y(d.totalPapers))
+      .attr("r", d => r(d.institutions))
+      .attr("fill", d => getCountryColor(d.country))
+      .attr("opacity", 0.65)
+      .attr("stroke", "rgba(255,255,255,0.4)")
+      .attr("stroke-width", 2)
+      .style("cursor", "pointer")
+      .transition().duration(500);
+    
+    bubbles.on("mousemove", function(e, d) {
+      d3.select(this)
+        .transition().duration(200)
+        .attr("opacity", 0.9)
+        .attr("stroke-width", 3);
+      
+      const countryInfo = countryEmojis[d.country] || { emoji: "🌍", name: d.country };
+      showTip(e, `<b>${countryInfo.emoji} ${countryInfo.name}</b><br>
+        ${d.totalPapers} papers | ${d.institutions} institutions<br>
+        ${d.academicCount} academic | ${d.industryCount} industry<br>
+        <i>Click to expand institutions</i>`);
+    })
+    .on("mouseleave", function(e, d) {
+      d3.select(this)
+        .transition().duration(200)
+        .attr("opacity", 0.65)
+        .attr("stroke-width", 2);
+      hideTip();
+    })
+    .on("click", function(e, d) {
+      e.stopPropagation();
+      toggleInstitutionBubbles(d);
+    });
+    
+    content.selectAll("text.bubble-papers").data(displayCountries).join("text")
+      .attr("class", "bubble-papers")
+      .attr("x", d => x(d.country))
+      .attr("y", d => y(d.totalPapers) - r(d.institutions) - 8)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#cdd6e5")
+      .attr("font-size", 10)
+      .attr("font-weight", 600)
+      .text(d => d.totalPapers);
+    
+    content.selectAll("text.bubble-count").data(displayCountries).join("text")
+      .attr("class", "bubble-count")
+      .attr("x", d => x(d.country))
+      .attr("y", d => y(d.totalPapers) + 4)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#0d1117")
+      .attr("font-size", d => r(d.institutions) > 25 ? 14 : r(d.institutions) > 15 ? 11 : 8)
+      .attr("font-weight", 700)
+      .text(d => d.institutions);
+    
+    const legend = content.append("g").attr("transform", `translate(${width - margin.right + 20}, ${margin.top})`);
+    
+    legend.append("text").attr("y", 0).attr("fill", "#cdd6e5").attr("font-size", 11).attr("font-weight", 600).text("Legend");
+    legend.append("text").attr("y", 18).attr("fill", "#9aa8bd").attr("font-size", 9).text("Bubble size = # institutions");
+    legend.append("text").attr("y", 34).attr("fill", "#9aa8bd").attr("font-size", 9).text("Top number = # papers");
+    legend.append("text").attr("y", 50).attr("fill", "#9aa8bd").attr("font-size", 9).text("Click bubble for details");
+    
+    const sizeLegend = content.append("g").attr("transform", `translate(${width - margin.right + 20}, ${margin.top + 70})`);
+    sizeLegend.append("text").attr("y", 0).attr("fill", "#9aa8bd").attr("font-size", 9).text("Size scale:");
+    
+    const sizes = [5, 15, 30];
+    sizes.forEach((s, i) => {
+      sizeLegend.append("circle")
+        .attr("cx", 8)
+        .attr("cy", 20 + i * 22)
+        .attr("r", r(s))
+        .attr("fill", "#64748b")
+        .attr("opacity", 0.5);
+      sizeLegend.append("text")
+        .attr("x", 20 + r(s))
+        .attr("y", 24 + i * 22)
+        .attr("fill", "#9aa8bd")
+        .attr("font-size", 8)
+        .text(`${s} inst`);
+    });
+  };
+  
+  updateChart();
 }
 
 
@@ -1250,7 +1872,7 @@ function renderStoryboard(data) {
 }
 
 function renderModuleClaims(data) {
-  const {papers, venues, areas, topics, timeline, institutions, countries} = data;
+  const {papers, venues, areas, topics, timeline = [], institutions, countries} = data;
   const lagMedian = d3.median(papers, d => d.recognition_lag);
   const lagQ1 = d3.quantile(papers.map(d => d.recognition_lag).filter(Boolean).sort(d3.ascending), 0.25);
   const lagQ3 = d3.quantile(papers.map(d => d.recognition_lag).filter(Boolean).sort(d3.ascending), 0.75);
