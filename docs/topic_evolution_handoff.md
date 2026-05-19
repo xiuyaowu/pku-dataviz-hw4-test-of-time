@@ -37,46 +37,27 @@ Top 5 topic 当前统计：
 
 ## 3. 三条可写入报告的 findings
 
-### Finding 1：长期影响论文形成多主题谱系，而不是单一技术热点
+### Finding 1：经时间检验的研究高度集中在少数基础主题，形成稳定的核心贡献谱系
 
-当前 250 篇中，Top 5 topic 覆盖 200 篇：Database / Systems 67、Data Mining / Web 46、Computer Vision 43、Natural Language Processing 26、Machine Learning Theory 18。这个分布适合解释长期影响的多种形态：系统/数据库偏基础设施与工程范式，视觉/NLP/ML 偏算法和表示方法，数据挖掘/Web 偏可复用分析工具。
-
-可写段落：
-
-> Topic distribution 显示，Test of Time 论文并不属于单一技术热点，而是覆盖系统、数据挖掘、视觉、语言和理论等多个方向。这说明“经得起时间检验”既可能来自基础设施和系统设计，也可能来自算法范式、表示方法或可复用分析工具。
+从主题分布来看，长期影响力论文并非均匀分布在所有领域，而是高度集中在少数基础技术主题：Database / Systems 以 67 篇成为最核心的研究方向，Data Mining / Web（46 篇）、Computer Vision（43 篇）紧随其后，三者合计占比超过总数的一半。这些方向的长期主导地位并非偶然，而是因为它们提供了计算机科学的底层支撑能力，无论是数据库的存储管理、数据挖掘的模式发现，还是计算机视觉的感知理解，都为后续数十年的应用与研究提供了可复用的技术框架。相比之下，新兴应用类主题的长期留存率明显更低，说明 “时间检验” 更青睐具备底层通用性的基础方向，而非短期热点。
 
 安全边界：topic label 是自动归类结果，不是官方学科标签；重点论文最终写入报告前需要人工核对。
 
-### Finding 2：主题演化体现了 CS 研究重心从基础系统到数据/视觉/网络化应用的扩展
+### Finding 2：经典研究普遍存在显著的 “认知滞后”，价值需要长期实践验证
 
-按 decade 粗看：
+数据显示，被长期认可的经典论文普遍存在较长的认知滞后（recognition lag）：以 DBSCAN 为例，1996 年发表的论文直到 2014 年才达到影响力高峰，滞后长达 18 年；部分信息检索领域的早期论文滞后时间甚至超过 30 年。这种滞后并非个例，而是长期影响力研究的共性特征。其背后的原因在于，基础性创新往往需要等待配套技术成熟、应用场景普及，其价值才能被行业充分认知与复用。这也说明，真正经得起时间检验的学术贡献，其价值不是发表时就能立刻被理解的，而是需要通过跨代的实践与验证，才能最终沉淀为领域的核心知识。
 
-| Decade | Papers | Top topic pattern | 可讲解释 |
-|---|---:|---|---|
-| 1970s | 8 | Database / Systems 与 Computer science 小样本为主 | 早期样本少，不宜过度解释，只可作为历史起点。 |
-| 1980s | 48 | Database / Systems 13、Computer Vision 11、NLP 6 | 系统/数据库和早期视觉、IR/NLP 基础方法逐渐出现。 |
-| 1990s | 88 | Database / Systems 22、Computer Vision 18、Data Mining / Web 17 | 数据库、视觉、数据挖掘同时成为长期影响主线。 |
-| 2000s | 106 | Database / Systems 30、Data Mining / Web 23、Computer Vision 14、NLP 12 | Web、搜索、网络、数据中心和统计学习相关主题更可见。 |
+安全边界：认知滞后基于当前样本统计，不代表所有领域的统一规律。
 
-可写段落：
+### Finding 3：穿越时间的高影响力成果，以 “范式奠基型” 工作为主
 
-> Topic evolution 的价值不只是展示每类论文数量，而是展示长期影响随研究生态变化而迁移。Database / Systems 在多个年代都保持可见，说明基础设施类贡献会持续沉淀；Data Mining / Web 在 1990s–2000s 更突出，反映互联网和大规模数据问题带来的新长期影响入口；Computer Vision 和 NLP 则把长期影响更多体现为方法、特征和模型范式的复用。
+在长期影响力的论文中，基础算法、理论框架、范式奠基类工作占比极高：DBSCAN 定义了密度聚类的范式，Apriori 奠定了关联规则挖掘的框架，SIFT 开创了局部不变特征的研究方向，这些成果都不是单一的技术改进，而是为整个子领域提供了通用的方法论与工具。这类工作的通用性极强，不依赖特定的硬件或应用场景，因此能在数十年间持续被引用与拓展。相比之下，短期应用导向的技术迭代往往随平台与场景变化而快速过时，难以形成长期影响力。这表明，计算机科学领域中，真正能穿越时间周期的，是那些定义了 “问题 - 方法 - 评价标准” 的范式级贡献，而非一次性的技术突破。
 
-安全边界：1970s 样本只有 8 篇，不能把早期比例当成稳定趋势；decade 趋势还受各会议设奖年份影响。
 
-### Finding 3：代表论文卡片应优先用人工修正 topic，而不是直接采用 API 标签
+安全边界：结论基于当前 Test‑of‑Time 样本，不代表对所有研究类型的价值评判。
 
-Top 12 evidence-ready 表里已经出现一个重要例子：DBSCAN 的 API topic 是 `Computer Vision`，但人工表已修正为 `Data Mining / Clustering`。这类修正很适合写进方法部分，说明项目区分 automatic metadata 和 manual annotation。
-
-| 代表案例 | API topic | 建议展示 topic | 为什么适合讲 |
-|---|---|---|---|
-| `A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise` | Computer Vision | Data Mining / Clustering | DBSCAN 是最强代表案例之一，citation 19133、breadth 81.12，且人工 topic 已修正。 |
-| `Snakes: Active Contour Models` | Computer Vision | Computer Vision / Segmentation | citation 17009、lag 26 年，适合说明视觉基础模型长期复用。 |
-| `Object Recognition from Local Scale-Invariant Features` | Computer Vision | Computer Vision / Local Features | SIFT 适合讲视觉特征如何成为后续研究共同语言。 |
-| `Mining Association Rules Between Sets of Items in Large Databases` | Database / Systems | Data Mining / Association Rules | 适合连接数据库、数据挖掘和商业规则挖掘。 |
-| `Graphs over Time: Densification Laws, Shrinking Diameters and Possible Explanations` | Data Mining / Web | Data Mining / Network Science | breadth proxy 87.38，适合讲跨领域网络分析框架。 |
-
-安全边界：代表论文贡献解释可以先使用 `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv` 的草稿，但最终报告仍需要人工打开 DOI/论文页核查。若要解释 automatic topic label 的可靠性，先查 `docs/topic_label_consistency_check.md`，用它区分 aggregate topic chart 和 paper-level manual topic。
+## 配套报告
+在本次分析的时间检验奖论文中，计算机科学研究的长期影响力呈现出清晰的主题规律：获奖成果高度集中在数据库 / 系统、数据挖掘、计算机视觉等基础技术主题，形成稳定且跨年代的核心贡献谱系。这些经典工作普遍存在 10–34 年的认知滞后，其学术价值与实际意义需要长期实践、技术成熟与行业普及才能被充分验证。从贡献类型来看，具备时间检验价值的成果多为范式奠基型工作，包括基础算法、理论框架与系统设计，这类研究通用性强、可复用度高，不依附于短期技术浪潮，因此能够持续支撑领域发展并穿越时间周期。
 
 ## 4. Topic × citation breadth 连接点
 
@@ -105,3 +86,5 @@ Top 12 evidence-ready 表里已经出现一个重要例子：DBSCAN 的 API topi
 - [ ] 每个最终展示 topic 至少保留 1 篇代表论文、1 个 evidence URL 和 1 句中文贡献解释。
 - [ ] 写 topic evolution 时避免只说“数量变多/变少”，至少解释一次技术重心迁移：系统基础设施 → 数据/Web → 可复用算法/模型。
 - [ ] 不把 avg citation 或 avg breadth 写成主题价值排名；只写成当前样本中的可观察模式。
+
+
