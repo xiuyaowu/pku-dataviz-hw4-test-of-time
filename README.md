@@ -24,7 +24,7 @@ GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-o
 
 ## Demo 预览图
 
-不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。课堂投影或截图时可打开 `http://127.0.0.1:8765/index.html?present=1`，或在页面中按 `P` 切换 Presentation mode。最终展示前可按 `docs/final_demo_rehearsal_runbook.md` 做一次 10 分钟路线彩排，确认 live demo、截图 fallback 和安全表述都一致。
+不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。课堂投影或截图时可打开 `http://127.0.0.1:8765/index.html?present=1`，或在页面中按 `P` 切换 Presentation mode。最终展示前可按 `docs/final_demo_rehearsal_runbook.md` 做一次 10 分钟路线彩排，确认现场演示、备用截图路线和安全表述都一致。
 
 ![Homepage overview](docs/demo/homepage-overview.png)
 
@@ -98,7 +98,6 @@ git push -u origin feature/your-name-task
 │   ├── story_builder_board.md
 │   ├── glossary_metric_explainer.md
 │   ├── slide_visual_consistency_audit.md
-│   ├── live_demo_fallback_script.md
 │   ├── final_submission_packaging_checklist.md
 │   ├── final_submission_readiness_scorecard.md
 │   ├── final_archive_manifest.md
@@ -256,7 +255,7 @@ http://127.0.0.1:8765/index.html
 
 详细分工见：`docs/team_division.md`
 
-Issue 分工表见：`docs/work_board.md`。新增 stretch 分配表见 `docs/stretch_issue_assignment_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`，PR review 合并标准见 `docs/pr_review_rubric.md`，最终分工证据表见 `docs/contribution_evidence_ledger.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/time_recognition_lag_handoff.md`、`docs/time_micro_annotations.md`、`docs/award_lifecycle_analysis.md`、`docs/venue_field_handoff.md`、`docs/venue_field_imbalance_caveats.md`、`docs/venue_year_case_studies.md`、`docs/topic_evolution_handoff.md`、`docs/manual_topic_audit_top12.md`、`docs/evidence_cards_top12.md`、`docs/story_builder_board.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md`、`docs/final_presentation_blueprint.md`、`docs/defense_qa_pack.md`、`docs/glossary_metric_explainer.md`、`docs/slide_visual_consistency_audit.md`、`docs/live_demo_fallback_script.md`、`docs/final_submission_packaging_checklist.md`、`docs/final_integration_dry_run_log.md`、`docs/contribution_evidence_ledger.md`、`docs/network_visual_presentation_handoff.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，Story Builder 叙事板见 `docs/story_builder_board.md`，展示讲稿见 `docs/demo_script.md`，答辩问答准备见 `docs/defense_qa_pack.md`，术语解释见 `docs/glossary_metric_explainer.md`，最终整合检查见 `docs/final_qa_checklist.md`；提交前打包可按 `docs/final_submission_packaging_checklist.md` 和 dry-run log 逐项检查。
+Issue 分工表见：`docs/work_board.md`。新增 stretch 分配表见 `docs/stretch_issue_assignment_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`，PR review 合并标准见 `docs/pr_review_rubric.md`，最终分工证据表见 `docs/contribution_evidence_ledger.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/time_recognition_lag_handoff.md`、`docs/time_micro_annotations.md`、`docs/award_lifecycle_analysis.md`、`docs/venue_field_handoff.md`、`docs/venue_field_imbalance_caveats.md`、`docs/venue_year_case_studies.md`、`docs/topic_evolution_handoff.md`、`docs/manual_topic_audit_top12.md`、`docs/evidence_cards_top12.md`、`docs/story_builder_board.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md`、`docs/final_presentation_blueprint.md`、`docs/defense_qa_pack.md`、`docs/glossary_metric_explainer.md`、`docs/slide_visual_consistency_audit.md`、`docs/final_submission_packaging_checklist.md`、`docs/final_integration_dry_run_log.md`、`docs/contribution_evidence_ledger.md`、`docs/network_visual_presentation_handoff.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，Story Builder 叙事板见 `docs/story_builder_board.md`，展示讲稿见 `docs/demo_script.md`，答辩问答准备见 `docs/defense_qa_pack.md`，术语解释见 `docs/glossary_metric_explainer.md`，最终整合检查见 `docs/final_qa_checklist.md`；提交前打包可按 `docs/final_submission_packaging_checklist.md` 和 dry-run log 逐项检查。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
