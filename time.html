@@ -280,7 +280,7 @@
       d3.select("#avg-note")
         .text(`全部论文的 recognition lag 平均值为 ${fmt1(avgLag)} 年（图中紫色虚线参考线）。最长的十篇论文滞后时长为 ${top10[0].recognition_lag} 至 ${top10[top10.length-1].recognition_lag} 年。`);
 
-      renderChart(top10, avgLag, papers);
+      renderChart(top10, avgLag, papers, timeline);
       updateDetail(papers.find(p => p.paper_id === top10[0].paper_id) || top10[0], papers);
     }).catch(err => {
       console.error(err);
@@ -288,7 +288,7 @@
         `<pre style="padding:20px;color:#ffb4c1">Data loading failed: ${err.message}</pre>`);
     });
 
-    function renderChart(top10, avgLag, papers) {
+    function renderChart(top10, avgLag, papers, timelineRows) {
       const sel = d3.select("#lag-bar-chart");
       const node = sel.node();
       const width = Math.max(400, node.getBoundingClientRect().width || 700);
@@ -313,7 +313,7 @@
         .padding(0.28);
 
       // Color scale based on venue_area — sorted domain matches index.html
-      const allAreas = [...new Set(timeline.map(d => d.venue_area))].sort();
+      const allAreas = [...new Set(timelineRows.map(d => d.venue_area))].sort();
       const areaColor = d3.scaleOrdinal()
         .domain(allAreas)
         .range(["#70e1d4", "#f6bd60", "#b8a1ff", "#ff7a90", "#8bd17c", "#7cc9ff", "#f39ac7", "#c6d66f"]);
