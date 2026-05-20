@@ -1287,9 +1287,9 @@ function renderInstitutionCountryBubble(rows, papers) {
       });
       
       const clickOutsideHandler = function(e) {
-        const target = d3.select(e.target);
-        if (!target.closest(".institution-bubble-group") && 
-            !target.classed("bubble")) {
+        const target = e.target;
+        if (!target.closest(".institution-bubble-group") &&
+            !target.classList.contains("bubble")) {
           svg.selectAll(".institution-bubble-group").remove();
           svg.selectAll(".institution-label").remove();
           activeCountry = null;
@@ -1309,8 +1309,10 @@ function renderInstitutionCountryBubble(rows, papers) {
       .attr("opacity", 0.65)
       .attr("stroke", "rgba(255,255,255,0.4)")
       .attr("stroke-width", 2)
-      .style("cursor", "pointer")
-      .transition().duration(500);
+      .style("cursor", "pointer");
+
+    bubbles.transition().duration(500)
+      .attr("opacity", 0.65);
     
     bubbles.on("mousemove", function(e, d) {
       d3.select(this)
@@ -1338,6 +1340,7 @@ function renderInstitutionCountryBubble(rows, papers) {
     
     content.selectAll("text.bubble-papers").data(displayCountries).join("text")
       .attr("class", "bubble-papers")
+      .style("pointer-events", "none")
       .attr("x", d => x(d.country))
       .attr("y", d => y(d.totalPapers) - r(d.institutions) - 8)
       .attr("text-anchor", "middle")
@@ -1348,6 +1351,7 @@ function renderInstitutionCountryBubble(rows, papers) {
     
     content.selectAll("text.bubble-count").data(displayCountries).join("text")
       .attr("class", "bubble-count")
+      .style("pointer-events", "none")
       .attr("x", d => x(d.country))
       .attr("y", d => y(d.totalPapers) + 4)
       .attr("text-anchor", "middle")
