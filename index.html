@@ -21,8 +21,8 @@
       <a href="#glossary">Glossary</a>
       <a href="#network">Network</a>
     </nav>
-    <div id="action-dock" class="action-dock dock-collapsed" aria-label="Presentation tools">
-      <button id="dock-toggle" class="dock-toggle" type="button" aria-expanded="false" title="Show presentation tools">Tools</button>
+    <div id="action-dock" class="action-dock dock-collapsed" aria-label="Presentation tools" data-draggable-dock>
+      <button id="dock-toggle" class="dock-toggle" type="button" aria-expanded="false" title="Show presentation tools · drag to move">Tools</button>
       <div class="floating-actions" aria-label="Presentation actions">
         <button id="presentation-toggle" class="presentation-toggle" type="button" aria-pressed="false" title="Toggle projector-friendly presentation mode with P">
           Present
@@ -42,6 +42,7 @@
         </button>
       </div>
     </div>
+    <button id="dock-restore" class="dock-restore" type="button" hidden title="Show presentation tools again">Tools</button>
     <div id="tour-controls" class="tour-controls" hidden aria-live="polite">
       <div>
         <span id="tour-step-count" class="tour-step-count"></span>

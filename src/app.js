@@ -88,6 +88,7 @@ function initPresentationMode() {
   const actionDock = document.getElementById("action-dock");
   const dockToggle = document.getElementById("dock-toggle");
   const dockHide = document.getElementById("dock-hide");
+  const dockRestore = document.getElementById("dock-restore");
   const toggle = document.getElementById("presentation-toggle");
   const tourToggle = document.getElementById("tour-toggle");
   const screenshotToggle = document.getElementById("screenshot-toggle");
@@ -131,23 +132,60 @@ function initPresentationMode() {
   const exportPreviewTitle = document.getElementById("export-preview-title");
   const exportPreviewMeta = document.getElementById("export-preview-meta");
 
+  const syncDockRestorePosition = () => {
+    if (!actionDock || !dockRestore) return;
+    const isPositioned = actionDock.classList.contains("dock-positioned");
+    dockRestore.classList.toggle("dock-positioned", isPositioned);
+    if (isPositioned) {
+      dockRestore.style.left = actionDock.style.left;
+      dockRestore.style.top = actionDock.style.top;
+      dockRestore.style.right = "auto";
+      dockRestore.style.bottom = "auto";
+    } else {
+      dockRestore.style.left = "";
+      dockRestore.style.top = "";
+      dockRestore.style.right = "";
+      dockRestore.style.bottom = "";
+    }
+  };
+
+  const positionDock = (left, top) => {
+    if (!actionDock) return;
+    const rect = actionDock.getBoundingClientRect();
+    const margin = 10;
+    const maxLeft = Math.max(margin, window.innerWidth - rect.width - margin);
+    const maxTop = Math.max(margin, window.innerHeight - rect.height - margin);
+    const nextLeft = Math.min(Math.max(margin, left), maxLeft);
+    const nextTop = Math.min(Math.max(margin, top), maxTop);
+    actionDock.classList.add("dock-positioned");
+    actionDock.style.left = `${nextLeft}px`;
+    actionDock.style.top = `${nextTop}px`;
+    actionDock.style.right = "auto";
+    actionDock.style.bottom = "auto";
+    syncDockRestorePosition();
+  };
+
   const setDockCollapsed = collapsed => {
     if (!actionDock || !dockToggle) return;
     actionDock.classList.remove("dock-hidden");
+    if (dockRestore) dockRestore.hidden = true;
     actionDock.classList.toggle("dock-collapsed", collapsed);
     actionDock.classList.toggle("dock-expanded", !collapsed);
     dockToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
     dockToggle.textContent = collapsed ? "Tools" : "Close";
+    syncDockRestorePosition();
   };
 
   const setDockHidden = hidden => {
     if (!actionDock || !dockToggle) return;
     actionDock.classList.toggle("dock-hidden", hidden);
+    if (dockRestore) dockRestore.hidden = !hidden;
     if (hidden) {
       actionDock.classList.add("dock-collapsed");
       actionDock.classList.remove("dock-expanded");
       dockToggle.setAttribute("aria-expanded", "false");
       dockToggle.textContent = "Tools";
+      syncDockRestorePosition();
     }
   };
 
@@ -155,6 +193,64 @@ function initPresentationMode() {
     if (!actionDock) return;
     if (actionDock.classList.contains("dock-hidden")) setDockCollapsed(true);
     else setDockHidden(true);
+  };
+
+  const initDockDrag = () => {
+    if (!actionDock || !dockToggle) return;
+    let startX = 0;
+    let startY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+    let pointerId = null;
+    let moved = false;
+
+    const endDrag = event => {
+      if (pointerId === null || event.pointerId !== pointerId) return;
+      actionDock.classList.remove("dock-dragging");
+      dockToggle.releasePointerCapture?.(pointerId);
+      pointerId = null;
+      if (moved) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      setTimeout(() => { moved = false; }, 0);
+    };
+
+    dockToggle.addEventListener("pointerdown", event => {
+      if (event.button !== 0) return;
+      const rect = actionDock.getBoundingClientRect();
+      startX = event.clientX;
+      startY = event.clientY;
+      startLeft = rect.left;
+      startTop = rect.top;
+      pointerId = event.pointerId;
+      moved = false;
+      dockToggle.setPointerCapture?.(pointerId);
+    });
+
+    dockToggle.addEventListener("pointermove", event => {
+      if (pointerId === null || event.pointerId !== pointerId) return;
+      const dx = event.clientX - startX;
+      const dy = event.clientY - startY;
+      if (!moved && Math.hypot(dx, dy) < 4) return;
+      moved = true;
+      actionDock.classList.add("dock-dragging");
+      positionDock(startLeft + dx, startTop + dy);
+    });
+
+    dockToggle.addEventListener("pointerup", endDrag);
+    dockToggle.addEventListener("pointercancel", endDrag);
+    dockToggle.addEventListener("click", event => {
+      if (!moved) return;
+      event.preventDefault();
+      event.stopPropagation();
+    }, true);
+
+    window.addEventListener("resize", () => {
+      if (!actionDock.classList.contains("dock-positioned")) return;
+      const rect = actionDock.getBoundingClientRect();
+      positionDock(rect.left, rect.top);
+    });
   };
 
   const setMode = enabled => {
@@ -335,9 +431,11 @@ function initPresentationMode() {
   };
 
   setMode(shouldStart);
+  initDockDrag();
   if (shouldStart) setTimeout(startTour, 250);
   if (dockToggle) dockToggle.addEventListener("click", () => setDockCollapsed(!actionDock.classList.contains("dock-collapsed")));
   if (dockHide) dockHide.addEventListener("click", () => setDockHidden(true));
+  if (dockRestore) dockRestore.addEventListener("click", () => setDockCollapsed(true));
   if (toggle) toggle.addEventListener("click", () => setMode(!root.classList.contains("presentation-mode")));
   if (tourToggle) tourToggle.addEventListener("click", startTour);
   document.getElementById("tour-prev")?.addEventListener("click", () => moveTour(-1));
