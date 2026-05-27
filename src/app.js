@@ -58,6 +58,7 @@ Promise.all([
   renderSummary(data);
   renderInsightDeck(data);
   renderTimeExtremes(data.papers);
+  renderTimeMachine(data.papers);
   renderLag(data.lag, data.papers);
   renderAwardTimeline(data.timeline, data.papers);
   renderVenue(data.venues);
@@ -1517,6 +1518,56 @@ function renderTimeExtremes(papers) {
   d3.select("#time-extremes").selectAll(".insight-card").data(cards).join("div")
     .attr("class", "insight-card")
     .html(d => `<div class="metric">${escapeHtml(d.metric)}</div><div class="title">${escapeHtml(d.title)}</div><div class="body">${escapeHtml(d.body)}</div>`);
+}
+
+
+function renderTimeMachine(papers) {
+  const target = d3.select("#time-machine-cases");
+  if (target.empty()) return;
+  const withLag = papers.filter(d => num(d.recognition_lag) > 0 && d.title);
+  const longest = withLag.slice().sort((a,b) => d3.descending(num(a.recognition_lag), num(b.recognition_lag)))[0];
+  const highCitationLate = withLag.slice()
+    .filter(d => num(d.recognition_lag) >= (d3.median(withLag, x => num(x.recognition_lag)) || 0))
+    .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))[0];
+  const highBreadthLate = withLag.slice()
+    .filter(d => num(d.recognition_lag) >= (d3.median(withLag, x => num(x.recognition_lag)) || 0))
+    .sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0];
+  const typicalLag = withLag.slice()
+    .sort((a,b) => d3.ascending(Math.abs(num(a.recognition_lag) - (d3.median(withLag, x => num(x.recognition_lag)) || 0)), Math.abs(num(b.recognition_lag) - (d3.median(withLag, x => num(x.recognition_lag)) || 0))))[0];
+  const cases = Array.from(new Map([longest, highCitationLate, highBreadthLate, typicalLag].filter(Boolean).map(d => [d.paper_id, d])).values()).slice(0, 4);
+  target.selectAll("article.time-machine-case").data(cases).join("article")
+    .attr("class", "time-machine-case")
+    .html(d => `
+      <div class="time-machine-years">
+        <span>${d.year || "Year"}</span>
+        <i></i>
+        <span>${d.announcement_year || "Award"}</span>
+      </div>
+      <h3>${escapeHtml(shortTitle(d.title))}</h3>
+      <div class="paper-meta">
+        <span class="chip">${escapeHtml(d.venue || "Venue")}</span>
+        <span class="chip">${escapeHtml(d.manual_topic_label || d.topic_label || "Topic")}</span>
+      </div>
+      <div class="detail-stats compact-stats">
+        <div class="detail-stat"><b>${fmt(num(d.recognition_lag))}y</b><span>recognition lag</span></div>
+        <div class="detail-stat"><b>${fmt(num(d.citation_count))}</b><span>citation depth</span></div>
+        <div class="detail-stat"><b>${fmt1(num(d.impact_breadth_score))}</b><span>breadth proxy</span></div>
+      </div>
+      <p>${escapeHtml(timeMachineTakeaway(d))}</p>
+      <button type="button" class="small-action" data-time-machine-id="${escapeHtml(d.paper_id)}">Open evidence card</button>
+    `);
+  target.selectAll("[data-time-machine-id]").on("click", function() {
+    const paper = activePapers.find(d => d.paper_id === this.getAttribute("data-time-machine-id"));
+    openEvidenceCard(paper);
+  });
+}
+
+function timeMachineTakeaway(p) {
+  const lag = num(p.recognition_lag);
+  if (lag >= 25) return "This case is useful for the delayed-recognition story: the visible award signal arrived decades after publication.";
+  if (num(p.impact_breadth_score) >= 60) return "This case lets the speaker contrast early publication metadata with later cross-context diffusion evidence.";
+  if (num(p.citation_count) >= 2000) return "This case shows why high later citation depth should be read together with the time gap before retrospective recognition.";
+  return "This case is a median-lag anchor: it keeps the time story representative rather than only extreme.";
 }
 
 function renderVenueDecadeMatrix(papers) {

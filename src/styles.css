@@ -1050,6 +1050,24 @@ body.exporting .action-dock { display: none !important; }
 }
 
 
+.time-machine-cases {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 14px;
+}
+.time-machine-case {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(112,225,212,0.08), rgba(184,161,255,0.05)), rgba(255,255,255,0.035);
+}
+.time-machine-case h3 { margin: 12px 0 10px; font-size: 18px; line-height: 1.25; letter-spacing: -0.025em; }
+.time-machine-case p { color: #b8c4d6; font-size: 13px; line-height: 1.55; min-height: 62px; }
+.time-machine-years { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; color: var(--accent-2); font-weight: 900; }
+.time-machine-years i { height: 2px; border-radius: 999px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); opacity: .8; }
+@media (max-width: 1100px) { .time-machine-cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .time-machine-cases { grid-template-columns: 1fr; } }
+
 .impact-signature { padding: 6px 4px 2px; }
 .signature-summary {
   display: flex;
