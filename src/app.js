@@ -1260,7 +1260,7 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
       </div>
       <div class="world-map-canvas">
         <div class="map-hud top-left"><b>Metadata layer</b><span>author affiliation traces</span></div>
-        <div class="map-hud bottom-right"><b>Reading</b><span>size = papers · color = avg citations</span></div>
+        <div class="map-hud top-right"><b>Reading</b><span>hub size = papers<br>hue = avg citations</span></div>
         <svg class="world-memory-svg" viewBox="0 0 1120 610" role="img" aria-label="World map of visible Test-of-Time paper country metadata"></svg>
       </div>
       <div class="world-map-note">
@@ -1456,20 +1456,28 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
 
   const drawLegends = () => {
     const legend = svg.append("g").attr("class", "memory-map-legend legend-card")
-      .attr("transform", `translate(${width - 342},${height - 164})`);
-    legend.append("rect").attr("width", 292).attr("height", 112).attr("rx", 18);
-    legend.append("text").attr("x", 18).attr("y", 26).attr("class", "legend-title").text("Encoding");
+      .attr("transform", `translate(58,${height - 172})`);
+    legend.append("rect").attr("width", 414).attr("height", 126).attr("rx", 20);
+    legend.append("text").attr("x", 20).attr("y", 28).attr("class", "legend-title").text("Encoding");
+    legend.append("text").attr("x", 20).attr("y", 49).attr("class", "legend-subtitle").text("size encodes footprint, color encodes citation signal");
+
+    const sizeGroup = legend.append("g").attr("class", "legend-size-scale").attr("transform", "translate(20,76)");
+    sizeGroup.append("text").attr("x", 0).attr("y", -17).attr("class", "legend-axis-label").text("papers");
     [1, Math.max(2, Math.round(maxPapers / 3)), maxPapers].forEach((v, i) => {
-      const cx = 38 + i * 70;
-      const rr = radius(v) * 0.62;
-      legend.append("circle").attr("cx", cx).attr("cy", 68).attr("r", rr).attr("fill", "none").attr("stroke", "rgba(238,244,255,.74)");
-      legend.append("text").attr("x", cx).attr("y", 101).attr("text-anchor", "middle").text(fmt(v));
+      const cx = 22 + i * 58;
+      const rr = Math.max(4, radius(v) * 0.42);
+      sizeGroup.append("circle").attr("cx", cx).attr("cy", 0).attr("r", rr).attr("fill", "none").attr("stroke", "rgba(238,244,255,.74)");
+      sizeGroup.append("text").attr("x", cx).attr("y", 34).attr("text-anchor", "middle").text(fmt(v));
     });
+
+    const citationGroup = legend.append("g").attr("class", "legend-citation-scale").attr("transform", "translate(244,76)");
+    citationGroup.append("text").attr("x", 0).attr("y", -17).attr("class", "legend-axis-label").text("avg citations");
     const gradientId = "citationRamp";
     const grad = defs.append("linearGradient").attr("id", gradientId).attr("x1", "0%").attr("x2", "100%");
     [0, .33, .66, 1].forEach(t => grad.append("stop").attr("offset", `${t * 100}%`).attr("stop-color", colorScale(t * maxCitations)));
-    legend.append("rect").attr("x", 202).attr("y", 54).attr("width", 64).attr("height", 9).attr("rx", 999).attr("fill", `url(#${gradientId})`);
-    legend.append("text").attr("x", 202).attr("y", 80).text("avg citations");
+    citationGroup.append("rect").attr("x", 0).attr("y", -7).attr("width", 132).attr("height", 14).attr("rx", 999).attr("fill", `url(#${gradientId})`);
+    citationGroup.append("text").attr("x", 0).attr("y", 34).attr("text-anchor", "start").text("low");
+    citationGroup.append("text").attr("x", 132).attr("y", 34).attr("text-anchor", "end").text("high");
   };
 
   d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
