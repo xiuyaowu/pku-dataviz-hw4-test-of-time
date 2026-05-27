@@ -74,7 +74,6 @@ Promise.all([
   renderExplorer(data.papers);
   renderComparePanel(data.papers);
   renderBenchmark(data.papers);
-  renderStoryboard(data);
   renderNetworkKpis(data.institutions, data.countries);
   renderGlobalMemoryMap(data.countries, data.institutions, data.papers);
   renderModuleClaims(data);
@@ -106,8 +105,6 @@ function initPresentationMode() {
     {id: "explorer", title: "Paper Explorer", takeaway: "The dashboard doubles as an evidence index: every claim can be traced back to searchable papers."},
     {id: "evidence-thread", title: "Cross-module Evidence Thread", takeaway: "Selecting one paper synchronizes the story across time, topic, citation, benchmark, and network lenses."},
     {id: "benchmark", title: "Benchmark Lab", takeaway: "Benchmark percentiles and the Long-term Impact Signature explain selected papers without pretending to predict future awards."},
-    {id: "rubric", title: "Rubric Receipt", takeaway: "A teacher-facing receipt maps the work to data, visual, interaction, story, integrity, and delivery evidence."},
-    {id: "demo-route", title: "Best-score Demo Route", takeaway: "The final route shows exactly how to spend 8 minutes for maximum grading signal."},
     {id: "network", title: "Network / closing", takeaway: "Global Memory Map extends the story to visible affiliation metadata while explicitly avoiding country or institution ranking claims."}
   ];
   const exportTargets = [
@@ -119,9 +116,6 @@ function initPresentationMode() {
     {id: "explorer", selector: "#explorer", filename: "dataviz-hw4-paper-explorer.png"},
     {id: "evidence-thread", selector: "#evidence-thread", filename: "dataviz-hw4-evidence-thread.png"},
     {id: "benchmark", selector: "#benchmark", filename: "dataviz-hw4-benchmark-lab.png"},
-    {id: "storyboard", selector: "#storyboard", filename: "dataviz-hw4-storyboard.png"},
-    {id: "rubric", selector: "#rubric", filename: "dataviz-hw4-rubric-receipt.png"},
-    {id: "demo-route", selector: "#demo-route", filename: "dataviz-hw4-best-score-demo-route.png"},
     {id: "network", selector: "#network", filename: "dataviz-hw4-network.png"}
   ];
   let tourIndex = 0;
@@ -2425,6 +2419,7 @@ function renderStoryboard(data) {
       <p><b>So what</b>${escapeHtml(d.soWhat)}</p>
     `);
 }
+
 
 function renderModuleClaims(data) {
   const {papers, venues, areas, topics, timeline = [], institutions, countries} = data;

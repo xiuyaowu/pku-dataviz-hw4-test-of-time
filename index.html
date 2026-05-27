@@ -18,10 +18,6 @@
       <a href="#explorer">Explorer</a>
       <a href="#evidence-thread">Sync</a>
       <a href="#benchmark">Benchmark</a>
-      <a href="#storyboard">Storyboard</a>
-      <a href="#rubric">Rubric</a>
-      <a href="#demo-route">Demo Route</a>
-      <a href="#glossary">Glossary</a>
       <a href="#network">Network</a>
     </nav>
     <div id="action-dock" class="action-dock dock-collapsed" aria-label="Presentation tools" data-draggable-dock>
@@ -303,149 +299,6 @@
       </div>
     </section>
 
-    <section id="storyboard" class="section">
-      <div class="section-title-row">
-        <div>
-          <p class="section-kicker">RQ7 · Story Builder</p>
-          <h2>怎样把图表变成报告和展示主线？</h2>
-        </div>
-        <p class="reading-note" id="storyboard-note"></p>
-      </div>
-      <div class="chart-card wide-card storyboard-card">
-        <div class="chart-head">
-          <h3>Full-score Narrative Board</h3>
-          <span>question · evidence · so what · owner</span>
-        </div>
-        <div id="storyboard-grid" class="storyboard-grid" aria-label="Report and presentation storyboard"></div>
-      </div>
-    </section>
-
-
-    <section id="rubric" class="section rubric-section">
-      <div class="section-title-row">
-        <div>
-          <p class="section-kicker">Teacher-facing receipt</p>
-          <h2>这套项目为什么不只是“多做了几个图”？</h2>
-        </div>
-        <p class="reading-note">Use this section near the end of the demo when time allows: it maps visible features to grading evidence, while keeping risky claims bounded.</p>
-      </div>
-      <div class="rubric-receipt" aria-label="Full-score rubric receipt">
-        <article class="rubric-card">
-          <span class="rubric-score">Data</span>
-          <h3>统一数据链路</h3>
-          <p>250 篇 Test-of-Time 论文连接 award seed、OpenAlex metadata、derived metrics 和 case evidence。</p>
-          <b>Show</b>
-          <span>`data/papers_enriched.csv` + homepage summary cards</span>
-        </article>
-        <article class="rubric-card">
-          <span class="rubric-score">Visual</span>
-          <h3>多层可视化结构</h3>
-          <p>时间分布、领域地图、topic evolution、citation/breadth、benchmark、network 形成递进视图。</p>
-          <b>Show</b>
-          <span>Tour mode: Time → Topic → Benchmark → Network</span>
-        </article>
-        <article class="rubric-card">
-          <span class="rubric-score">Interaction</span>
-          <h3>可探索证据库</h3>
-          <p>Paper Explorer、Benchmark Lab 和 evidence cards 支持搜索、排序、点击联动和答辩定位。</p>
-          <b>Show</b>
-          <span>Search one keyword, select a paper, then show its signature</span>
-        </article>
-        <article class="rubric-card">
-          <span class="rubric-score">Story</span>
-          <h3>研究问题驱动</h3>
-          <p>从 recognition lag 到 contribution lineage，再到 impact signature 和 global memory，形成完整叙事。</p>
-          <b>Show</b>
-          <span>Storyboard + final presentation route</span>
-        </article>
-        <article class="rubric-card">
-          <span class="rubric-score">Integrity</span>
-          <h3>边界意识清楚</h3>
-          <p>所有 proxy 都有 safe wording：不预测未来 Best Paper，不做国家/机构排名，不把引用当作唯一价值。</p>
-          <b>Show</b>
-          <span>Glossary + Defense Q&A Pack</span>
-        </article>
-        <article class="rubric-card">
-          <span class="rubric-score">Delivery</span>
-          <h3>展示可交付</h3>
-          <p>Presentation mode、guided tour 和 one-click export 降低现场风险，也能直接生成 PPT-ready 备份图。</p>
-          <b>Show</b>
-          <span>Present / Tour / Export buttons</span>
-        </article>
-      </div>
-      <div class="rubric-closeout">
-        <strong>One-line closeout for class:</strong>
-        <span>我们的贡献不是单个预测模型，而是一个可解释、可追溯、可展示的长期影响分析系统。</span>
-      </div>
-    </section>
-
-    <section id="demo-route" class="section demo-route-section">
-      <div class="section-title-row">
-        <div>
-          <p class="section-kicker">Best-score demo route</p>
-          <h2>如果老师只给 8 分钟，应该怎么展示最卷？</h2>
-        </div>
-        <p class="reading-note">This route is optimized for classroom grading: start with research question, show four high-end features, then close with boundaries and receipt.</p>
-      </div>
-      <div class="demo-route-grid" aria-label="Optimized classroom demo route">
-        <article><span>00:00</span><b>Research question</b><p>哪些计算机研究经得起时间检验？先说明不是预测未来，而是解释长期影响模式。</p></article>
-        <article><span>01:00</span><b>Time Machine</b><p>展示 recognition lag 后点一个极端案例，讲“延迟确认”的直觉。</p></article>
-        <article><span>02:15</span><b>Topic + Lineage</b><p>从 topic evolution 转入代表论文谱系，让统计图落到贡献路径。</p></article>
-        <article><span>03:45</span><b>Explorer + Signature</b><p>现场搜索一篇论文，打开 benchmark 和 impact signature，证明系统可探索。</p></article>
-        <article><span>05:30</span><b>Global Map</b><p>展示世界地图 bubble，强调 metadata visibility，不讲国家排名。</p></article>
-        <article><span>06:45</span><b>Rubric receipt</b><p>用一页收束：数据、视觉、交互、故事、边界、交付全部覆盖。</p></article>
-      </div>
-      <div class="demo-route-closeout">展示目标：让老师记住这不是 dashboard，而是一个可解释、可追溯、可展示的长期影响分析系统。</div>
-    </section>
-    <section id="glossary" class="section">
-      <div class="section-title-row">
-        <div>
-          <p class="section-kicker">Shared language</p>
-          <h2>展示和报告中怎样解释这些指标？</h2>
-        </div>
-        <p class="reading-note">Use this as a quick metric explainer during Q&A: proxy metrics are useful visual signals, but paper-level claims still need evidence cards or award-citation checks.</p>
-      </div>
-      <div class="glossary-grid" aria-label="Metric glossary and safe wording">
-        <article class="glossary-card">
-          <h3>Recognition lag</h3>
-          <p>发表年份到获奖年份的间隔，说明“正式回看确认”花了多久。</p>
-          <b>Safe wording</b>
-          <span>Measures delayed formal recognition, not when impact first appeared.</span>
-        </article>
-        <article class="glossary-card">
-          <h3>Citation depth</h3>
-          <p>公开学术元数据中的引用规模，用来观察后续研究吸收强度。</p>
-          <b>Safe wording</b>
-          <span>A useful influence signal, not the only definition of importance.</span>
-        </article>
-        <article class="glossary-card">
-          <h3>Impact breadth</h3>
-          <p>基于 OpenAlex citing works 抽样估计跨领域、机构、国家和年份的扩散范围。</p>
-          <b>Safe wording</b>
-          <span>An OpenAlex sampled proxy for diffusion, not a complete citation graph.</span>
-        </article>
-        <article class="glossary-card">
-          <h3>Same-field benchmark</h3>
-          <p>把选中论文和同领域/同主题邻近论文比较，减少跨领域引用习惯误读。</p>
-          <b>Safe wording</b>
-          <span>A contextual comparison within this dataset, not a universal ranking.</span>
-        </article>
-        <article class="glossary-card">
-          <h3>Topic label</h3>
-          <p>由 API concepts 和规则归一化得到的初步主题标签，代表论文需要人工核查。</p>
-          <b>Safe wording</b>
-          <span>Good for trend visualization; final case claims should use manual topic checks.</span>
-        </article>
-        <article class="glossary-card">
-          <h3>Evidence card</h3>
-          <p>把代表论文的贡献、证据链接、展示状态和人工检查要求集中成一张卡。</p>
-          <b>Safe wording</b>
-          <span>Use presentation-ready cards first; keep human-check cards cautious.</span>
-        </article>
-      </div>
-      <p class="glossary-footer">Full glossary: <a href="docs/glossary_metric_explainer.md">docs/glossary_metric_explainer.md</a></p>
-    </section>
-
     <section id="network" class="section">
       <div class="section-title-row">
         <div>
@@ -522,9 +375,6 @@
             <option value="explorer">Paper explorer</option>
             <option value="evidence-thread">Evidence thread</option>
             <option value="benchmark">Benchmark lab</option>
-            <option value="storyboard">Storyboard / division of labor</option>
-            <option value="rubric">Rubric receipt</option>
-            <option value="demo-route">Best-score demo route</option>
             <option value="network">Network</option>
           </select>
           <label for="export-quality">Quality</label>
