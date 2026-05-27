@@ -34,6 +34,9 @@
 | 16 | 如果老师质疑因果关系怎么办？ | 直接承认：本项目展示关联和结构性模式，不证明 award committee 的评奖动机或因果机制。 | `docs/methods_and_limitations.md`; report limitation section. | 使用“显示 / 提示 / 反映 / 可观察到”，避免“证明 / 导致”。 |
 | 17 | 如果 live demo 打不开怎么办？ | 使用 presentation-mode screenshots 的 2 分钟 fallback route，并说明截图来自同一 D3 页面和同一批静态数据。 | `docs/live_demo_fallback_script.md`; `docs/demo/*.png`. | 不临场排查超过 30 秒，优先保证展示叙事完整。 |
 | 18 | 最终报告最需要人工补什么？ | Top 12 / selected cases 的 award citation、贡献表述、evidence URL 打开核查，以及 B-F 每个模块 2–3 条最终 findings。 | `docs/evidence_coverage_matrix.md`; `docs/final_qa_checklist.md`. | 自动生成的统计和草稿是起点，不是最终人工背书。 |
+| 19 | Impact Signature 是不是在预测未来 Best Paper？ | 不是。它是当前 Test-of-Time corpus 内的 descriptive profile，用来解释已获奖论文的长期影响形态。 | Benchmark Lab; PR #160; `docs/best_paper_vs_test_of_time_framing.md`. | 不说 prediction / accuracy / model performance；只说 profile / signature / interpretation. |
+| 20 | Time Machine 是不是 hindsight bias？ | 我们主动把它设计成 retrospective view：比较发表时可见信息和多年后 evidence，而不是声称当年一定能判断。 | Time module; Time Machine cards; `docs/time_module_demo_claim_cards.md`. | 用“could we have known?”作为讨论问题，不给确定答案。 |
+| 21 | Global Memory Map 会不会变成国家排名？ | 不会。它只展示公开 affiliation metadata 在当前样本中的可见分布和代表论文链接。 | Network module; Global Memory Map; `docs/institution_country_attribution_audit.md`. | 不解释为科研质量、国家贡献或完整合作网络。 |
 
 ## Three fallback answers for “we did not manually read every paper”
 
@@ -57,6 +60,8 @@
 - **On venue counts**：venue count 是当前数据中的 award-record visibility，不是 venue ranking。
 - **On topic labels**：自动 topic label 用于聚合视图，最终代表案例优先采用 manual topic audit。
 - **On contribution claims**：没有 evidence URL 的工业影响、基础设施影响或 foundational 贡献，不写成确定结论。
+- **On Impact Signature**：说 descriptive profile / interpretation，不说 prediction / model accuracy。
+- **On Global Memory Map**：说 metadata visibility，不说 country ranking / institution ranking。
 
 ## Owner rehearsal checklist
 

@@ -16,8 +16,11 @@
       <a href="#topic">Topic</a>
       <a href="#citation">Citation</a>
       <a href="#explorer">Explorer</a>
+      <a href="#evidence-thread">Sync</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#storyboard">Storyboard</a>
+      <a href="#rubric">Rubric</a>
+      <a href="#demo-route">Demo Route</a>
       <a href="#glossary">Glossary</a>
       <a href="#network">Network</a>
     </nav>
@@ -60,6 +63,28 @@
     <p class="subtitle">Visualizing long-term impact in computer science through award timing, research fields, topic evolution, citation trajectories, and institutional diffusion.</p>
     <div id="summary-cards" class="summary-grid"></div>
     <div id="insight-deck" class="insight-deck" aria-label="Key project insights"></div>
+    <div class="feature-gallery" aria-label="High-end feature gallery">
+      <a class="feature-tile" href="#time">
+        <span>① Time Machine</span>
+        <b>从滞后分布进入单篇案例</b>
+        <small>回答“多年后为什么被重新确认”。</small>
+      </a>
+      <a class="feature-tile" href="#topic">
+        <span>② Paper Lineage</span>
+        <b>主题 → 贡献路径 → 后续影响</b>
+        <small>把 topic count 讲成研究谱系。</small>
+      </a>
+      <a class="feature-tile" href="#benchmark">
+        <span>③ Impact Signature</span>
+        <b>长期影响画像，而不是预测噱头</b>
+        <small>高端但安全，适合答辩。</small>
+      </a>
+      <a class="feature-tile" href="#network">
+        <span>④ Global Memory Map</span>
+        <b>世界地图上的可见学术记忆</b>
+        <small>视觉冲击强，但不做国家排名。</small>
+      </a>
+    </div>
   </header>
 
   <main>
@@ -240,6 +265,17 @@
       </div>
     </section>
 
+
+    <section id="evidence-thread" class="section evidence-thread-section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">Cross-module sync</p>
+          <h2>点一篇论文，全站同步讲它的长期影响路径</h2>
+        </div>
+        <p class="reading-note">Use this as the live-demo bridge: select a paper from Explorer, Time Machine, Lineage, Map, or any chart, then explain the same paper through time, topic, citation, benchmark, and network lenses.</p>
+      </div>
+      <div id="selected-evidence-thread" class="selected-evidence-thread" aria-live="polite"></div>
+    </section>
     <section id="benchmark" class="section">
       <div class="section-title-row">
         <div>
@@ -284,6 +320,83 @@
       </div>
     </section>
 
+
+    <section id="rubric" class="section rubric-section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">Teacher-facing receipt</p>
+          <h2>这套项目为什么不只是“多做了几个图”？</h2>
+        </div>
+        <p class="reading-note">Use this section near the end of the demo when time allows: it maps visible features to grading evidence, while keeping risky claims bounded.</p>
+      </div>
+      <div class="rubric-receipt" aria-label="Full-score rubric receipt">
+        <article class="rubric-card">
+          <span class="rubric-score">Data</span>
+          <h3>统一数据链路</h3>
+          <p>250 篇 Test-of-Time 论文连接 award seed、OpenAlex metadata、derived metrics 和 case evidence。</p>
+          <b>Show</b>
+          <span>`data/papers_enriched.csv` + homepage summary cards</span>
+        </article>
+        <article class="rubric-card">
+          <span class="rubric-score">Visual</span>
+          <h3>多层可视化结构</h3>
+          <p>时间分布、领域地图、topic evolution、citation/breadth、benchmark、network 形成递进视图。</p>
+          <b>Show</b>
+          <span>Tour mode: Time → Topic → Benchmark → Network</span>
+        </article>
+        <article class="rubric-card">
+          <span class="rubric-score">Interaction</span>
+          <h3>可探索证据库</h3>
+          <p>Paper Explorer、Benchmark Lab 和 evidence cards 支持搜索、排序、点击联动和答辩定位。</p>
+          <b>Show</b>
+          <span>Search one keyword, select a paper, then show its signature</span>
+        </article>
+        <article class="rubric-card">
+          <span class="rubric-score">Story</span>
+          <h3>研究问题驱动</h3>
+          <p>从 recognition lag 到 contribution lineage，再到 impact signature 和 global memory，形成完整叙事。</p>
+          <b>Show</b>
+          <span>Storyboard + final presentation route</span>
+        </article>
+        <article class="rubric-card">
+          <span class="rubric-score">Integrity</span>
+          <h3>边界意识清楚</h3>
+          <p>所有 proxy 都有 safe wording：不预测未来 Best Paper，不做国家/机构排名，不把引用当作唯一价值。</p>
+          <b>Show</b>
+          <span>Glossary + Defense Q&A Pack</span>
+        </article>
+        <article class="rubric-card">
+          <span class="rubric-score">Delivery</span>
+          <h3>展示可交付</h3>
+          <p>Presentation mode、guided tour 和 one-click export 降低现场风险，也能直接生成 PPT-ready 备份图。</p>
+          <b>Show</b>
+          <span>Present / Tour / Export buttons</span>
+        </article>
+      </div>
+      <div class="rubric-closeout">
+        <strong>One-line closeout for class:</strong>
+        <span>我们的贡献不是单个预测模型，而是一个可解释、可追溯、可展示的长期影响分析系统。</span>
+      </div>
+    </section>
+
+    <section id="demo-route" class="section demo-route-section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">Best-score demo route</p>
+          <h2>如果老师只给 8 分钟，应该怎么展示最卷？</h2>
+        </div>
+        <p class="reading-note">This route is optimized for classroom grading: start with research question, show four high-end features, then close with boundaries and receipt.</p>
+      </div>
+      <div class="demo-route-grid" aria-label="Optimized classroom demo route">
+        <article><span>00:00</span><b>Research question</b><p>哪些计算机研究经得起时间检验？先说明不是预测未来，而是解释长期影响模式。</p></article>
+        <article><span>01:00</span><b>Time Machine</b><p>展示 recognition lag 后点一个极端案例，讲“延迟确认”的直觉。</p></article>
+        <article><span>02:15</span><b>Topic + Lineage</b><p>从 topic evolution 转入代表论文谱系，让统计图落到贡献路径。</p></article>
+        <article><span>03:45</span><b>Explorer + Signature</b><p>现场搜索一篇论文，打开 benchmark 和 impact signature，证明系统可探索。</p></article>
+        <article><span>05:30</span><b>Global Map</b><p>展示世界地图 bubble，强调 metadata visibility，不讲国家排名。</p></article>
+        <article><span>06:45</span><b>Rubric receipt</b><p>用一页收束：数据、视觉、交互、故事、边界、交付全部覆盖。</p></article>
+      </div>
+      <div class="demo-route-closeout">展示目标：让老师记住这不是 dashboard，而是一个可解释、可追溯、可展示的长期影响分析系统。</div>
+    </section>
     <section id="glossary" class="section">
       <div class="section-title-row">
         <div>
@@ -407,8 +520,11 @@
             <option value="topic">Topic evolution</option>
             <option value="citation">Citation & compare panel</option>
             <option value="explorer">Paper explorer</option>
+            <option value="evidence-thread">Evidence thread</option>
             <option value="benchmark">Benchmark lab</option>
             <option value="storyboard">Storyboard / division of labor</option>
+            <option value="rubric">Rubric receipt</option>
+            <option value="demo-route">Best-score demo route</option>
             <option value="network">Network</option>
           </select>
           <label for="export-quality">Quality</label>

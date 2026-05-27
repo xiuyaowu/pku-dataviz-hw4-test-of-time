@@ -8,15 +8,16 @@
 |---:|---|---:|---|---|---|
 | 1 | A | 0:40 | What Research Stands the Test of Time? | Test of Time Award 让我们观察多年后仍被重新确认的研究价值。 | `docs/demo/homepage-overview.png` |
 | 2 | A | 0:45 | Dataset & Analytical Frame | 250 篇论文覆盖 1974–2008 发表年、1989–2018 获奖年，分析从时间、领域、主题、引用、证据和网络展开。 | homepage summary cards |
-| 3 | B | 1:00 | Time: Recognition Lag | 中位 recognition lag 为 12 年，最长 34 年，长期影响通常需要延迟确认。 | `docs/demo/time-and-timeline.png` |
-| 4 | C | 1:00 | Venue & Field | SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD 等社区记录了较多长期影响，但数量差异要结合设奖历史解释。 | `docs/demo/venue-and-field.png` |
-| 5 | D | 1:10 | Topic Evolution | Database/Systems、Data Mining/Web、Computer Vision 等主题共同构成长周期影响，主题随 CS 研究重心变化。 | `docs/demo/topic-evolution.png` |
+| 3 | B | 1:05 | Time + Time Machine | 中位 recognition lag 为 12 年，Time Machine 用代表案例解释“当年能不能看出来”。 | `docs/demo/time-and-timeline.png` |
+| 4 | C | 0:55 | Venue & Field | SIGIR、SIGCOMM、ICSE、ICCV、SIGMOD 等社区记录了较多长期影响，但数量差异要结合设奖历史解释。 | `docs/demo/venue-and-field.png` |
+| 5 | D | 1:15 | Topic Evolution + Lineage | Topic chart 展示长期影响主题迁移，Paper Lineage 把主题落到可复用贡献路径。 | `docs/demo/topic-evolution.png` |
 | 6 | E | 1:15 | Citation Depth × Impact Breadth | 高引用不等于全部长期影响；citation depth 和 impact breadth 区分不同影响形态。 | `docs/demo/citation-and-impact.png` |
-| 7 | A/D | 0:55 | Evidence Index | Paper Explorer 把总体趋势落回具体论文，展示和答疑时可以按主题、会议、指标快速定位案例。 | `docs/demo/explorer-evidence-index.png` |
-| 8 | A/D | 0:55 | Benchmark Lab | 单篇论文可以和全数据集/同领域比较，用 percentile 说明它强在哪里。 | `docs/demo/benchmark-lab.png` |
-| 9 | F | 1:00 | Network Diffusion | 长期影响也沉淀在机构和国家/地区分布中，但机构元数据缺失需要说明。 | `docs/demo/network-diffusion.png` |
-| 10 | A/F | 0:50 | Methods & Boundaries | 结论基于 award seed + OpenAlex public metadata + derived proxy，不声称官方评奖因果。 | `docs/methods_and_limitations.md` |
-| 11 | A | 0:40 | Conclusion | 经得起时间检验的研究需要用时间、主题、引用、证据案例和网络多维观察。 | summary / closing slide |
+| 7 | A/D | 0:45 | Evidence Index | Paper Explorer 把总体趋势落回具体论文，展示和答疑时可以按主题、会议、指标快速定位案例。 | `docs/demo/explorer-evidence-index.png` |
+| 8 | E/A | 1:00 | Benchmark + Impact Signature | 单篇论文可以和全数据集/同领域比较，并形成 descriptive long-term impact profile。 | `docs/demo/benchmark-lab.png` |
+| 9 | F | 1:05 | Network + Global Memory Map | 长期影响也沉淀在机构和国家/地区可见元数据中，但不能解释为国家/机构排名。 | `docs/demo/network-diffusion.png` |
+| 10 | A | 0:35 | Rubric Receipt | 把数据、视觉、交互、故事、边界和展示交付映射成老师可见的评分证据。 | `#rubric` section / export PNG |
+| 11 | A/F | 0:50 | Methods & Boundaries | 结论基于 award seed + OpenAlex public metadata + derived proxy，不声称官方评奖因果。 | `docs/methods_and_limitations.md` |
+| 12 | A | 0:40 | Conclusion | 经得起时间检验的研究需要用时间、主题、引用、证据案例和网络多维观察。 | summary / closing slide |
 
 预计总时长：9 分钟 10 秒。若课程要求压缩到 8 分钟，删去 Slide 8 的现场演示，只保留一句 Benchmark Lab 说明。
 
@@ -97,7 +98,8 @@ C：选择 1 个 venue 或 area 解释“为什么这里容易出现长期影响
 
 - Top topic groups: Database / Systems 67, Data Mining / Web 46, Computer Vision 43, NLP 26, ML Theory 18
 - Topic evolution links long-term impact to shifts in CS research focus
-- Representative evidence cards prevent the slide from becoming only counts
+- Representative Paper Lineage prevents the slide from becoming only counts
+- Use 1–2 lineage cards to explain topic → reusable contribution → later impact
 
 **Speaker note**
 
@@ -146,8 +148,8 @@ Open `index.html?present=1` → Paper Explorer → search a prepared keyword suc
 **Slide bullets**
 
 - Compares selected paper against all papers and same-field baseline
-- Percentiles make “why representative” explainable
-- Lens labels: deep + broad influence, slow-burn classic, wide diffusion case
+- Long-term Impact Signature summarizes citation depth, breadth, lag, topic, venue, and network spread
+- Safe frame: descriptive profile inside this corpus, not future Best Paper prediction
 
 **Speaker note**
 
@@ -162,8 +164,8 @@ Open `index.html?present=1` → Paper Explorer → search a prepared keyword suc
 **Slide bullets**
 
 - Top institutions: UC Berkeley 17, Carnegie Mellon 15, Stanford 14, MIT 11, Cornell 8
-- Top countries/regions: US 170, CA 20, GB 16, DE 11, IL 5
-- Boundary: affiliation metadata can be incomplete or normalized differently
+- Global Memory Map links country/region metadata to leading institutions and representative papers
+- Boundary: affiliation metadata can be incomplete; this is not a country or institution ranking
 
 **Speaker note**
 
@@ -236,3 +238,28 @@ Before class, copy these images into the PPT folder or insert them directly into
 3. Keep each B–F module to one main takeaway.
 4. Mention limitations before Q&A, not only after being challenged.
 5. End by restating the core question and the multi-dimensional answer.
+
+## High-end module story spine
+
+| Module | Why it upgrades the project | One-sentence safe wording |
+|---|---|---|
+| Time Machine | Turns recognition lag from a histogram into a case-level story. | “This case shows delayed retrospective recognition, not a prediction that the paper was identifiable as a future classic at publication time.” |
+| Representative Paper Lineage | Connects topic evolution to reusable contribution pathways. | “Topic labels guide navigation; final contribution claims come from evidence-checked paper cards.” |
+| Long-term Impact Signature | Keeps the user’s “best paper potential” idea while avoiding overclaim. | “This is a descriptive profile inside our Test-of-Time corpus, not a future award prediction model.” |
+| Global Memory Map | Gives the project a premium spatial / institutional layer. | “This map visualizes visible affiliation metadata, not national research quality.” |
+
+## Optional teacher-facing closeout
+
+If the presentation has 30–40 seconds left, show the Rubric Receipt section before limitations. The purpose is not to beg for points; it makes the work legible as six dimensions of value: data pipeline, visual structure, interaction, research story, integrity boundaries, and delivery polish.
+
+Safe one-liner:
+
+> 我们的贡献不是单个预测模型，而是一个可解释、可追溯、可展示的长期影响分析系统。
+
+## Best-score demo route added to page
+
+The live page now includes a `#demo-route` section: a 6-step, 8-minute classroom route optimized for grading signal. Use it as the fallback if the presentation feels too feature-heavy: it tells the team exactly which high-end pieces to show and which claims to avoid.
+
+## Cross-module selected paper sync
+
+The page now has an `#evidence-thread` section. During live demo, select one paper from Explorer/Time Machine/Lineage/Map, then use Evidence Thread to narrate the same paper through Time, Topic, Citation, Signature, and Network. This is the most product-like interaction in the system and should be shown if there is enough time.
