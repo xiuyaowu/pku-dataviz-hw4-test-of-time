@@ -1854,6 +1854,7 @@ function updateBenchmark(p) {
   const metrics = benchmarkMetrics(p, activePapers);
   renderBenchmarkBars(metrics, p);
   renderBenchmarkStory(metrics, p, activePapers);
+  renderImpactSignature(metrics, p, activePapers);
 }
 
 function benchmarkMetrics(p, papers) {
@@ -1942,6 +1943,108 @@ function renderBenchmarkStory(metrics, p, papers) {
     const peer = activePapers.find(d => d.paper_id === id);
     if (peer) updateDetail(peer);
   });
+}
+
+
+function renderImpactSignature(metrics, p, papers) {
+  const target = d3.select("#impact-signature");
+  if (target.empty()) return;
+  const dimensions = impactSignatureDimensions(metrics, p, papers);
+  const avg = d3.mean(dimensions, d => d.value) || 0;
+  const headline = signatureHeadline(dimensions, avg);
+  const strongest = dimensions.slice().sort((a,b) => d3.descending(a.value, b.value))[0];
+  const weakest = dimensions.slice().sort((a,b) => d3.ascending(a.value, b.value))[0];
+  target.html(`
+    <div class="signature-summary">
+      <div>
+        <p class="section-kicker">Selected paper profile</p>
+        <h3>${escapeHtml(shortTitle(p.title))}</h3>
+        <div class="paper-meta">
+          <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
+          <span class="chip">${p.year || "Year"} → ${p.announcement_year || "Award"}</span>
+          <span class="chip">${escapeHtml(p.manual_topic_label || p.topic_label || "Topic")}</span>
+        </div>
+      </div>
+      <div class="signature-score-card">
+        <b>${fmt1(avg)}</b>
+        <span>mean signature percentile</span>
+      </div>
+    </div>
+    <div class="signature-body">
+      <div class="signature-bars">
+        ${dimensions.map(d => `
+          <div class="signature-row">
+            <div class="signature-row-head"><b>${escapeHtml(d.label)}</b><span>${fmt1(d.value)}%</span></div>
+            <div class="signature-track"><i style="width:${Math.max(4, Math.min(100, d.value))}%"></i></div>
+            <p>${escapeHtml(d.note)}</p>
+          </div>
+        `).join("")}
+      </div>
+      <div class="signature-interpretation">
+        <div class="archetype-badge">${escapeHtml(headline.title)}</div>
+        <p class="abstract">${escapeHtml(headline.body)}</p>
+        <div class="detail-stats compact-stats">
+          <div class="detail-stat"><b>${escapeHtml(strongest.label)}</b><span>strongest signal · ${fmt1(strongest.value)}%</span></div>
+          <div class="detail-stat"><b>${escapeHtml(weakest.label)}</b><span>weakest signal · ${fmt1(weakest.value)}%</span></div>
+        </div>
+        <p class="reading-note mini-note">Safe wording: this is a descriptive impact profile inside the current Test-of-Time sample. It should not be presented as a model that predicts future Best Paper or award outcomes.</p>
+      </div>
+    </div>
+  `);
+}
+
+function impactSignatureDimensions(metrics, p, papers) {
+  const byKey = Object.fromEntries(metrics.map(m => [m.key, m]));
+  const topic = p.manual_topic_label || p.topic_label || "Other";
+  const topicCount = papers.filter(d => (d.manual_topic_label || d.topic_label || "Other") === topic).length;
+  const venueCount = papers.filter(d => (d.venue || "") === (p.venue || "")).length;
+  const networkValue = Math.max(num(p.country_count || p.citing_country_count), num(p.institution_count));
+  return [
+    {
+      label: "Citation depth",
+      value: byKey.citation_count?.percentile || 0,
+      note: "How large the citation signal is relative to the current dataset."
+    },
+    {
+      label: "Impact breadth",
+      value: byKey.impact_breadth_score?.percentile || 0,
+      note: "OpenAlex sampled diffusion signal across fields, institutions, countries, and years."
+    },
+    {
+      label: "Recognition lag",
+      value: byKey.recognition_lag?.percentile || 0,
+      note: "How strongly this case fits the delayed-recognition Test-of-Time story."
+    },
+    {
+      label: "Topic generality",
+      value: percentileRank(papers.map(d => papers.filter(x => (x.manual_topic_label || x.topic_label || "Other") === (d.manual_topic_label || d.topic_label || "Other")).length), topicCount),
+      note: "Whether the paper sits inside a broad recurring technical lineage in this sample."
+    },
+    {
+      label: "Venue memory",
+      value: percentileRank(papers.map(d => papers.filter(x => (x.venue || "") === (d.venue || "")).length), venueCount),
+      note: "How visible the venue is in the award records collected here; not a venue quality ranking."
+    },
+    {
+      label: "Network spread",
+      value: percentileRank(papers.map(d => Math.max(num(d.country_count || d.citing_country_count), num(d.institution_count))), networkValue),
+      note: "Visible author/citing metadata spread; useful as context, not complete collaboration evidence."
+    }
+  ];
+}
+
+function signatureHeadline(dimensions, avg) {
+  const get = label => dimensions.find(d => d.label === label)?.value || 0;
+  const citation = get("Citation depth");
+  const breadth = get("Impact breadth");
+  const lag = get("Recognition lag");
+  const topic = get("Topic generality");
+  const venue = get("Venue memory");
+  if (citation >= 75 && breadth >= 75) return {title: "Deep + broad classic", body: "This case is strong on both citation depth and diffusion breadth, so it can anchor the claim that long-term impact is more than one number."};
+  if (lag >= 75 && citation >= 60) return {title: "Slow-burn classic", body: "This paper fits the delayed-recognition story: its award signal arrived late, while citation evidence still shows sustained uptake."};
+  if (topic >= 75 && venue >= 65) return {title: "Community backbone", body: "This paper sits in a recurring topic and visible award community, making it useful for explaining how fields remember foundational work."};
+  if (breadth >= 75 && avg >= 60) return {title: "Wide-diffusion method", body: "Breadth is the strongest signal here, so the safer story is cross-context reuse rather than raw citation dominance."};
+  return {title: "Contextual evidence case", body: "This paper should be interpreted through the combination of topic, venue, timing, and evidence-card wording rather than a single extreme metric."};
 }
 
 function percentileRank(values, value) {

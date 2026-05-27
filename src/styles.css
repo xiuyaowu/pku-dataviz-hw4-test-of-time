@@ -1048,3 +1048,48 @@ body.exporting .action-dock { display: none !important; }
   .dock-restore,
   .action-dock .presentation-toggle { justify-content: center; width: 100%; }
 }
+
+
+.impact-signature { padding: 6px 4px 2px; }
+.signature-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+.signature-summary h3 { margin: 4px 0 10px; font-size: 24px; letter-spacing: -0.035em; }
+.signature-score-card {
+  min-width: 158px;
+  border: 1px solid rgba(112,225,212,0.32);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: right;
+  background: linear-gradient(135deg, rgba(112,225,212,0.16), rgba(184,161,255,0.08));
+}
+.signature-score-card b { display: block; color: var(--accent); font-size: 34px; line-height: 1; }
+.signature-score-card span { color: var(--muted); font-size: 12px; }
+.signature-body { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr); gap: 22px; }
+.signature-bars { display: grid; gap: 13px; }
+.signature-row {
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(8,12,18,0.34);
+}
+.signature-row-head { display: flex; justify-content: space-between; gap: 12px; color: #eef4ff; font-size: 13px; }
+.signature-row-head span { color: var(--accent-2); font-weight: 900; }
+.signature-track { height: 9px; border-radius: 999px; margin: 9px 0 7px; background: rgba(255,255,255,0.07); overflow: hidden; }
+.signature-track i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 0 20px rgba(112,225,212,0.26); }
+.signature-row p { margin: 0; color: #aebbd0; font-size: 12px; line-height: 1.45; }
+.signature-interpretation {
+  border: 1px solid rgba(246,189,96,0.18);
+  border-radius: 20px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(246,189,96,0.08), rgba(255,255,255,0.035));
+}
+@media (max-width: 920px) {
+  .signature-summary, .signature-body { display: block; }
+  .signature-score-card { text-align: left; margin-top: 14px; }
+  .signature-interpretation { margin-top: 16px; }
+}

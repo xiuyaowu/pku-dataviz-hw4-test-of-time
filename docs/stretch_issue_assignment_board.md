@@ -34,3 +34,16 @@ Purpose: keep the six teammate workstreams open while adding meaningful extra ta
 ## Public wording rule
 
 Keep all issue comments and docs neutral: project quality, evidence, verification, presentation readiness. Do not include private motivational language or comments about teammate ability.
+
+## New high-end feature lane added on 2026-05-27
+
+These four issues route the newest “做到极致” ideas without replacing the existing owner routing above.
+
+| Issue | Owner lane | Feature | Why it matters | Merge boundary |
+|---|---|---|---|---|
+| #156 | E + A | Long-term Impact Signature | Turns the risky “best paper prediction” idea into a defensible descriptive profile. | Refs #6; do not claim future award prediction. |
+| #157 | B | Time Machine | Makes delayed recognition concrete through paper-level cases. | Refs #3; each case needs evidence. |
+| #158 | D | Representative Paper Lineage | Connects topic charts to contribution pathways and archetypes. | Refs #5; use manual/evidence-checked labels for cases. |
+| #159 | F | Global Memory Map | Upgrades country/institution view into a metadata-aware global memory story. | Refs #7; no country/research-quality ranking claims. |
+
+PRs should keep the safe framing used by the current dashboard: the project studies observed Test-of-Time records and public scholarly metadata. It does not claim to reconstruct committee decisions or predict future Best Paper winners.
