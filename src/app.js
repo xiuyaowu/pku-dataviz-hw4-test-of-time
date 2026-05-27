@@ -1545,6 +1545,34 @@ function renderVenueDecadeMatrix(papers) {
     .attr("fill", d => d.count ? fill(d.count) : "rgba(255,255,255,0.035)")
     .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.area)}</b><br>${d.decade}s · ${d.count} papers`))
     .on("mouseleave", hideTip);
+
+  const legendHeight = 120;
+  const legendWidth = 14;
+  const legendX = width - margin.right + 10;
+  const legendY = margin.top + 50;
+  const legendGradientId = "venue-decade-legend-gradient";
+  const defs = svg.append("defs");
+  const gradient = defs.append("linearGradient").attr("id", legendGradientId).attr("x1", "0%").attr("x2", "0%").attr("y1", "100%").attr("y2", "0%");
+  const legendScale = d3.scaleLinear().domain(fill.domain()).range([0, legendHeight]);
+  const legendAxis = d3.axisRight(legendScale).ticks(5).tickSize(3);
+  const nSteps = 10;
+  for (let i = 0; i <= nSteps; i++) {
+    const offset = (i / nSteps) * 100;
+    const value = fill.domain()[0] + (i / nSteps) * (fill.domain()[1] - fill.domain()[0]);
+    gradient.append("stop").attr("offset", `${offset}%`).attr("stop-color", fill(value));
+  }
+  svg.append("rect").attr("x", legendX).attr("y", legendY).attr("width", legendWidth).attr("height", legendHeight)
+    .style("fill", `url(#${legendGradientId})`).attr("rx", 2);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${legendX + legendWidth},0)`)
+    .call(legendAxis.tickFormat(d3.format("d")).tickSize(2))
+    .call(g => g.select(".domain").remove())
+    .selectAll("text").attr("font-size", "9px").attr("fill", "#6b7a99");
+  svg.append("text").attr("x", legendX + legendWidth / 2).attr("y", legendY + legendHeight + 14)
+    .attr("text-anchor", "middle").attr("font-size", "9px").attr("fill", "#6b7a99")
+    .text("1");
+  svg.append("text").attr("x", legendX + legendWidth / 2).attr("y", legendY - 4)
+    .attr("text-anchor", "middle").attr("font-size", "9px").attr("fill", "#6b7a99")
+    .text(d3.format("d")(fill.domain()[1]));
 }
 
 function renderCitationQuadrants(rows) {
@@ -2031,8 +2059,8 @@ function renderModuleClaims(data) {
       claim("Case", `${shortTitle(longest?.title)} 是最长 lag 案例，等待 ${fmt(num(longest?.recognition_lag))} 年后获得认可。`, "Evidence", `${longest?.venue || "venue"} · ${longest?.year || "year"} → ${longest?.announcement_year || "award"}`, "Interpretation", "长 lag 适合用来解释基础性工作可能需要后续生态成熟才被重新看见。")
     ],
     "#venue-claims": [
-      claim("Finding", `${topVenue?.venue || "Top venue"} 是记录数最多的 venue，${topArea?.venue_area || "top field"} 是更大的领域聚集点。`, "Evidence", `${fmt(num(topVenue?.paper_count))} venue papers; ${fmt(num(topArea?.paper_count))} field papers`, "Boundary", "数量榜受设奖历史和数据覆盖影响，不能直接写成会议质量排名。"),
-      claim("Pattern", `${concentratedAreas} 个领域高于或接近领域中位数，说明长期影响记录呈多社区分布而非单一领域垄断。`, "Evidence", "Field map + decade heatmap", "Interpretation", "报告应强调学术社区结构和时间覆盖，而不是只比较总量。")
+      claim("Finding", `${topVenue?.venue || "Top venue"} 是记录数最多的 venue，${topArea?.venue_area || "top field"} 是记录中最大的领域聚集点。`, "Evidence", `${fmt(num(topVenue?.paper_count))} venue papers; ${fmt(num(topArea?.paper_count))} field papers`, "Boundary", "数据集中度高，呈现长尾分布，Test of Time Award 记录与具体会议是否设奖、何时设奖、公开记录是否完整高度相关，并不是会议绝对质量或学科重要性的线性排名。"),
+      claim("Pattern", `${concentratedAreas} 个领域高于或接近领域中位数，说明长期影响记录呈多社区分布而非单一垄断，不同年代长期影响社区分布呈现不同的特征。`, "Evidence", "Field map + decade heatmap", "Interpretation", "由Field x decade heatmap看出，不同年代有不同的聚集特征，对应了不同技术范式与研究重点的演变。应强调学术社区结构和时间覆盖，而不是只比较总量。")
     ],
     "#topic-claims": [
       claim("Finding", `${topTopic?.topic_label || "Top topic"} 是最常见主题标签，占 ${fmt(num(topTopic?.paper_count))} 篇论文。`, "Evidence", "Topic distribution", "Boundary", "主题来自 API/规则归类，需要代表论文和人工阅读进一步校正。"),
