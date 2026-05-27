@@ -1261,6 +1261,9 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
       <div class="world-map-canvas">
         <div class="map-hud top-left"><b>Metadata layer</b><span>author affiliation traces</span></div>
         <div class="map-hud top-right"><b>Reading</b><span>hub size = papers<br>hue = avg citations</span></div>
+        <button class="map-legend-toggle" type="button" aria-expanded="false">
+          <b>Encoding</b><span>show legend</span>
+        </button>
         <svg class="world-memory-svg" viewBox="0 0 1120 610" role="img" aria-label="World map of visible Test-of-Time paper country metadata"></svg>
       </div>
       <div class="world-map-note">
@@ -1272,6 +1275,15 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
   `);
 
   const svg = target.select(".world-memory-svg");
+  target.classed("legend-open", false);
+  target.select(".map-legend-toggle").on("click", function() {
+    const open = !target.classed("legend-open");
+    target.classed("legend-open", open);
+    d3.select(this)
+      .attr("aria-expanded", String(open))
+      .select("span")
+      .text(open ? "hide legend" : "show legend");
+  });
   const width = 1120;
   const height = 610;
   const projection = d3.geoNaturalEarth1().fitExtent([[42, 58], [1078, 506]], {type: "Sphere"});

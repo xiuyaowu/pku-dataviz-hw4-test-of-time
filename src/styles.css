@@ -1608,6 +1608,15 @@ body.exporting .action-dock { display: none !important; }
 .memory-map-legend {
   fill: #cfd9e8;
   font-size: 11px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+.global-memory-map.legend-open .memory-map-legend {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 .legend-card rect {
   fill: rgba(5,9,14,.52);
@@ -1684,6 +1693,49 @@ body.exporting .action-dock { display: none !important; }
 }
 .map-hud.top-left { top: 18px; left: 18px; }
 .map-hud.top-right { top: 18px; right: 18px; text-align: right; }
+.map-legend-toggle {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 3;
+  display: grid;
+  gap: 2px;
+  min-width: 128px;
+  padding: 10px 13px;
+  border: 1px solid rgba(112,225,212,.24);
+  border-radius: 15px;
+  background:
+    linear-gradient(135deg, rgba(112,225,212,.16), rgba(184,161,255,.10)),
+    rgba(5,9,14,.56);
+  color: #cdd8e8;
+  font: inherit;
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 46px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.map-legend-toggle b {
+  color: #eef4ff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+}
+.map-legend-toggle span {
+  color: var(--accent);
+  letter-spacing: .04em;
+}
+.map-legend-toggle:hover,
+.map-legend-toggle:focus-visible {
+  border-color: rgba(246,189,96,.50);
+  outline: none;
+  box-shadow: 0 20px 54px rgba(0,0,0,.28), 0 0 0 3px rgba(246,189,96,.12);
+}
+.global-memory-map.legend-open .map-legend-toggle {
+  background:
+    linear-gradient(135deg, rgba(246,189,96,.18), rgba(112,225,212,.12)),
+    rgba(5,9,14,.62);
+}
 .global-memory-card-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1717,4 +1769,5 @@ body.exporting .action-dock { display: none !important; }
   .world-map-canvas { height: 380px; }
   .world-memory-svg { height: 380px; }
   .map-hud { display: none; }
+  .map-legend-toggle { left: 12px; bottom: 12px; min-width: 112px; padding: 8px 10px; }
 }
