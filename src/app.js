@@ -76,6 +76,7 @@ Promise.all([
   renderBenchmark(data.papers);
   renderStoryboard(data);
   renderNetworkKpis(data.institutions, data.countries);
+  renderGlobalMemoryMap(data.countries, data.institutions, data.papers);
   renderModuleClaims(data);
   renderInstitutions(data.institutions, data.papers);
   updateDetail(topPaper(data.papers));
@@ -1181,6 +1182,69 @@ const countryColors = {
 
 function getCountryColor(country) {
   return countryColors[country] || "#64748b";
+}
+
+
+function renderGlobalMemoryMap(countries, institutions, papers) {
+  const target = d3.select("#global-memory-map");
+  if (target.empty()) return;
+  const instByCountry = d3.rollup(
+    institutions.filter(d => d.country),
+    rows => rows.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 3),
+    d => d.country
+  );
+  const paperByCountry = new Map();
+  for (const paper of papers) {
+    for (const country of parseListField(paper.countries)) {
+      if (!country) continue;
+      const prev = paperByCountry.get(country);
+      if (!prev || num(paper.citation_count) > num(prev.citation_count)) paperByCountry.set(country, paper);
+    }
+  }
+  const enriched = countries
+    .filter(d => num(d.paper_count) > 0)
+    .map(d => ({
+      ...d,
+      countryInfo: countryEmojis[d.country] || {emoji: "◎", name: d.country},
+      institutions: instByCountry.get(d.country) || [],
+      paper: paperByCountry.get(d.country)
+    }))
+    .sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))
+    .slice(0, 8);
+
+  target.selectAll("article.global-memory-item").data(enriched).join("article")
+    .attr("class", "global-memory-item")
+    .html(d => `
+      <div class="global-memory-head">
+        <span class="global-memory-code">${escapeHtml(d.country)}</span>
+        <div><b>${escapeHtml(d.countryInfo.name)}</b><small>${fmt(num(d.paper_count))} papers · avg ${fmt(num(d.avg_citation_count))} citations</small></div>
+      </div>
+      <div class="global-memory-bars">
+        ${d.institutions.map(inst => `
+          <div class="memory-inst-row">
+            <span>${escapeHtml(shortenInstitution(inst.name))}</span>
+            <i style="width:${Math.max(8, Math.min(100, num(inst.paper_count) * 6))}%"></i>
+            <b>${fmt(num(inst.paper_count))}</b>
+          </div>
+        `).join("") || `<p class="mini-note">Institution metadata needs manual verification.</p>`}
+      </div>
+      <div class="global-memory-paper">
+        <span>Representative paper</span>
+        <button type="button" data-global-paper-id="${escapeHtml(d.paper?.paper_id || "")}">${escapeHtml(d.paper ? shortTitle(d.paper.title) : "Open dataset row")}</button>
+      </div>
+    `);
+  target.selectAll("[data-global-paper-id]").on("click", function() {
+    const paper = activePapers.find(d => d.paper_id === this.getAttribute("data-global-paper-id"));
+    if (paper) openEvidenceCard(paper);
+  });
+}
+
+function parseListField(value) {
+  if (Array.isArray(value)) return value;
+  if (!value) return [];
+  const text = String(value).trim();
+  try { return JSON.parse(text); } catch {}
+  return text.replace(/^\[|\]$/g, "").split(",").map(d => d.replace(/^['"]|['"]$/g, "").trim()).filter(Boolean);
 }
 
 function renderInstitutionCountryBubble(rows, papers) {
