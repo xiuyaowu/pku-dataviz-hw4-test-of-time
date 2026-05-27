@@ -1188,10 +1188,14 @@ function getCountryColor(country) {
 function renderGlobalMemoryMap(countries, institutions, papers) {
   const target = d3.select("#global-memory-map");
   if (target.empty()) return;
+  const institutionCountryRows = institutions
+    .filter(d => d.name)
+    .map(d => ({...d, inferred_country: d.country || getInstitutionCountry(d.name, papers)}))
+    .filter(d => d.inferred_country);
   const instByCountry = d3.rollup(
-    institutions.filter(d => d.country),
+    institutionCountryRows,
     rows => rows.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count))).slice(0, 3),
-    d => d.country
+    d => d.inferred_country
   );
   const paperByCountry = new Map();
   for (const paper of papers) {
@@ -1221,12 +1225,28 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
     .sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)));
 
   const topCards = enriched.slice(0, 6);
+  const totalVisiblePapers = d3.sum(enriched, d => num(d.paper_count));
+  const topCountry = enriched[0];
+  const highCitationCountry = enriched.slice().sort((a,b) => d3.descending(num(a.avg_citation_count), num(b.avg_citation_count)))[0];
   target.html(`
     <div class="world-map-panel">
-      <svg class="world-memory-svg" viewBox="0 0 980 480" role="img" aria-label="World map of visible Test-of-Time paper country metadata"></svg>
+      <div class="world-map-copy">
+        <p class="section-kicker">Global Memory Map</p>
+        <h3>Where the Test-of-Time corpus leaves visible affiliation traces</h3>
+        <p>Countries are plotted from author/institution metadata in the current dataset. The point is spatial diffusion, not a national ranking.</p>
+        <div class="world-map-kpis">
+          <span><b>${fmt(enriched.length)}</b> countries/regions</span>
+          <span><b>${fmt(totalVisiblePapers)}</b> visible paper-country links</span>
+          <span><b>${escapeHtml(topCountry?.country || "—")}</b> largest visible footprint</span>
+          <span><b>${escapeHtml(highCitationCountry?.country || "—")}</b> highest avg citation signal</span>
+        </div>
+      </div>
+      <div class="world-map-canvas">
+        <svg class="world-memory-svg" viewBox="0 0 980 500" role="img" aria-label="World map of visible Test-of-Time paper country metadata"></svg>
+      </div>
       <div class="world-map-note">
-        <b>Map reading</b>
-        <span>Bubble size = papers with visible country metadata. Color intensity follows average citation count. This is metadata visibility, not national ranking.</span>
+        <b>Reading guide</b>
+        <span>Circle area = number of papers with visible country metadata. Warm color = higher average citation count. Curves start from the largest visible footprint and only show metadata links for orientation.</span>
       </div>
     </div>
     <div class="global-memory-card-list"></div>
@@ -1234,8 +1254,8 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
 
   const svg = target.select(".world-memory-svg");
   const width = 980;
-  const height = 480;
-  const projection = d3.geoNaturalEarth1().fitExtent([[26, 22], [954, 438]], {type: "Sphere"});
+  const height = 500;
+  const projection = d3.geoNaturalEarth1().fitExtent([[30, 34], [950, 430]], {type: "Sphere"});
   const path = d3.geoPath(projection);
   const maxPapers = d3.max(enriched, d => num(d.paper_count)) || 1;
   const maxCitations = d3.max(enriched, d => num(d.avg_citation_count)) || 1;
@@ -1251,6 +1271,12 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
     .datum(d3.geoGraticule10())
     .attr("class", "world-graticule")
     .attr("d", path);
+
+  svg.append("text")
+    .attr("class", "world-map-title")
+    .attr("x", 40)
+    .attr("y", 54)
+    .text("Visible Test-of-Time metadata by country");
 
   const continents = [
     {name: "North America", points: [[-168,72],[-55,72],[-52,15],[-90,8],[-118,23],[-128,50]]},
@@ -1311,21 +1337,23 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
     .attr("r", d => radius(num(d.paper_count)) + 5)
     .attr("class", "memory-marker-halo");
 
-  marker.filter((d, i) => i < 10).append("text")
+  marker.filter((d, i) => i < 12).append("text")
     .attr("class", "memory-map-label")
-    .attr("x", d => radius(num(d.paper_count)) + 7)
-    .attr("y", 4)
+    .attr("x", d => radius(num(d.paper_count)) + 8)
+    .attr("y", d => d.country === "US" ? -radius(num(d.paper_count)) - 8 : 4)
     .text(d => d.country);
 
   marker.append("title")
     .text(d => `${d.countryInfo.name}: ${fmt(num(d.paper_count))} papers · avg ${fmt(num(d.avg_citation_count))} citations`);
 
   svg.append("g").attr("class", "memory-map-legend")
-    .attr("transform", `translate(${width - 232},${height - 88})`)
+    .attr("transform", `translate(${width - 288},${height - 94})`)
     .call(g => {
-      g.append("text").attr("x", 0).attr("y", -18).text("Bubble = visible papers");
+      g.append("text").attr("x", 0).attr("y", -18).text("Bubble area = visible papers");
       [5, 18, 34].forEach((r, i) => {
-        g.append("circle").attr("cx", 22 + i * 58).attr("cy", 20).attr("r", r).attr("fill", "none").attr("stroke", "rgba(238,244,255,.62)");
+        const cx = 26 + i * 70;
+        g.append("circle").attr("cx", cx).attr("cy", 26).attr("r", r).attr("fill", "none").attr("stroke", "rgba(238,244,255,.72)");
+        g.append("text").attr("x", cx).attr("y", 72).attr("text-anchor", "middle").text(i === 0 ? "1" : i === 1 ? "mid" : "max");
       });
     });
 
