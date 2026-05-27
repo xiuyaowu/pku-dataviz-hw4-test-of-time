@@ -1874,50 +1874,126 @@ function renderTimeExtremes(papers) {
 function renderTimeMachine(papers) {
   const target = d3.select("#time-machine-cases");
   if (target.empty()) return;
-  const withLag = papers.filter(d => num(d.recognition_lag) > 0 && d.title);
-  const longest = withLag.slice().sort((a,b) => d3.descending(num(a.recognition_lag), num(b.recognition_lag)))[0];
-  const highCitationLate = withLag.slice()
-    .filter(d => num(d.recognition_lag) >= (d3.median(withLag, x => num(x.recognition_lag)) || 0))
-    .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))[0];
-  const highBreadthLate = withLag.slice()
-    .filter(d => num(d.recognition_lag) >= (d3.median(withLag, x => num(x.recognition_lag)) || 0))
-    .sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0];
-  const typicalLag = withLag.slice()
-    .sort((a,b) => d3.ascending(Math.abs(num(a.recognition_lag) - (d3.median(withLag, x => num(x.recognition_lag)) || 0)), Math.abs(num(b.recognition_lag) - (d3.median(withLag, x => num(x.recognition_lag)) || 0))))[0];
-  const cases = Array.from(new Map([longest, highCitationLate, highBreadthLate, typicalLag].filter(Boolean).map(d => [d.paper_id, d])).values()).slice(0, 4);
-  target.selectAll("article.time-machine-case").data(cases).join("article")
-    .attr("class", "time-machine-case")
-    .html(d => `
-      <div class="time-machine-years">
-        <span>${d.year || "Year"}</span>
-        <i></i>
-        <span>${d.announcement_year || "Award"}</span>
+  const withLag = papers.filter(d => num(d.recognition_lag) > 0 && d.title && num(d.year) && num(d.announcement_year));
+  const medianLag = d3.median(withLag, d => num(d.recognition_lag)) || 0;
+  const maxLag = d3.max(withLag, d => num(d.recognition_lag)) || 1;
+  const maxCitation = d3.max(withLag, d => num(d.citation_count)) || 1;
+  const maxBreadth = d3.max(withLag, d => num(d.impact_breadth_score)) || 1;
+  const maxCountry = d3.max(withLag, d => num(d.citing_country_count)) || 1;
+  const maxSpan = d3.max(withLag, d => num(d.citing_year_span)) || 1;
+  const yearExtent = d3.extent(withLag.flatMap(d => [num(d.year), num(d.announcement_year)]).filter(Boolean));
+  const xYear = d3.scaleLinear().domain(yearExtent).range([0, 100]);
+  const readinessScore = (d) => {
+    const early = Math.min(1, num(d.citations_5yr) / 120) * 34;
+    const breadth = Math.min(1, num(d.impact_breadth_score) / maxBreadth) * 28;
+    const country = Math.min(1, num(d.citing_country_count) / maxCountry) * 20;
+    const span = Math.min(1, num(d.citing_year_span) / maxSpan) * 18;
+    return Math.round(early + breadth + country + span);
+  };
+  const archetypes = [
+    {
+      key: "long-fuse",
+      eyebrow: "Long fuse",
+      label: "ecosystem had to catch up",
+      pick: rows => rows.slice().sort((a,b) => d3.descending(num(a.recognition_lag), num(b.recognition_lag)))[0]
+    },
+    {
+      key: "quiet-start",
+      eyebrow: "Quiet start",
+      label: "weak early citation, strong later memory",
+      pick: rows => rows.slice()
+        .filter(d => num(d.citations_5yr) <= 80 || !num(d.citations_5yr))
+        .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))[0]
+    },
+    {
+      key: "wide-diffusion",
+      eyebrow: "Wide diffusion",
+      label: "impact spread beyond the original venue",
+      pick: rows => rows.slice().sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0]
+    },
+    {
+      key: "median-anchor",
+      eyebrow: "Median anchor",
+      label: "representative rather than cherry-picked",
+      pick: rows => rows.slice().sort((a,b) => d3.ascending(Math.abs(num(a.recognition_lag) - medianLag), Math.abs(num(b.recognition_lag) - medianLag)))[0]
+    }
+  ];
+  const cases = Array.from(new Map(archetypes.map(type => {
+    const paper = type.pick(withLag);
+    return paper ? [paper.paper_id, {...paper, archetype: type, readiness: readinessScore(paper)}] : null;
+  }).filter(Boolean)).values()).slice(0, 4);
+  const earliest = withLag.slice().sort((a,b) => d3.ascending(num(a.year), num(b.year)))[0];
+  const latestAward = withLag.slice().sort((a,b) => d3.descending(num(a.announcement_year), num(b.announcement_year)))[0];
+
+  target.html(`
+    <div class="readiness-stage">
+      <div class="readiness-stage-copy">
+        <span class="stage-kicker">Counterfactual lens</span>
+        <h4>What was visible then, and what became obvious later?</h4>
+        <p>The lag chart answers “how long.” This lab answers the more interesting question: whether a paper looked award-worthy at publication, or whether its value only appeared after tools, systems, and downstream fields adopted it.</p>
       </div>
-      <h3>${escapeHtml(shortTitle(d.title))}</h3>
-      <div class="paper-meta">
-        <span class="chip">${escapeHtml(d.venue || "Venue")}</span>
-        <span class="chip">${escapeHtml(d.manual_topic_label || d.topic_label || "Topic")}</span>
+      <div class="readiness-stage-metrics">
+        <span><b>${fmt(Math.round(medianLag))}y</b><small>median lag</small></span>
+        <span><b>${fmt(maxLag)}y</b><small>longest fuse</small></span>
+        <span><b>${escapeHtml(earliest?.year || "—")}</b><small>earliest publication</small></span>
+        <span><b>${escapeHtml(latestAward?.announcement_year || "—")}</b><small>latest award year</small></span>
       </div>
-      <div class="detail-stats compact-stats">
-        <div class="detail-stat"><b>${fmt(num(d.recognition_lag))}y</b><span>recognition lag</span></div>
-        <div class="detail-stat"><b>${fmt(num(d.citation_count))}</b><span>citation depth</span></div>
-        <div class="detail-stat"><b>${fmt1(num(d.impact_breadth_score))}</b><span>breadth proxy</span></div>
-      </div>
-      <p>${escapeHtml(timeMachineTakeaway(d))}</p>
-      <button type="button" class="small-action" data-time-machine-id="${escapeHtml(d.paper_id)}">Open evidence card</button>
-    `);
-  target.selectAll("[data-time-machine-id]").on("click", function() {
+    </div>
+    <div class="readiness-case-grid"></div>
+  `);
+
+  const caseCards = target.select(".readiness-case-grid").selectAll("article.time-machine-case").data(cases).join("article")
+    .attr("class", d => `time-machine-case ${d.archetype.key}`)
+    .html(d => {
+      const pubX = xYear(num(d.year));
+      const awardX = xYear(num(d.announcement_year));
+      const lagWidth = Math.max(2, awardX - pubX);
+      const earlyCites = num(d.citations_5yr);
+      const earlyLabel = earlyCites ? `${fmt(earlyCites)} citations in 5y` : "early citation signal sparse";
+      const topic = d.manual_topic_label || d.topic_label || "research thread";
+      return `
+        <div class="case-topline">
+          <span>${escapeHtml(d.archetype.eyebrow)}</span>
+          <b>${fmt(num(d.recognition_lag))}y gap</b>
+        </div>
+        <h3>${escapeHtml(shortTitle(d.title))}</h3>
+        <div class="readiness-track" aria-label="Publication to award timeline">
+          <i class="track-base"></i>
+          <i class="track-lag" style="left:${pubX}%;width:${lagWidth}%"></i>
+          <span class="track-dot pub" style="left:${pubX}%"><b>${escapeHtml(d.year)}</b><small>publish</small></span>
+          <span class="track-dot award" style="left:${awardX}%"><b>${escapeHtml(d.announcement_year)}</b><small>award</small></span>
+        </div>
+        <div class="readiness-score-row">
+          <div class="readiness-score" style="--score:${Math.max(4, Math.min(100, d.readiness))}%"><b>${fmt(d.readiness)}</b><span>readiness index</span></div>
+          <div class="readiness-verdict"><b>${escapeHtml(d.archetype.label)}</b><span>${escapeHtml(timeMachineTakeaway(d))}</span></div>
+        </div>
+        <div class="signal-stack">
+          ${readinessSignal("Publication trace", earlyLabel, Math.min(100, earlyCites ? earlyCites / 2 : 8))}
+          ${readinessSignal("Later depth", `${fmt(num(d.citation_count))} citations`, Math.min(100, num(d.citation_count) / maxCitation * 100))}
+          ${readinessSignal("Diffusion", `${fmt1(num(d.impact_breadth_score))} breadth · ${fmt(num(d.citing_country_count))} countries`, Math.min(100, num(d.impact_breadth_score) / maxBreadth * 100))}
+        </div>
+        <div class="case-footer">
+          <span>${escapeHtml(d.venue || "Venue")} · ${escapeHtml(topic)}</span>
+          <button type="button" class="small-action" data-time-machine-id="${escapeHtml(d.paper_id)}">Open evidence</button>
+        </div>
+      `;
+    });
+  caseCards.selectAll("[data-time-machine-id]").on("click", function() {
     const paper = activePapers.find(d => d.paper_id === this.getAttribute("data-time-machine-id"));
-    openEvidenceCard(paper);
+    if (paper) openEvidenceCard(paper);
   });
+}
+
+function readinessSignal(label, value, pct) {
+  return `<div class="readiness-signal"><span>${escapeHtml(label)}</span><b>${escapeHtml(value)}</b><i><em style="width:${Math.max(4, Math.min(100, pct))}%"></em></i></div>`;
 }
 
 function timeMachineTakeaway(p) {
   const lag = num(p.recognition_lag);
-  if (lag >= 25) return "This case is useful for the delayed-recognition story: the visible award signal arrived decades after publication.";
-  if (num(p.impact_breadth_score) >= 60) return "This case lets the speaker contrast early publication metadata with later cross-context diffusion evidence.";
-  if (num(p.citation_count) >= 2000) return "This case shows why high later citation depth should be read together with the time gap before retrospective recognition.";
-  return "This case is a median-lag anchor: it keeps the time story representative rather than only extreme.";
+  if (p.archetype?.key === "quiet-start") return "A clean example for explaining why retrospective awards should not be reduced to early citation prediction.";
+  if (p.archetype?.key === "wide-diffusion") return "Useful for showing that the award often recognizes reusable ideas after they travel across contexts.";
+  if (lag >= 25) return "This is the strongest delayed-recognition case: the field needed decades before the contribution became easy to read.";
+  return "This keeps the story grounded: not every case is extreme, but even typical lag requires a retrospective lens.";
 }
 
 function renderVenueDecadeMatrix(papers) {
