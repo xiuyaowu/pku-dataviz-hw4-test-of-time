@@ -1212,6 +1212,18 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
     TW: [121, 23.7], SG: [104, 1.35], AT: [14, 47.5], IS: [-19, 65], IN: [78, 22],
     FI: [26, 64], DK: [10, 56], VG: [-64.6, 18.4]
   };
+  const iso2ToIso3 = {
+    US: "USA", CA: "CAN", GB: "GBR", DE: "DEU", IL: "ISR", FR: "FRA", AU: "AUS",
+    IT: "ITA", CH: "CHE", NL: "NLD", ES: "ESP", MX: "MEX", CN: "CHN", BE: "BEL",
+    KR: "KOR", TW: "TWN", SG: "SGP", AT: "AUT", IS: "ISL", IN: "IND", FI: "FIN",
+    DK: "DNK", VG: "VGB"
+  };
+  const atlasNames = {
+    US: "United States of America", CA: "Canada", GB: "United Kingdom", DE: "Germany", IL: "Israel",
+    FR: "France", AU: "Australia", IT: "Italy", CH: "Switzerland", NL: "Netherlands", ES: "Spain",
+    MX: "Mexico", CN: "China", BE: "Belgium", KR: "South Korea", TW: "Taiwan", SG: "Singapore",
+    AT: "Austria", IS: "Iceland", IN: "India", FI: "Finland", DK: "Denmark"
+  };
   const enriched = countries
     .filter(d => num(d.paper_count) > 0)
     .map(d => ({
@@ -1219,7 +1231,9 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
       countryInfo: countryEmojis[d.country] || {emoji: "◎", name: d.country},
       institutions: instByCountry.get(d.country) || [],
       paper: paperByCountry.get(d.country),
-      coords: countryCoords[d.country]
+      coords: countryCoords[d.country],
+      iso3: iso2ToIso3[d.country],
+      atlasName: atlasNames[d.country] || (countryEmojis[d.country] && countryEmojis[d.country].name)
     }))
     .filter(d => d.coords)
     .sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)));
@@ -1228,39 +1242,57 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
   const totalVisiblePapers = d3.sum(enriched, d => num(d.paper_count));
   const topCountry = enriched[0];
   const highCitationCountry = enriched.slice().sort((a,b) => d3.descending(num(a.avg_citation_count), num(b.avg_citation_count)))[0];
+  const maxPapers = d3.max(enriched, d => num(d.paper_count)) || 1;
+  const maxCitations = d3.max(enriched, d => num(d.avg_citation_count)) || 1;
+
   target.html(`
     <div class="world-map-panel">
       <div class="world-map-copy">
         <p class="section-kicker">Global Memory Map</p>
-        <h3>Where the Test-of-Time corpus leaves visible affiliation traces</h3>
-        <p>Countries are plotted from author/institution metadata in the current dataset. The point is spatial diffusion, not a national ranking.</p>
+        <h3>From individual breakthroughs to a global memory network</h3>
+        <p>This map turns affiliation metadata into a spatial story: long-term research impact is concentrated in a few hubs, but the memory of those papers travels through a wider international network.</p>
         <div class="world-map-kpis">
           <span><b>${fmt(enriched.length)}</b> countries/regions</span>
-          <span><b>${fmt(totalVisiblePapers)}</b> visible paper-country links</span>
-          <span><b>${escapeHtml(topCountry?.country || "—")}</b> largest visible footprint</span>
-          <span><b>${escapeHtml(highCitationCountry?.country || "—")}</b> highest avg citation signal</span>
+          <span><b>${fmt(totalVisiblePapers)}</b> paper-country links</span>
+          <span><b>${escapeHtml(topCountry?.country || "—")}</b> largest visible hub</span>
+          <span><b>${escapeHtml(highCitationCountry?.country || "—")}</b> strongest avg citation signal</span>
         </div>
       </div>
       <div class="world-map-canvas">
-        <svg class="world-memory-svg" viewBox="0 0 980 500" role="img" aria-label="World map of visible Test-of-Time paper country metadata"></svg>
+        <div class="map-hud top-left"><b>Metadata layer</b><span>author affiliation traces</span></div>
+        <div class="map-hud bottom-right"><b>Reading</b><span>size = papers · color = avg citations</span></div>
+        <svg class="world-memory-svg" viewBox="0 0 1120 610" role="img" aria-label="World map of visible Test-of-Time paper country metadata"></svg>
       </div>
       <div class="world-map-note">
-        <b>Reading guide</b>
-        <span>Circle area = number of papers with visible country metadata. Warm color = higher average citation count. Curves start from the largest visible footprint and only show metadata links for orientation.</span>
+        <b>Story move</b>
+        <span>Use this as the final “global diffusion” layer: the project first explains what gets remembered, then shows where that memory is institutionally anchored. We explicitly avoid claiming national quality ranking.</span>
       </div>
     </div>
     <div class="global-memory-card-list"></div>
   `);
 
   const svg = target.select(".world-memory-svg");
-  const width = 980;
-  const height = 500;
-  const projection = d3.geoNaturalEarth1().fitExtent([[30, 34], [950, 430]], {type: "Sphere"});
+  const width = 1120;
+  const height = 610;
+  const projection = d3.geoNaturalEarth1().fitExtent([[42, 58], [1078, 506]], {type: "Sphere"});
   const path = d3.geoPath(projection);
-  const maxPapers = d3.max(enriched, d => num(d.paper_count)) || 1;
-  const maxCitations = d3.max(enriched, d => num(d.avg_citation_count)) || 1;
-  const radius = d3.scaleSqrt().domain([1, maxPapers]).range([5, 34]);
-  const colorScale = d3.scaleLinear().domain([0, maxCitations]).range(["#70e1d4", "#f6bd60"]);
+  const radius = d3.scaleSqrt().domain([1, maxPapers]).range([5, 39]);
+  const colorScale = d3.scaleSequentialSqrt(d3.interpolateRgbBasis(["#70e1d4", "#8fb7ff", "#b8a1ff", "#f6bd60"])).domain([0, maxCitations]);
+  const activeByIso3 = new Map(enriched.map(d => [d.iso3, d]));
+  const activeByName = new Map(enriched.filter(d => d.atlasName).map(d => [d.atlasName, d]));
+  const major = enriched.slice(0, 11);
+
+  const defs = svg.append("defs");
+  const ocean = defs.append("radialGradient").attr("id", "oceanGlow").attr("cx", "48%").attr("cy", "42%").attr("r", "72%");
+  ocean.append("stop").attr("offset", "0%").attr("stop-color", "#153044");
+  ocean.append("stop").attr("offset", "58%").attr("stop-color", "#0b1826");
+  ocean.append("stop").attr("offset", "100%").attr("stop-color", "#050912");
+  const land = defs.append("linearGradient").attr("id", "landGradient").attr("x1", "0%").attr("x2", "100%").attr("y1", "0%").attr("y2", "100%");
+  land.append("stop").attr("offset", "0%").attr("stop-color", "#24374d");
+  land.append("stop").attr("offset", "100%").attr("stop-color", "#132033");
+  const glow = defs.append("filter").attr("id", "softGlow").attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
+  glow.append("feGaussianBlur").attr("stdDeviation", "4.5").attr("result", "blur");
+  glow.append("feMerge").selectAll("feMergeNode").data(["blur", "SourceGraphic"]).join("feMergeNode").attr("in", d => d);
 
   svg.append("path")
     .datum({type: "Sphere"})
@@ -1272,90 +1304,178 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
     .attr("class", "world-graticule")
     .attr("d", path);
 
-  svg.append("text")
-    .attr("class", "world-map-title")
-    .attr("x", 40)
-    .attr("y", 54)
-    .text("Visible Test-of-Time metadata by country");
+  svg.append("g").attr("class", "map-latitude-labels")
+    .selectAll("text").data([-60, -30, 0, 30, 60]).join("text")
+    .attr("x", 52)
+    .attr("y", lat => projection([-174, lat])?.[1] || 0)
+    .text(lat => `${Math.abs(lat)}°${lat < 0 ? "S" : lat > 0 ? "N" : ""}`);
 
-  const continents = [
-    {name: "North America", points: [[-168,72],[-55,72],[-52,15],[-90,8],[-118,23],[-128,50]]},
-    {name: "South America", points: [[-82,13],[-35,8],[-45,-55],[-76,-52],[-81,-20]]},
-    {name: "Europe", points: [[-12,72],[40,70],[45,36],[8,35],[-12,44]]},
-    {name: "Africa", points: [[-18,36],[52,34],[50,-35],[18,-35],[-18,-8]]},
-    {name: "Asia", points: [[40,72],[180,68],[160,6],[104,-8],[72,8],[44,28]]},
-    {name: "Australia", points: [[112,-10],[154,-12],[153,-44],[114,-43]]}
-  ];
-  svg.append("g").attr("class", "continent-layer")
-    .selectAll("path").data(continents).join("path")
-    .attr("d", d => {
-      const coords = d.points.map(p => projection(p)).filter(Boolean);
-      return coords.length ? `M${coords.map(p => p.join(",")).join("L")}Z` : "";
-    })
-    .append("title").text(d => d.name);
+  const drawFallbackLand = () => {
+    const continents = [
+      {name: "North America", points: [[-168,72],[-55,72],[-52,15],[-90,8],[-118,23],[-128,50]]},
+      {name: "South America", points: [[-82,13],[-35,8],[-45,-55],[-76,-52],[-81,-20]]},
+      {name: "Europe", points: [[-12,72],[40,70],[45,36],[8,35],[-12,44]]},
+      {name: "Africa", points: [[-18,36],[52,34],[50,-35],[18,-35],[-18,-8]]},
+      {name: "Asia", points: [[40,72],[180,68],[160,6],[104,-8],[72,8],[44,28]]},
+      {name: "Australia", points: [[112,-10],[154,-12],[153,-44],[114,-43]]}
+    ];
+    svg.append("g").attr("class", "continent-layer fallback-land")
+      .selectAll("path").data(continents).join("path")
+      .attr("d", d => {
+        const coords = d.points.map(p => projection(p)).filter(Boolean);
+        return coords.length ? `M${coords.map(p => p.join(",")).join("L")}Z` : "";
+      })
+      .append("title").text(d => d.name);
+  };
 
-  const arcs = enriched.slice(1, 9).map(d => ({source: enriched[0], target: d})).filter(d => d.source && d.target);
-  svg.append("g").attr("class", "memory-arc-layer")
-    .selectAll("path").data(arcs).join("path")
-    .attr("class", "memory-arc")
-    .attr("d", d => {
-      const a = projection(d.source.coords);
-      const b = projection(d.target.coords);
-      if (!a || !b) return "";
-      const mx = (a[0] + b[0]) / 2;
-      const my = (a[1] + b[1]) / 2 - Math.max(24, Math.abs(a[0] - b[0]) * 0.12);
-      return `M${a[0]},${a[1]} Q${mx},${my} ${b[0]},${b[1]}`;
-    });
-
-  const marker = svg.append("g").attr("class", "memory-marker-layer")
-    .selectAll("g").data(enriched).join("g")
-    .attr("class", "memory-marker")
-    .attr("transform", d => {
-      const [x, y] = projection(d.coords);
-      return `translate(${x},${y})`;
-    })
-    .attr("tabindex", 0)
-    .attr("role", "button")
-    .attr("aria-label", d => `${d.countryInfo.name}: ${fmt(num(d.paper_count))} papers. Press Enter to open representative paper.`)
-    .on("click", (_, d) => { if (d.paper) openEvidenceCard(d.paper); })
-    .on("keydown", (event, d) => {
-      if ((event.key === "Enter" || event.key === " ") && d.paper) {
-        event.preventDefault();
-        openEvidenceCard(d.paper);
-      }
-    });
-
-  marker.append("circle")
-    .attr("r", d => radius(num(d.paper_count)))
-    .attr("fill", d => colorScale(num(d.avg_citation_count)))
-    .attr("fill-opacity", 0.58)
-    .attr("stroke", "#eef4ff")
-    .attr("stroke-opacity", 0.72)
-    .attr("stroke-width", 1.2);
-
-  marker.append("circle")
-    .attr("r", d => radius(num(d.paper_count)) + 5)
-    .attr("class", "memory-marker-halo");
-
-  marker.filter((d, i) => i < 12).append("text")
-    .attr("class", "memory-map-label")
-    .attr("x", d => radius(num(d.paper_count)) + 8)
-    .attr("y", d => d.country === "US" ? -radius(num(d.paper_count)) - 8 : 4)
-    .text(d => d.country);
-
-  marker.append("title")
-    .text(d => `${d.countryInfo.name}: ${fmt(num(d.paper_count))} papers · avg ${fmt(num(d.avg_citation_count))} citations`);
-
-  svg.append("g").attr("class", "memory-map-legend")
-    .attr("transform", `translate(${width - 288},${height - 94})`)
-    .call(g => {
-      g.append("text").attr("x", 0).attr("y", -18).text("Bubble area = visible papers");
-      [5, 18, 34].forEach((r, i) => {
-        const cx = 26 + i * 70;
-        g.append("circle").attr("cx", cx).attr("cy", 26).attr("r", r).attr("fill", "none").attr("stroke", "rgba(238,244,255,.72)");
-        g.append("text").attr("x", cx).attr("y", 72).attr("text-anchor", "middle").text(i === 0 ? "1" : i === 1 ? "mid" : "max");
+  const drawLand = (world) => {
+    if (!world || !window.topojson || !world.objects?.countries) {
+      drawFallbackLand();
+      return;
+    }
+    const countriesGeo = topojson.feature(world, world.objects.countries).features;
+    svg.append("g").attr("class", "continent-layer country-shapes")
+      .selectAll("path").data(countriesGeo).join("path")
+      .attr("class", d => activeCountryRow(d) ? "country-shape active-country" : "country-shape")
+      .attr("fill", d => {
+        const row = activeCountryRow(d);
+        return row ? colorScale(num(row.avg_citation_count)) : "url(#landGradient)";
+      })
+      .attr("fill-opacity", d => activeCountryRow(d) ? 0.46 : 0.76)
+      .attr("d", path)
+      .append("title")
+      .text(d => {
+        const row = activeCountryRow(d);
+        return row ? `${row.countryInfo.name}: ${fmt(num(row.paper_count))} papers` : (d.properties?.name || "background country");
       });
+  };
+
+  const activeCountryRow = (feature) => activeByIso3.get(feature.id) || activeByName.get(feature.properties?.name);
+
+  const drawDataLayer = () => {
+    const hub = enriched[0];
+    const arcs = major.slice(1).map((d, i) => ({source: hub, target: d, index: i})).filter(d => d.source && d.target);
+    svg.append("g").attr("class", "memory-arc-layer")
+      .selectAll("path").data(arcs).join("path")
+      .attr("class", "memory-arc")
+      .attr("stroke", d => colorScale(num(d.target.avg_citation_count)))
+      .attr("stroke-width", d => 0.9 + Math.sqrt(num(d.target.paper_count)) * 0.22)
+      .attr("d", d => {
+        const a = projection(d.source.coords);
+        const b = projection(d.target.coords);
+        if (!a || !b) return "";
+        const distance = Math.abs(a[0] - b[0]);
+        const mx = (a[0] + b[0]) / 2;
+        const my = (a[1] + b[1]) / 2 - Math.max(34, distance * 0.16);
+        return `M${a[0]},${a[1]} Q${mx},${my} ${b[0]},${b[1]}`;
+      });
+
+    svg.append("g").attr("class", "map-pulse-layer")
+      .selectAll("circle").data(major.slice(0, 6)).join("circle")
+      .attr("cx", d => projection(d.coords)[0])
+      .attr("cy", d => projection(d.coords)[1])
+      .attr("r", d => radius(num(d.paper_count)) + 12)
+      .attr("class", "map-pulse-ring");
+
+    const marker = svg.append("g").attr("class", "memory-marker-layer")
+      .selectAll("g").data(enriched).join("g")
+      .attr("class", (d, i) => `memory-marker ${i < 6 ? "major-hub" : "minor-hub"}`)
+      .attr("transform", d => {
+        const [x, y] = projection(d.coords);
+        return `translate(${x},${y})`;
+      })
+      .attr("tabindex", 0)
+      .attr("role", "button")
+      .attr("aria-label", d => `${d.countryInfo.name}: ${fmt(num(d.paper_count))} papers. Press Enter to open representative paper.`)
+      .on("click", (_, d) => { if (d.paper) openEvidenceCard(d.paper); })
+      .on("keydown", (event, d) => {
+        if ((event.key === "Enter" || event.key === " ") && d.paper) {
+          event.preventDefault();
+          openEvidenceCard(d.paper);
+        }
+      });
+
+    marker.append("circle")
+      .attr("class", "memory-marker-halo")
+      .attr("r", d => radius(num(d.paper_count)) + 8);
+
+    marker.append("circle")
+      .attr("class", "memory-marker-core")
+      .attr("r", d => radius(num(d.paper_count)))
+      .attr("fill", d => colorScale(num(d.avg_citation_count)))
+      .attr("stroke", "#eef4ff")
+      .attr("stroke-opacity", 0.78)
+      .attr("stroke-width", 1.35)
+      .style("filter", "url(#softGlow)");
+
+    marker.append("circle")
+      .attr("class", "memory-marker-pin")
+      .attr("r", 2.6)
+      .attr("fill", "#ffffff");
+
+    marker.filter((d, i) => i < 12).append("text")
+      .attr("class", "memory-map-label")
+      .attr("x", d => labelOffset(d, radius(num(d.paper_count))).x)
+      .attr("y", d => labelOffset(d, radius(num(d.paper_count))).y)
+      .attr("text-anchor", d => labelOffset(d, radius(num(d.paper_count))).anchor)
+      .text(d => d.country);
+
+    marker.append("title")
+      .text(d => `${d.countryInfo.name}: ${fmt(num(d.paper_count))} papers · avg ${fmt(num(d.avg_citation_count))} citations`);
+
+    const leaderData = major.slice(0, 6).map(d => {
+      const p = projection(d.coords);
+      const o = labelOffset(d, radius(num(d.paper_count)) + 4);
+      return {d, x1: p[0], y1: p[1], x2: p[0] + o.x * 0.78, y2: p[1] + o.y * 0.78};
     });
+    svg.append("g").attr("class", "leader-lines")
+      .selectAll("line").data(leaderData).join("line")
+      .attr("x1", d => d.x1).attr("y1", d => d.y1)
+      .attr("x2", d => d.x2).attr("y2", d => d.y2);
+
+    drawLegends();
+  };
+
+  const labelOffset = (d, r) => {
+    const custom = {
+      US: {x: 0, y: -r - 12, anchor: "middle"},
+      CA: {x: -r - 12, y: -4, anchor: "end"},
+      GB: {x: -r - 10, y: -8, anchor: "end"},
+      DE: {x: r + 11, y: -4, anchor: "start"},
+      FR: {x: -r - 10, y: 16, anchor: "end"},
+      CH: {x: r + 10, y: 18, anchor: "start"},
+      NL: {x: r + 10, y: -16, anchor: "start"},
+      SG: {x: r + 10, y: 15, anchor: "start"},
+      KR: {x: r + 10, y: -10, anchor: "start"},
+      TW: {x: r + 10, y: 12, anchor: "start"},
+      IL: {x: r + 11, y: 6, anchor: "start"},
+      VG: {x: -r - 10, y: 14, anchor: "end"}
+    };
+    return custom[d.country] || {x: r + 9, y: 4, anchor: "start"};
+  };
+
+  const drawLegends = () => {
+    const legend = svg.append("g").attr("class", "memory-map-legend legend-card")
+      .attr("transform", `translate(${width - 342},${height - 164})`);
+    legend.append("rect").attr("width", 292).attr("height", 112).attr("rx", 18);
+    legend.append("text").attr("x", 18).attr("y", 26).attr("class", "legend-title").text("Encoding");
+    [1, Math.max(2, Math.round(maxPapers / 3)), maxPapers].forEach((v, i) => {
+      const cx = 38 + i * 70;
+      const rr = radius(v) * 0.62;
+      legend.append("circle").attr("cx", cx).attr("cy", 68).attr("r", rr).attr("fill", "none").attr("stroke", "rgba(238,244,255,.74)");
+      legend.append("text").attr("x", cx).attr("y", 101).attr("text-anchor", "middle").text(fmt(v));
+    });
+    const gradientId = "citationRamp";
+    const grad = defs.append("linearGradient").attr("id", gradientId).attr("x1", "0%").attr("x2", "100%");
+    [0, .33, .66, 1].forEach(t => grad.append("stop").attr("offset", `${t * 100}%`).attr("stop-color", colorScale(t * maxCitations)));
+    legend.append("rect").attr("x", 202).attr("y", 54).attr("width", 64).attr("height", 9).attr("rx", 999).attr("fill", `url(#${gradientId})`);
+    legend.append("text").attr("x", 202).attr("y", 80).text("avg citations");
+  };
+
+  d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+    .then(world => drawLand(world))
+    .catch(drawFallbackLand)
+    .finally(drawDataLayer);
 
   target.select(".global-memory-card-list").selectAll("article.global-memory-item").data(topCards).join("article")
     .attr("class", "global-memory-item")
@@ -1371,7 +1491,7 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
             <i style="width:${Math.max(8, Math.min(100, num(inst.paper_count) * 6))}%"></i>
             <b>${fmt(num(inst.paper_count))}</b>
           </div>
-        `).join("") || `<p class="mini-note">Institution metadata needs manual verification.</p>`}
+        `).join("") || `<p class="mini-note">No institution row with verified country metadata in this slice.</p>`}
       </div>
       <div class="global-memory-paper">
         <span>Representative paper</span>
