@@ -343,6 +343,7 @@ button.selected-paper {
 .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .grid-stack { display: grid; gap: 20px; }
 .wide-card { margin-top: 24px; }
+.two-col > .wide-card { grid-column: 1 / -1; }
 .grid-2.uneven { grid-template-columns: minmax(360px, 1.15fr) minmax(300px, 0.85fr); }
 .section-copy {
   padding: 18px 6px;
