@@ -1111,3 +1111,26 @@ body.exporting .action-dock { display: none !important; }
   .signature-score-card { text-align: left; margin-top: 14px; }
   .signature-interpretation { margin-top: 16px; }
 }
+
+
+.paper-lineage {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.lineage-item {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(184,161,255,0.10), rgba(112,225,212,0.045)), rgba(255,255,255,0.035);
+}
+.lineage-index { color: var(--accent-2); font-size: 28px; font-weight: 900; letter-spacing: -0.06em; }
+.lineage-path { display: grid; grid-template-columns: minmax(0, auto) 1fr minmax(0, auto); gap: 8px; align-items: center; color: var(--accent); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+.lineage-path i { height: 1px; background: rgba(112,225,212,0.46); }
+.lineage-item h3 { margin: 12px 0; font-size: 18px; line-height: 1.25; letter-spacing: -0.025em; }
+.lineage-item p { margin: 0 0 10px; color: #b8c4d6; font-size: 13px; line-height: 1.55; }
+.lineage-item p b { display: block; color: #eef4ff; margin-bottom: 3px; }
+.lineage-footer { display: flex; justify-content: space-between; gap: 10px; align-items: center; color: var(--muted); font-size: 12px; margin-top: 14px; }
+@media (max-width: 1100px) { .paper-lineage { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .paper-lineage { grid-template-columns: 1fr; } }

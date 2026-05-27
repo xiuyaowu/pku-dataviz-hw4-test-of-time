@@ -66,6 +66,7 @@ Promise.all([
   renderVenueDecadeMatrix(data.papers);
   renderTopics(data.topics, data.papers);
   renderTopicEvolution(data.topicYears);
+  renderPaperLineage(data.papers);
   renderScatter(data.timeline, data.papers);
   renderTrajectory(data.citations, data.papers);
   renderBreadth(data.timeline, data.papers);
@@ -1624,6 +1625,55 @@ function renderVenueDecadeMatrix(papers) {
   svg.append("text").attr("x", legendX + legendWidth / 2).attr("y", legendY - 4)
     .attr("text-anchor", "middle").attr("font-size", "9px").attr("fill", "#6b7a99")
     .text(d3.format("d")(fill.domain()[1]));
+}
+
+
+function renderPaperLineage(papers) {
+  const target = d3.select("#paper-lineage");
+  if (target.empty()) return;
+  const candidates = papers
+    .filter(d => d.title && (d.one_sentence_contribution_zh || d.why_time_tested_zh || d.archetype_rationale))
+    .sort((a,b) => d3.descending(num(a.display_priority === "presentation-ready" ? 1 : 0), num(b.display_priority === "presentation-ready" ? 1 : 0)) || d3.descending(num(a.citation_count), num(b.citation_count)));
+  const seenTopics = new Set();
+  const cards = [];
+  for (const p of candidates) {
+    const topic = p.manual_topic_label || p.topic_label || "Other";
+    if (seenTopics.has(topic) && cards.length < 5) continue;
+    seenTopics.add(topic);
+    cards.push(p);
+    if (cards.length >= 6) break;
+  }
+  target.selectAll("article.lineage-item").data(cards).join("article")
+    .attr("class", "lineage-item")
+    .html((d, i) => `
+      <div class="lineage-index">${String(i + 1).padStart(2, "0")}</div>
+      <div class="lineage-path">
+        <span>${escapeHtml(d.manual_topic_label || d.topic_label || "Topic")}</span>
+        <i></i>
+        <span>${escapeHtml(lineageArchetype(d))}</span>
+      </div>
+      <h3>${escapeHtml(shortTitle(d.title))}</h3>
+      <p><b>Reusable contribution</b>${escapeHtml(d.one_sentence_contribution_zh || d.abstract || "Needs evidence check before final contribution wording.")}</p>
+      <p><b>Why it lasted</b>${escapeHtml(d.why_time_tested_zh || d.archetype_rationale || "Use this as a case after checking the evidence links.")}</p>
+      <div class="lineage-footer">
+        <span>${d.year || "Year"} → ${d.announcement_year || "Award"}</span>
+        <button type="button" class="small-action" data-lineage-id="${escapeHtml(d.paper_id)}">Evidence</button>
+      </div>
+    `);
+  target.selectAll("[data-lineage-id]").on("click", function() {
+    const paper = activePapers.find(d => d.paper_id === this.getAttribute("data-lineage-id"));
+    openEvidenceCard(paper);
+  });
+}
+
+function lineageArchetype(p) {
+  const text = `${p.contribution_archetype || ""} ${p.archetype || ""} ${p.archetype_rationale || ""}`.toLowerCase();
+  if (text.includes("infrastructure") || text.includes("system")) return "infrastructure backbone";
+  if (text.includes("paradigm") || text.includes("foundation")) return "paradigm founder";
+  if (text.includes("tool") || text.includes("method")) return "reusable method";
+  if (num(p.impact_breadth_score) >= 60) return "wide diffusion";
+  if (num(p.recognition_lag) >= 20) return "slow-burn classic";
+  return "case evidence";
 }
 
 function renderCitationQuadrants(rows) {
