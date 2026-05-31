@@ -2326,10 +2326,7 @@ function compareCaseHtml(p, label) {
 }
 
 function evidenceLinks(p) {
-  return [p.evidence_url_1, p.evidence_url_2, p.paper_url, p.pdf_url, p.doi ? `https://doi.org/${p.doi}` : "", p.source_url]
-    .filter(Boolean)
-    .filter((v, i, arr) => arr.indexOf(v) === i)
-    .slice(0, 4);
+  return [p.evidence_url_1].filter(Boolean);
 }
 
 function openEvidenceCard(p) {
