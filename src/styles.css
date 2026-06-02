@@ -508,9 +508,9 @@ footer { padding: 34px clamp(20px, 5vw, 72px) 54px; color: var(--muted); border-
 
 .insight-deck {
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
-  max-width: 1050px;
+  max-width: none;
   margin-top: 18px;
   z-index: 2;
 }
