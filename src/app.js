@@ -1846,10 +1846,10 @@ function renderInsightDeck({papers, venues, topics}) {
   const topTopic = topics.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   const highBreadth = papers.slice().sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0];
   const cards = [
-    {metric: `${fmt1(lagMedian)}y`, title: "Time scale", body: "Median recognition lag anchors the project around delayed scholarly recognition."},
-    {metric: topVenue?.venue || "Venue", title: "Community signal", body: `${topVenue?.venue || "The top venue"} contributes the largest visible venue cluster in this award dataset.`},
-    {metric: fmt1(num(highBreadth?.impact_breadth_score)), title: "Diffusion peak", body: `${shortTitle(highBreadth?.title)} has the highest breadth proxy among enriched papers.`},
-    {metric: topTopic?.topic_label || "Topic", title: "Topic entry", body: "The most frequent topic group gives the report a concrete representative-paper entry point."}
+    {metric: `${fmt1(lagMedian)}y`, title: "Recognition lag", body: "一篇论文从发表到获得 Test-of-Time 认可，通常要经历十余年的检验。"},
+    {metric: topVenue?.venue || "Venue", title: "Venue cluster", body: `${topVenue?.venue || "该会议"} 在当前记录中出现最多，形成最明显的会议聚集。`},
+    {metric: fmt1(num(highBreadth?.impact_breadth_score)), title: "Diffusion breadth", body: `${shortTitle(highBreadth?.title)} 在扩散广度指标上最突出。`},
+    {metric: topTopic?.topic_label || "Topic", title: "Topic cluster", body: "高频主题用于观察长期影响论文集中在哪些研究方向。"}
   ];
   d3.select("#insight-deck").selectAll(".insight-card").data(cards).join("div")
     .attr("class", "insight-card")
@@ -1893,28 +1893,28 @@ function renderTimeMachine(papers) {
   const archetypes = [
     {
       key: "long-fuse",
-      eyebrow: "Long fuse",
-      label: "ecosystem had to catch up",
+      eyebrow: "长滞后案例",
+      label: "研究生态逐渐跟上",
       pick: rows => rows.slice().sort((a,b) => d3.descending(num(a.recognition_lag), num(b.recognition_lag)))[0]
     },
     {
       key: "quiet-start",
-      eyebrow: "Quiet start",
-      label: "weak early citation, strong later memory",
+      eyebrow: "早期低声量",
+      label: "后期影响逐渐显现",
       pick: rows => rows.slice()
         .filter(d => num(d.citations_5yr) <= 80 || !num(d.citations_5yr))
         .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))[0]
     },
     {
       key: "wide-diffusion",
-      eyebrow: "Wide diffusion",
-      label: "impact spread beyond the original venue",
+      eyebrow: "跨域扩散",
+      label: "影响超出原始会议社区",
       pick: rows => rows.slice().sort((a,b) => d3.descending(num(a.impact_breadth_score), num(b.impact_breadth_score)))[0]
     },
     {
       key: "median-anchor",
-      eyebrow: "Median anchor",
-      label: "representative rather than cherry-picked",
+      eyebrow: "中位案例",
+      label: "接近整体时间尺度",
       pick: rows => rows.slice().sort((a,b) => d3.ascending(Math.abs(num(a.recognition_lag) - medianLag), Math.abs(num(b.recognition_lag) - medianLag)))[0]
     }
   ];
@@ -1928,15 +1928,15 @@ function renderTimeMachine(papers) {
   target.html(`
     <div class="readiness-stage">
       <div class="readiness-stage-copy">
-        <span class="stage-kicker">Counterfactual lens</span>
-        <h4>What was visible then, and what became obvious later?</h4>
-        <p>The lag chart answers “how long.” This lab answers the more interesting question: whether a paper looked award-worthy at publication, or whether its value only appeared after tools, systems, and downstream fields adopted it.</p>
+        <span class="stage-kicker">单篇案例</span>
+        <h4>发表时可见什么，后来又被怎样确认？</h4>
+        <p>这里把论文的早期引用、长期引用、扩散广度和获奖时间放在同一张卡片里，观察经典工作从发表到被重新确认的路径。</p>
       </div>
       <div class="readiness-stage-metrics">
-        <span><b>${fmt(Math.round(medianLag))}y</b><small>median lag</small></span>
-        <span><b>${fmt(maxLag)}y</b><small>longest fuse</small></span>
-        <span><b>${escapeHtml(earliest?.year || "—")}</b><small>earliest publication</small></span>
-        <span><b>${escapeHtml(latestAward?.announcement_year || "—")}</b><small>latest award year</small></span>
+        <span><b>${fmt(Math.round(medianLag))}y</b><small>滞后中位数</small></span>
+        <span><b>${fmt(maxLag)}y</b><small>最长滞后</small></span>
+        <span><b>${escapeHtml(earliest?.year || "—")}</b><small>最早发表年</small></span>
+        <span><b>${escapeHtml(latestAward?.announcement_year || "—")}</b><small>最新获奖年</small></span>
       </div>
     </div>
     <div class="readiness-case-grid"></div>
@@ -1949,32 +1949,32 @@ function renderTimeMachine(papers) {
       const awardX = xYear(num(d.announcement_year));
       const lagWidth = Math.max(2, awardX - pubX);
       const earlyCites = num(d.citations_5yr);
-      const earlyLabel = earlyCites ? `${fmt(earlyCites)} citations in 5y` : "early citation signal sparse";
+      const earlyLabel = earlyCites ? `5 年内 ${fmt(earlyCites)} 次引用` : "早期引用记录较少";
       const topic = d.manual_topic_label || d.topic_label || "research thread";
       return `
         <div class="case-topline">
           <span>${escapeHtml(d.archetype.eyebrow)}</span>
-          <b>${fmt(num(d.recognition_lag))}y gap</b>
+          <b>${fmt(num(d.recognition_lag))} 年间隔</b>
         </div>
         <h3>${escapeHtml(shortTitle(d.title))}</h3>
         <div class="readiness-track" aria-label="Publication to award timeline">
           <i class="track-base"></i>
           <i class="track-lag" style="left:${pubX}%;width:${lagWidth}%"></i>
-          <span class="track-dot pub" style="left:${pubX}%"><b>${escapeHtml(d.year)}</b><small>publish</small></span>
-          <span class="track-dot award" style="left:${awardX}%"><b>${escapeHtml(d.announcement_year)}</b><small>award</small></span>
+          <span class="track-dot pub" style="left:${pubX}%"><b>${escapeHtml(d.year)}</b><small>发表</small></span>
+          <span class="track-dot award" style="left:${awardX}%"><b>${escapeHtml(d.announcement_year)}</b><small>获奖</small></span>
         </div>
         <div class="readiness-score-row">
-          <div class="readiness-score" style="--score:${Math.max(4, Math.min(100, d.readiness))}%"><b>${fmt(d.readiness)}</b><span>readiness index</span></div>
+          <div class="readiness-score" style="--score:${Math.max(4, Math.min(100, d.readiness))}%"><b>${fmt(d.readiness)}</b><span>早期可见度</span></div>
           <div class="readiness-verdict"><b>${escapeHtml(d.archetype.label)}</b><span>${escapeHtml(timeMachineTakeaway(d))}</span></div>
         </div>
         <div class="signal-stack">
-          ${readinessSignal("Publication trace", earlyLabel, Math.min(100, earlyCites ? earlyCites / 2 : 8))}
-          ${readinessSignal("Later depth", `${fmt(num(d.citation_count))} citations`, Math.min(100, num(d.citation_count) / maxCitation * 100))}
-          ${readinessSignal("Diffusion", `${fmt1(num(d.impact_breadth_score))} breadth · ${fmt(num(d.citing_country_count))} countries`, Math.min(100, num(d.impact_breadth_score) / maxBreadth * 100))}
+          ${readinessSignal("早期痕迹", earlyLabel, Math.min(100, earlyCites ? earlyCites / 2 : 8))}
+          ${readinessSignal("长期引用", `${fmt(num(d.citation_count))} citations`, Math.min(100, num(d.citation_count) / maxCitation * 100))}
+          ${readinessSignal("扩散范围", `${fmt1(num(d.impact_breadth_score))} breadth · ${fmt(num(d.citing_country_count))} countries`, Math.min(100, num(d.impact_breadth_score) / maxBreadth * 100))}
         </div>
         <div class="case-footer">
           <span>${escapeHtml(d.venue || "Venue")} · ${escapeHtml(topic)}</span>
-          <button type="button" class="small-action" data-time-machine-id="${escapeHtml(d.paper_id)}">Open evidence</button>
+          <button type="button" class="small-action" data-time-machine-id="${escapeHtml(d.paper_id)}">查看论文</button>
         </div>
       `;
     });
@@ -1990,10 +1990,10 @@ function readinessSignal(label, value, pct) {
 
 function timeMachineTakeaway(p) {
   const lag = num(p.recognition_lag);
-  if (p.archetype?.key === "quiet-start") return "A clean example for explaining why retrospective awards should not be reduced to early citation prediction.";
-  if (p.archetype?.key === "wide-diffusion") return "Useful for showing that the award often recognizes reusable ideas after they travel across contexts.";
-  if (lag >= 25) return "This is the strongest delayed-recognition case: the field needed decades before the contribution became easy to read.";
-  return "This keeps the story grounded: not every case is extreme, but even typical lag requires a retrospective lens.";
+  if (p.archetype?.key === "quiet-start") return "早期引用并不突出，但后来的长期影响很强。";
+  if (p.archetype?.key === "wide-diffusion") return "这类论文的影响力体现在方法或思想被多个语境反复使用。";
+  if (lag >= 25) return "这是明显的延迟认可案例，贡献需要经过较长时间才被充分看见。";
+  return "这类案例接近整体水平，用来展示 Test-of-Time 论文的常见时间尺度。";
 }
 
 function renderVenueDecadeMatrix(papers) {
@@ -2093,12 +2093,12 @@ function renderPaperLineage(papers) {
 
 function lineageArchetype(p) {
   const text = `${p.contribution_archetype || ""} ${p.archetype || ""} ${p.archetype_rationale || ""}`.toLowerCase();
-  if (text.includes("infrastructure") || text.includes("system")) return "infrastructure backbone";
-  if (text.includes("paradigm") || text.includes("foundation")) return "paradigm founder";
-  if (text.includes("tool") || text.includes("method")) return "reusable method";
-  if (num(p.impact_breadth_score) >= 60) return "wide diffusion";
-  if (num(p.recognition_lag) >= 20) return "slow-burn classic";
-  return "case evidence";
+  if (text.includes("infrastructure") || text.includes("system")) return "基础设施型贡献";
+  if (text.includes("paradigm") || text.includes("foundation")) return "范式奠基";
+  if (text.includes("tool") || text.includes("method")) return "可复用方法";
+  if (num(p.impact_breadth_score) >= 60) return "跨域扩散";
+  if (num(p.recognition_lag) >= 20) return "延迟认可";
+  return "代表案例";
 }
 
 function renderCitationQuadrants(rows) {
@@ -2107,10 +2107,10 @@ function renderCitationQuadrants(rows) {
   const citMed = d3.median(clean, d => d.citation_count);
   const breadthMed = d3.median(clean, d => num(d.impact_breadth_score));
   const groups = [
-    {title: "Fast recognition", metric: fmt(clean.filter(d => d.recognition_lag <= lagMed).length), body: `lag ≤ ${fmt1(lagMed)} years`},
-    {title: "Slow-burn impact", metric: fmt(clean.filter(d => d.recognition_lag > lagMed && d.citation_count > citMed).length), body: "long lag plus above-median citation depth"},
-    {title: "Broad diffusion", metric: fmt(clean.filter(d => num(d.impact_breadth_score) > breadthMed).length), body: `breadth proxy above ${fmt1(breadthMed)}`},
-    {title: "Caution", metric: "proxy", body: "citation and breadth guide interpretation; they do not encode award causality"}
+    {title: "较快被认可", metric: fmt(clean.filter(d => d.recognition_lag <= lagMed).length), body: `滞后 ≤ ${fmt1(lagMed)} 年`},
+    {title: "延迟高引用", metric: fmt(clean.filter(d => d.recognition_lag > lagMed && d.citation_count > citMed).length), body: "滞后较长，同时引用高于中位数"},
+    {title: "扩散较广", metric: fmt(clean.filter(d => num(d.impact_breadth_score) > breadthMed).length), body: `扩散广度高于 ${fmt1(breadthMed)}`},
+    {title: "阅读边界", metric: "context", body: "引用和扩散用于辅助解释，不直接等同于获奖原因"}
   ];
   d3.select("#citation-quadrants").selectAll(".insight-card").data(groups).join("div")
     .attr("class", "insight-card")
@@ -2168,10 +2168,10 @@ function renderExplorer(papers) {
 function buildArchetypes(papers) {
   const validLag = papers.filter(d => d.recognition_lag > 0);
   return [
-    {title: "Citation magnet", metric: fmt(num(d3.max(papers, d => d.citation_count))), paper: papers.slice().sort((a,b) => d3.descending(a.citation_count, b.citation_count))[0]},
-    {title: "Slow-burn classic", metric: `${d3.max(validLag, d => d.recognition_lag)}y`, paper: validLag.slice().sort((a,b) => d3.descending(a.recognition_lag, b.recognition_lag))[0]},
-    {title: "Widest diffusion", metric: fmt1(num(d3.max(papers, d => d.impact_breadth_score))), paper: papers.slice().sort((a,b) => d3.descending(a.impact_breadth_score, b.impact_breadth_score))[0]},
-    {title: "Fast recognition", metric: `${d3.min(validLag, d => d.recognition_lag)}y`, paper: validLag.slice().sort((a,b) => d3.ascending(a.recognition_lag, b.recognition_lag))[0]}
+    {title: "引用最高", metric: fmt(num(d3.max(papers, d => d.citation_count))), paper: papers.slice().sort((a,b) => d3.descending(a.citation_count, b.citation_count))[0]},
+    {title: "滞后最长", metric: `${d3.max(validLag, d => d.recognition_lag)}y`, paper: validLag.slice().sort((a,b) => d3.descending(a.recognition_lag, b.recognition_lag))[0]},
+    {title: "扩散最广", metric: fmt1(num(d3.max(papers, d => d.impact_breadth_score))), paper: papers.slice().sort((a,b) => d3.descending(a.impact_breadth_score, b.impact_breadth_score))[0]},
+    {title: "最快获奖", metric: `${d3.min(validLag, d => d.recognition_lag)}y`, paper: validLag.slice().sort((a,b) => d3.ascending(a.recognition_lag, b.recognition_lag))[0]}
   ].filter(d => d.paper);
 }
 
@@ -2307,7 +2307,7 @@ function updateComparePanel() {
 
 function compareCaseHtml(p, label) {
   return `<article class="compare-case">
-    <div class="claim-type">${escapeHtml(label)}</div>
+    <div class="claim-type">${escapeHtml(label === "Contrast case" ? "对照案例" : label)}</div>
     <h3>${escapeHtml(shortTitle(p.title))}</h3>
     <div class="paper-meta">
       <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
@@ -2315,13 +2315,13 @@ function compareCaseHtml(p, label) {
       <span class="chip">${escapeHtml(p.manual_topic_label || p.topic_label || "Topic")}</span>
     </div>
     <div class="detail-stats compact-stats">
-      <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>citation depth</span></div>
-      <div class="detail-stat"><b>${fmt1(num(p.impact_breadth_score))}</b><span>breadth proxy</span></div>
-      <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>recognition lag</span></div>
-      <div class="detail-stat"><b>${escapeHtml(p.display_priority || p.evidence_checked || "check")}</b><span>evidence status</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>引用深度</span></div>
+      <div class="detail-stat"><b>${fmt1(num(p.impact_breadth_score))}</b><span>扩散广度</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>获奖滞后</span></div>
+      <div class="detail-stat"><b>${escapeHtml(p.display_priority || p.evidence_checked || "check")}</b><span>证据状态</span></div>
     </div>
     <p class="abstract">${escapeHtml(p.one_sentence_contribution_zh || p.why_time_tested_zh || "该论文可通过证据卡片查看贡献、引用与长期影响线索。")}</p>
-    <button type="button" class="small-action" data-compare-evidence="${escapeHtml(p.paper_id)}">Why this paper lasted?</button>
+    <button type="button" class="small-action" data-compare-evidence="${escapeHtml(p.paper_id)}">查看长期影响</button>
   </article>`;
 }
 
@@ -2336,7 +2336,7 @@ function openEvidenceCard(p) {
   if (!modal || !content) return;
   const links = evidenceLinks(p);
   content.innerHTML = `
-    <p class="section-kicker">Why this paper lasted?</p>
+    <p class="section-kicker">长期影响案例</p>
     <h2 id="evidence-modal-title">${escapeHtml(shortTitle(p.title))}</h2>
     <div class="paper-meta">
       <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
@@ -2345,15 +2345,15 @@ function openEvidenceCard(p) {
       <span class="chip">${escapeHtml(p.display_priority || p.evidence_checked || "needs check")}</span>
     </div>
     <div class="detail-stats">
-      <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>citation depth</span></div>
-      <div class="detail-stat"><b>${fmt1(num(p.impact_breadth_score))}</b><span>impact breadth proxy</span></div>
-      <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>recognition lag</span></div>
-      <div class="detail-stat"><b>${fmt(num(p.citing_field_count || p.country_count))}</b><span>visible breadth fields/countries</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>引用深度</span></div>
+      <div class="detail-stat"><b>${fmt1(num(p.impact_breadth_score))}</b><span>扩散广度</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>获奖滞后</span></div>
+      <div class="detail-stat"><b>${fmt(num(p.citing_field_count || p.country_count))}</b><span>领域/地区跨度</span></div>
     </div>
-    <div class="evidence-section"><b>Contribution</b><p>${escapeHtml(p.one_sentence_contribution_zh || p.abstract || "该论文的贡献可结合摘要与证据链接继续阅读。")}</p></div>
-    <div class="evidence-section"><b>Why it lasted</b><p>${escapeHtml(p.why_time_tested_zh || p.archetype_rationale || "该案例展示了长期影响在主题、引用与复用维度上的可见线索。")}</p></div>
-    <div class="evidence-links"><b>Evidence links</b>${links.length ? links.map((url, i) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Evidence ${i + 1}</a>`).join("") : `<span>needs check</span>`}</div>
-    <p class="reading-note mini-note">该案例用于说明数据中的长期影响线索；breadth 指标基于 OpenAlex sampled proxy。</p>
+    <div class="evidence-section"><b>核心贡献</b><p>${escapeHtml(p.one_sentence_contribution_zh || p.abstract || "该论文的贡献可结合摘要与证据链接继续阅读。")}</p></div>
+    <div class="evidence-section"><b>长期影响</b><p>${escapeHtml(p.why_time_tested_zh || p.archetype_rationale || "该案例展示了长期影响在主题、引用与复用维度上的可见线索。")}</p></div>
+    <div class="evidence-links"><b>证据链接</b>${links.length ? links.map((url, i) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Evidence ${i + 1}</a>`).join("") : `<span>needs check</span>`}</div>
+    <p class="reading-note mini-note">该案例用于说明数据中的长期影响线索；扩散广度来自 OpenAlex 样本统计。</p>
   `;
   modal.hidden = false;
 }
@@ -2383,11 +2383,11 @@ function updateBenchmark(p) {
 function benchmarkMetrics(p, papers) {
   const fieldRows = papers.filter(d => (d.venue_area || "Other") === (p.venue_area || "Other"));
   const metricDefs = [
-    {key: "citation_count", label: "Citation depth", value: num(p.citation_count), format: v => fmt(v), note: "raw citation count"},
-    {key: "impact_breadth_score", label: "Impact breadth", value: num(p.impact_breadth_score), format: v => fmt1(v), note: "sampled OpenAlex diffusion proxy"},
-    {key: "recognition_lag", label: "Recognition lag", value: num(p.recognition_lag), format: v => `${fmt(v)}y`, note: "publication to award"},
-    {key: "country_count", label: "Author country span", value: num(p.country_count), format: v => fmt(v), note: "available author metadata"},
-    {key: "institution_count", label: "Institution span", value: num(p.institution_count), format: v => fmt(v), note: "available institution metadata"}
+    {key: "citation_count", label: "引用深度", value: num(p.citation_count), format: v => fmt(v), note: "原始引用次数"},
+    {key: "impact_breadth_score", label: "扩散广度", value: num(p.impact_breadth_score), format: v => fmt1(v), note: "基于 OpenAlex 样本的扩散指标"},
+    {key: "recognition_lag", label: "获奖滞后", value: num(p.recognition_lag), format: v => `${fmt(v)}y`, note: "从发表到获奖的时间间隔"},
+    {key: "country_count", label: "作者地区跨度", value: num(p.country_count), format: v => fmt(v), note: "可获得的作者地区元数据"},
+    {key: "institution_count", label: "机构跨度", value: num(p.institution_count), format: v => fmt(v), note: "可获得的机构元数据"}
   ];
   return metricDefs.map(m => {
     const allVals = papers.map(d => num(d[m.key])).filter(v => Number.isFinite(v));
@@ -2411,7 +2411,7 @@ function renderBenchmarkBars(metrics, p) {
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(5).tickFormat(d => `${d}%`));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).tickSize(0)).call(g => g.select(".domain").remove());
   svg.append("line").attr("class", "reference-line").attr("x1", x(50)).attr("x2", x(50)).attr("y1", margin.top).attr("y2", height - margin.bottom);
-  svg.append("text").attr("class", "reference-label").attr("x", x(50)+6).attr("y", margin.top-8).text("dataset median");
+  svg.append("text").attr("class", "reference-label").attr("x", x(50)+6).attr("y", margin.top-8).text("样本中位数");
   const g = svg.selectAll("g.benchmark-row").data(metrics).join("g").attr("class", "benchmark-row").attr("transform", d => `translate(0,${y(d.label)})`);
   g.append("rect")
     .attr("class", "benchmark-track")
@@ -2426,9 +2426,9 @@ function renderBenchmarkBars(metrics, p) {
     .attr("class", "benchmark-value")
     .attr("x", d => Math.min(x(d.percentile)+8, width-margin.right-74)).attr("y", y.bandwidth()/2 + 4)
     .text(d => `${fmt1(d.percentile)}% · ${d.format(d.value)}`);
-  g.on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.label)}</b><br>${d.note}<br>Value: ${d.format(d.value)}<br>Dataset median: ${d.format(d.datasetMedian || 0)}<br>${escapeHtml(p.venue_area || "Field")} median: ${d.format(d.fieldMedian || 0)} (n=${d.fieldN})`))
+  g.on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.label)}</b><br>${d.note}<br>数值: ${d.format(d.value)}<br>样本中位数: ${d.format(d.datasetMedian || 0)}<br>${escapeHtml(p.venue_area || "Field")} 中位数: ${d.format(d.fieldMedian || 0)} (n=${d.fieldN})`))
     .on("mouseleave", hideTip);
-  svg.append("text").attr("class", "chart-title-small").attr("x", margin.left).attr("y", height - 8).text(`Selected: ${shortTitle(p.title)}`);
+  svg.append("text").attr("class", "chart-title-small").attr("x", margin.left).attr("y", height - 8).text(`Selected paper: ${shortTitle(p.title)}`);
 }
 
 function renderBenchmarkStory(metrics, p, papers) {
@@ -2452,14 +2452,14 @@ function renderBenchmarkStory(metrics, p, papers) {
     <div class="archetype-badge">${escapeHtml(archetype.title)}</div>
     <p class="abstract">${escapeHtml(archetype.body)}</p>
     <div class="detail-stats">
-      <div class="detail-stat"><b>${fmt1(top.percentile)}%</b><span>strongest percentile · ${escapeHtml(top.label)}</span></div>
-      <div class="detail-stat"><b>${fmt1(weak.percentile)}%</b><span>lowest percentile · ${escapeHtml(weak.label)}</span></div>
+      <div class="detail-stat"><b>${fmt1(top.percentile)}%</b><span>最高相对位置 · ${escapeHtml(top.label)}</span></div>
+      <div class="detail-stat"><b>${fmt1(weak.percentile)}%</b><span>最低相对位置 · ${escapeHtml(weak.label)}</span></div>
     </div>
     <div class="benchmark-peers">
-      <div class="title">Same-field reference papers</div>
+      <div class="title">同领域参考论文</div>
       ${peers.map((d,i) => `<button type="button" class="peer-pill" data-paper-id="${escapeHtml(d.paper_id)}"><b>#${i+1}</b> ${escapeHtml(shortTitle(d.title))}</button>`).join("")}
     </div>
-    <p class="reading-note mini-note">Demo use: click any point/list item elsewhere, then use this panel to explain why that paper is representative relative to the whole dataset and its field.</p>
+    <p class="reading-note mini-note">点击任意图表点或论文列表项后，这里会显示该论文相对全样本和同领域的位置。</p>
   `);
   d3.selectAll(".peer-pill").on("click", function() {
     const id = this.getAttribute("data-paper-id");
@@ -2480,7 +2480,7 @@ function renderImpactSignature(metrics, p, papers) {
   target.html(`
     <div class="signature-summary">
       <div>
-        <p class="section-kicker">Selected paper profile</p>
+        <p class="section-kicker">选中论文画像</p>
         <h3>${escapeHtml(shortTitle(p.title))}</h3>
         <div class="paper-meta">
           <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
@@ -2490,7 +2490,7 @@ function renderImpactSignature(metrics, p, papers) {
       </div>
       <div class="signature-score-card">
         <b>${fmt1(avg)}</b>
-        <span>mean signature percentile</span>
+        <span>平均相对位置</span>
       </div>
     </div>
     <div class="signature-body">
@@ -2507,8 +2507,8 @@ function renderImpactSignature(metrics, p, papers) {
         <div class="archetype-badge">${escapeHtml(headline.title)}</div>
         <p class="abstract">${escapeHtml(headline.body)}</p>
         <div class="detail-stats compact-stats">
-          <div class="detail-stat"><b>${escapeHtml(strongest.label)}</b><span>strongest signal · ${fmt1(strongest.value)}%</span></div>
-          <div class="detail-stat"><b>${escapeHtml(weakest.label)}</b><span>weakest signal · ${fmt1(weakest.value)}%</span></div>
+          <div class="detail-stat"><b>${escapeHtml(strongest.label)}</b><span>最高维度 · ${fmt1(strongest.value)}%</span></div>
+          <div class="detail-stat"><b>${escapeHtml(weakest.label)}</b><span>最低维度 · ${fmt1(weakest.value)}%</span></div>
         </div>
         <p class="reading-note mini-note">该画像描述当前 Test-of-Time 样本中的长期影响特征，用于比较单篇论文在多个维度上的相对位置。</p>
       </div>
@@ -2524,50 +2524,50 @@ function impactSignatureDimensions(metrics, p, papers) {
   const networkValue = Math.max(num(p.country_count || p.citing_country_count), num(p.institution_count));
   return [
     {
-      label: "Citation depth",
+      label: "引用深度",
       value: byKey.citation_count?.percentile || 0,
-      note: "How large the citation signal is relative to the current dataset."
+      note: "该论文引用次数在当前样本中的相对位置。"
     },
     {
-      label: "Impact breadth",
+      label: "扩散广度",
       value: byKey.impact_breadth_score?.percentile || 0,
-      note: "OpenAlex sampled diffusion signal across fields, institutions, countries, and years."
+      note: "基于 OpenAlex 样本，观察跨领域、机构、地区和年份的扩散线索。"
     },
     {
-      label: "Recognition lag",
+      label: "获奖滞后",
       value: byKey.recognition_lag?.percentile || 0,
-      note: "How strongly this case fits the delayed-recognition Test-of-Time story."
+      note: "从发表到获奖的时间间隔在样本中的相对位置。"
     },
     {
-      label: "Topic generality",
+      label: "主题聚集",
       value: percentileRank(papers.map(d => papers.filter(x => (x.manual_topic_label || x.topic_label || "Other") === (d.manual_topic_label || d.topic_label || "Other")).length), topicCount),
-      note: "Whether the paper sits inside a broad recurring technical lineage in this sample."
+      note: "该论文所在主题在样本中是否反复出现。"
     },
     {
-      label: "Venue memory",
+      label: "会议聚集",
       value: percentileRank(papers.map(d => papers.filter(x => (x.venue || "") === (d.venue || "")).length), venueCount),
-      note: "How visible the venue is in the award records collected here."
+      note: "该会议在已收集获奖记录中的出现频率。"
     },
     {
-      label: "Network spread",
+      label: "网络跨度",
       value: percentileRank(papers.map(d => Math.max(num(d.country_count || d.citing_country_count), num(d.institution_count))), networkValue),
-      note: "Visible author/citing metadata spread; useful as context, not complete collaboration evidence."
+      note: "基于可见作者、引用与机构元数据的分布线索。"
     }
   ];
 }
 
 function signatureHeadline(dimensions, avg) {
   const get = label => dimensions.find(d => d.label === label)?.value || 0;
-  const citation = get("Citation depth");
-  const breadth = get("Impact breadth");
-  const lag = get("Recognition lag");
-  const topic = get("Topic generality");
-  const venue = get("Venue memory");
-  if (citation >= 75 && breadth >= 75) return {title: "Deep + broad classic", body: "This case is strong on both citation depth and diffusion breadth, showing that long-term impact is more than one number."};
-  if (lag >= 75 && citation >= 60) return {title: "Slow-burn classic", body: "This paper was recognized after a longer interval, while citation evidence still shows sustained uptake."};
-  if (topic >= 75 && venue >= 65) return {title: "Community backbone", body: "This paper sits in a recurring topic and visible award community, showing how fields remember foundational work."};
-  if (breadth >= 75 && avg >= 60) return {title: "Wide-diffusion method", body: "Breadth is the strongest signal here, pointing to cross-context reuse beyond raw citation dominance."};
-  return {title: "Contextual evidence case", body: "This paper is best read through the combination of topic, venue, timing, and evidence rather than a single metric."};
+  const citation = get("引用深度");
+  const breadth = get("扩散广度");
+  const lag = get("获奖滞后");
+  const topic = get("主题聚集");
+  const venue = get("会议聚集");
+  if (citation >= 75 && breadth >= 75) return {title: "高引用 + 广扩散", body: "该案例同时具有较高引用深度和扩散广度，长期影响不只来自单一指标。"};
+  if (lag >= 75 && citation >= 60) return {title: "延迟认可型", body: "该论文获奖间隔较长，同时仍保有较强引用信号。"};
+  if (topic >= 75 && venue >= 65) return {title: "社区记忆型", body: "该论文位于反复出现的主题和会议社区中，可观察领域如何记住基础工作。"};
+  if (breadth >= 75 && avg >= 60) return {title: "跨域扩散型", body: "扩散广度是该论文最突出的维度，说明其影响不只来自引用数量。"};
+  return {title: "综合证据型", body: "该论文更适合结合主题、会议、时间和证据一起阅读。"};
 }
 
 function percentileRank(values, value) {
@@ -2578,11 +2578,11 @@ function percentileRank(values, value) {
 }
 
 function classifyPaper(citationPct, breadthPct, lagPct) {
-  if (citationPct >= 75 && breadthPct >= 75) return {title: "Deep + broad influence", body: "This paper combines high citation depth with broad diffusion, showing long-term impact beyond a single metric."};
-  if (lagPct >= 75 && citationPct >= 60) return {title: "Slow-burn classic", body: "This paper waited longer than most before recognition while still showing strong citation depth."};
-  if (breadthPct >= 75) return {title: "Wide diffusion case", body: "This paper stands out more by breadth than raw depth, highlighting cross-field or cross-region influence."};
-  if (citationPct >= 75) return {title: "Citation-depth case", body: "This paper is strongest as a citation-depth example, especially when read alongside field and age context."};
-  return {title: "Contextual evidence case", body: "This paper is best interpreted through venue, topic, and award context rather than one extreme quantitative score."};
+  if (citationPct >= 75 && breadthPct >= 75) return {title: "高引用 + 广扩散", body: "该论文同时具有较高引用深度和扩散广度。"};
+  if (lagPct >= 75 && citationPct >= 60) return {title: "延迟认可型", body: "该论文获奖间隔较长，同时仍有较强引用深度。"};
+  if (breadthPct >= 75) return {title: "跨域扩散型", body: "该论文在扩散广度上更突出，适合观察跨领域或跨地区影响。"};
+  if (citationPct >= 75) return {title: "高引用案例", body: "该论文的引用深度最突出，需要结合领域和年代背景解读。"};
+  return {title: "综合证据型", body: "该论文更适合结合会议、主题和获奖语境一起解释。"};
 }
 
 function renderStoryboard(data) {
@@ -2603,49 +2603,49 @@ function renderStoryboard(data) {
       owner: "B · Time",
       href: "#time",
       question: "长期影响需要多久才被看见？",
-      evidence: `Median lag ${fmt1(lagMedian)}y; longest case ${fmt(num(longest?.recognition_lag))}y`,
+      evidence: `滞后中位数 ${fmt1(lagMedian)} 年；最长案例 ${fmt(num(longest?.recognition_lag))} 年`,
       soWhat: "用时间尺度说明 Test of Time 不是即时热度，而是多年后的重新确认。"
     },
     {
       owner: "C · Venue",
       href: "#venue",
       question: "长期影响在哪些会议和领域聚集？",
-      evidence: `${topVenue?.venue || "Top venue"} leads venues; ${topArea?.venue_area || "top field"} leads areas`,
+      evidence: `${topVenue?.venue || "Top venue"} 是最高频会议；${topArea?.venue_area || "top field"} 是最高频领域`,
       soWhat: "把数量榜解释为数据覆盖和奖项历史下的结构分布，避免写成会议质量排名。"
     },
     {
       owner: "D · Topic",
       href: "#topic",
       question: "哪些主题更容易沉淀成经典？",
-      evidence: `${topTopic?.topic_label || "Top topic"} is the most frequent topic label`,
+      evidence: `${topTopic?.topic_label || "Top topic"} 是最高频主题标签`,
       soWhat: "用代表论文卡把抽象 topic 转成可讲的研究问题、方法和影响路径。"
     },
     {
       owner: "E · Citation",
       href: "#citation",
       question: "高引用和长期价值是不是一回事？",
-      evidence: `${shortTitle(topCitation?.title)} is the citation-depth anchor`,
+      evidence: `${shortTitle(topCitation?.title)} 是高引用代表案例`,
       soWhat: "用 depth × breadth 和 trajectory 说明引用量只是影响力的一种切面。"
     },
     {
       owner: "A/F · Explorer",
       href: "#explorer",
       question: "能否让报告结论可追溯到具体论文？",
-      evidence: `${fmt(papers.length)} papers searchable by title, venue, topic, field`,
+      evidence: `${fmt(papers.length)} 篇论文可按标题、会议、主题和领域检索`,
       soWhat: "把项目从静态图表升级为证据库，展示时可以现场检索和点击代表论文。"
     },
     {
       owner: "A/E · Benchmark",
       href: "#benchmark",
       question: "单篇论文到底强在哪里？",
-      evidence: `${shortTitle(topBreadth?.title)} anchors high-breadth comparison`,
+      evidence: `${shortTitle(topBreadth?.title)} 是高扩散广度代表案例`,
       soWhat: "用 percentile 语言把代表案例讲清楚：相对全数据集和同领域处在什么位置。"
     },
     {
       owner: "F · Network",
       href: "#network",
       question: "长期影响如何跨机构和国家扩散？",
-      evidence: `${topInstitution?.name || "Top institution"} / ${topCountry?.country || "Top country"} lead observed metadata`,
+      evidence: `${topInstitution?.name || "Top institution"} / ${topCountry?.country || "Top country"} 在可见元数据中出现最多`,
       soWhat: "把影响力从论文层面扩展到学术共同体分布，同时说明机构元数据限制。"
     }
   ];
@@ -2691,11 +2691,11 @@ function renderModuleClaims(data) {
     ],
     "#topic-claims": [
       claim("观察", `${topTopic?.topic_label || "Top topic"} 是最常见主题标签，占 ${fmt(num(topTopic?.paper_count))} 篇论文。`, "图表依据", "Topic distribution", "说明", "主题标签用于观察总体结构，代表论文需要结合标题、摘要和贡献说明阅读。"),
-      claim("路径", `${broadTopic?.topic_label || "High-breadth topic"} 的平均 breadth proxy 较高，可作为跨领域影响解释入口。`, "图表依据", `avg breadth ${fmt1(num(broadTopic?.avg_impact_breadth_score))}`, "解读", "主题趋势与代表论文卡片结合后，可以同时呈现总体分布和具体贡献路径。")
+      claim("路径", `${broadTopic?.topic_label || "高扩散主题"} 的平均扩散广度较高，可作为跨领域影响解释入口。`, "图表依据", `平均扩散广度 ${fmt1(num(broadTopic?.avg_impact_breadth_score))}`, "解读", "主题趋势与代表论文卡片结合后，可以同时呈现总体分布和具体贡献路径。")
     ],
     "#citation-claims": [
       claim("观察", `${fmt(lagAboveMedianCitation)} 篇论文同时具有高于中位数的 recognition lag 和 citation depth。`, "图表依据", "Citation vs lag scatter median guides", "说明", "引用深度反映公开元数据中的可见影响强度，但不等同于获奖原因。"),
-      claim("对比", `${shortTitle(highCitation?.title)} 是 citation-depth 锚点；${shortTitle(highBreadth?.title)} 是 breadth 锚点。`, "图表依据", `${fmt(num(highCitation?.citation_count))} citations vs breadth ${fmt1(num(highBreadth?.impact_breadth_score))}`, "解读", "Depth × breadth 将“被大量引用”和“扩散范围广”区分为两个互补维度。")
+      claim("对比", `${shortTitle(highCitation?.title)} 是高引用案例；${shortTitle(highBreadth?.title)} 是高扩散案例。`, "图表依据", `${fmt(num(highCitation?.citation_count))} 次引用；扩散广度 ${fmt1(num(highBreadth?.impact_breadth_score))}`, "解读", "引用深度和扩散广度共同展示长期影响的两个互补维度。")
     ],
     "#network-claims": [
       claim("观察", `${topInst?.name || "Top institution"} 是观察到的最高频机构，${topCountry?.country || "top country"} 是最高频国家/地区。`, "图表依据", `${fmt(num(topInst?.paper_count))} institution mentions; ${fmt(num(topCountry?.paper_count))} country mentions`, "说明", "机构和国家/地区字段依赖公开元数据覆盖，主要用于观察分布线索。"),
@@ -2850,14 +2850,14 @@ function setNotes({papers, venues, areas, topics}) {
   const topVenue = venues.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   const topArea = areas.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   const topTopic = topics.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
-  d3.select("#time-note").text(`Median recognition lag is ${fmt1(lagMedian)} years; the longest-lag paper in this dataset waited ${longest.recognition_lag} years before recognition.`);
-  d3.select("#venue-note").text(`${topVenue.venue} has the largest count among venues, while ${topArea.venue_area} is the largest broader field in this dataset.`);
-  d3.select("#topic-note").text(`${topTopic.topic_label} is the most frequent topic label, linking the aggregate distribution to representative paper cases.`);
-  d3.select("#citation-note").text(`The scatter plot separates citation volume from recognition timing: high citation counts and long recognition lags are related but not identical signals.`);
-  d3.select("#explorer-note").text(`The explorer turns the dataset into a live evidence index: search by title/topic/venue, sort by citation, lag, breadth, or year, then click any paper to update the shared detail card.`);
-  d3.select("#benchmark-note").text(`The benchmark lab converts a selected paper into percentile evidence: citation depth, recognition lag, breadth, collaboration, and field context are shown side by side.`);
-  d3.select("#storyboard-note").text(`The storyboard connects each module through research question, evidence, and interpretation.`);
-  d3.select("#network-note").text(`Institution and country/region metadata show where long-term impact is visibly clustered in the available records.`);
+  d3.select("#time-note").text(`典型滞后约 ${fmt1(lagMedian)} 年；最长案例等待 ${longest.recognition_lag} 年才获得认可。`);
+  d3.select("#venue-note").text(`${topVenue.venue} 出现次数最多；更大的领域聚集点是 ${topArea.venue_area}。`);
+  d3.select("#topic-note").text(`${topTopic.topic_label} 是出现最多的主题标签，可作为进入代表论文的入口。`);
+  d3.select("#citation-note").text(`散点图把“引用量”和“获奖滞后”分开看：高引用不一定意味着更早被认可。`);
+  d3.select("#explorer-note").text(`可按标题、主题、会议检索论文，也可以按引用、滞后时长、扩散广度或年份排序。`);
+  d3.select("#benchmark-note").text(`选中一篇论文后，可同时查看它在引用、时间、扩散、合作和领域维度上的相对位置。`);
+  d3.select("#storyboard-note").text(`各模块按“研究问题—图表证据—解释”串联。`);
+  d3.select("#network-note").text(`机构和国家/地区元数据用于观察长期影响的可见聚集位置。`);
 }
 
 function addCallout(svg, x, y, label, dx=18, dy=-16) {
