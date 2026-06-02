@@ -98,14 +98,14 @@ function initPresentationMode() {
   const params = new URLSearchParams(window.location.search);
   const shouldStart = params.get("present") === "1" || window.location.hash === "#present";
   const steps = [
-    {id: "time", title: "Time · recognition lag", takeaway: "Start with the time gap, then use Time Machine cases to show why long-term value is often recognized only after the ecosystem catches up."},
-    {id: "venue", title: "Venue & Field", takeaway: "Venue and field counts show where this award history is visible, not a conference quality ranking."},
-    {id: "topic", title: "Topic Evolution", takeaway: "Topic charts show broad lineages; Representative Paper Lineage turns those counts into reusable contributions and evidence-backed cases."},
-    {id: "citation", title: "Citation & Impact", takeaway: "Citation depth is important, but breadth and trajectory show why high citation is not the whole story."},
-    {id: "explorer", title: "Paper Explorer", takeaway: "The dashboard doubles as an evidence index: every claim can be traced back to searchable papers."},
-    {id: "evidence-thread", title: "Cross-module Evidence Thread", takeaway: "Selecting one paper synchronizes the story across time, topic, citation, benchmark, and network lenses."},
-    {id: "benchmark", title: "Benchmark Lab", takeaway: "Benchmark percentiles and the Long-term Impact Signature explain selected papers without pretending to predict future awards."},
-    {id: "network", title: "Network / closing", takeaway: "Global Memory Map extends the story to visible affiliation metadata while explicitly avoiding country or institution ranking claims."}
+    {id: "time", title: "Time · recognition lag", takeaway: "先观察论文发表到获奖之间的时间距离，再进入代表案例理解长期价值被重新确认的过程。"},
+    {id: "venue", title: "Venue & Field", takeaway: "会议与领域分布展示 Test-of-Time 记录在哪些学术社区中更可见。"},
+    {id: "topic", title: "Topic Evolution", takeaway: "主题图展示总体结构，代表论文卡片进一步连接具体贡献与后续影响。"},
+    {id: "citation", title: "Citation & Impact", takeaway: "引用深度、扩散广度和时间轨迹共同构成长期影响画像。"},
+    {id: "explorer", title: "Paper Explorer", takeaway: "可检索论文库让总体趋势回到具体论文与证据。"},
+    {id: "evidence-thread", title: "Cross-module Evidence Thread", takeaway: "选择一篇论文后，可同步查看它在时间、主题、引用、画像和网络中的位置。"},
+    {id: "benchmark", title: "Benchmark Lab", takeaway: "单篇论文画像用于比较它在多个长期影响维度上的相对位置。"},
+    {id: "network", title: "Network / closing", takeaway: "机构与地区元数据展示长期影响在全球研究生态中的可见分布。"}
   ];
   const exportTargets = [
     {id: "hero", selector: ".hero", filename: "dataviz-hw4-hero-overview.png"},
@@ -1267,8 +1267,8 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
         <svg class="world-memory-svg" viewBox="0 0 1120 610" role="img" aria-label="World map of visible Test-of-Time paper country metadata"></svg>
       </div>
       <div class="world-map-note">
-        <b>Story move</b>
-        <span>Use this as the final “global diffusion” layer: the project first explains what gets remembered, then shows where that memory is institutionally anchored. We explicitly avoid claiming national quality ranking.</span>
+        <b>Reading guide</b>
+        <span>这一层把论文的长期影响连接到作者机构与国家/地区元数据，展示经典研究在全球研究生态中的可见分布路径。</span>
       </div>
     </div>
     <div class="global-memory-card-list"></div>
@@ -2078,8 +2078,8 @@ function renderPaperLineage(papers) {
         <span>${escapeHtml(lineageArchetype(d))}</span>
       </div>
       <h3>${escapeHtml(shortTitle(d.title))}</h3>
-      <p><b>Reusable contribution</b>${escapeHtml(d.one_sentence_contribution_zh || d.abstract || "Needs evidence check before final contribution wording.")}</p>
-      <p><b>Why it lasted</b>${escapeHtml(d.why_time_tested_zh || d.archetype_rationale || "Use this as a case after checking the evidence links.")}</p>
+      <p><b>Reusable contribution</b>${escapeHtml(d.one_sentence_contribution_zh || d.abstract || "该论文的贡献可结合摘要与证据链接继续阅读。")}</p>
+      <p><b>Why it lasted</b>${escapeHtml(d.why_time_tested_zh || d.archetype_rationale || "该案例展示了主题、贡献与后续影响之间的连接。")}</p>
       <div class="lineage-footer">
         <span>${d.year || "Year"} → ${d.announcement_year || "Award"}</span>
         <button type="button" class="small-action" data-lineage-id="${escapeHtml(d.paper_id)}">Evidence</button>
@@ -2320,7 +2320,7 @@ function compareCaseHtml(p, label) {
       <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>recognition lag</span></div>
       <div class="detail-stat"><b>${escapeHtml(p.display_priority || p.evidence_checked || "check")}</b><span>evidence status</span></div>
     </div>
-    <p class="abstract">${escapeHtml(p.one_sentence_contribution_zh || p.why_time_tested_zh || "Use evidence card / paper page before writing a paper-specific contribution claim.")}</p>
+    <p class="abstract">${escapeHtml(p.one_sentence_contribution_zh || p.why_time_tested_zh || "该论文可通过证据卡片查看贡献、引用与长期影响线索。")}</p>
     <button type="button" class="small-action" data-compare-evidence="${escapeHtml(p.paper_id)}">Why this paper lasted?</button>
   </article>`;
 }
@@ -2350,10 +2350,10 @@ function openEvidenceCard(p) {
       <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>recognition lag</span></div>
       <div class="detail-stat"><b>${fmt(num(p.citing_field_count || p.country_count))}</b><span>visible breadth fields/countries</span></div>
     </div>
-    <div class="evidence-section"><b>Contribution</b><p>${escapeHtml(p.one_sentence_contribution_zh || p.abstract || "Needs check before final contribution wording.")}</p></div>
-    <div class="evidence-section"><b>Why it lasted</b><p>${escapeHtml(p.why_time_tested_zh || p.archetype_rationale || "Use as a descriptive case after reading evidence links.")}</p></div>
+    <div class="evidence-section"><b>Contribution</b><p>${escapeHtml(p.one_sentence_contribution_zh || p.abstract || "该论文的贡献可结合摘要与证据链接继续阅读。")}</p></div>
+    <div class="evidence-section"><b>Why it lasted</b><p>${escapeHtml(p.why_time_tested_zh || p.archetype_rationale || "该案例展示了长期影响在主题、引用与复用维度上的可见线索。")}</p></div>
     <div class="evidence-links"><b>Evidence links</b>${links.length ? links.map((url, i) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Evidence ${i + 1}</a>`).join("") : `<span>needs check</span>`}</div>
-    <p class="reading-note mini-note">Safe wording: 该案例用于说明数据中的长期影响线索，不直接等同于官方评奖原因；breadth 仍是 OpenAlex sampled proxy。</p>
+    <p class="reading-note mini-note">该案例用于说明数据中的长期影响线索；breadth 指标基于 OpenAlex sampled proxy。</p>
   `;
   modal.hidden = false;
 }
@@ -2510,7 +2510,7 @@ function renderImpactSignature(metrics, p, papers) {
           <div class="detail-stat"><b>${escapeHtml(strongest.label)}</b><span>strongest signal · ${fmt1(strongest.value)}%</span></div>
           <div class="detail-stat"><b>${escapeHtml(weakest.label)}</b><span>weakest signal · ${fmt1(weakest.value)}%</span></div>
         </div>
-        <p class="reading-note mini-note">Safe wording: this is a descriptive impact profile inside the current Test-of-Time sample. It should not be presented as a model that predicts future Best Paper or award outcomes.</p>
+        <p class="reading-note mini-note">该画像描述当前 Test-of-Time 样本中的长期影响特征，用于比较单篇论文在多个维度上的相对位置。</p>
       </div>
     </div>
   `);
@@ -2546,7 +2546,7 @@ function impactSignatureDimensions(metrics, p, papers) {
     {
       label: "Venue memory",
       value: percentileRank(papers.map(d => papers.filter(x => (x.venue || "") === (d.venue || "")).length), venueCount),
-      note: "How visible the venue is in the award records collected here; not a venue quality ranking."
+      note: "How visible the venue is in the award records collected here."
     },
     {
       label: "Network spread",
@@ -2563,11 +2563,11 @@ function signatureHeadline(dimensions, avg) {
   const lag = get("Recognition lag");
   const topic = get("Topic generality");
   const venue = get("Venue memory");
-  if (citation >= 75 && breadth >= 75) return {title: "Deep + broad classic", body: "This case is strong on both citation depth and diffusion breadth, so it can anchor the claim that long-term impact is more than one number."};
-  if (lag >= 75 && citation >= 60) return {title: "Slow-burn classic", body: "This paper fits the delayed-recognition story: its award signal arrived late, while citation evidence still shows sustained uptake."};
-  if (topic >= 75 && venue >= 65) return {title: "Community backbone", body: "This paper sits in a recurring topic and visible award community, making it useful for explaining how fields remember foundational work."};
-  if (breadth >= 75 && avg >= 60) return {title: "Wide-diffusion method", body: "Breadth is the strongest signal here, so the safer story is cross-context reuse rather than raw citation dominance."};
-  return {title: "Contextual evidence case", body: "This paper should be interpreted through the combination of topic, venue, timing, and evidence-card wording rather than a single extreme metric."};
+  if (citation >= 75 && breadth >= 75) return {title: "Deep + broad classic", body: "This case is strong on both citation depth and diffusion breadth, showing that long-term impact is more than one number."};
+  if (lag >= 75 && citation >= 60) return {title: "Slow-burn classic", body: "This paper was recognized after a longer interval, while citation evidence still shows sustained uptake."};
+  if (topic >= 75 && venue >= 65) return {title: "Community backbone", body: "This paper sits in a recurring topic and visible award community, showing how fields remember foundational work."};
+  if (breadth >= 75 && avg >= 60) return {title: "Wide-diffusion method", body: "Breadth is the strongest signal here, pointing to cross-context reuse beyond raw citation dominance."};
+  return {title: "Contextual evidence case", body: "This paper is best read through the combination of topic, venue, timing, and evidence rather than a single metric."};
 }
 
 function percentileRank(values, value) {
@@ -2578,10 +2578,10 @@ function percentileRank(values, value) {
 }
 
 function classifyPaper(citationPct, breadthPct, lagPct) {
-  if (citationPct >= 75 && breadthPct >= 75) return {title: "Deep + broad influence", body: "This paper combines high citation depth with broad diffusion, making it a strong example when explaining long-term impact beyond a single metric."};
-  if (lagPct >= 75 && citationPct >= 60) return {title: "Slow-burn classic", body: "This paper waited longer than most before recognition while still showing strong citation depth, useful for explaining delayed value discovery."};
-  if (breadthPct >= 75) return {title: "Wide diffusion case", body: "This paper stands out more by breadth than raw depth, making it useful for discussing cross-field or cross-region influence."};
-  if (citationPct >= 75) return {title: "Citation-depth case", body: "This paper is strongest as a citation-depth example; pair it with limitations about citation count and field size."};
+  if (citationPct >= 75 && breadthPct >= 75) return {title: "Deep + broad influence", body: "This paper combines high citation depth with broad diffusion, showing long-term impact beyond a single metric."};
+  if (lagPct >= 75 && citationPct >= 60) return {title: "Slow-burn classic", body: "This paper waited longer than most before recognition while still showing strong citation depth."};
+  if (breadthPct >= 75) return {title: "Wide diffusion case", body: "This paper stands out more by breadth than raw depth, highlighting cross-field or cross-region influence."};
+  if (citationPct >= 75) return {title: "Citation-depth case", body: "This paper is strongest as a citation-depth example, especially when read alongside field and age context."};
   return {title: "Contextual evidence case", body: "This paper is best interpreted through venue, topic, and award context rather than one extreme quantitative score."};
 }
 
@@ -2682,24 +2682,24 @@ function renderModuleClaims(data) {
   const usShare = d3.sum(countries, d => num(d.paper_count)) ? num(topCountry?.paper_count) / d3.sum(countries, d => num(d.paper_count)) * 100 : 0;
   const cards = {
     "#time-claims": [
-      claim("Finding", `典型 recognition lag 约为 ${fmt1(lagMedian)} 年，中间 50% 大致落在 ${fmt1(lagQ1)}–${fmt1(lagQ3)} 年。`, "Evidence", "Lag distribution + timeline", "Boundary", "这是获奖记录中的时间尺度，不代表所有经典工作的唯一成熟周期。"),
-      claim("Case", `${shortTitle(longest?.title)} 是最长 lag 案例，等待 ${fmt(num(longest?.recognition_lag))} 年后获得认可。`, "Evidence", `${longest?.venue || "venue"} · ${longest?.year || "year"} → ${longest?.announcement_year || "award"}`, "Interpretation", "长 lag 适合用来解释基础性工作可能需要后续生态成熟才被重新看见。")
+      claim("观察", `典型 recognition lag 约为 ${fmt1(lagMedian)} 年，中间 50% 大致落在 ${fmt1(lagQ1)}–${fmt1(lagQ3)} 年。`, "图表依据", "Lag distribution + timeline", "说明", "这是获奖记录中的时间尺度，不代表所有经典工作的唯一成熟周期。"),
+      claim("案例", `${shortTitle(longest?.title)} 是最长 lag 案例，等待 ${fmt(num(longest?.recognition_lag))} 年后获得认可。`, "图表依据", `${longest?.venue || "venue"} · ${longest?.year || "year"} → ${longest?.announcement_year || "award"}`, "解读", "长 lag 显示基础性工作可能需要后续研究生态成熟后才被重新看见。")
     ],
     "#venue-claims": [
-      claim("Finding", `${topVenue?.venue || "Top venue"} 是记录数最多的 venue，${topArea?.venue_area || "top field"} 是记录中最大的领域聚集点。`, "Evidence", `${fmt(num(topVenue?.paper_count))} venue papers; ${fmt(num(topArea?.paper_count))} field papers`, "Boundary", "数据集中度高，呈现长尾分布，Test of Time Award 记录与具体会议是否设奖、何时设奖、公开记录是否完整高度相关，并不是会议绝对质量或学科重要性的线性排名。"),
-      claim("Pattern", `${concentratedAreas} 个领域高于或接近领域中位数，说明长期影响记录呈多社区分布而非单一垄断，不同年代长期影响社区分布呈现不同的特征。`, "Evidence", "Field map + decade heatmap", "Interpretation", "由Field x decade heatmap看出，不同年代有不同的聚集特征，对应了不同技术范式与研究重点的演变。应强调学术社区结构和时间覆盖，而不是只比较总量。")
+      claim("观察", `${topVenue?.venue || "Top venue"} 是记录数最多的 venue，${topArea?.venue_area || "top field"} 是记录中最大的领域聚集点。`, "图表依据", `${fmt(num(topVenue?.paper_count))} venue papers; ${fmt(num(topArea?.paper_count))} field papers`, "说明", "数据呈现长尾分布，Test-of-Time 记录也受到会议设奖时间与公开记录完整度影响。"),
+      claim("模式", `${concentratedAreas} 个领域高于或接近领域中位数，说明长期影响记录呈多社区分布而非单一垄断，不同年代长期影响社区分布呈现不同的特征。`, "图表依据", "Field map + decade heatmap", "解读", "Field × decade heatmap 显示不同年代的聚集特征，对应技术范式与研究重点的演变。")
     ],
     "#topic-claims": [
-      claim("Finding", `${topTopic?.topic_label || "Top topic"} 是最常见主题标签，占 ${fmt(num(topTopic?.paper_count))} 篇论文。`, "Evidence", "Topic distribution", "Boundary", "主题来自 API/规则归类，需要代表论文和人工阅读进一步校正。"),
-      claim("Case route", `${broadTopic?.topic_label || "High-breadth topic"} 的平均 breadth proxy 较高，可作为跨领域影响解释入口。`, "Evidence", `avg breadth ${fmt1(num(broadTopic?.avg_impact_breadth_score))}`, "Interpretation", "把主题趋势与代表论文卡结合，比单独展示面积图更适合写报告。")
+      claim("观察", `${topTopic?.topic_label || "Top topic"} 是最常见主题标签，占 ${fmt(num(topTopic?.paper_count))} 篇论文。`, "图表依据", "Topic distribution", "说明", "主题标签用于观察总体结构，代表论文需要结合标题、摘要和贡献说明阅读。"),
+      claim("路径", `${broadTopic?.topic_label || "High-breadth topic"} 的平均 breadth proxy 较高，可作为跨领域影响解释入口。`, "图表依据", `avg breadth ${fmt1(num(broadTopic?.avg_impact_breadth_score))}`, "解读", "主题趋势与代表论文卡片结合后，可以同时呈现总体分布和具体贡献路径。")
     ],
     "#citation-claims": [
-      claim("Finding", `${fmt(lagAboveMedianCitation)} 篇论文同时具有高于中位数的 recognition lag 和 citation depth。`, "Evidence", "Citation vs lag scatter median guides", "Boundary", "引用深度说明可见影响强度，但不能证明获奖因果。"),
-      claim("Contrast", `${shortTitle(highCitation?.title)} 是 citation-depth 锚点；${shortTitle(highBreadth?.title)} 是 breadth 锚点。`, "Evidence", `${fmt(num(highCitation?.citation_count))} citations vs breadth ${fmt1(num(highBreadth?.impact_breadth_score))}`, "Interpretation", "Depth × breadth 可以把“被大量引用”和“扩散范围广”分开讲。")
+      claim("观察", `${fmt(lagAboveMedianCitation)} 篇论文同时具有高于中位数的 recognition lag 和 citation depth。`, "图表依据", "Citation vs lag scatter median guides", "说明", "引用深度反映公开元数据中的可见影响强度，但不等同于获奖原因。"),
+      claim("对比", `${shortTitle(highCitation?.title)} 是 citation-depth 锚点；${shortTitle(highBreadth?.title)} 是 breadth 锚点。`, "图表依据", `${fmt(num(highCitation?.citation_count))} citations vs breadth ${fmt1(num(highBreadth?.impact_breadth_score))}`, "解读", "Depth × breadth 将“被大量引用”和“扩散范围广”区分为两个互补维度。")
     ],
     "#network-claims": [
-      claim("Finding", `${topInst?.name || "Top institution"} 是观察到的最高频机构，${topCountry?.country || "top country"} 是最高频国家/地区。`, "Evidence", `${fmt(num(topInst?.paper_count))} institution mentions; ${fmt(num(topCountry?.paper_count))} country mentions`, "Boundary", "机构和国家字段依赖元数据覆盖，适合解释分布线索而非完整合作网络。"),
-      claim("Pattern", `最高频国家/地区约占观察国家/地区计数的 ${fmt1(usShare)}%。`, "Evidence", "Country ranking", "Interpretation", "可用于讨论研究生态集中度，同时需要说明英文数据库和会议覆盖偏差。")
+      claim("观察", `${topInst?.name || "Top institution"} 是观察到的最高频机构，${topCountry?.country || "top country"} 是最高频国家/地区。`, "图表依据", `${fmt(num(topInst?.paper_count))} institution mentions; ${fmt(num(topCountry?.paper_count))} country mentions`, "说明", "机构和国家/地区字段依赖公开元数据覆盖，主要用于观察分布线索。"),
+      claim("模式", `最高频国家/地区约占观察国家/地区计数的 ${fmt1(usShare)}%。`, "图表依据", "Country metadata distribution", "解读", "该比例用于观察研究生态的可见集中度，同时受到英文数据库与会议覆盖范围影响。")
     ]
   };
   for (const [selector, rows] of Object.entries(cards)) renderClaimCards(selector, rows);
@@ -2830,8 +2830,8 @@ function updateEvidenceThread(p) {
       `).join("")}
     </div>
     <div class="thread-script">
-      <b>30-second demo script</b>
-      <span>这篇论文先在 Time 维度展示 delayed recognition，再在 Topic 维度进入同类贡献路径；Citation 和 Signature 解释它的影响形态，Network 只作为 affiliation metadata 的可见扩散线索。</span>
+      <b>阅读路径</b>
+      <span>这篇论文先在 Time 维度展示 delayed recognition，再在 Topic 维度进入同类贡献路径；Citation 和 Signature 解释它的影响形态，Network 呈现 affiliation metadata 中的可见扩散线索。</span>
     </div>
   `);
   target.select('[data-thread-action="evidence"]').on("click", () => openEvidenceCard(p));
@@ -2851,12 +2851,12 @@ function setNotes({papers, venues, areas, topics}) {
   const topTopic = topics.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   d3.select("#time-note").text(`Median recognition lag is ${fmt1(lagMedian)} years; the longest-lag paper in this dataset waited ${longest.recognition_lag} years before recognition.`);
   d3.select("#venue-note").text(`${topVenue.venue} has the largest count among venues, while ${topArea.venue_area} is the largest broader field in this dataset.`);
-  d3.select("#topic-note").text(`${topTopic.topic_label} is the most frequent topic label, giving the topic module a natural entry point for representative-paper storytelling.`);
+  d3.select("#topic-note").text(`${topTopic.topic_label} is the most frequent topic label, linking the aggregate distribution to representative paper cases.`);
   d3.select("#citation-note").text(`The scatter plot separates citation volume from recognition timing: high citation counts and long recognition lags are related but not identical signals.`);
   d3.select("#explorer-note").text(`The explorer turns the dataset into a live evidence index: search by title/topic/venue, sort by citation, lag, breadth, or year, then click any paper to update the shared detail card.`);
   d3.select("#benchmark-note").text(`The benchmark lab converts a selected paper into percentile evidence: citation depth, recognition lag, breadth, collaboration, and field context are shown side by side.`);
-  d3.select("#storyboard-note").text(`The storyboard converts every module into a report-ready chain: research question, live evidence, so-what interpretation, and teammate owner.`);
-  d3.select("#network-note").text(`Institution and country rankings show where long-term impact clusters, while also reminding us that metadata coverage is uneven.`);
+  d3.select("#storyboard-note").text(`The storyboard connects each module through research question, evidence, and interpretation.`);
+  d3.select("#network-note").text(`Institution and country/region metadata show where long-term impact is visibly clustered in the available records.`);
 }
 
 function addCallout(svg, x, y, label, dx=18, dy=-16) {
