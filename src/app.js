@@ -2799,22 +2799,23 @@ function updateEvidenceThread(p) {
   const institutions = parseListField(p.institutions);
   const metrics = benchmarkMetrics(p, activePapers);
   const bestMetric = metrics.slice().sort((a,b) => d3.descending(a.percentile, b.percentile))[0];
+  const topicLabel = p.manual_topic_label || p.topic_label || "Topic";
   const topicPeers = activePapers
-    .filter(d => d.paper_id !== p.paper_id && d.topic_label === p.topic_label)
+    .filter(d => d.paper_id !== p.paper_id && (d.manual_topic_label || d.topic_label) === topicLabel)
     .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))
     .slice(0, 3);
   const route = [
-    {label: "Time", value: `${fmt(num(p.recognition_lag))} year lag`, note: "delayed retrospective recognition"},
-    {label: "Topic", value: p.topic_label || "Topic", note: `same-topic peers: ${topicPeers.length || "needs review"}`},
-    {label: "Citation", value: `${fmt(num(p.citation_count))} citations`, note: "depth signal, not sole value"},
-    {label: "Signature", value: bestMetric ? `${bestMetric.label} p${fmt1(bestMetric.percentile)}` : "profile", note: "descriptive corpus profile"},
-    {label: "Network", value: countries.slice(0, 3).join(" / ") || "metadata pending", note: `${institutions.length || 0} visible institution tags`}
+    {label: "Time", value: `${fmt(num(p.recognition_lag))} year lag`, note: "发表到获奖之间的时间距离"},
+    {label: "Topic", value: topicLabel, note: `同主题样本数：${topicPeers.length}`},
+    {label: "Citation", value: `${fmt(num(p.citation_count))} citations`, note: "公开引用元数据中的影响强度"},
+    {label: "Signature", value: bestMetric ? `${bestMetric.label} p${fmt1(bestMetric.percentile)}` : "profile", note: "该论文最突出的画像维度"},
+    {label: "Network", value: countries.slice(0, 3).join(" / ") || "metadata pending", note: `${institutions.length || 0} 个可见机构标签`}
   ];
   target.html(`
     <div class="thread-hero-card">
-      <span class="thread-label">Selected paper</span>
+      <span class="thread-label">Selected paper · 联动摘要</span>
       <h3>${escapeHtml(p.title || "Untitled")}</h3>
-      <p>${escapeHtml(p.venue || "Venue")} · ${p.year || "year"} → ${p.announcement_year || "award"} · ${escapeHtml(p.topic_label || "topic")}</p>
+      <p>${escapeHtml(p.venue || "Venue")} · ${p.year || "year"} → ${p.announcement_year || "award"} · ${escapeHtml(topicLabel)}</p>
       <div class="thread-actions">
         <button type="button" data-thread-action="evidence">Open evidence card</button>
         <button type="button" data-thread-action="benchmark">Jump to Benchmark</button>
@@ -2830,8 +2831,8 @@ function updateEvidenceThread(p) {
       `).join("")}
     </div>
     <div class="thread-script">
-      <b>阅读路径</b>
-      <span>这篇论文先在 Time 维度展示 delayed recognition，再在 Topic 维度进入同类贡献路径；Citation 和 Signature 解释它的影响形态，Network 呈现 affiliation metadata 中的可见扩散线索。</span>
+      <b>这个面板怎么读</b>
+      <span>左侧是当前选中的论文；右侧五张小卡片把它分别放回时间、主题、引用、画像和机构元数据五个模块中，方便从“单篇案例”快速切回“全站证据”。</span>
     </div>
   `);
   target.select('[data-thread-action="evidence"]').on("click", () => openEvidenceCard(p));
