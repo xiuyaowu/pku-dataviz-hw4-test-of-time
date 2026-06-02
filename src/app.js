@@ -2800,25 +2800,27 @@ function updateEvidenceThread(p) {
   const metrics = benchmarkMetrics(p, activePapers);
   const bestMetric = metrics.slice().sort((a,b) => d3.descending(a.percentile, b.percentile))[0];
   const topicLabel = p.manual_topic_label || p.topic_label || "Topic";
+  const topicPeerCount = activePapers
+    .filter(d => (d.manual_topic_label || d.topic_label) === topicLabel).length;
   const topicPeers = activePapers
-    .filter(d => d.paper_id !== p.paper_id && (d.manual_topic_label || d.topic_label) === topicLabel)
+    .filter(d => (d.manual_topic_label || d.topic_label) === topicLabel)
     .sort((a,b) => d3.descending(num(a.citation_count), num(b.citation_count)))
     .slice(0, 3);
   const route = [
-    {label: "Time", value: `${fmt(num(p.recognition_lag))} year lag`, note: "发表到获奖之间的时间距离"},
-    {label: "Topic", value: topicLabel, note: `同主题样本数：${topicPeers.length}`},
-    {label: "Citation", value: `${fmt(num(p.citation_count))} citations`, note: "公开引用元数据中的影响强度"},
-    {label: "Signature", value: bestMetric ? `${bestMetric.label} p${fmt1(bestMetric.percentile)}` : "profile", note: "该论文最突出的画像维度"},
-    {label: "Network", value: countries.slice(0, 3).join(" / ") || "metadata pending", note: `${institutions.length || 0} 个可见机构标签`}
+    {label: "Time", value: `${fmt(num(p.recognition_lag))} 年`, note: "发表到获奖的间隔"},
+    {label: "Topic", value: topicLabel, note: `同主题论文：${topicPeerCount || 1} 篇`},
+    {label: "Citation", value: `${fmt(num(p.citation_count))} 次引用`, note: "公开引用元数据"},
+    {label: "Profile", value: bestMetric ? `${bestMetric.label} p${fmt1(bestMetric.percentile)}` : "长期影响画像", note: "相对位置最高的维度"},
+    {label: "Network", value: countries.slice(0, 3).join(" / ") || "元数据待补充", note: `${institutions.length || 0} 个机构标签`}
   ];
   target.html(`
     <div class="thread-hero-card">
-      <span class="thread-label">Selected paper · 联动摘要</span>
+      <span class="thread-label">Selected paper · 案例索引</span>
       <h3>${escapeHtml(p.title || "Untitled")}</h3>
       <p>${escapeHtml(p.venue || "Venue")} · ${p.year || "year"} → ${p.announcement_year || "award"} · ${escapeHtml(topicLabel)}</p>
       <div class="thread-actions">
-        <button type="button" data-thread-action="evidence">Open evidence card</button>
-        <button type="button" data-thread-action="benchmark">Jump to Benchmark</button>
+        <button type="button" data-thread-action="evidence">查看证据卡</button>
+        <button type="button" data-thread-action="benchmark">查看画像对比</button>
       </div>
     </div>
     <div class="thread-route">
@@ -2831,8 +2833,8 @@ function updateEvidenceThread(p) {
       `).join("")}
     </div>
     <div class="thread-script">
-      <b>这个面板怎么读</b>
-      <span>左侧是当前选中的论文；右侧五张小卡片把它分别放回时间、主题、引用、画像和机构元数据五个模块中，方便从“单篇案例”快速切回“全站证据”。</span>
+      <b>使用方式</b>
+      <span>左侧保留当前论文身份；右侧五张卡片提供跳转前的快速定位，适合在展示时从总体图表切到单篇案例。</span>
     </div>
   `);
   target.select('[data-thread-action="evidence"]').on("click", () => openEvidenceCard(p));
