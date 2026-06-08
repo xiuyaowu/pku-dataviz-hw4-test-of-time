@@ -48,9 +48,10 @@ Promise.all([
   d3.csv("data/citing_breadth_metrics.csv", d3.autoType),
   d3.csv("data/institution_stats.csv", d3.autoType),
   d3.csv("data/country_stats.csv", d3.autoType),
-  d3.csv("manual_annotations/manual_paper_annotations_top12_evidence_ready.csv", d3.autoType)
-]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries, evidence]) => {
-  const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries, evidence };
+  d3.csv("manual_annotations/manual_paper_annotations_top12_evidence_ready.csv", d3.autoType),
+  d3.csv("data/venue_year_evidence_cards.csv", d3.autoType)
+]).then(([papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries, evidence, venueYearCards]) => {
+  const data = { papers, timeline, lag, venues, areas, topics, topicYears, citations, breadth, institutions, countries, evidence, venueYearCards };
   normalize(data);
   mergeEvidence(data);
   color.domain([...new Set(data.papers.map(d => d.venue_area))].sort());
@@ -64,6 +65,7 @@ Promise.all([
   renderVenue(data.venues);
   renderAreas(data.areas);
   renderVenueDecadeMatrix(data.papers);
+  renderVenueYearCases(data.venueYearCards);
   renderTopics(data.topics, data.papers);
   renderTopicEvolution(data.topicYears);
   renderPaperLineage(data.papers);
@@ -1994,6 +1996,100 @@ function timeMachineTakeaway(p) {
   if (p.archetype?.key === "wide-diffusion") return "这类论文的影响力体现在方法或思想被多个语境反复使用。";
   if (lag >= 25) return "这是明显的延迟认可案例，贡献需要经过较长时间才被充分看见。";
   return "这类案例接近整体水平，用来展示 Test-of-Time 论文的常见时间尺度。";
+}
+
+function renderVenueYearCases(rows) {
+  const target = d3.select("#venue-year-cases");
+  if (target.empty() || !rows || !rows.length) return;
+  const maxTotalCit = d3.max(rows, d => num(d.total_citation_count)) || 1;
+  const maxBreadth = d3.max(rows, d => num(d.avg_impact_breadth_score)) || 1;
+  const maxLag = d3.max(rows, d => num(d.avg_recognition_lag)) || 1;
+  const cards = rows.slice(0, 8);
+  target.selectAll("article.venue-year-case").data(cards).join("article")
+    .attr("class", d => `venue-year-case ${venueYearCaseClass(d)}`)
+    .html(d => {
+      const papers = (d.representative_papers || "").split("|").map(s => s.trim()).filter(Boolean);
+      const citLevel = levelLabel(num(d.total_citation_count) / maxTotalCit);
+      const breadthLevel = levelLabel(num(d.avg_impact_breadth_score) / maxBreadth);
+      const lagLevel = levelLabel(num(d.avg_recognition_lag) / maxLag);
+      return `
+        <div class="venue-year-header">
+          <div class="venue-year-name">${escapeHtml(d.venue)}</div>
+          <div class="venue-year-area">${escapeHtml(d.venue_area || "Field")}</div>
+        </div>
+        <div class="venue-year-sub">
+          <span class="venue-year-tag">${d.publication_year}</span>
+          <span class="venue-year-tag">${num(d.paper_count)} papers</span>
+          <span class="venue-year-case-type">${escapeHtml(d.case_type || "")}</span>
+        </div>
+        <div class="venue-year-indicators">
+          <div class="vy-indicator"><span class="vy-dot vy-dot-${citLevel}"></span><span class="vy-ind-label">Citation depth</span><span class="vy-ind-value">${fmt(num(d.total_citation_count))}</span></div>
+          <div class="vy-indicator"><span class="vy-dot vy-dot-${breadthLevel}"></span><span class="vy-ind-label">Impact breadth</span><span class="vy-ind-value">${fmt1(num(d.avg_impact_breadth_score))}</span></div>
+          <div class="vy-indicator"><span class="vy-dot vy-dot-${lagLevel}"></span><span class="vy-ind-label">Recognition lag</span><span class="vy-ind-value">${fmt1(num(d.avg_recognition_lag))}y</span></div>
+        </div>
+        <div class="venue-year-papers">
+          <b>Representative Paper</b>
+          <span>${escapeHtml(papers[0] || "—")}</span>
+        </div>
+        <div class="case-footer">
+          <span>${escapeHtml(d.why_notable ? (d.why_notable.length > 60 ? d.why_notable.slice(0, 60) + "…" : d.why_notable) : "")}</span>
+          <button type="button" class="small-action" data-venue-year-id="${escapeHtml(d.case_id)}">Open evidence</button>
+        </div>
+      `;
+    });
+  target.selectAll("[data-venue-year-id]").on("click", function() {
+    const caseId = this.getAttribute("data-venue-year-id");
+    const row = rows.find(d => d.case_id === caseId);
+    if (row) openVenueYearEvidenceCard(row);
+  });
+}
+
+function levelLabel(ratio) {
+  if (ratio >= 0.7) return "high";
+  if (ratio >= 0.35) return "mid";
+  return "low";
+}
+
+function venueYearCaseClass(d) {
+  const type = (d.case_type || "").toLowerCase();
+  if (type.includes("early-era") || type.includes("dense")) return "case-early-era";
+  if (type.includes("long-lag")) return "case-long-lag";
+  if (type.includes("high-citation")) return "case-high-citation";
+  if (type.includes("multi-paper") || type.includes("multi-theme")) return "case-multi-paper";
+  if (type.includes("shorter-lag")) return "case-shorter-lag";
+  if (type.includes("newer-venue") || type.includes("bridge")) return "case-bridge";
+  if (type.includes("compact") || type.includes("storage")) return "case-compact";
+  return "";
+}
+
+function openVenueYearEvidenceCard(d) {
+  if (!d) return;
+  const modal = document.getElementById("evidence-modal");
+  const content = document.getElementById("evidence-modal-content");
+  if (!modal || !content) return;
+  const papers = (d.representative_papers || "").split("|").map(s => s.trim()).filter(Boolean);
+  content.innerHTML = `
+    <p class="section-kicker">Venue-Year Evidence</p>
+    <h2 id="evidence-modal-title">${escapeHtml(d.venue)} ${d.publication_year} · ${escapeHtml(d.case_type || "Case")}</h2>
+    <div class="paper-meta">
+      <span class="chip">${escapeHtml(d.venue || "Venue")}</span>
+      <span class="chip">${escapeHtml(d.venue_area || "Field")}</span>
+      <span class="chip">${d.publication_year || "Year"}</span>
+      <span class="chip">${num(d.paper_count)} papers</span>
+    </div>
+    <div class="detail-stats">
+      <div class="detail-stat"><b>${fmt(num(d.total_citation_count))}</b><span>total citations</span></div>
+      <div class="detail-stat"><b>${fmt1(num(d.avg_citation_count))}</b><span>avg citation</span></div>
+      <div class="detail-stat"><b>${fmt1(num(d.avg_recognition_lag))}y</b><span>avg recognition lag</span></div>
+      <div class="detail-stat"><b>${fmt1(num(d.avg_impact_breadth_score))}</b><span>avg impact breadth</span></div>
+    </div>
+    <div class="evidence-section"><b>Representative Papers</b><ul>${papers.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul></div>
+    <div class="evidence-section"><b>Why Notable</b><p>${escapeHtml(d.why_notable || "—")}</p></div>
+    <div class="evidence-section"><b>Safe Wording Boundary</b><p>${escapeHtml(d.safe_wording_boundary || "—")}</p></div>
+    <div class="evidence-links"><b>Evidence links</b>${d.source_url ? `<a href="${escapeHtml(d.source_url)}" target="_blank" rel="noreferrer">Source data</a>` : ""}${d.paper_url_sample ? `<a href="${escapeHtml(d.paper_url_sample)}" target="_blank" rel="noreferrer">Paper sample</a>` : ""}</div>
+    <p class="reading-note mini-note">Safe wording: 该案例用于说明数据中的长期影响线索，不直接等同于官方评奖原因；breadth 仍是 OpenAlex sampled proxy。</p>
+  `;
+  modal.hidden = false;
 }
 
 function renderVenueDecadeMatrix(papers) {

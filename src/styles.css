@@ -1519,6 +1519,73 @@ body.exporting .action-dock { display: none !important; }
 @media (max-width: 1100px) { .paper-lineage { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 720px) { .paper-lineage { grid-template-columns: 1fr; } }
 
+.venue-year-cases {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(230px, 1fr));
+  gap: 14px;
+  container-type: inline-size;
+}
+.venue-year-case {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.venue-year-case:hover {
+  border-color: rgba(246,189,96,0.32);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.24), 0 0 0 1px rgba(246,189,96,0.08);
+}
+.venue-year-case.case-early-era { background: linear-gradient(160deg, rgba(112,225,212,0.10), rgba(255,255,255,0.025)); }
+.venue-year-case.case-long-lag { background: linear-gradient(160deg, rgba(184,161,255,0.10), rgba(255,255,255,0.025)); }
+.venue-year-case.case-high-citation { background: linear-gradient(160deg, rgba(246,189,96,0.10), rgba(255,255,255,0.025)); }
+.venue-year-case.case-multi-paper { background: linear-gradient(160deg, rgba(139,209,124,0.10), rgba(255,255,255,0.025)); }
+.venue-year-case.case-shorter-lag { background: linear-gradient(160deg, rgba(246,189,96,0.08), rgba(112,225,212,0.05)); }
+.venue-year-case.case-bridge { background: linear-gradient(160deg, rgba(124,201,255,0.10), rgba(255,255,255,0.025)); }
+.venue-year-case.case-compact { background: linear-gradient(160deg, rgba(243,154,199,0.10), rgba(255,255,255,0.025)); }
+.venue-year-case::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f6bd60, var(--accent));
+  opacity: .6;
+  border-radius: 0 0 20px 20px;
+}
+.venue-year-case.case-early-era::after { background: linear-gradient(90deg, var(--accent), #f6bd60); }
+.venue-year-case.case-long-lag::after { background: linear-gradient(90deg, #b8a1ff, #f6bd60); }
+.venue-year-case.case-high-citation::after { background: linear-gradient(90deg, #f6bd60, #ff7a90); }
+.venue-year-case.case-multi-paper::after { background: linear-gradient(90deg, #8bd17c, var(--accent)); }
+.venue-year-case.case-shorter-lag::after { background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
+.venue-year-case.case-bridge::after { background: linear-gradient(90deg, #7cc9ff, #b8a1ff); }
+.venue-year-case.case-compact::after { background: linear-gradient(90deg, #f39ac7, #f6bd60); }
+.venue-year-header { margin-bottom: 8px; }
+.venue-year-name { color: #f7fbff; font-size: 20px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.15; }
+.venue-year-area { color: var(--accent-2); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; margin-top: 4px; }
+.venue-year-sub { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 14px; }
+.venue-year-tag { display: inline-block; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 2px 8px; color: #cdd6e5; font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.05); }
+.venue-year-case-type { color: var(--muted); font-size: 11px; font-style: italic; }
+.venue-year-indicators { display: grid; gap: 7px; margin-bottom: 12px; }
+.vy-indicator { display: grid; grid-template-columns: 8px 1fr auto; gap: 8px; align-items: center; }
+.vy-dot { width: 8px; height: 8px; border-radius: 50%; }
+.vy-dot-high { background: var(--accent); box-shadow: 0 0 6px rgba(112,225,212,0.35); }
+.vy-dot-mid { background: var(--accent-2); box-shadow: 0 0 6px rgba(246,189,96,0.3); }
+.vy-dot-low { background: var(--accent-3); box-shadow: 0 0 6px rgba(184,161,255,0.3); }
+.vy-ind-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+.vy-ind-value { color: #dde5f2; font-size: 12px; font-weight: 700; text-align: right; }
+.venue-year-papers { margin-bottom: 10px; padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+.venue-year-papers b { display: block; color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+.venue-year-papers span { color: #b8c4d6; font-size: 12px; line-height: 1.4; }
+.evidence-section ul { margin: 6px 0 0; padding-left: 18px; }
+.evidence-section li { color: #b8c4d6; font-size: 13px; line-height: 1.55; margin-bottom: 4px; }
+@media (max-width: 1200px) { .venue-year-cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .venue-year-cases { grid-template-columns: 1fr; } }
+@container (max-width: 760px) { .venue-year-cases { grid-template-columns: 1fr; } }
+@container (min-width: 761px) and (max-width: 1120px) { .venue-year-cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 
 
 .global-memory-map {
