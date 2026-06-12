@@ -1,17 +1,17 @@
-# Data Provenance & Metric Definition Audit
+# 数据来源与指标口径说明
 
 用途：统一本项目页面与文档中的数据来源与指标口径，避免把公开元数据 proxy 写成官方评奖原因或因果结论。
 
-## 1. Source boundary
+## 1. 数据来源分层
 
 | 数据层 | 当前文件 / 字段 | 来源与处理 | 可支持的结论 | 不应支持的结论 |
 |---|---|---|---|---|
 | Award seed | `papers_enriched.csv`, `award_timeline.csv` 中的 title、year、announcement_year、venue、awarded_by | 公开 Test of Time Award 论文列表整理后统一 schema；前端使用 250 条可用记录 | 描述当前数据集中哪些论文、会议、年份被记录为 Test of Time Award | 代表所有 CS 论文、所有长期影响论文或所有会议的完整排名 |
 | Public metadata | authors、institutions、countries、concepts、OpenAlex IDs、citation_count | OpenAlex 等开放学术元数据补充；部分字段存在缺失和归并误差 | 做主题、机构、国家/地区、引用规模的结构性观察 | 证明单篇论文真实贡献大小、作者贡献比例或机构完整合作网络 |
 | Derived metrics | recognition_lag、citation trajectory、impact_breadth_score、centrality、percentile | 基于上述 seed 与公开元数据计算，用于前端比较和报告解释 | 对当前 250 篇数据做内部比较，帮助定位案例和发现模式 | 官方评价、跨领域绝对排名、获奖因果解释 |
-| Manual annotation | `manual_annotations/*`, evidence cards, report case notes | 成员人工阅读论文、award citation、项目主页或可信介绍后补充 | 支撑“为什么该论文经得起时间检验”的具体案例解释 | 在没有 evidence URL 时宣称工业影响、基础设施落地或官方评价 |
+| Manual annotation | `manual_annotations/*` 与论文证据卡 | 成员人工阅读论文、award citation、项目主页或可信介绍后补充 | 支撑“为什么该论文经得起时间检验”的具体案例解释 | 在没有 evidence URL 时宣称工业影响、基础设施落地或官方评价 |
 
-## 2. Canonical metric wording
+## 2. 指标统一口径
 
 | 指标 | 推荐写法 | 避免写法 |
 |---|---|---|

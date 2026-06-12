@@ -106,7 +106,7 @@ http://127.0.0.1:8765/index.html
 - 原始数据：各会议 Test of Time Award 官方页面（award seed），论文元数据与引用数据来自 OpenAlex 等开放科学 API；
 - 数据来源分层与 proxy 指标边界见 `docs/methodology/data_provenance_audit.md`；
 - 字段说明见 `docs/methodology/data_dictionary.md`；
-- 参考文献与逐层引用见 `docs/methodology/source_citation_appendix.md` / `.csv`；
+- 参考文献与逐层引用见 `docs/methodology/source_citation_appendix.md`；
 - 方法与限制说明见 `docs/methodology/methods_and_limitations.md`。
 
 报告与页面中，`citation_count`、`impact_breadth_score`、institution/country counts 均表述为公开元数据下的近似观察，而不是官方评奖原因、完整引用网络或跨领域绝对排名。

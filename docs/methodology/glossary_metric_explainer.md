@@ -1,46 +1,17 @@
-# Glossary and metric explainer
+# 术语与指标说明
 
-Purpose: define the shared vocabulary used consistently across the web page and the project report.
+本页定义网页和文档中统一使用的核心术语。凡是由公开元数据（而非人工阅读）派生的指标，均按"观察到的模式 / proxy / 抽样指标"理解，不解释为官方评奖原因或因果证明。
 
-## Quick usage rule
-
-When a metric is derived from public metadata rather than human reading, describe it as an observed pattern, proxy, or sample-based indicator. Do not describe it as an official award reason or causal proof.
-
-| Term | Plain-language meaning | Where it appears | Recommended wording |
+| 术语 | 含义 | 出现位置 | 解读边界 |
 |---|---|---|---|
-| Test of Time Award | A retrospective award given years after publication to recognize work that remains influential. | Project framing, all modules | “The dataset shows papers that were visible in public Test-of-Time award records, not all long-term-impact CS papers.” |
-| Recognition lag | `announcement_year - publication_year`; the number of years between publication and award announcement. | Time module, timeline, report Section 4.1 | “Recognition lag measures delayed formal recognition, not the exact moment when impact began.” |
-| Citation depth | The scale of citations a paper accumulated in public scholarly metadata. | Citation module, Benchmark Lab | “Citation depth is an influence signal, but it is not the only definition of importance.” |
-| Citation trajectory | The shape of citations across years, such as sustained long-tail attention or recent resurgence. | Citation trajectory chart, archetype notes | “Trajectory categories describe the OpenAlex-visible time window; they are not complete lifetime histories.” |
-| Impact breadth | A derived proxy for how widely a paper diffuses across sampled citing fields, institutions, countries, and years. | Depth × Breadth chart, Benchmark Lab | “Impact breadth is an OpenAlex sampled proxy for diffusion range, not a complete citation graph.” |
-| OpenAlex proxy | A metric or metadata field built from OpenAlex records rather than manually verified ground truth. | Methods, limitations, Q&A | “OpenAlex proxy metrics are useful for visualization and comparison, but need manual evidence for strong paper-level claims.” |
-| Venue area | A normalized field label assigned to venues, such as Database, Networking, IR, CV, or Software Engineering. | Venue and Field module | “Venue area helps group communities, but it should not be treated as a perfect taxonomy.” |
-| Topic label | A first-pass topic category from API concepts and rule-based normalization, later improved by manual annotation for representative papers. | Topic module, evidence cards | “Automatic topic labels show broad patterns; representative cases should use manual topic checks before final writing.” |
-| Same-field benchmark | A comparison between one selected paper and papers in the same venue area or topic neighborhood. | Benchmark Lab | “Same-field benchmarks reduce cross-field citation bias, but still depend on label quality and dataset coverage.” |
-| Evidence card | A short paper-level card with title, venue/year, contribution summary, evidence links, and representative reason. | Explorer, report, presentation | “Each card links to its evidence URLs; cautious wording is kept where evidence is proxy-based.” |
-| Award-history bias | Differences caused by which venues created Test-of-Time awards, when they started, and how complete public records are. | Venue, methods, limitations | “Venue counts are visible award-record counts, not a ranking of venue quality.” |
-
-## Copy-ready metric wording
-
-- Recognition lag: “We use recognition lag to describe the gap between publication and later formal recognition by a Test-of-Time award.”
-- Citation depth: “Citation depth gives a scale of later scholarly uptake, while still needing context from field norms and paper content.”
-- Impact breadth: “Impact breadth is a sampled OpenAlex proxy for diffusion across citing fields, institutions, countries, and years.”
-- Same-field benchmark: “The benchmark compares a selected paper against the current dataset and similar-field peers, so it is a contextual comparison rather than a universal ranking.”
-- Topic label: “Topic labels are useful for trend visualization; final representative-paper claims should use manual topic/evidence checks.”
-
-## Terms to avoid
-
-| Avoid | Use instead |
-|---|---|
-| “This proves the paper won because…” | “This pattern is consistent with…” |
-| “Best venue / strongest country / top institution” | “Most visible in this award-record dataset” |
-| “Complete citation network” | “OpenAlex sampled citation metadata” |
-| “Industrial impact is obvious from citation count” | “Industrial impact requires separate evidence URL or award-citation support” |
-| “Topic labels are ground truth” | “Topic labels are first-pass labels, with manual checks for representative papers” |
-
-## Usage conventions
-
-- `recognition lag` refers to award timing only, not causal impact timing.
-- Venue/field counts describe award-record visibility, not venue rankings.
-- Representative papers use manually checked topic labels.
-- Impact breadth is always paired with its OpenAlex-proxy boundary.
+| Test of Time Award | 论文发表多年后颁发的回顾性奖项，表彰仍具影响力的工作。 | 项目定位、各模块 | 数据集覆盖的是公开 Test-of-Time 获奖记录中的论文，不是所有具长期影响的计算机论文。 |
+| Recognition lag | `announcement_year - publication_year`，从发表到获奖公告的年数。 | Time 模块、时间线 | 度量的是"被正式确认的延迟"，不是影响力开始的确切时间。 |
+| Citation depth | 论文在公开学术元数据中积累的引用规模。 | Citation 模块、Benchmark Lab | 引用规模是影响力信号之一，不是重要性的唯一定义。 |
+| Citation trajectory | 引用量随年份变化的形态，如长尾持续关注或近期回升。 | 引用轨迹图 | 轨迹类别描述的是 OpenAlex 可见时间窗口，不是完整的论文生命周期。 |
+| Impact breadth | 论文在抽样引用文献的领域、机构、国家和年份维度上的扩散广度 proxy。 | Depth × Breadth 散点图、Benchmark Lab | 基于 OpenAlex 抽样的扩散范围近似值，不是完整引用网络。 |
+| OpenAlex proxy | 由 OpenAlex 记录派生的指标或元数据字段。 | 方法与限制说明 | 适用于可视化和数据集内部比较；论文级的强结论需要人工证据支撑。 |
+| Venue area | 给会议归一化出的领域标签，如 Database、Networking、IR、CV、SE。 | Venue & Field 模块 | 用于社区分组，不是完美的学科分类体系。 |
+| Topic label | 由标题、摘要、concepts 字段自动归类得到的主题标签；代表论文的标签经过人工修正。 | Topic 模块、证据卡 | 自动标签用于呈现整体趋势；代表案例使用人工核查后的标签。 |
+| Same-field benchmark | 选中论文与同领域（venue area / topic 邻域）论文的对比。 | Benchmark Lab | 可减少跨领域引用习惯差异带来的偏差，但仍依赖标签质量和数据集覆盖。 |
+| Evidence card | 论文级卡片，含标题、会议/年份、贡献摘要、证据链接和代表性理由。 | Paper Explorer | 每张卡片附 evidence URL；proxy 类信息保持谨慎表述。 |
+| Award-history bias | 各会议设立 Test-of-Time 奖项的时间和公开记录完整度不同造成的差异。 | Venue 模块、限制说明 | venue 数量是可见获奖记录数，不是会议质量排名。 |

@@ -1,29 +1,25 @@
-# Source citation appendix
+# 数据来源与引用附录
 
-Purpose: document the project's citation layers so that source claims, proxy metrics, and manual evidence are kept separate. Read together with `docs/methodology/data_provenance_audit.md` and `docs/methodology/methods_and_limitations.md`.
+本页按层级整理项目使用的数据来源，区分来源声明、proxy 指标和人工证据。配合 `docs/methodology/data_provenance_audit.md` 和 `docs/methodology/methods_and_limitations.md` 阅读。
 
-## Current coverage snapshot
+## 来源层级与覆盖情况
 
-| Source layer | Coverage | Used for | Wording boundary |
-|---|---:|---|---|
-| Award seed | 250 / 250 papers have `source_url` | Dataset introduction, award timing, venue/year coverage | Current public Test-of-Time award seed, not all CS long-term-impact papers |
-| Paper / DOI pages | 245 / 250 papers have `paper_url`; 193 / 250 have DOI | Representative-paper citations and case cards | Links identify source records; they do not prove contribution or adoption claims by themselves |
-| OpenAlex metadata | 248 / 250 papers have OpenAlex IDs | Citation depth, topics, institutions, countries, same-dataset comparisons | Public metadata proxy, not official award reason or complete citation graph |
-| Citation trajectory / breadth | 3,077 yearly citation rows; breadth samples for 248 / 250 papers | Trajectory archetypes, impact breadth proxy, case selection | Observed-window / sampled proxy, not causal award effect |
-| Manual representative evidence | Top 12 rows have two evidence URLs each | Contribution wording and paper-specific case descriptions | Paper-specific factual wording is based on the linked evidence pages |
+| 来源层级 | 覆盖情况 | 用途 | 解读边界 |
+|---|---|---|---|
+| Award seed（获奖名单） | 250 / 250 篇论文均有 `source_url` | 数据集构建、获奖时间、venue/year 覆盖 | 当前公开的 Test-of-Time 获奖记录，不是所有具长期影响的计算机论文 |
+| 论文 / DOI 页面 | 245 / 250 篇有 `paper_url`；193 / 250 篇有 DOI | 代表论文引用与案例卡片 | 链接用于定位来源记录，本身不构成贡献或采用情况的证明 |
+| OpenAlex 元数据 | 248 / 250 篇有 OpenAlex ID | citation depth、主题、机构、国家及数据集内部比较 | 公开元数据 proxy，不是官方评奖原因或完整引用图谱 |
+| 引用轨迹 / 扩散广度 | 3,077 条逐年引用记录；248 / 250 篇有 breadth 抽样 | 引用轨迹形态、impact breadth proxy、案例选取 | 观察窗口内的抽样 proxy，不是获奖的因果效应 |
+| 人工代表论文证据 | Top 12 每篇有两条 evidence URL | 贡献描述与论文级案例说明 | 论文级事实表述以所附证据页面为依据 |
 
-Machine-readable version: `docs/methodology/source_citation_appendix.csv`.
+## 来源综述
 
-## Source description
+本项目以公开的 Test of Time Awards 获奖名单为种子数据，对其中 250 篇可用论文补充公开学术元数据：DOI 或论文页面、OpenAlex ID、引用量、concepts、机构、国家、逐年引用轨迹和引用文献抽样的扩散广度字段。这些元数据支持数据集内部的描述性比较；涉及单篇论文贡献、基础性地位或工业影响的判断，以人工证据层所附的 evidence URL 为依据。
 
-This project uses a public Test of Time Awards seed as the award-membership source, then enriches the 250 usable papers with public scholarly metadata such as DOI or paper pages, OpenAlex IDs, citation counts, concepts, institutions, countries, yearly citation trajectories, and sampled citing-work breadth fields. These metadata fields support descriptive comparisons inside the dataset. Paper-specific claims about contribution, foundational role, or industrial impact should come from the manual evidence layer and cite the attached evidence URLs.
+## 参考来源分层
 
-
-## Reference layers
-
-1. Public Test of Time Awards seed / influence-dispersion repository source.
-2. OpenAlex as the public scholarly metadata source for citations, concepts, affiliations, and works IDs.
-3. DOI, ACM, IEEE, DBLP, or publisher pages for representative papers used as final case studies.
-4. Evidence URLs listed in `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv` for contribution or impact claims.
-5. This project’s generated derived tables: `citation_trajectories.csv`, `citing_breadth_metrics.csv`, and module aggregate CSVs, described as derived from public metadata rather than independent authority.
-
+1. 公开 Test of Time Awards 获奖名单（award seed）；
+2. OpenAlex：引用、concepts、机构归属和 works ID 的公开学术元数据来源；
+3. 代表论文的 DOI、ACM、IEEE、DBLP 或出版方页面；
+4. `manual_annotations/manual_paper_annotations_top12_evidence_ready.csv` 中列出的 evidence URL（用于贡献与影响相关判断）；
+5. 本项目生成的派生数据表（`citation_trajectories.csv`、`citing_breadth_metrics.csv` 及各模块聚合 CSV），均为公开元数据的派生结果，不构成独立权威来源。
