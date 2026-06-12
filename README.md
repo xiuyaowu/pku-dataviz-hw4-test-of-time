@@ -104,7 +104,6 @@ http://127.0.0.1:8765/index.html
 ## 数据来源与真实性说明
 
 - 原始数据：各会议 Test of Time Award 官方页面（award seed），论文元数据与引用数据来自 OpenAlex 等开放科学 API；
-- 数据来源分层与 proxy 指标边界见 `docs/methodology/data_provenance_audit.md`；
 - 字段说明见 `docs/methodology/data_dictionary.md`；
 - 参考文献与逐层引用见 `docs/methodology/source_citation_appendix.md`；
 - 方法与限制说明见 `docs/methodology/methods_and_limitations.md`。

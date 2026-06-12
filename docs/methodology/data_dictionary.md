@@ -1,26 +1,26 @@
 # 数据字段说明
 
-本仓库主要使用 `data/` 目录下的 CSV 文件。以下是常用文件和字段说明。指标口径的统一说明见 `docs/methodology/data_provenance_audit.md`；全站图表与文档沿用这里的定义，不把公开元数据 proxy 写成官方评奖原因或因果结论。
+本仓库主要使用 `data/` 目录下的 CSV 文件。以下是常用文件和字段说明。数据来源与已知限制见 `docs/methodology/methods_and_limitations.md`。
 
-## 通用来源与解释边界
+## 数据层级
 
-| 数据层 | 包含内容 | 使用边界 |
-|---|---|---|
-| Award seed | Test of Time Award 论文标题、发表年、获奖年、venue、awarded_by | 只代表当前公开奖项记录中的可见论文，不代表所有 CS 长期影响论文。 |
-| Public metadata | OpenAlex 等开放元数据中的作者、机构、国家/地区、主题、引用量 | 适合做结构性观察；可能有缺失、归并和覆盖误差。 |
-| Derived metrics | recognition_lag、citation trajectory、impact_breadth_score、same-field percentile、centrality | 用于当前数据集内部比较；不是官方评价、完整引用图谱或获奖因果解释。 |
-| Manual annotation | 成员补充的贡献解释、工业影响、evidence URL | 单篇论文贡献和工业/基础设施影响必须由人工证据支撑。 |
+| 数据层 | 包含内容 |
+|---|---|
+| Award seed | Test of Time Award 论文标题、发表年、获奖年、venue、awarded_by |
+| Public metadata | OpenAlex 等开放元数据中的作者、机构、国家/地区、主题、引用量 |
+| Derived metrics | recognition_lag、citation trajectory、impact_breadth_score、same-field percentile、centrality |
+| Manual annotation | 成员补充的贡献解释、工业影响、evidence URL |
 
 ## 核心指标统一定义
 
-| 指标 | 定义 | 表述边界 |
-|---|---|---|
-| `recognition_lag` | `announcement_year - year` | 奖项回看确认的时间尺度；不等于论文开始产生影响的时间。 |
-| `citation_count` / citation depth | 公开元数据中的引用规模 | 后续研究使用或讨论的近似入口；不能单独代表重要性或获奖原因。 |
-| `citation_trajectory` | 逐年引用变化 | 用于观察早期爆发、持续增长或长期稳定等引用形态。 |
-| `impact_breadth_score` | 基于 OpenAlex citing works sample 的扩散广度 proxy | 估计跨 venue / field / institution / country 的可见扩散范围；不是完整 citation graph。 |
-| `venue_area` / `topic_label` | 为可视化统一整理的领域和主题标签 | 适合聚合分析；重点案例需人工核查。 |
-| institution / country counts | 作者机构元数据中的可见分布 | 不能写成完整合作网络、机构排名或国家科研实力排名。 |
+| 指标 | 定义 |
+|---|---|
+| `recognition_lag` | `announcement_year - year` |
+| `citation_count` / citation depth | 公开元数据中的引用规模 |
+| `citation_trajectory` | 逐年引用变化 |
+| `impact_breadth_score` | 基于 OpenAlex citing works sample 的扩散广度 proxy |
+| `venue_area` / `topic_label` | 为可视化统一整理的领域和主题标签 |
+| institution / country counts | 作者机构元数据中的可见分布 |
 
 ## `papers_enriched.csv`
 

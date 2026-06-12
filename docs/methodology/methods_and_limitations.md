@@ -6,7 +6,7 @@
 
 本项目以计算机领域 Test of Time Award papers 为核心对象，基础论文列表来自公开整理的 Test of Time Award 数据，并结合 OpenAlex 等开放科学元数据补充论文、作者、机构、国家/地区、主题、引用和引用扩散相关字段。
 
-更详细的数据来源和指标审计见：`docs/methodology/data_provenance_audit.md`。全站统一采用其中的口径：公开元数据用于观察结构性模式，人工 annotation 用于解释单篇论文贡献；citation、breadth、institution/country counts 都不应被写成官方评奖原因或完整因果证据。
+数据来源的分层与覆盖情况见 `docs/methodology/source_citation_appendix.md`。
 
 数据层级按四类维护：
 
