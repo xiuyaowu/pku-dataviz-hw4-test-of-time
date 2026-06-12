@@ -1713,13 +1713,13 @@ body.exporting .action-dock { display: none !important; }
 .continent-layer path,
 .country-shape {
   fill: url(#landGradient);
-  stroke: rgba(238,244,255,0.13);
-  stroke-width: .55;
+  stroke: rgba(238,244,255,0.24);
+  stroke-width: .6;
   vector-effect: non-scaling-stroke;
 }
 .country-shape.active-country {
-  stroke: rgba(238,244,255,0.52);
-  stroke-width: .9;
+  stroke: rgba(238,244,255,0.75);
+  stroke-width: 1.1;
   filter: drop-shadow(0 0 11px rgba(112,225,212,.18));
 }
 .fallback-land path {
@@ -1727,7 +1727,7 @@ body.exporting .action-dock { display: none !important; }
 }
 .memory-arc {
   fill: none;
-  stroke-opacity: .42;
+  stroke-opacity: .6;
   stroke-linecap: round;
   stroke-dasharray: 3 8;
   mix-blend-mode: screen;

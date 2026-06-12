@@ -694,17 +694,28 @@ function renderTopicEvolution(rows) {
   const area = d3.area().x(d => x(d.data.year)).y0(d => y(d[0])).y1(d => y(d[1])).curve(d3.curveBasis);
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height-margin.bottom})`).call(d3.axisBottom(x).ticks(7).tickFormat(d3.format("d")));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5, "%"));
-  svg.selectAll("path.topic-area").data(stack).join("path")
+  const areas = svg.selectAll("path.topic-area").data(stack).join("path")
     .attr("class", "topic-area")
     .attr("d", area)
-    .attr("fill", d => color(d.key)).attr("opacity", 0.72)
-    .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.key)}</b><br>Share among top topic groups over time`))
-    .on("mouseleave", hideTip);
+    .attr("fill", d => color(d.key)).attr("opacity", 0.72);
   const legend = svg.append("g").attr("transform", `translate(${width-margin.right+18},${margin.top})`);
-  legend.selectAll("g").data(topTopics).join("g").attr("transform", (_,i) => `translate(0,${i*22})`).each(function(d){
+  const legendItems = legend.selectAll("g").data(topTopics).join("g")
+    .attr("transform", (_,i) => `translate(0,${i*22})`)
+    .style("cursor", "default");
+  legendItems.each(function(d){
     const g=d3.select(this); g.append("rect").attr("width",10).attr("height",10).attr("rx",2).attr("fill",color(d));
     g.append("text").attr("x",16).attr("y",9).attr("fill","#cdd6e5").attr("font-size",11).text(d.length>18?d.slice(0,18)+"…":d);
   });
+  const focusTopic = key => {
+    areas.attr("opacity", a => key == null ? 0.72 : (a.key === key ? 0.95 : 0.12));
+    legendItems.attr("opacity", t => key == null || t === key ? 1 : 0.35);
+  };
+  areas
+    .on("mousemove", (e,d) => { focusTopic(d.key); showTip(e, `<b>${escapeHtml(d.key)}</b><br>Share among top topic groups over time`); })
+    .on("mouseleave", () => { focusTopic(null); hideTip(); });
+  legendItems
+    .on("mouseenter", (_,d) => focusTopic(d))
+    .on("mouseleave", () => focusTopic(null));
 }
 
 function wrapText(text, maxWidth) {
@@ -1302,8 +1313,8 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
   ocean.append("stop").attr("offset", "58%").attr("stop-color", "#0b1826");
   ocean.append("stop").attr("offset", "100%").attr("stop-color", "#050912");
   const land = defs.append("linearGradient").attr("id", "landGradient").attr("x1", "0%").attr("x2", "100%").attr("y1", "0%").attr("y2", "100%");
-  land.append("stop").attr("offset", "0%").attr("stop-color", "#24374d");
-  land.append("stop").attr("offset", "100%").attr("stop-color", "#132033");
+  land.append("stop").attr("offset", "0%").attr("stop-color", "#3b5572");
+  land.append("stop").attr("offset", "100%").attr("stop-color", "#22364f");
   const glow = defs.append("filter").attr("id", "softGlow").attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
   glow.append("feGaussianBlur").attr("stdDeviation", "4.5").attr("result", "blur");
   glow.append("feMerge").selectAll("feMergeNode").data(["blur", "SourceGraphic"]).join("feMergeNode").attr("in", d => d);
@@ -1355,7 +1366,7 @@ function renderGlobalMemoryMap(countries, institutions, papers) {
         const row = activeCountryRow(d);
         return row ? colorScale(num(row.avg_citation_count)) : "url(#landGradient)";
       })
-      .attr("fill-opacity", d => activeCountryRow(d) ? 0.46 : 0.76)
+      .attr("fill-opacity", d => activeCountryRow(d) ? 0.72 : 0.85)
       .attr("d", path)
       .append("title")
       .text(d => {
