@@ -1,6 +1,6 @@
 # 数据字段说明
 
-本仓库主要使用 `data/` 目录下的 CSV 文件。以下是常用文件和字段说明。指标口径的统一说明见 `docs/methodology/data_provenance_audit.md`；最终报告中应沿用这里的定义，不把公开元数据 proxy 写成官方评奖原因或因果结论。
+本仓库主要使用 `data/` 目录下的 CSV 文件。以下是常用文件和字段说明。指标口径的统一说明见 `docs/methodology/data_provenance_audit.md`；全站图表与文档沿用这里的定义，不把公开元数据 proxy 写成官方评奖原因或因果结论。
 
 ## 通用来源与解释边界
 
@@ -13,7 +13,7 @@
 
 ## 核心指标统一定义
 
-| 指标 | 定义 | 报告中建议写法 |
+| 指标 | 定义 | 表述边界 |
 |---|---|---|
 | `recognition_lag` | `announcement_year - year` | 奖项回看确认的时间尺度；不等于论文开始产生影响的时间。 |
 | `citation_count` / citation depth | 公开元数据中的引用规模 | 后续研究使用或讨论的近似入口；不能单独代表重要性或获奖原因。 |

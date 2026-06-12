@@ -369,11 +369,11 @@
     <article class="evidence-modal-card screenshot-card">
       <button class="modal-close" type="button" data-close-screenshot aria-label="Close screenshot guide">×</button>
       <p class="section-kicker">Export studio</p>
-      <h2 id="screenshot-title">Presentation Export Studio</h2>
-      <p>一键生成 PPT-ready 备份图：选单页导出 PNG，或把完整展示路线打包成一个 ZIP。导出时会自动隐藏浮动按钮、tour 控件和弹窗。</p>
+      <h2 id="screenshot-title">Chart Export Studio</h2>
+      <p>一键导出图表：选择单个模块导出 PNG，或把全部模块视图打包成一个 ZIP。导出时会自动隐藏浮动按钮、tour 控件和弹窗。</p>
       <div class="export-panel">
         <div class="export-toolbar">
-          <label for="export-target">Slide / module</label>
+          <label for="export-target">Module</label>
           <select id="export-target" class="export-select">
             <option value="hero">Hero overview</option>
             <option value="time">Time · recognition lag</option>
@@ -393,11 +393,11 @@
           </select>
         </div>
         <div class="export-studio-grid">
-          <div class="export-slide-list" id="export-slide-list" aria-label="Exportable slides"></div>
+          <div class="export-slide-list" id="export-slide-list" aria-label="Exportable modules"></div>
           <div class="export-preview-card">
             <div class="export-preview-head">
               <b id="export-preview-title">Preview</b>
-              <span id="export-preview-meta">PNG · PPT-ready</span>
+              <span id="export-preview-meta">PNG</span>
             </div>
             <div id="export-preview" class="export-preview">Open the panel to generate a quick preview.</div>
           </div>
@@ -407,7 +407,7 @@
           <button id="export-tour-png" class="export-secondary" type="button">Export current tour step</button>
           <button id="export-all-png" class="export-secondary" type="button">Download all as ZIP</button>
         </div>
-        <div id="export-status" class="export-status" role="status" aria-live="polite">Ready. Pick a slide, preview it, then export PNG or ZIP.</div>
+        <div id="export-status" class="export-status" role="status" aria-live="polite">Ready. Pick a module, preview it, then export PNG or ZIP.</div>
       </div>
     </article>
   </div>

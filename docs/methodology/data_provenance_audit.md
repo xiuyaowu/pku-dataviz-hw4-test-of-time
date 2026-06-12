@@ -1,6 +1,6 @@
 # Data Provenance & Metric Definition Audit
 
-用途：统一 README、数据字典、方法说明和最终报告中的数据来源与指标口径，避免把公开元数据 proxy 写成官方评奖原因或因果结论。
+用途：统一本项目页面与文档中的数据来源与指标口径，避免把公开元数据 proxy 写成官方评奖原因或因果结论。
 
 ## 1. Source boundary
 
@@ -24,7 +24,7 @@
 | same-field percentile | “相对当前数据集中同领域样本的位置。” | “全 CS 排名”或“跨领域价值比较”。 |
 
 
-## 3. 推荐表述
+## 3. 数据来源综述
 
 > 本项目以公开 Test of Time Award 论文列表为 seed，并结合 OpenAlex 等开放学术元数据补充引用、主题、机构和国家/地区信息。Recognition lag 表示从发表到获奖的间隔；citation depth 和 citation trajectory 用于描述公开元数据中的引用规模与时间变化；impact breadth 是基于 OpenAlex citing works sample 的扩散广度近似指标。所有这些指标用于观察当前数据集中的结构性模式和代表案例，不被解释为官方评奖原因、完整引用网络或跨领域绝对排名。涉及单篇论文贡献、工业影响或基础设施落地的判断，均以人工阅读后补充的 evidence URL 为依据。
 
@@ -35,4 +35,3 @@
 - 不把 citation_count 写成论文重要性的唯一标准。
 - 不把 institution/country counts 写成完整合作网络或国家实力排名。
 - 代表论文的 contribution / industry impact / foundational status 均有 evidence URL。
-- README、报告、展示稿中没有本地绝对路径。

@@ -1,16 +1,16 @@
 # Source citation appendix
 
-Purpose: give the final report and slides one compact, source-traceable citation layer. Use this together with `docs/methodology/data_provenance_audit.md`, `docs/methodology/methods_and_limitations.md` so source claims, proxy metrics, and manual evidence are not mixed together.
+Purpose: document the project's citation layers so that source claims, proxy metrics, and manual evidence are kept separate. Read together with `docs/methodology/data_provenance_audit.md` and `docs/methodology/methods_and_limitations.md`.
 
 ## Current coverage snapshot
 
-| Source layer | Current coverage | Final report use | Careful wording boundary |
+| Source layer | Coverage | Used for | Wording boundary |
 |---|---:|---|---|
 | Award seed | 250 / 250 papers have `source_url` | Dataset introduction, award timing, venue/year coverage | Current public Test-of-Time award seed, not all CS long-term-impact papers |
 | Paper / DOI pages | 245 / 250 papers have `paper_url`; 193 / 250 have DOI | Representative-paper citations and case cards | Links identify source records; they do not prove contribution or adoption claims by themselves |
 | OpenAlex metadata | 248 / 250 papers have OpenAlex IDs | Citation depth, topics, institutions, countries, same-dataset comparisons | Public metadata proxy, not official award reason or complete citation graph |
 | Citation trajectory / breadth | 3,077 yearly citation rows; breadth samples for 248 / 250 papers | Trajectory archetypes, impact breadth proxy, case selection | Observed-window / sampled proxy, not causal award effect |
-| Manual representative evidence | Top 12 rows have two evidence URLs each | Contribution wording, paper-specific report/PPT cases | Paper-specific factual wording is based on the linked evidence pages |
+| Manual representative evidence | Top 12 rows have two evidence URLs each | Contribution wording and paper-specific case descriptions | Paper-specific factual wording is based on the linked evidence pages |
 
 Machine-readable version: `docs/methodology/source_citation_appendix.csv`.
 
@@ -19,7 +19,7 @@ Machine-readable version: `docs/methodology/source_citation_appendix.csv`.
 This project uses a public Test of Time Awards seed as the award-membership source, then enriches the 250 usable papers with public scholarly metadata such as DOI or paper pages, OpenAlex IDs, citation counts, concepts, institutions, countries, yearly citation trajectories, and sampled citing-work breadth fields. These metadata fields support descriptive comparisons inside the dataset. Paper-specific claims about contribution, foundational role, or industrial impact should come from the manual evidence layer and cite the attached evidence URLs.
 
 
-## Recommended reference-list entries to prepare
+## Reference layers
 
 1. Public Test of Time Awards seed / influence-dispersion repository source.
 2. OpenAlex as the public scholarly metadata source for citations, concepts, affiliations, and works IDs.

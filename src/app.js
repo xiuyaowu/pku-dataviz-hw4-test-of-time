@@ -419,8 +419,8 @@ function initPresentationMode() {
         }
         setExportStatus("Packaging ZIP ...", "working");
         const blob = await zip.generateAsync({type: "blob"});
-        downloadBlob(blob, "dataviz-hw4-presentation-slides.zip");
-        setExportStatus(`Done. Downloaded ZIP with ${targets.length} PPT-ready PNG slides.`, "done");
+        downloadBlob(blob, "dataviz-hw4-charts.zip");
+        setExportStatus(`Done. Downloaded ZIP with ${targets.length} PNG charts.`, "done");
       } else {
         const files = [];
         for (let i = 0; i < targets.length; i++) files.push(await exportTargetPng(targets[i], i, targets.length));

@@ -104,7 +104,7 @@ http://127.0.0.1:8765/index.html
 ## 数据来源与真实性说明
 
 - 原始数据：各会议 Test of Time Award 官方页面（award seed），论文元数据与引用数据来自 OpenAlex 等开放科学 API；
-- 数据来源分层、proxy 指标边界和报告口径见 `docs/methodology/data_provenance_audit.md`；
+- 数据来源分层与 proxy 指标边界见 `docs/methodology/data_provenance_audit.md`；
 - 字段说明见 `docs/methodology/data_dictionary.md`；
 - 参考文献与逐层引用见 `docs/methodology/source_citation_appendix.md` / `.csv`；
 - 方法与限制说明见 `docs/methodology/methods_and_limitations.md`。
@@ -126,7 +126,7 @@ http://127.0.0.1:8765/index.html
 | C | 会议 / 领域分布 | 分析 venue、venue_area，做会议排名、领域分布、热力图 |
 | D | 主题演化 | 分析 topic_label / concepts，做主题演化和代表论文卡片 |
 | E | 引用轨迹与影响深度/广度 | 分析 citation trajectory、citation count、impact breadth |
-| F | 作者机构网络 / 视觉 / PPT | 做机构网络、国家分布、统一视觉风格、准备展示 PPT |
+| F | 作者机构网络 / 视觉设计 | 做机构网络、国家分布、统一全站视觉风格 |
 
 ## 最终目标
 
