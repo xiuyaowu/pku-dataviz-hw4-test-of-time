@@ -70,6 +70,8 @@ Promise.all([
   renderVenue(data.venues);
   renderAreas(data.areas);
   renderVenueDecadeMatrix(data.papers);
+  renderLagByArea(data.papers);
+  renderConclusion(data.papers);
   renderVenueYearCases(data.venueYearCards);
   renderTopics(data.topics, data.papers);
   renderTopicEvolution(data.topicYears);
@@ -2109,6 +2111,78 @@ function openVenueYearEvidenceCard(d) {
     <p class="reading-note mini-note">该案例用于说明数据中的长期影响线索，不直接等同于官方评奖原因；breadth 仍是 OpenAlex sampled proxy。</p>
   `;
   modal.hidden = false;
+}
+
+function renderLagByArea(papers) {
+  const {svg, width, height} = chartBox("#lag-by-area-chart");
+  const margin = {top: 16, right: 30, bottom: 44, left: 168};
+  const rows = papers.filter(d => d.venue_area && Number.isFinite(num(d.recognition_lag)));
+  const groups = Array.from(d3.group(rows, d => d.venue_area).entries())
+    .map(([area, items]) => {
+      const lags = items.map(d => num(d.recognition_lag)).sort(d3.ascending);
+      const q1 = d3.quantileSorted(lags, 0.25);
+      const median = d3.quantileSorted(lags, 0.5);
+      const q3 = d3.quantileSorted(lags, 0.75);
+      const iqr = q3 - q1;
+      const lo = Math.max(d3.min(lags), q1 - 1.5 * iqr);
+      const hi = Math.min(d3.max(lags), q3 + 1.5 * iqr);
+      const outliers = lags.filter(v => v < lo || v > hi);
+      return {area, n: lags.length, q1, median, q3, lo, hi, outliers};
+    })
+    .filter(g => g.n >= 8)
+    .sort((a, b) => d3.descending(a.median, b.median));
+  const x = d3.scaleLinear()
+    .domain([0, d3.max(groups, g => Math.max(g.hi, d3.max(g.outliers.length ? g.outliers : [0])))]).nice()
+    .range([margin.left, width - margin.right]);
+  const y = d3.scaleBand().domain(groups.map(g => g.area)).range([margin.top, height - margin.bottom]).padding(0.42);
+  svg.append("g").attr("class", "grid").attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).ticks(6).tickSize(-(height - margin.top - margin.bottom)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).ticks(6));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).tickSize(0)).call(g => g.select(".domain").remove())
+    .selectAll("text").attr("fill", "#cdd6e5").attr("font-size", 11);
+  svg.append("text").attr("class", "chart-title-small").attr("x", (margin.left + width - margin.right) / 2).attr("y", height - 8)
+    .attr("text-anchor", "middle").text("recognition lag (years)");
+  const box = svg.selectAll("g.lag-box").data(groups).join("g").attr("class", "lag-box");
+  box.append("line")
+    .attr("x1", g => x(g.lo)).attr("x2", g => x(g.hi))
+    .attr("y1", g => y(g.area) + y.bandwidth() / 2).attr("y2", g => y(g.area) + y.bandwidth() / 2)
+    .attr("stroke", "rgba(205,214,229,0.55)").attr("stroke-width", 1.1);
+  box.append("rect")
+    .attr("x", g => x(g.q1)).attr("width", g => Math.max(2, x(g.q3) - x(g.q1)))
+    .attr("y", g => y(g.area)).attr("height", y.bandwidth())
+    .attr("rx", 4).attr("fill", g => color(g.area)).attr("fill-opacity", 0.55)
+    .attr("stroke", g => color(g.area)).attr("stroke-width", 1)
+    .on("mousemove", (e, g) => showTip(e, `<b>${escapeHtml(g.area)}</b><br>n = ${g.n}<br>Median lag: ${fmt1(g.median)} years<br>IQR: ${fmt1(g.q1)} – ${fmt1(g.q3)} years`))
+    .on("mouseleave", hideTip);
+  box.append("line")
+    .attr("x1", g => x(g.median)).attr("x2", g => x(g.median))
+    .attr("y1", g => y(g.area) - 2).attr("y2", g => y(g.area) + y.bandwidth() + 2)
+    .attr("stroke", "#f4f8ff").attr("stroke-width", 2);
+  box.selectAll("circle.lag-outlier").data(g => g.outliers.map(v => ({area: g.area, v}))).join("circle")
+    .attr("class", "lag-outlier")
+    .attr("cx", d => x(d.v)).attr("cy", d => y(d.area) + y.bandwidth() / 2)
+    .attr("r", 2.6).attr("fill", "none").attr("stroke", "rgba(205,214,229,0.6)").attr("stroke-width", 1);
+}
+
+function renderConclusion(papers) {
+  const rows = papers.filter(d => Number.isFinite(num(d.recognition_lag)));
+  const medianLag = d3.median(rows, d => num(d.recognition_lag));
+  const longShare = Math.round(100 * rows.filter(d => num(d.recognition_lag) >= 10).length / rows.length);
+  const withCite = rows.filter(d => num(d.citation_count) > 0);
+  const citeMedian = d3.median(withCite, d => num(d.citation_count));
+  const lagMedian = d3.median(withCite, d => num(d.recognition_lag));
+  const highCiteSlow = withCite.filter(d => num(d.citation_count) >= citeMedian && num(d.recognition_lag) >= lagMedian).length;
+  const highCite = withCite.filter(d => num(d.citation_count) >= citeMedian).length;
+  const slowShare = Math.round(100 * highCiteSlow / Math.max(1, highCite));
+  const intl = rows.filter(d => String(d.international_collaboration) === "true" || d.international_collaboration === true).length;
+  const intlShare = Math.round(100 * intl / rows.length);
+  d3.select("#conclusion-note").text("把时间、领域、主题、引用和网络五个视角的发现合在一起，回到开头提出的核心问题。");
+  renderClaimCards("#conclusion-claims", [
+    claim("时间", `经得起时间检验的研究需要等待：recognition lag 中位数约 ${fmt1(medianLag)} 年，${longShare}% 的获奖论文等待了 10 年以上才被正式确认。`, "图表依据", "Time 模块 lag 分布与 timeline", "说明", "长期影响在发表当下往往不可见，奖项是多年后的回看确认。"),
+    claim("引用", `高引用不等于快确认：引用量高于中位数的论文中，${slowShare}% 的 recognition lag 仍然不低于中位数。`, "图表依据", "Citation vs lag scatter 与象限图", "说明", "引用深度与确认速度是两个维度，需要结合引用轨迹与扩散广度一起读。"),
+    claim("结构", `长期影响是结构性的：它集中在持续设奖的核心会议与基础主题上，并通过机构和国家网络扩散（${intlShare}% 的论文带有可见跨国合作元数据）。`, "图表依据", "Venue / Topic / Network 三个模块", "说明", "这是当前公开获奖记录与元数据下的结构观察，不构成会议或国家排名。")
+  ]);
 }
 
 function renderVenueDecadeMatrix(papers) {

@@ -20,6 +20,7 @@
       <a href="#evidence-thread">Sync</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#network">Network</a>
+      <a href="#conclusion">Conclusion</a>
     </nav>
     <div id="action-dock" class="action-dock dock-collapsed" aria-label="Presentation tools" data-draggable-dock>
       <button id="dock-toggle" class="dock-toggle" type="button" aria-expanded="false" title="Show presentation tools · drag to move">Tools</button>
@@ -148,6 +149,10 @@
       <div class="chart-card wide-card">
         <div class="chart-head"><h3>Field × Decade Heatmap</h3><span>publication-era concentration</span></div>
         <div id="venue-decade-chart" class="chart"></div>
+      </div>
+      <div class="chart-card wide-card">
+        <div class="chart-head"><h3>Recognition Lag by Field</h3><span>median · IQR · whiskers</span></div>
+        <div id="lag-by-area-chart" class="chart tall"></div>
       </div>
       <div class="claim-panel wide-card">
         <div class="claim-panel-head">
@@ -354,6 +359,22 @@
         <div id="network-claims" class="claim-grid"></div>
       </div>
     </section>
+    <section id="conclusion" class="section">
+      <div class="section-title-row">
+        <div>
+          <p class="section-kicker">Conclusion</p>
+          <h2>回到核心问题：什么研究经得起时间检验？</h2>
+        </div>
+        <p class="reading-note" id="conclusion-note"></p>
+      </div>
+      <div class="claim-panel wide-card">
+        <div class="claim-panel-head">
+          <p class="section-kicker">Takeaways</p>
+          <h3>三条主要结论</h3>
+        </div>
+        <div id="conclusion-claims" class="claim-grid"></div>
+      </div>
+    </section>
   </main>
 
   <div id="tooltip" class="tooltip" hidden></div>
@@ -413,6 +434,6 @@
   </div>
   <script src="src/vendor/html-to-image.min.js"></script>
   <script src="src/vendor/jszip.min.js"></script>
-  <script src="src/app.js?v=final-20260612"></script>
+  <script src="src/app.js?v=final2-20260612"></script>
 </body>
 </html>

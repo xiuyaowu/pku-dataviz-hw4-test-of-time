@@ -73,17 +73,18 @@ GitHub Pages 地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-of-time
 
 ## 网页模块
 
-页面按研究问题展开：Opening → Time → Venue / Field → Topic Evolution → Citation / Impact → Paper Explorer → Benchmark Lab → Story Builder → Glossary → Impact Network。
+页面按研究问题展开：Opening → Time → Venue / Field → Topic Evolution → Citation / Impact → Paper Explorer → Benchmark Lab → Story Builder → Glossary → Impact Network → Conclusion。
 
 1. **Time**：recognition lag 分布和核心时间尺度；
-2. **Venue & Field**：会议与领域分布（不是会议质量排名）；
+2. **Venue & Field**：会议与领域分布、领域 × 年代热力图、各领域 recognition lag 箱线图（不是会议质量排名）；
 3. **Topic Evolution**：主题分布、主题随年份演化、代表论文详情卡和 contribution archetype 分类；
 4. **Citation & Recognition**：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
 5. **Paper Explorer**：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
 6. **Benchmark Lab**：把任意选中论文和全数据集/同领域中位数做 percentile 对比；
 7. **Story Builder**：把每个模块转成"问题—证据—解读"的数据故事主线；
 8. **Glossary**：recognition lag、citation depth、impact breadth、OpenAlex proxy 等术语速查；
-9. **Impact Network**：机构和国家/地区分布。
+9. **Impact Network**：机构和国家/地区分布；
+10. **Conclusion**：回到核心问题，给出时间、引用、结构三条主要结论。
 
 ## 本地运行
 
