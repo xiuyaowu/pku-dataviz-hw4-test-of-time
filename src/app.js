@@ -7,9 +7,14 @@ let activePapers = [];
 let compareSelection = {a: null, b: null};
 const tooltip = d3.select("#tooltip");
 const showTip = (event, html) => {
-  tooltip.html(html).attr("hidden", null)
+  tooltip.html(html).attr("hidden", null);
+  const tipH = tooltip.node() ? tooltip.node().offsetHeight : 0;
+  const top = event.clientY + 16 + tipH > window.innerHeight
+    ? Math.max(8, event.clientY - tipH - 12)
+    : event.clientY + 16;
+  tooltip
     .style("left", `${Math.min(event.clientX + 16, window.innerWidth - 340)}px`)
-    .style("top", `${event.clientY + 16}px`);
+    .style("top", `${top}px`);
 };
 const hideTip = () => tooltip.attr("hidden", true);
 
@@ -624,9 +629,10 @@ function renderAwardTimeline(rows, papers) {
   const timelineMarks = svg.selectAll("circle.timeline-dot").data(clean).join("circle")
     .attr("class", "dot timeline-dot")
     .attr("cx", d => x(d.year)).attr("cy", d => y(d.announcement_year))
-    .attr("r", d => r(d.citation_count)).attr("fill", d => lagColor(lagCategory(d.recognition_lag))).attr("opacity", 0.68)
+    .attr("r", d => r(d.citation_count)).attr("fill", d => lagColor(lagCategory(d.recognition_lag))).attr("opacity", 0.55)
+    .on("mouseenter", function() { d3.select(this).raise().attr("opacity", 1); })
     .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>${d.venue} · ${d.year} → ${d.announcement_year}<br>Lag: ${d.recognition_lag} years<br>Citations: ${fmt(d.citation_count)}`))
-    .on("mouseleave", hideTip)
+    .on("mouseleave", function() { d3.select(this).attr("opacity", 0.55); hideTip(); })
     .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
   makeKeyboardMarks(
     timelineMarks,
@@ -804,9 +810,10 @@ function renderScatter(timeline, papers) {
     .attr("class", "dot")
     .attr("cx", d => x(d.recognition_lag)).attr("cy", d => y(d.citation_count))
     .attr("r", d => 3 + Math.sqrt(Math.max(0, num(d.impact_breadth_score))) / 3)
-    .attr("fill", d => area(d.venue_area)).attr("opacity", 0.78)
+    .attr("fill", d => area(d.venue_area)).attr("opacity", 0.6)
+    .on("mouseenter", function() { d3.select(this).raise().attr("opacity", 1); })
     .on("mousemove", (e,d) => showTip(e, `<b>${d.title}</b><br>${d.venue} · ${d.year} → ${d.announcement_year}<br>Lag: ${d.recognition_lag} years<br>Citations: ${fmt(d.citation_count)}`))
-    .on("mouseleave", hideTip)
+    .on("mouseleave", function() { d3.select(this).attr("opacity", 0.6); hideTip(); })
     .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
   makeKeyboardMarks(
     scatterMarks,
@@ -854,9 +861,10 @@ function renderBreadth(rows, papers) {
     .attr("class", "dot breadth-dot")
     .attr("cx", d => x(d.impact_breadth_score)).attr("cy", d => y(d.citation_count))
     .attr("r", d => 3 + Math.sqrt(num(d.citing_country_count)) * 1.2)
-    .attr("fill", d => color(d.venue_area)).attr("opacity", 0.7)
+    .attr("fill", d => color(d.venue_area)).attr("opacity", 0.58)
+    .on("mouseenter", function() { d3.select(this).raise().attr("opacity", 1); })
     .on("mousemove", (e,d) => showTip(e, `<b>${escapeHtml(d.title)}</b><br>Breadth: ${fmt1(d.impact_breadth_score)}<br>Citing fields: ${fmt(d.citing_field_count)}<br>Citing countries: ${fmt(d.citing_country_count)}<br>Citations: ${fmt(d.citation_count)}`))
-    .on("mouseleave", hideTip)
+    .on("mouseleave", function() { d3.select(this).attr("opacity", 0.58); hideTip(); })
     .on("click", (_,d) => updateDetail(papers.find(p => p.paper_id === d.paper_id) || d));
   makeKeyboardMarks(
     breadthMarks,
