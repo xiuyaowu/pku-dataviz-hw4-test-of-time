@@ -76,7 +76,7 @@ GitHub Pages 地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-of-time
 页面按研究问题展开：Opening → Time → Venue / Field → Topic Evolution → Citation / Impact → Paper Explorer → Benchmark Lab → Story Builder → Glossary → Impact Network。
 
 1. **Time**：recognition lag 分布和核心时间尺度；
-2. **Venue & Field**：会议与领域分布（不是会议质量排名）；研究问题转向说明见 `docs/methodology/best_paper_vs_test_of_time_framing.md`；
+2. **Venue & Field**：会议与领域分布（不是会议质量排名）；
 3. **Topic Evolution**：主题分布、主题随年份演化、代表论文详情卡和 contribution archetype 分类；
 4. **Citation & Recognition**：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
 5. **Paper Explorer**：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
