@@ -23,23 +23,14 @@
 | institution / country counts | “基于作者机构元数据的可见分布。” | “完整合作网络”“真实贡献份额”或“国家科研实力排名”。 |
 | same-field percentile | “相对当前数据集中同领域样本的位置。” | “全 CS 排名”或“跨领域价值比较”。 |
 
-## 3. Documentation consistency check
 
-| 文件 | 当前口径 | 后续维护要求 |
-|---|---|---|
-| `README.md` | 数据使用说明已指向数据字典和 provenance audit。 | 新增指标或图表时同步更新数据说明和限制。 |
-| `docs/methodology/data_dictionary.md` | 每个核心数据文件说明字段、来源层级和使用边界。 | 不新增没有定义的派生指标；新增字段需写清来源。 |
-| `docs/methodology/source_citation_appendix.md` | 把 award seed、paper pages、OpenAlex metadata、derived citation/breadth tables 和 manual evidence 分成最终报告可引用的 source layers。 | 最终参考文献和 slide source notes 应分层引用，不把 proxy metric 写成 paper-specific evidence。 |
-| `docs/methodology/methods_and_limitations.md` | 方法段统一解释 seed、OpenAlex/public metadata、derived metrics 和 manual annotations。 | 最终报告压缩时保留“proxy / not causal / not official ranking”口径。 |
-| `docs/report/report_skeleton.md` | 模块 findings matrix 已加入 metric boundary 提醒。 | B-F 补案例时必须为人工判断添加 evidence URL。 |
+## 3. 推荐表述
 
-## 4. Final-report careful wording block
+> 本项目以公开 Test of Time Award 论文列表为 seed，并结合 OpenAlex 等开放学术元数据补充引用、主题、机构和国家/地区信息。Recognition lag 表示从发表到获奖的间隔；citation depth 和 citation trajectory 用于描述公开元数据中的引用规模与时间变化；impact breadth 是基于 OpenAlex citing works sample 的扩散广度近似指标。所有这些指标用于观察当前数据集中的结构性模式和代表案例，不被解释为官方评奖原因、完整引用网络或跨领域绝对排名。涉及单篇论文贡献、工业影响或基础设施落地的判断，均以人工阅读后补充的 evidence URL 为依据。
 
-> 本项目以公开 Test of Time Award 论文列表为 seed，并结合 OpenAlex 等开放学术元数据补充引用、主题、机构和国家/地区信息。Recognition lag 表示从发表到获奖的间隔；citation depth 和 citation trajectory 用于描述公开元数据中的引用规模与时间变化；impact breadth 是基于 OpenAlex citing works sample 的扩散广度近似指标。所有这些指标用于观察当前数据集中的结构性模式和代表案例，不被解释为官方评奖原因、完整引用网络或跨领域绝对排名。涉及单篇论文贡献、工业影响或基础设施落地的判断，需要由人工阅读补充 evidence URL 后再写入最终报告。
+## 4. 解读边界
 
-## 5. Known final checks
-
-- 最终报告中的 “impact breadth” 始终带有 approximate / proxy / sample 边界。
+- “impact breadth” 始终带有 approximate / proxy / sample 边界。
 - 不把 venue paper_count 写成会议质量排名。
 - 不把 citation_count 写成论文重要性的唯一标准。
 - 不把 institution/country counts 写成完整合作网络或国家实力排名。

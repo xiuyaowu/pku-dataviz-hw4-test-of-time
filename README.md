@@ -66,12 +66,8 @@ GitHub Pages 地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-of-time
 │   └── institution_stats.csv / country_stats.csv
 ├── manual_annotations/     # 代表论文的人工补充标注
 ├── docs/
-│   ├── report/             # 小报告（含成员分工与贡献）
 │   ├── demo/               # 模块截图
-│   ├── methodology/        # 数据字段说明、数据来源与处理方式、方法与限制、引用附录、术语表
-│   ├── analysis/           # 各模块分析笔记、案例研究与数据质量核查（*.md / *.csv）
-│   └── project/            # 项目计划与小组分工
-├── 小组作业说明.md
+│   └── methodology/        # 数据字段说明、数据来源与处理方式、方法与限制、引用附录、术语表
 └── 小组作业说明-20260415.pdf
 ```
 
@@ -113,19 +109,19 @@ http://127.0.0.1:8765/index.html
 - 参考文献与逐层引用见 `docs/methodology/source_citation_appendix.md` / `.csv`；
 - 方法与限制说明见 `docs/methodology/methods_and_limitations.md`。
 
-报告与页面中，`citation_count`、`impact_breadth_score`、institution/country counts 均表述为公开元数据下的近似观察，而不是官方评奖原因、完整引用网络或跨领域绝对排名。各模块的数据质量核查与案例分析笔记保存在 `docs/` 下对应的 `*_audit` / `*_case` / `*_notes` 文档中。
+报告与页面中，`citation_count`、`impact_breadth_score`、institution/country counts 均表述为公开元数据下的近似观察，而不是官方评奖原因、完整引用网络或跨领域绝对排名。
 
 ## 人工标注
 
-`manual_annotations/` 中是代表论文的人工补充标注（DOI、论文页、一句话贡献、evidence URL），用于网页中的论文详情卡和展示案例；Top 12 代表论文的人工核查见 `docs/analysis/manual_topic_audit_top12.md` 和 `docs/analysis/evidence_cards_top12.md`。
+`manual_annotations/` 中是 Top 12 代表论文的人工补充标注（DOI、论文页、一句话贡献、evidence URL），用于网页中的论文详情卡和展示案例。
 
 ## 小组分工
 
-详细分工与各成员贡献见：`docs/project/team_division.md` 和 `docs/report/` 下的小报告。
+详细分工与各成员贡献见随作业提交的项目报告，概览如下。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
-| A | 项目架构 / 全站 baseline / GitHub 协作与最终整合 | 仓库与协作流程、全站 D3 baseline、报告骨架、code review、最终整合和 QA |
+| A | 项目架构 / 全站 baseline / GitHub 协作与最终整合 | 仓库与协作流程、全站 D3 baseline、code review、最终整合和 QA |
 | B | 时间线与 recognition lag | 分析发表年、获奖年、recognition lag，做时间线和分布图 |
 | C | 会议 / 领域分布 | 分析 venue、venue_area，做会议排名、领域分布、热力图 |
 | D | 主题演化 | 分析 topic_label / concepts，做主题演化和代表论文卡片 |

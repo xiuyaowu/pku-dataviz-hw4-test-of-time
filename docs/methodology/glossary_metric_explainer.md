@@ -1,6 +1,6 @@
 # Glossary and metric explainer
 
-Purpose: give annotators and graders one shared vocabulary for the live demo, report, and Q&A. Use these terms consistently across the page, report skeleton, and presentation pack.
+Purpose: define the shared vocabulary used consistently across the web page and the project report.
 
 ## Quick usage rule
 
@@ -17,7 +17,7 @@ When a metric is derived from public metadata rather than human reading, describ
 | Venue area | A normalized field label assigned to venues, such as Database, Networking, IR, CV, or Software Engineering. | Venue and Field module | “Venue area helps group communities, but it should not be treated as a perfect taxonomy.” |
 | Topic label | A first-pass topic category from API concepts and rule-based normalization, later improved by manual annotation for representative papers. | Topic module, evidence cards | “Automatic topic labels show broad patterns; representative cases should use manual topic checks before final writing.” |
 | Same-field benchmark | A comparison between one selected paper and papers in the same venue area or topic neighborhood. | Benchmark Lab | “Same-field benchmarks reduce cross-field citation bias, but still depend on label quality and dataset coverage.” |
-| Evidence card | A short paper-level card with title, venue/year, contribution summary, evidence links, representative reason, and human-check status. | Explorer, report, presentation | “Use presentation-ready cards first; if a card is marked for human check, keep the wording cautious.” |
+| Evidence card | A short paper-level card with title, venue/year, contribution summary, evidence links, and representative reason. | Explorer, report, presentation | “Each card links to its evidence URLs; cautious wording is kept where evidence is proxy-based.” |
 | Coverage status | A readiness label such as `ready`, `presentation-ready-cautious`, `proxy only`, or `needs human check`. | Evidence coverage matrix | “Coverage status describes current evidence readiness, not paper quality.” |
 | Award-history bias | Differences caused by which venues created Test-of-Time awards, when they started, and how complete public records are. | Venue, methods, limitations | “Venue counts are visible award-record counts, not a ranking of venue quality.” |
 
@@ -39,11 +39,9 @@ When a metric is derived from public metadata rather than human reading, describ
 | “Industrial impact is obvious from citation count” | “Industrial impact requires separate evidence URL or award-citation support” |
 | “Topic labels are ground truth” | “Topic labels are first-pass labels, with manual checks for representative papers” |
 
-## Module usage
+## Usage conventions
 
-- A: keep README, report skeleton, and final QA using the same metric names.
-- B: use `recognition lag` only for award timing, not causal impact timing.
-- C: describe venue/field counts as award-record visibility, not rankings.
-- D: prefer manual topic labels for Top 12 representative papers.
-- E: always pair impact breadth with the OpenAlex proxy boundary.
-- F: use these short safe phrases in PPT speaker notes and defense answers.
+- `recognition lag` refers to award timing only, not causal impact timing.
+- Venue/field counts describe award-record visibility, not venue rankings.
+- Representative papers use manually checked topic labels.
+- Impact breadth is always paired with its OpenAlex-proxy boundary.
