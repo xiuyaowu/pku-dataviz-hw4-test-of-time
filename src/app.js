@@ -2085,9 +2085,9 @@ function openVenueYearEvidenceCard(d) {
     </div>
     <div class="evidence-section"><b>Representative Papers</b><ul>${papers.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul></div>
     <div class="evidence-section"><b>Why Notable</b><p>${escapeHtml(d.why_notable || "—")}</p></div>
-    <div class="evidence-section"><b>Safe Wording Boundary</b><p>${escapeHtml(d.safe_wording_boundary || "—")}</p></div>
+    <div class="evidence-section"><b>Interpretation Boundary</b><p>${escapeHtml(d.interpretation_boundary || "—")}</p></div>
     <div class="evidence-links"><b>Evidence links</b>${d.source_url ? `<a href="${escapeHtml(d.source_url)}" target="_blank" rel="noreferrer">Source data</a>` : ""}${d.paper_url_sample ? `<a href="${escapeHtml(d.paper_url_sample)}" target="_blank" rel="noreferrer">Paper sample</a>` : ""}</div>
-    <p class="reading-note mini-note">Safe wording: 该案例用于说明数据中的长期影响线索，不直接等同于官方评奖原因；breadth 仍是 OpenAlex sampled proxy。</p>
+    <p class="reading-note mini-note">该案例用于说明数据中的长期影响线索，不直接等同于官方评奖原因；breadth 仍是 OpenAlex sampled proxy。</p>
   `;
   modal.hidden = false;
 }
@@ -2414,11 +2414,24 @@ function compareCaseHtml(p, label) {
       <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>引用深度</span></div>
       <div class="detail-stat"><b>${fmt1(num(p.impact_breadth_score))}</b><span>扩散广度</span></div>
       <div class="detail-stat"><b>${fmt(num(p.recognition_lag))}y</b><span>获奖滞后</span></div>
-      <div class="detail-stat"><b>${escapeHtml(p.display_priority || p.evidence_checked || "check")}</b><span>证据状态</span></div>
+      <div class="detail-stat"><b>${escapeHtml(evidenceStatusLabel(p))}</b><span>证据状态</span></div>
     </div>
     <p class="abstract">${escapeHtml(p.one_sentence_contribution_zh || p.why_time_tested_zh || "该论文可通过证据卡片查看贡献、引用与长期影响线索。")}</p>
     <button type="button" class="small-action" data-compare-evidence="${escapeHtml(p.paper_id)}">查看长期影响</button>
   </article>`;
+}
+
+function evidenceStatusLabel(p) {
+  const raw = p.display_priority || p.evidence_checked || "";
+  const map = {
+    "presentation-ready": "已核验",
+    "presentation-ready-cautious": "已核验",
+    "partial-source-added": "已补充来源",
+    "doi-corrected-needs-human-final-check": "DOI 已修正",
+    "yes": "已核验",
+    "no": "—"
+  };
+  return map[raw] || raw || "—";
 }
 
 function evidenceLinks(p) {
@@ -2438,7 +2451,7 @@ function openEvidenceCard(p) {
       <span class="chip">${escapeHtml(p.venue || "Venue")}</span>
       <span class="chip">${p.year || "Year"} → ${p.announcement_year || "Award"}</span>
       <span class="chip">${escapeHtml(p.manual_topic_label || p.topic_label || "Topic")}</span>
-      <span class="chip">${escapeHtml(p.display_priority || p.evidence_checked || "needs check")}</span>
+      <span class="chip">${escapeHtml(evidenceStatusLabel(p))}</span>
     </div>
     <div class="detail-stats">
       <div class="detail-stat"><b>${fmt(num(p.citation_count))}</b><span>引用深度</span></div>
@@ -2448,7 +2461,7 @@ function openEvidenceCard(p) {
     </div>
     <div class="evidence-section"><b>核心贡献</b><p>${escapeHtml(p.one_sentence_contribution_zh || p.abstract || "该论文的贡献可结合摘要与证据链接继续阅读。")}</p></div>
     <div class="evidence-section"><b>长期影响</b><p>${escapeHtml(p.why_time_tested_zh || p.archetype_rationale || "该案例展示了长期影响在主题、引用与复用维度上的可见线索。")}</p></div>
-    <div class="evidence-links"><b>证据链接</b>${links.length ? links.map((url, i) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Evidence ${i + 1}</a>`).join("") : `<span>needs check</span>`}</div>
+    <div class="evidence-links"><b>证据链接</b>${links.length ? links.map((url, i) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Evidence ${i + 1}</a>`).join("") : `<span>暂无链接</span>`}</div>
     <p class="reading-note mini-note">该案例用于说明数据中的长期影响线索；扩散广度来自 OpenAlex 样本统计。</p>
   `;
   modal.hidden = false;
@@ -2696,49 +2709,49 @@ function renderStoryboard(data) {
   const topCountry = countries.slice().sort((a,b) => d3.descending(num(a.paper_count), num(b.paper_count)))[0];
   const cards = [
     {
-      owner: "B · Time",
+      owner: "Time",
       href: "#time",
       question: "长期影响需要多久才被看见？",
       evidence: `滞后中位数 ${fmt1(lagMedian)} 年；最长案例 ${fmt(num(longest?.recognition_lag))} 年`,
       soWhat: "用时间尺度说明 Test of Time 不是即时热度，而是多年后的重新确认。"
     },
     {
-      owner: "C · Venue",
+      owner: "Venue & Field",
       href: "#venue",
       question: "长期影响在哪些会议和领域聚集？",
       evidence: `${topVenue?.venue || "Top venue"} 是最高频会议；${topArea?.venue_area || "top field"} 是最高频领域`,
       soWhat: "把数量榜解释为数据覆盖和奖项历史下的结构分布，避免写成会议质量排名。"
     },
     {
-      owner: "D · Topic",
+      owner: "Topic Evolution",
       href: "#topic",
       question: "哪些主题更容易沉淀成经典？",
       evidence: `${topTopic?.topic_label || "Top topic"} 是最高频主题标签`,
       soWhat: "用代表论文卡把抽象 topic 转成可讲的研究问题、方法和影响路径。"
     },
     {
-      owner: "E · Citation",
+      owner: "Citation & Impact",
       href: "#citation",
       question: "高引用和长期价值是不是一回事？",
       evidence: `${shortTitle(topCitation?.title)} 是高引用代表案例`,
       soWhat: "用 depth × breadth 和 trajectory 说明引用量只是影响力的一种切面。"
     },
     {
-      owner: "A/F · Explorer",
+      owner: "Paper Explorer",
       href: "#explorer",
       question: "能否让报告结论可追溯到具体论文？",
       evidence: `${fmt(papers.length)} 篇论文可按标题、会议、主题和领域检索`,
       soWhat: "把项目从静态图表升级为证据库，展示时可以现场检索和点击代表论文。"
     },
     {
-      owner: "A/E · Benchmark",
+      owner: "Benchmark Lab",
       href: "#benchmark",
       question: "单篇论文到底强在哪里？",
       evidence: `${shortTitle(topBreadth?.title)} 是高扩散广度代表案例`,
       soWhat: "用 percentile 语言把代表案例讲清楚：相对全数据集和同领域处在什么位置。"
     },
     {
-      owner: "F · Network",
+      owner: "Impact Network",
       href: "#network",
       question: "长期影响如何跨机构和国家扩散？",
       evidence: `${topInstitution?.name || "Top institution"} / ${topCountry?.country || "Top country"} 在可见元数据中出现最多`,
@@ -2907,7 +2920,7 @@ function updateEvidenceThread(p) {
     {label: "Topic", value: topicLabel, note: `同主题论文：${topicPeerCount || 1} 篇`},
     {label: "Citation", value: `${fmt(num(p.citation_count))} 次引用`, note: "公开引用元数据"},
     {label: "Profile", value: bestMetric ? `${bestMetric.label} p${fmt1(bestMetric.percentile)}` : "长期影响画像", note: "相对位置最高的维度"},
-    {label: "Network", value: countries.slice(0, 3).join(" / ") || "元数据待补充", note: `${institutions.length || 0} 个机构标签`}
+    {label: "Network", value: countries.slice(0, 3).join(" / ") || "暂无机构/地区元数据", note: `${institutions.length || 0} 个机构标签`}
   ];
   target.html(`
     <div class="thread-hero-card">

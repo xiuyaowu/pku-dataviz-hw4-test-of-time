@@ -20,7 +20,7 @@ AODV（*Ad-hoc On-Demand Distance Vector Routing*）则展示了 citation depth 
 
 ---
 
-**安全表述边界检查**：
+**谨慎表述边界检查**：
 - ✅ 所有 impact breadth 均注明 "OpenAlex sampled proxy" 或"公开元数据近似指标"
 - ✅ 未将 citation count 写成官方获奖原因
 - ✅ AODV 分歧案例明确表述为 proxy sensitivity，而非论文优劣判断

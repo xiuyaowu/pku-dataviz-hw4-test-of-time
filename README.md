@@ -10,13 +10,13 @@
 
 ## 在线 Demo
 
-GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-of-time/>
+GitHub Pages 地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-of-time/>
 
-如果在线页面暂时不可访问，请按下方“本地运行”启动静态服务器查看。
+如果在线页面暂时不可访问，请按下方"本地运行"启动静态服务器查看。
 
 ## 项目目标
 
-本项目基于 Test of Time Award 论文数据，分析计算机领域中哪些研究在多年后仍然被认为具有重要影响。我们会从时间跨度、会议领域、研究主题、引用轨迹、影响扩散、作者机构网络等角度进行可视化分析。
+本项目基于 Test of Time Award 论文数据，分析计算机领域中哪些研究在多年后仍然被认为具有重要影响。我们从时间跨度、会议领域、研究主题、引用轨迹、影响扩散、作者机构网络等角度进行可视化分析。
 
 核心问题：
 
@@ -24,7 +24,7 @@ GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-o
 
 ## Demo 预览图
 
-不安装任何环境时，可以先通过下面几张截图了解当前网页效果。完整交互版请按“本地运行”部分启动静态服务器后查看。课堂投影或截图时可打开 `http://127.0.0.1:8765/index.html?present=1`，或在页面中按 `P` 切换 Presentation mode。最终展示前可按 `docs/final_demo_rehearsal_runbook.md` 做一次 10 分钟路线彩排，确认现场演示、备用截图路线和安全表述都一致。
+不安装任何环境时，可以先通过下面几张截图了解网页效果。完整交互版请按"本地运行"部分启动静态服务器后查看。课堂投影或截图时可打开 `http://127.0.0.1:8765/index.html?present=1`，或在页面中按 `P` 切换 Presentation mode。
 
 ![Homepage overview](docs/demo/homepage-overview.png)
 
@@ -44,196 +44,50 @@ GitHub Pages 目标地址：<https://leejamesss.github.io/pku-dataviz-hw4-test-o
 |---|
 | ![Network diffusion module](docs/demo/network-diffusion.png) |
 
-## 协作规则：必须 Pull Request，不要直接改 main
-
-为了避免文件互相覆盖、方便统一审核，本仓库采用 **always PR** 协作方式。
-
-1. 不要直接 push 到 `main` 分支。
-2. 每个人做自己的任务时，先从 `main` 新建分支。
-3. 修改完成后提交到自己的分支，并发 Pull Request。
-4. PR 需要审核后再合并。
-5. 如果多人要改同一个文件，请先在群里同步一下。
-
-推荐流程：
-
-```bash
-git checkout main
-git pull origin main
-git checkout -b feature/your-name-task
-
-# 修改文件后
-git add .
-git commit -m "add: your task description"
-git push -u origin feature/your-name-task
-```
-
-然后在 GitHub 页面创建 Pull Request。
-
 ## 仓库结构
 
 ```text
 .
 ├── README.md
-├── index.html
-├── docs/
-│   ├── project_plan.md
-│   ├── team_division.md
-│   ├── work_board.md
-│   ├── final_qa_checklist.md
-│   ├── final_integration_dry_run_log.md
-│   ├── contribution_evidence_ledger.md
-│   ├── pr_review_rubric.md
-│   ├── a_lead_quality_system.md
-│   ├── module_handoff_cards.md
-│   ├── quality_upgrade_plan.md
-│   ├── stretch_backlog.md
-│   ├── feature_iteration_system.md
-│   ├── evidence_cards_top12.md
-│   ├── evidence_card_presentation_matrix.md
-│   ├── methods_and_limitations.md
-│   ├── presentation_pack.md
-│   ├── final_presentation_blueprint.md
-│   ├── final_demo_rehearsal_runbook.md
-│   ├── defense_qa_pack.md
-│   ├── story_builder_board.md
-│   ├── glossary_metric_explainer.md
-│   ├── slide_visual_consistency_audit.md
-│   ├── final_submission_packaging_checklist.md
-│   ├── final_submission_readiness_scorecard.md
-│   ├── final_archive_manifest.md
-│   ├── final_archive_file_manifest.csv
-│   ├── final_report_figure_evidence_index.md
-│   ├── final_report_figure_evidence_index.csv
-│   ├── final_report_claim_bank.md
-│   ├── final_report_claim_bank.csv
-│   ├── data_readiness_matrix.md
-│   ├── uncertainty_proxy_confidence_playbook.md
-│   ├── source_citation_appendix.md
-│   ├── source_citation_appendix.csv
-│   ├── network_visual_presentation_handoff.md
-│   ├── network_ecosystem_case_notes.md
-│   ├── network_ecosystem_case_notes.csv
-│   ├── institution_country_attribution_audit.md
-│   ├── institution_country_attribution_audit.csv
-│   ├── time_recognition_lag_handoff.md
-│   ├── time_micro_annotations.md
-│   ├── recognition_lag_outlier_cases.md
-│   ├── award_lifecycle_analysis.md
-│   ├── award_lifecycle_prepost_metrics.csv
-│   ├── award_lifecycle_relative_year_summary.csv
-│   ├── time_module_demo_claim_cards.md
-│   ├── time_module_demo_claim_cards.csv
-│   ├── award_era_cohort_comparison.md
-│   ├── award_era_cohort_comparison.csv
-│   ├── time_data_quality_audit.md
-│   ├── time_data_quality_audit.csv
-│   ├── venue_field_handoff.md
-│   ├── venue_field_imbalance_caveats.md
-│   ├── venue_year_case_studies.md
-│   ├── venue_year_case_studies.csv
-│   ├── venue_year_evidence_cards.md
-│   ├── venue_year_evidence_cards.csv
-│   ├── venue_source_traceability_audit.md
-│   ├── venue_source_traceability_audit.csv
-│   ├── venue_normalization_count_guide.md
-│   ├── venue_normalization_count_guide.csv
-│   ├── best_paper_vs_test_of_time_framing.md
-│   ├── topic_evolution_handoff.md
-│   ├── topic_shift_narrative.md
-│   ├── topic_shift_narrative_cases.csv
-│   ├── manual_topic_audit_top12.md
-│   ├── manual_topic_audit_top12.csv
-│   ├── research_archetype_taxonomy.md
-│   ├── research_archetype_taxonomy_top12.csv
-│   ├── topic_presentation_case_shortlist.md
-│   ├── topic_presentation_case_shortlist.csv
-│   ├── topic_venue_crosswalk.md
-│   ├── topic_venue_crosswalk.csv
-│   ├── topic_label_consistency_check.md
-│   ├── topic_label_consistency_check.csv
-│   ├── citation_impact_handoff.md
-│   ├── citation_trajectory_archetypes.md
-│   ├── impact_breadth_evidence_audit.md
-│   ├── citation_metric_sensitivity_notes.md
-│   ├── citation_metric_sensitivity_notes.csv
-│   ├── evidence_coverage_matrix.md
-│   ├── evidence_coverage_matrix.csv
-│   ├── top12_evidence_coverage_matrix.csv
-│   ├── final_case_selection_risk_register.md
-│   ├── final_case_selection_risk_register.csv
-│   ├── final_evidence_verification_queue.md
-│   ├── final_evidence_verification_queue.csv
-│   ├── qr_online_demo_handoff.md
-│   ├── grading_rubric_full_score_mapping.md
-│   ├── demo_script.md
-│   ├── demo/
-│   │   ├── homepage-overview.png
-│   │   ├── time-and-timeline.png
-│   │   ├── venue-and-field.png
-│   │   ├── topic-evolution.png
-│   │   ├── citation-and-impact.png
-│   │   ├── explorer-evidence-index.png
-│   │   ├── benchmark-lab.png
-│   │   ├── network-diffusion.png
-│   │   └── online-demo-qr.png
-│   ├── report/
-│   │   ├── contribution_A.md
-│   │   └── report_skeleton.md
-│   ├── data_dictionary.md
-│   ├── data_provenance_audit.md
-│   └── source_citation_appendix.md
-├── data/
+├── index.html              # 主页面（8 个研究问题模块）
+├── time.html               # 时间模块补充页：滞后时长排行
+├── example.html            # 典型案例解读页
+├── src/
+│   ├── app.js
+│   ├── styles.css
+│   └── vendor/             # 本地化的 d3 依赖
+├── data/                   # 预处理后的 CSV 数据
 │   ├── papers_enriched.csv
 │   ├── award_timeline.csv
 │   ├── recognition_lag_distribution.csv
-│   ├── venue_stats.csv
-│   ├── venue_area_stats.csv
-│   ├── topic_stats.csv
-│   ├── topic_year_stats.csv
-│   ├── citation_trajectories.csv
-│   ├── citing_breadth_metrics.csv
-│   ├── institution_stats.csv
-│   └── country_stats.csv
-├── manual_annotations/
-│   ├── manual_paper_annotations_top60_template.csv
-│   ├── manual_paper_annotations_top12_evidence_ready.csv
-│   └── 按方向拆分的 5 份待补充表
-├── src/
-│   ├── app.js
-│   └── styles.css
+│   ├── venue_stats.csv / venue_area_stats.csv / venue_year_evidence_cards.csv
+│   ├── topic_stats.csv / topic_year_stats.csv
+│   ├── citation_trajectories.csv / citing_breadth_metrics.csv
+│   └── institution_stats.csv / country_stats.csv
+├── manual_annotations/     # 代表论文的人工补充标注
+├── docs/
+│   ├── report/             # 小报告（含成员分工与贡献）
+│   ├── demo/               # 模块截图
+│   ├── methodology/        # 数据字段说明、数据来源与处理方式、方法与限制、引用附录、术语表
+│   ├── analysis/           # 各模块分析笔记、案例研究与数据质量核查（*.md / *.csv）
+│   └── project/            # 项目计划与小组分工
 ├── 小组作业说明.md
 └── 小组作业说明-20260415.pdf
 ```
 
-## 当前基础网页
+## 网页模块
 
-仓库已经包含一个可直接运行的 D3 网页基础版：`index.html` + `src/app.js` + `src/styles.css`。
+页面按研究问题展开：Opening → Time → Venue / Field → Topic Evolution → Citation / Impact → Paper Explorer → Benchmark Lab → Story Builder → Glossary → Impact Network。
 
-当前页面包含 8 个研究问题模块：
-
-1. Time：recognition lag 分布和核心时间尺度；
-2. Venue & Field：会议排名和领域分布；Best Paper vs Test of Time 的研究问题转向说明见 `docs/best_paper_vs_test_of_time_framing.md`；
-3. Topic Evolution：主题分布、主题随年份演化、代表论文详情卡和 contribution archetype 分类；
-4. Citation & Recognition：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
-5. Paper Explorer：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
-6. Benchmark Lab：把任意选中论文和全数据集/同领域中位数做 percentile 对比，生成讲解视角；
-7. Story Builder：把每个模块转成“问题-证据-so what-owner”的报告展示主线；
-8. Glossary：把 recognition lag、citation depth、impact breadth、OpenAlex proxy 等术语做成页面速查和报告/PPT 统一口径；
-9. Impact Network：机构和国家/地区分布。
-
-B-F 主要模块末尾还加入了 report claim cards，把每个模块的发现拆成 `Finding / Evidence / Boundary` 或 `Case / Evidence / Interpretation`，方便队友直接迁移到最终报告并补充人工案例解释。
-
-Topic Evolution 模块的报告底稿见 `docs/topic_evolution_handoff.md`，其中已给出 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings 和 topic label 写作边界；Top 12 代表论文的 topic 人工核查见 `docs/manual_topic_audit_top12.md` 和 `docs/manual_topic_audit_top12.csv`，其中把 API topic 分为 aligned / corrected / needs review。代表论文的 contribution archetype 分类见 `docs/research_archetype_taxonomy.md` 和 `docs/research_archetype_taxonomy_top12.csv`，用于回答“长期留下来的到底是哪类研究贡献”。Topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`，把 8 个可展示代表案例连接到人工 topic label、证据 URL、slide use 和 safe wording。Topic × Venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来；topic-label consistency check 见 `docs/topic_label_consistency_check.md` / `.csv`，用于把自动 topic bucket、Top-12 人工核查和最终 review queue 接起来，同时保留“不是 venue 排名 / 不是官方 topic taxonomy / 不是 topic 重要性排名”的边界。
-
-Time 模块的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` 和 `docs/recognition_lag_outlier_cases.csv`，其中已把 short / typical / long recognition lag 案例整理成报告段落、展示话术和人工 evidence-check 清单；Time 截图中的微注释说明见 `docs/time_micro_annotations.md`，用于解释 dense window、median band 和 long tail 的安全表述。Award lifecycle 补充包见 `docs/award_lifecycle_analysis.md`、`docs/award_lifecycle_prepost_metrics.csv` 和 `docs/award_lifecycle_relative_year_summary.csv`，用于把 citation trajectory 按获奖年 `t=0` 对齐，比较获奖前后可见引用窗口，同时保留非因果表述；publication-era cohort 对照见 `docs/award_era_cohort_comparison.md` / `.csv`，用于解释不同发表年代的 observed recognition window 和 award-history / right-censoring 边界。Time 模块展示 claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，把 dataset span、lag 分布、short / typical / long lag cases 和 lifecycle Q&A 连接到确切数据锚点、safe wording 和 B-owner 人工检查。Time data quality audit 见 `docs/time_data_quality_audit.md` / `.csv`，用于确认 250 行 timing metadata 都可计算、source coverage 完整，并把 lag 结论限定为当前数据集的 award-timing observation。
-
-Venue & Field 模块的 venue-year case notes 见 `docs/venue_year_case_studies.md` 和 `docs/venue_year_case_studies.csv`，可用于把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等具体 cluster 放进报告或展示；数量集中度和解释边界见 `docs/venue_field_imbalance_caveats.md`，其中已整理 Top 3 / Top 6 venue 占比、Top 5 venue-area 占比、safe explanation bullets 和“不是会议排名”的可复制段落。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于把每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和 safe wording boundary 接到 C 模块报告/PPT；venue normalization/count guide 见 `docs/venue_normalization_count_guide.md` / `.csv`，用于给 raw venue counts 增加 publication-span / award-window denominator 读法，避免把数量榜写成会议质量排名。
-
-Citation & Impact 模块的报告底稿见 `docs/citation_impact_handoff.md`，其中已给出 citation depth / trajectory / impact breadth 的定义、四象限代表案例、3 条可写入报告的 findings 和 OpenAlex proxy 表述边界；citation trajectory 的 observed-window archetype 候选见 `docs/citation_trajectory_archetypes.md` 和 `docs/citation_trajectory_archetypes.csv`；Top 12 代表论文的 breadth 证据分级见 `docs/impact_breadth_evidence_audit.md` 和 `docs/impact_breadth_evidence_audit.csv`；citation metric sensitivity notes 见 `docs/citation_metric_sensitivity_notes.md` / `.csv`，用于比较 citation depth、impact breadth 和 recognition lag 的一致与分歧，避免把单一 proxy 写成完整长期影响；模块 × 证据类型与 Top 12 代表论文的整体覆盖审计见 `docs/evidence_coverage_matrix.md`、`docs/evidence_coverage_matrix.csv` 和 `docs/top12_evidence_coverage_matrix.csv`。最终 report/PPT 选案例时，可用 `docs/final_case_selection_risk_register.md` 和 `docs/final_case_selection_risk_register.csv` 先筛低风险代表论文，再把 backup cases 交给 owner 做 evidence URL 核查；最终逐篇 URL-open 和 safe wording 检查队列见 `docs/final_evidence_verification_queue.md` / `.csv`。不确定性和 proxy-confidence 统一说明见 `docs/uncertainty_proxy_confidence_playbook.md`，用于区分 data-backed、proxy-only 和仍需人工核查的结论。术语统一口径见 `docs/glossary_metric_explainer.md`，页面中也加入了 Glossary 速查区，便于展示和答辩时解释 proxy 指标边界。
-
-Story Builder 的报告叙事板见 `docs/story_builder_board.md`，把 B-F 模块和 Explorer / Benchmark / Network 串成 `question → evidence → interpretation → boundary → owner` 的 10 条报告 claim。最终报告图表证据索引见 `docs/final_report_figure_evidence_index.md` / `.csv`，用于把每个 D3 模块连接到截图、数据文件、报告段落、owner 和 safe wording boundary。Network 具体案例见 `docs/network_ecosystem_case_notes.md` / `.csv`，用于把机构、国家/地区、工业实验室可见性和 metadata boundary 转成报告/PPT 可用例子。代表论文证据卡见 `docs/evidence_cards_top12.md`；课堂展示和报告优先使用 `docs/evidence_card_presentation_matrix.md` 中标为 presentation-ready-cautious 的 8 张卡，避免把仍需人工复核的论文作为主展示证据。
-
-这个版本的目标是作为小组协作底座：大家可以并行补充数据解释、优化单个图表、增加交互，不需要从零搭页面。
+1. **Time**：recognition lag 分布和核心时间尺度；
+2. **Venue & Field**：会议与领域分布（不是会议质量排名）；研究问题转向说明见 `docs/methodology/best_paper_vs_test_of_time_framing.md`；
+3. **Topic Evolution**：主题分布、主题随年份演化、代表论文详情卡和 contribution archetype 分类；
+4. **Citation & Recognition**：引用量与 recognition lag 的关系、引用轨迹、影响深度/广度；
+5. **Paper Explorer**：把 250 篇论文做成可检索、可排序、可点击联动详情卡的证据索引；
+6. **Benchmark Lab**：把任意选中论文和全数据集/同领域中位数做 percentile 对比；
+7. **Story Builder**：把每个模块转成"问题—证据—解读"的数据故事主线；
+8. **Glossary**：recognition lag、citation depth、impact breadth、OpenAlex proxy 等术语速查；
+9. **Impact Network**：机构和国家/地区分布。
 
 ## 本地运行
 
@@ -249,83 +103,37 @@ python3 -m http.server 8765 --bind 127.0.0.1
 http://127.0.0.1:8765/index.html
 ```
 
-修改 `src/app.js` 或 `src/styles.css` 后，刷新网页即可查看效果。展示或 review 时也可以用键盘抽查交互：按 Tab 聚焦主要 SVG marks，Enter/Space 可触发可选论文/更新 detail panel；这属于 demo 可达性增强，不代表完整 WCAG 认证。
+页面支持键盘交互：按 Tab 聚焦主要 SVG marks，Enter/Space 可触发选中论文/更新 detail panel。
 
-## 分工概览
+## 数据来源与真实性说明
 
-详细分工见：`docs/team_division.md`
+- 原始数据：各会议 Test of Time Award 官方页面（award seed），论文元数据与引用数据来自 OpenAlex 等开放科学 API；
+- 数据来源分层、proxy 指标边界和报告口径见 `docs/methodology/data_provenance_audit.md`；
+- 字段说明见 `docs/methodology/data_dictionary.md`；
+- 参考文献与逐层引用见 `docs/methodology/source_citation_appendix.md` / `.csv`；
+- 方法与限制说明见 `docs/methodology/methods_and_limitations.md`。
 
-Issue 分工表见：`docs/work_board.md`。新增 stretch 分配表见 `docs/stretch_issue_assignment_board.md`。组长可以在 GitHub 上把 #2–#7 分别 assign 给六位成员。A 的贡献记录见 `docs/report/contribution_A.md`，A 的质量系统见 `docs/a_lead_quality_system.md`，PR review 合并标准见 `docs/pr_review_rubric.md`，最终分工证据表见 `docs/contribution_evidence_ledger.md`。队友可以直接按 `docs/module_handoff_cards.md` 做模块增强；如果想继续提高完成度，按 `docs/quality_upgrade_plan.md` 中的模块级优化清单补发现、案例和限制。额外增强板块见 `docs/stretch_backlog.md`，持续提 feature / 开 Issue / PR 完成的循环见 `docs/feature_iteration_system.md`；已补充的材料包括 `docs/time_recognition_lag_handoff.md`、`docs/time_micro_annotations.md`、`docs/award_lifecycle_analysis.md`、`docs/venue_field_handoff.md`、`docs/venue_field_imbalance_caveats.md`、`docs/venue_year_case_studies.md`、`docs/topic_evolution_handoff.md`、`docs/manual_topic_audit_top12.md`、`docs/evidence_cards_top12.md`、`docs/story_builder_board.md`、`docs/methods_and_limitations.md`、`docs/presentation_pack.md`、`docs/final_presentation_blueprint.md`、`docs/defense_qa_pack.md`、`docs/glossary_metric_explainer.md`、`docs/slide_visual_consistency_audit.md`、`docs/final_submission_packaging_checklist.md`、`docs/final_integration_dry_run_log.md`、`docs/contribution_evidence_ledger.md`、`docs/network_visual_presentation_handoff.md` 和 `docs/qr_online_demo_handoff.md`。评分点覆盖关系见 `docs/grading_rubric_full_score_mapping.md`。最终报告可从 `docs/report/report_skeleton.md` 开始填，Story Builder 叙事板见 `docs/story_builder_board.md`，展示讲稿见 `docs/demo_script.md`，答辩问答准备见 `docs/defense_qa_pack.md`，术语解释见 `docs/glossary_metric_explainer.md`，最终整合检查见 `docs/final_qa_checklist.md`；提交前打包可按 `docs/final_submission_packaging_checklist.md` 和 dry-run log 逐项检查。
+报告与页面中，`citation_count`、`impact_breadth_score`、institution/country counts 均表述为公开元数据下的近似观察，而不是官方评奖原因、完整引用网络或跨领域绝对排名。各模块的数据质量核查与案例分析笔记保存在 `docs/` 下对应的 `*_audit` / `*_case` / `*_notes` 文档中。
+
+## 人工标注
+
+`manual_annotations/` 中是代表论文的人工补充标注（DOI、论文页、一句话贡献、evidence URL），用于网页中的论文详情卡和展示案例；Top 12 代表论文的人工核查见 `docs/analysis/manual_topic_audit_top12.md` 和 `docs/analysis/evidence_cards_top12.md`。
+
+## 小组分工
+
+详细分工与各成员贡献见：`docs/project/team_division.md` 和 `docs/report/` 下的小报告。
 
 | 成员 | 模块 | 主要任务 |
 |---|---|---|
-| A | 项目架构 / 全站 baseline / 队友减负 / GitHub 协作与最终整合 | GitHub 仓库与 PR 工作流、Issues 分工、全站 D3 baseline、队友任务卡、报告骨架、展示脚本、code review、最终整合和 QA |
+| A | 项目架构 / 全站 baseline / GitHub 协作与最终整合 | 仓库与协作流程、全站 D3 baseline、报告骨架、code review、最终整合和 QA |
 | B | 时间线与 recognition lag | 分析发表年、获奖年、recognition lag，做时间线和分布图 |
 | C | 会议 / 领域分布 | 分析 venue、venue_area，做会议排名、领域分布、热力图 |
 | D | 主题演化 | 分析 topic_label / concepts，做主题演化和代表论文卡片 |
 | E | 引用轨迹与影响深度/广度 | 分析 citation trajectory、citation count、impact breadth |
 | F | 作者机构网络 / 视觉 / PPT | 做机构网络、国家分布、统一视觉风格、准备展示 PPT |
 
-
-## 队友最快开始方式
-
-如果只想快速进入自己的任务：
-
-1. 先看 `docs/module_handoff_cards.md`，找到自己的 B-F 模块任务卡；
-2. 按任务卡确认已有 baseline、主要数据文件、最低交付和可写进报告的句式；
-3. 改完后按 PR 模板提交；
-4. 报告阶段直接填 `docs/report/report_skeleton.md` 对应模块。
-
-A 会负责主线、review、整合和最终 QA，保证各模块能拼成同一个完整网页故事。
-
-## 推荐网页结构
-
-1. Opening：项目引入和数据概览；
-2. Time：时间检验奖一般多久后颁发；
-3. Venue & Field：哪些会议/领域更容易产生长期影响；
-4. Topic Evolution：长期影响论文的主题如何变化；
-5. Citation & Recognition：高引用是否等于经得起时间检验；
-6. Paper Explorer：检索、排序并定位代表论文证据；
-7. Benchmark Lab：解释选中论文相对全数据和同领域的位置；
-8. Impact Network：长期影响如何跨作者、机构、国家扩散。
-
-## 数据使用说明
-
-优先使用 `data/` 目录下的 CSV 文件。每个成员做图时，请在 PR 里说明：
-
-- 使用了哪些数据文件；
-- 使用了哪些字段；
-- 图表回答了哪个问题；
-- 得到了哪些主要发现。
-
-字段说明见：`docs/data_dictionary.md`。提交前的数据文件行数、模块用途、必备字段和安全表述边界见 `docs/data_readiness_matrix.md`。数据来源层级、proxy 指标边界和最终报告推荐口径见：`docs/data_provenance_audit.md`；最终参考文献和 slide source note 可按 `docs/source_citation_appendix.md` / `.csv` 把 award seed、paper pages、OpenAlex metadata、derived tables 和 manual evidence 分层引用。模块与代表论文证据覆盖状态见 `docs/evidence_coverage_matrix.md`，可用于确认哪些 claims 已可谨慎展示、哪些仍需人工核查。写报告时请把 `citation_count`、`impact_breadth_score`、institution/country counts 写成公开元数据下的近似观察，不要写成官方评奖原因、完整引用网络或跨领域绝对排名。
-
-## 手工补充任务
-
-`manual_annotations/` 中有 Top 60 代表论文的待补充表，也有 `manual_paper_annotations_top12_evidence_ready.csv` 作为已补 DOI/论文页/一句话贡献的代表案例起点。手工补充主要用于网页中的论文详情卡和展示案例。
-
-补充时注意：
-
-- 内容尽量简洁，适合放进网页；
-- 重要判断尽量附 evidence_url；
-- 不确定的影响不要硬写；
-- 主题标签尽量统一。
-
-## 提交前检查
-
-每个 PR 合并前请检查：
-
-- 图表能正常打开；
-- 数据路径使用相对路径，不要写本地绝对路径；
-- 图表标题、caption、tooltip 能让人看懂；
-- 主要发现有文字说明；
-- 没有提交 `.DS_Store`、缓存、临时文件、无关大文件；
-- PR 描述写清楚改了什么。
-
-仓库已提供 PR 模板：`.github/pull_request_template.md`。最终提交前按 `docs/final_qa_checklist.md` 做整体验证。
-
 ## 最终目标
 
-最终作品应该呈现为一个完整的数据故事，避免只是几个图表拼在一起：
+最终作品呈现为一个完整的数据故事，而不是几个图表的拼接：
 
 > 用可视化解释：哪些计算机研究真正经得起时间检验，以及这种长期影响力如何在时间、领域、主题、引用和合作网络中体现出来。

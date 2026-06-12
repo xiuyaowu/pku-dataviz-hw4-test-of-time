@@ -111,13 +111,13 @@ IR 社区重视"Test of Time"文化。SIGIR 专门设立了自己的长期影响
 
 ## 7. C 模块最终人工检查清单
 
-- [ ] 打开 2–3 篇代表论文链接，核对题名、venue、年份和一句话贡献。
-- [ ] 若使用 venue 数量榜或 field × decade heatmap，先查看 `docs/venue_source_traceability_audit.csv` 的 source / OpenAlex 覆盖和 safe wording boundary。
-- [ ] 若写最终参考文献或 slide source note，先查看 `docs/source_citation_appendix.csv`，把 award seed、OpenAlex metadata、paper pages 和 manual evidence 分开引用。
-- [ ] 若比较 venue counts，补查 `docs/venue_normalization_count_guide.csv` 的 publication-span / award-window denominator，并在报告或 PPT 中至少写一句 denominator caveat。
-- [ ] 若把 Venue/Field 和 Topic Evolution 联动，先查看 `docs/topic_venue_crosswalk.csv`，只选择 2–3 个代表性交叉行，并保留"当前数据可见交叉"的表述边界。
+- 打开 2–3 篇代表论文链接，核对题名、venue、年份和一句话贡献。
+- 若使用 venue 数量榜或 field × decade heatmap，先查看 `docs/analysis/venue_source_traceability_audit.csv` 的 source / OpenAlex 覆盖和 careful wording boundary。
+- 若写最终参考文献或 slide source note，先查看 `docs/methodology/source_citation_appendix.csv`，把 award seed、OpenAlex metadata、paper pages 和 manual evidence 分开引用。
+- 若比较 venue counts，补查 `docs/analysis/venue_normalization_count_guide.csv` 的 publication-span / award-window denominator，并在报告或 PPT 中至少写一句 denominator caveat。
+- 若把 Venue/Field 和 Topic Evolution 联动，先查看 `docs/analysis/topic_venue_crosswalk.csv`，只选择 2–3 个代表性交叉行，并保留"当前数据可见交叉"的表述边界。
 - [x] 如果报告提到某 venue/area 的原因，补一句"当前数据可见分布 / award coverage"边界。
 - [x] 不使用"官方排名""最强会议""最有价值领域"等绝对化表述。
-- [ ] 和 Topic 模块联动时，只说"领域入口"和"主题线索"，不要把 venue\_area 等同于论文真实主题。
+- 和 Topic 模块联动时，只说"领域入口"和"主题线索"，不要把 venue\_area 等同于论文真实主题。
 - [x] 若展示 field × decade heatmap，口头说明早期年代样本量较小，不能过度比较。
 

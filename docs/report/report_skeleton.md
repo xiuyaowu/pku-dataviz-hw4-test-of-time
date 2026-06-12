@@ -18,13 +18,13 @@
 4. 引用与扩散：高引用是否等同于经得起时间检验？影响深度和广度有何差别？
 5. 证据索引：能否从 250 篇论文中快速找到可解释的代表案例？
 6. 单篇基准：某篇论文相对全数据集和同领域论文处在什么位置？
-7. 机构与国家网络：长期影响如何在研究机构和地区之间分布？Network 具体案例可从 `docs/network_ecosystem_case_notes.md` / `.csv` 选择，用于把 aggregate pattern 转成可解释的论文例子。
+7. 机构与国家网络：长期影响如何在研究机构和地区之间分布？Network 具体案例可从 `docs/analysis/network_ecosystem_case_notes.md` / `.csv` 选择，用于把 aggregate pattern 转成可解释的论文例子。
 
 ## 2. 数据来源与处理
 
-本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。Best Paper 与 Test of Time 的概念对照见 `docs/best_paper_vs_test_of_time_framing.md`：本项目只做定性 framing，不在缺少完整 Best Paper baseline 时声称二者存在定量差异。
+本项目使用 LCS2-IIITD/influence-dispersion 仓库中的 Test of Time Award 论文记录作为获奖论文 seed，并结合 OpenAlex 等公开学术元数据进行补充。当前前端使用 250 篇可用论文，发表年份约覆盖 1974–2008，获奖年份约覆盖 1989–2018。核心字段包括论文标题、作者、发表年份、获奖年份、会议、领域标签、引用轨迹、影响广度近似指标、机构和国家/地区信息。Best Paper 与 Test of Time 的概念对照见 `docs/methodology/best_paper_vs_test_of_time_framing.md`：本项目只做定性 framing，不在缺少完整 Best Paper baseline 时声称二者存在定量差异。
 
-需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/data_provenance_audit.md`；Time 数据质量审计见 `docs/time_data_quality_audit.md` / `.csv`，其中确认当前 250 行均有可计算的 publication-year、announcement-year 和 matching recognition lag；术语速查和 proxy 指标安全讲法见 `docs/glossary_metric_explainer.md`；不确定性和 proxy-confidence 统一检查见 `docs/uncertainty_proxy_confidence_playbook.md`；获奖年前后 citation-window 分析见 `docs/award_lifecycle_analysis.md`，其中把 citation trajectory 对齐到获奖年 `t=0` 但明确不作因果解释；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`；模块与 Top 12 代表论文的证据覆盖审计见 `docs/evidence_coverage_matrix.md`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
+需要说明的是，citation count、citation trajectory、impact breadth、institution/country distribution 均基于公开元数据整理，适合作为可视化分析中的近似指标，但不应被解释为官方评奖原因或完整因果结论。尤其是 impact breadth 来自 OpenAlex citing works 抽样和字段统计，只能作为“扩散范围”的 proxy。完整指标口径见 `docs/methodology/data_provenance_audit.md`；Time 数据质量审计见 `docs/analysis/time_data_quality_audit.md` / `.csv`，其中确认当前 250 行均有可计算的 publication-year、announcement-year 和 matching recognition lag；术语速查和 proxy 指标安全讲法见 `docs/methodology/glossary_metric_explainer.md`；不确定性和 proxy-confidence 统一检查见 `docs/methodology/uncertainty_proxy_confidence_playbook.md`；获奖年前后 citation-window 分析见 `docs/analysis/award_lifecycle_analysis.md`，其中把 citation trajectory 对齐到获奖年 `t=0` 但明确不作因果解释；代表论文的 DOI / ACM / IEEE / PDF 证据见 `docs/analysis/evidence_cards_top12.md` 和 `manual_annotations/manual_paper_annotations_top60_template.csv`。最终写作时应区分 award seed、public metadata、derived metrics 和 manual annotation 四个层级。
 
 ### 2.1 数据来源与指标口径审计摘要
 
@@ -39,7 +39,7 @@
 
 ## 3. 可视化设计
 
-网页采用单页滚动式叙事结构：Opening summary 先给出数据概览，再依次进入 Time、Venue & Field、Topic Evolution、Citation & Recognition、Paper Explorer、Benchmark Lab、Story Builder、Impact Network。每个模块包含图表、hover tooltip、reading note、claim cards 或代表论文详情卡，使读者既能看到总体模式，也能回到具体论文案例。Story Builder 的文档版叙事板见 `docs/story_builder_board.md`，其中把 10 条主要 claim 映射到 evidence source、owner issue、safe wording boundary 和最终人工检查项；最终写报告或做 PPT 前，再用 `docs/final_report_figure_evidence_index.md` / `.csv` 检查每个图表对应的截图、数据文件、报告段落和 safe wording boundary，并用 `docs/final_report_claim_bank.md` / `.csv` 选择可直接写进最终报告的 A-F claim。
+网页采用单页滚动式叙事结构：Opening summary 先给出数据概览，再依次进入 Time、Venue & Field、Topic Evolution、Citation & Recognition、Paper Explorer、Benchmark Lab、Story Builder、Impact Network。每个模块包含图表、hover tooltip、reading note、claim cards 或代表论文详情卡，使读者既能看到总体模式，也能回到具体论文案例。
 
 设计目标不是把所有指标堆在一起，而是让读者沿着一条报告主线阅读：长期影响先表现为时间上的延迟确认，再落入不同学术社区和主题结构，随后通过引用深度、跨领域扩散和机构网络形成可追踪的影响痕迹。
 
@@ -49,7 +49,7 @@
 
 负责人：B
 
-详细 handoff：`docs/time_recognition_lag_handoff.md` 已整理 Time 模块的统一定义、核心统计、3 篇代表论文候选、年代差异草稿、可复制报告段落和人工检查清单。Issue #55 的 outlier case notes 见 `docs/recognition_lag_outlier_cases.md` / `.csv`，其中补充了 short / typical / long lag 的 6 个候选案例、展示话术和 safe wording。Issue #98 的 Time demo claim cards 见 `docs/time_module_demo_claim_cards.md` / `.csv`，可把 Time 小节每条展示句追溯到 evidence source、chart/report use、safe boundary 和 remaining human check。Issue #112 的 award-era cohort comparison 见 `docs/award_era_cohort_comparison.md` / `.csv`，可用于解释不同发表年代的 observed recognition window，并提醒 award-history / right-censoring 限制。Issue #118 的 Time data quality audit 见 `docs/time_data_quality_audit.md` / `.csv`，可用于报告开头说明 recognition-lag 计算覆盖、source coverage 和 lag sanity check。
+Time 模块的统一定义、核心统计、代表论文候选与年代差异说明已整理进本节。outlier case notes 见 `docs/analysis/recognition_lag_outlier_cases.md` / `.csv`，其中补充了 short / typical / long lag 的 6 个候选案例、展示讲解要点和 careful wording。award-era cohort comparison 见 `docs/analysis/award_era_cohort_comparison.md` / `.csv`，可用于解释不同发表年代的 observed recognition window，并提醒 award-history / right-censoring 限制。Time data quality audit 见 `docs/analysis/time_data_quality_audit.md` / `.csv`，可用于报告开头说明 recognition-lag 计算覆盖、source coverage 和 lag sanity check。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
@@ -66,17 +66,17 @@
 
 负责人：C
 
-详细 handoff：`docs/venue_field_handoff.md` 已整理 Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示、代表论文候选、可复制报告段落和人工检查清单。Issue #57 的解释边界见 `docs/venue_field_imbalance_caveats.md`，其中把 Top 3 / Top 6 venue 集中度和 Top 5 venue-area 占比整理成可复制的 caveats。具体 venue-year 案例见 `docs/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示；Issue #106 的 `docs/venue_year_evidence_cards.md` / `.csv` 进一步补充 8 张 report/PPT evidence cards、source URL、safe wording 和 final human-check 字段。Venue source traceability audit 见 `docs/venue_source_traceability_audit.md` / `.csv`，用于检查每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和安全表述边界；venue normalization/count guide 见 `docs/venue_normalization_count_guide.md` / `.csv`，用于给 raw count 增加 publication-span / award-window denominator 读法。
+Venue & Field 模块的 Top venues、Top venue areas、field × decade 读图提示和代表论文候选已整理进本节。解释边界见 `docs/analysis/venue_field_imbalance_caveats.md`，其中把 Top 3 / Top 6 venue 集中度和 Top 5 venue-area 占比整理成可复制的 caveats。具体 venue-year 案例见 `docs/analysis/venue_year_case_studies.md` / `.csv`，可把 SIGCOMM 1988、ICCV 1999、SIGIR 1999 等 cluster 用于报告或展示；`docs/analysis/venue_year_evidence_cards.md` / `.csv` 进一步补充 8 张 report/PPT evidence cards、source URL、careful wording 和 final human-check 字段。Venue source traceability audit 见 `docs/analysis/venue_source_traceability_audit.md` / `.csv`，用于检查每个 venue cluster 的 source URL、paper URL、OpenAlex 覆盖和谨慎表述边界；venue normalization/count guide 见 `docs/analysis/venue_normalization_count_guide.md` / `.csv`，用于给 raw count 增加 publication-span / award-window denominator 读法。
 
-Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of_time_framing.md`。建议在引言或 Venue & Field 小节使用一句话说明：Best Paper 是发表当下的优秀信号，Test of Time 是多年后的长期确认信号；当前数据支持后者的长期影响分析，而不是完整 Best Paper 定量比较。
+Best Paper vs Test of Time framing 见 `docs/methodology/best_paper_vs_test_of_time_framing.md`。建议在引言或 Venue & Field 小节使用一句话说明：Best Paper 是发表当下的优秀信号，Test of Time 是多年后的长期确认信号；当前数据支持后者的长期影响分析，而不是完整 Best Paper 定量比较。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | Test of Time 论文在少数会议中较集中，但这种集中更像奖项记录密度，不等同于会议质量排名。 | Top venues：SIGIR 35 篇、SIGCOMM 33 篇、ICSE 29 篇、ICCV 24 篇、SIGMOD 24 篇、VLDB 20 篇。 | 不同社区记录长期影响的制度差异会改变可见数量。 | 会议设奖历史、收录范围、数据源完整性都会影响数量。 |
 | Finding 2 | Database、Networking、IR、Software Engineering、CV 是当前数据中最主要的领域入口。 | Top venue areas：Database 44、Networking 38、IR 35、Software Engineering 29、CV 24。 | 这些领域既有强系统/基础设施传统，也有清晰的顶会奖项记录，因此在 Test of Time 数据里更容易形成可见轨迹。 | 数量分布不能说明其他领域缺少长期影响论文，只能说明当前奖项数据覆盖。 |
 | Case | 不同领域的 recognition lag 可能反映奖项机制和研究吸收节奏的差异。 | Database 平均 lag 约 10.1 年，IR 约 19.8 年，CV 约 16.2 年，AI 约 18.6 年。 | 可以比较“系统/数据库较快确认”和“IR/CV/AI 更长回看窗口”的可能原因。 | 需要结合各会议奖项设立年份，避免把制度差异误写成学科本质差异。 |
-| Case | Venue-year evidence cards 能把数量榜变成具体证据链。 | `docs/venue_year_evidence_cards.csv` 覆盖 8 个 cards：SIGCOMM 1988、SIGIR 1988、ICCV 1999、ICCV 2003、FAST 2002、SIGIR 1999、SIGMOD 1996、NSDI 2005。 | 报告可选 2–3 个 cluster 解释“为什么这些社区在数据中可见”。 | 只说 representative cluster，不说 best year / strongest venue；贡献描述需人工核查 award citation。 |
-| Boundary check | Raw venue counts 需要 denominator caveat。 | `docs/venue_normalization_count_guide.csv` 记录 27 个 venue 的 publication span、award window、count per publication-span year 和 count per award-window year。 | 报告可以先用 raw count 展示可见度，再补一句“不同 venue 的可见发表窗口和 award window 不同”。 | normalization guide 是解释辅助，不是新的官方排名。 |
+| Case | Venue-year evidence cards 能把数量榜变成具体证据链。 | `docs/analysis/venue_year_evidence_cards.csv` 覆盖 8 个 cards：SIGCOMM 1988、SIGIR 1988、ICCV 1999、ICCV 2003、FAST 2002、SIGIR 1999、SIGMOD 1996、NSDI 2005。 | 报告可选 2–3 个 cluster 解释“为什么这些社区在数据中可见”。 | 只说 representative cluster，不说 best year / strongest venue；贡献描述需人工核查 award citation。 |
+| Boundary check | Raw venue counts 需要 denominator caveat。 | `docs/analysis/venue_normalization_count_guide.csv` 记录 27 个 venue 的 publication span、award window、count per publication-span year 和 count per award-window year。 | 报告可以先用 raw count 展示可见度，再补一句“不同 venue 的可见发表窗口和 award window 不同”。 | normalization guide 是解释辅助，不是新的官方排名。 |
 
 可扩写段落：
 
@@ -86,15 +86,14 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：D
 
-详细 handoff：`docs/topic_evolution_handoff.md` 已整理 Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正、3 条可写入报告的 findings、60 秒展示话术和 topic label 写作边界。Issue #59 的 Top 12 manual topic audit 见 `docs/manual_topic_audit_top12.md` / `docs/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。Issue #60 的 topic-shift narrative packet 见 `docs/topic_shift_narrative.md` / `docs/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 D-owner 最终核查项。Issue #47 的 contribution archetype taxonomy 见 `docs/research_archetype_taxonomy.md` / `.csv`，可用于把 topic 发现扩写为“可复用算法、建模框架、测量模型、系统/协议、基础理论等贡献形态如何留下来”。Issue #114 的 topic presentation case shortlist 见 `docs/topic_presentation_case_shortlist.md` / `.csv`，可直接挑 3–4 个 slide/report 代表案例。Issue #100 的 topic × venue crosswalk 见 `docs/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来。Issue #120 的 topic-label consistency check 见 `docs/topic_label_consistency_check.md` / `.csv`，用于把 aggregate automatic topic bucket 与 paper-level manual topic 区分开。
+Topic Evolution 模块的 Top topics、decade-level 主题迁移、代表论文人工 topic 修正和 topic label 写作边界已整理进本节。Top 12 manual topic audit 见 `docs/analysis/manual_topic_audit_top12.md` / `docs/analysis/manual_topic_audit_top12.csv`，其中把 API topic 与人工 topic 分成 aligned / corrected / needs review。topic-shift narrative packet 见 `docs/analysis/topic_shift_narrative.md` / `docs/analysis/topic_shift_narrative_cases.csv`，其中补充了 decade-level snapshot、3 条安全观察、代表论文候选和 module owner 最终核查项。contribution archetype taxonomy 见 `docs/analysis/research_archetype_taxonomy.md` / `.csv`，可用于把 topic 发现扩写为“可复用算法、建模框架、测量模型、系统/协议、基础理论等贡献形态如何留下来”。topic × venue crosswalk 见 `docs/analysis/topic_venue_crosswalk.md` / `.csv`，用于把 topic 发现和 Venue/Field 的 award-community 可见性连接起来。topic-label consistency check 见 `docs/analysis/topic_label_consistency_check.md` / `.csv`，用于把 aggregate automatic topic bucket 与 paper-level manual topic 区分开。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 长期影响论文并不集中在单一技术主题，而是覆盖系统、数据挖掘、视觉、NLP、理论等多个方向。 | Top topics：Database / Systems 67 篇、Data Mining / Web 46 篇、Computer Vision 43 篇、NLP 26 篇、Machine Learning Theory 18 篇。 | Test of Time 不是单一领域现象，而是跨社区的长期知识沉淀。 | topic_label 来自规则/API 元数据，需要对重点论文做人工校正。 |
 | Finding 2 | Computer Vision 的平均 citation count 和 impact breadth 都较高，适合作为“高引用 + 广扩散”主题案例。 | Computer Vision：43 篇，平均 citation count 约 2848.7，平均 breadth 约 61.24；Data Mining / Web 平均 breadth 约 58.41。 | 视觉和数据挖掘类方法更容易通过数据集、算法范式或工具链进入多个应用场景。 | 高引用受领域规模和引用习惯影响，不能直接等同于贡献更大。 |
 | Case | 高引用代表论文可以作为主题解释入口。 | `A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise` citation 19133；`Snakes: Active Contour Models` citation 17009；`Object Recognition from Local Scale-Invariant Features` citation 16147。 | 这些案例适合解释聚类、轮廓模型、局部特征等方法如何成为后续研究共同语言；Top 12 证据卡已补 DOI/论文页和一句话贡献，可直接作为报告案例草稿。 | 最终报告仍需人工确认 award citation 与具体贡献表述，避免只引用自动统计。 |
-| Case shortlist | Topic 展示案例可以从一张清单中选择，而不是临场翻 Top 12。 | `docs/topic_presentation_case_shortlist.csv` 覆盖 8 个手工优先 topic label、venue/year、citation、breadth、lag、evidence URL 和 slide use。 | 报告/PPT 可选 3–4 个案例覆盖 data mining、vision、database、information theory、PL、IR、networking 等方向。 | shortlist 是展示候选，最终仍需打开 evidence URL；topic label 不是官方 taxonomy。 |
-| Bridge | Topic × venue crosswalk 可以把主题发现连接到学术共同体可见性。 | `docs/topic_venue_crosswalk.csv` 覆盖 83 个 venue-area × topic-label 交叉行，其中 26 个至少有 3 篇论文。 | 报告可选 2–3 行解释“技术主题如何通过某些 award communities 被记录下来”。 | 交叉行是当前数据可见模式，不是 venue 质量排名或官方 topic taxonomy。 |
+| Bridge | Topic × venue crosswalk 可以把主题发现连接到学术共同体可见性。 | `docs/analysis/topic_venue_crosswalk.csv` 覆盖 83 个 venue-area × topic-label 交叉行，其中 26 个至少有 3 篇论文。 | 报告可选 2–3 行解释“技术主题如何通过某些 award communities 被记录下来”。 | 交叉行是当前数据可见模式，不是 venue 质量排名或官方 topic taxonomy。 |
 
 可扩写段落：
 
@@ -120,14 +119,14 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：E
 
-详细 handoff：`docs/citation_impact_handoff.md` 已整理 Citation & Impact 模块的 depth / trajectory / breadth 统一定义、核心统计、四象限代表论文、60 秒展示话术和 OpenAlex proxy 写作边界；Issue #61 的 citation trajectory 分类候选见 `docs/citation_trajectory_archetypes.md` / `.csv`；Issue #110 的 final case-selection risk register 见 `docs/final_case_selection_risk_register.md` / `.csv`，用于在最终 report/PPT 中优先选择低风险代表案例，并标出 backup cases 的人工核查项；Issue #116 的 citation metric sensitivity notes 见 `docs/citation_metric_sensitivity_notes.md` / `.csv`，用于解释 citation depth、impact breadth 和 recognition lag 何时一致、何时分歧；Issue #124 的 final evidence verification queue 见 `docs/final_evidence_verification_queue.md` / `.csv`，用于把 Top 12 代表论文拆成 ready-cautious、verify-before-final 和 avoid-without-extra-evidence 三类最终人工检查队列。
+Citation & Impact 模块的 depth / trajectory / breadth 统一定义、核心统计、四象限代表论文和 OpenAlex proxy 写作边界已整理进本节。citation trajectory 分类候选见 `docs/analysis/citation_trajectory_archetypes.md` / `.csv`；citation metric sensitivity notes 见 `docs/analysis/citation_metric_sensitivity_notes.md` / `.csv`，用于解释 citation depth、impact breadth 和 recognition lag 何时一致、何时分歧；
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 高引用论文经常也是 Test of Time 代表案例，但 citation depth 只能说明被大量引用，不能完整说明“为何经得起时间检验”。 | Top citation papers 包括 DBSCAN 19133、Snakes 17009、SIFT 16147、Association Rules 14771。 | 引用深度可作为影响强度入口，但需要结合方法贡献、应用扩散和 award citation 解释。 | 不同领域引用习惯差异明显，citation count 不能跨领域直接比较价值。 |
 | Finding 2 | 影响广度提供了不同于引用总量的视角：有些论文引用不是最高，但 citing field / institution / country 范围很宽。 | Top breadth：`Graphs over Time` breadth 87.38；`Multitasking without compromise` 86.5；`YAGO` 85.88；`Factorization meets the neighborhood` 84.88。 | depth × breadth 可以区分“在本领域被密集引用”和“跨领域扩散”的不同长期影响形态。 | breadth 来自 OpenAlex 抽样 citing works，是近似指标，不是完整 citation graph。 |
 | Case | 数据库/数据挖掘案例适合说明“方法成为通用工具”的长期影响。 | `Mining Association Rules Between Sets of Items in Large Databases` citation 14771；`Fast Algorithms for Mining Association Rules` citation 9384；`YAGO` breadth 85.88。 | 这些论文可以讲成从具体算法/知识库到后续数据挖掘和 Web 生态的扩散；association rule 两个代表案例已在证据卡中补入 ACM/VLDB 链接。 | 工业影响或基础设施影响必须有 evidence URL 支撑，不能只靠引用数推断。 |
-| Sensitivity | depth、breadth、lag 不总是给出同一种排序。 | `docs/citation_metric_sensitivity_notes.csv` 覆盖 high depth + high breadth、high depth + moderate breadth、moderate depth + high breadth、long recognition lag、proxy-limited examples。 | 报告可把分歧写成“不同 proxy 回答不同问题”，提升 Citation 模块的防守性。 | 不把 metric mismatch 写成论文优劣判断；OpenAlex sampled proxy 不能代表完整引用网络。 |
+| Sensitivity | depth、breadth、lag 不总是给出同一种排序。 | `docs/analysis/citation_metric_sensitivity_notes.csv` 覆盖 high depth + high breadth、high depth + moderate breadth、moderate depth + high breadth、long recognition lag、proxy-limited examples。 | 报告可把分歧写成“不同 proxy 回答不同问题”，提升 Citation 模块的防守性。 | 不把 metric mismatch 写成论文优劣判断；OpenAlex sampled proxy 不能代表完整引用网络。 |
 
 可扩写段落：
 
@@ -145,7 +144,7 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 |---|---|---|---|---|
 | Finding 1 | Explorer 把 250 篇论文变成可检索证据库，适合支撑报告中的“代表案例从哪里来”。 | 页面支持 title / venue / topic / field 搜索，支持按 citation、breadth、lag、year 排序。 | 报告中可以说明案例不是临时挑选，而是从统一数据表中筛选。 | Explorer 是检索和展示工具，不替代人工阅读论文。 |
 | Finding 2 | 排序和筛选可以帮助不同模块快速找到各自案例。 | Time 可按 lag 排序；Topic 可按 topic/field 过滤；Citation 可按 citation 或 breadth 排序。 | 这减少了小组协作中的重复找资料成本，也让展示问答时可以快速回查。 | 搜索结果依赖已有元数据和 topic_label，缺失字段需手工补充。 |
-| Case | 课堂展示时可用 Explorer 快速定位 DBSCAN、SIFT、AODV、Network Information Flow 等代表论文。 | 这些论文分别对应高引用、视觉方法、网络协议和理论框架扩散。 | 适合作为现场互动：从整体模式跳到单篇论文，再回到模块结论；`docs/evidence_cards_top12.md` 给出每篇的代表性理由和证据链接。 | 代表性判断需要在最终报告中写清选择标准，且人工确认后再写工业/落地影响。 |
+| Case | 课堂展示时可用 Explorer 快速定位 DBSCAN、SIFT、AODV、Network Information Flow 等代表论文。 | 这些论文分别对应高引用、视觉方法、网络协议和理论框架扩散。 | 适合作为现场互动：从整体模式跳到单篇论文，再回到模块结论；`docs/analysis/evidence_cards_top12.md` 给出每篇的代表性理由和证据链接。 | 代表性判断需要在最终报告中写清选择标准，且人工确认后再写工业/落地影响。 |
 
 ### 4.6 Benchmark Lab：单篇论文相对位置解释
 
@@ -161,14 +160,14 @@ Issue #50 的 Best Paper vs Test of Time framing 见 `docs/best_paper_vs_test_of
 
 负责人：F
 
-Network / Visual / Presentation 的集中交付见 `docs/network_visual_presentation_handoff.md`，其中包含 F 模块 60–70 秒展示路线、截图对应表和 Issue #7 验收映射。机构/国家 attribution 的覆盖率、case rows 和 safe wording 见 `docs/institution_country_attribution_audit.md` / `.csv`。
+机构/国家 attribution 的覆盖率、case rows 和 careful wording 见 `docs/analysis/institution_country_attribution_audit.md` / `.csv`。
 
 | 类型 | Draft finding / case | 数据证据 | 报告解释方向 | 边界 |
 |---|---|---|---|---|
 | Finding 1 | 长期影响论文在少数北美研究机构中高度可见。 | Top institutions：UC Berkeley 17、CMU 15、Stanford 14、MIT 11；Cornell、IBM Research - Almaden、IBM、UMass Amherst 各 8。 | 这反映了顶级研究机构和工业研究实验室在长期影响论文中的重要位置。 | institution metadata 存在缺失、归并和署名误差，不宜写成完整机构排名。 |
 | Finding 2 | 国家/地区分布以美国为主，但加拿大、英国、德国等也有较高可见度。 | Country stats：US 170、CA 20、GB 16、DE 11、IL 5。 | 长期影响论文的生产和传播具有明显的研究生态集中性，同时仍存在跨国扩散。 | country 统计基于作者机构元数据，不能完整反映合作网络和实际贡献比例。 |
 | Case | 工业研究机构和大学共同出现，适合展示 CS 长期影响中的产学研混合生态。 | IBM Research - Almaden 8，IBM (United States) 8，与 Berkeley/CMU/Stanford/MIT 等大学并列在前列。 | 可在展示中说明系统、数据库、网络等方向常见大学与工业实验室共同推动。 | 工业影响强弱需要额外证据，不能只由机构名推断。 |
-| Case | institution / country attribution audit 可把覆盖率问题转成可回答的答辩材料。 | `docs/institution_country_attribution_audit.csv` 提供 multi-institution、international、industry-visible、sparse-metadata 和 non-US case rows。 | 报告可先写 aggregate pattern，再用 1 个具体 case 和 1 个 sparse-metadata case 展示边界。 | 只说 public metadata visibility，不说完整机构排名、国家实力排名或工业落地。 |
+| Case | institution / country attribution audit 可把覆盖率问题转成可回答的答辩材料。 | `docs/analysis/institution_country_attribution_audit.csv` 提供 multi-institution、international、industry-visible、sparse-metadata 和 non-US case rows。 | 报告可先写 aggregate pattern，再用 1 个具体 case 和 1 个 sparse-metadata case 展示边界。 | 只说 public metadata visibility，不说完整机构排名、国家实力排名或工业落地。 |
 
 可扩写段落：
 
@@ -211,14 +210,14 @@ Network / Visual / Presentation 的集中交付见 `docs/network_visual_presenta
 
 ## 7.1 写作口径检查表
 
-术语解释和替代表统一参考：`docs/glossary_metric_explainer.md`。
+术语解释和替代表统一参考：`docs/methodology/glossary_metric_explainer.md`。
 
-- [ ] “recognition lag” 写成获奖确认时间间隔，不写成影响产生时间。
-- [ ] “citation depth” 写成引用规模入口，不写成论文重要性的唯一标准。
-- [ ] “impact breadth” 始终带有 OpenAlex sample / proxy / approximate 边界。
-- [ ] Venue 数量、institution 数量、country 数量只写成当前数据中的可见分布，不写成质量排名或贡献排名。
-- [ ] 代表论文的贡献、工业影响、基础设施落地必须附 evidence URL；未核查时保留为待核查案例。
-- [ ] 结论使用“显示 / 提示 / 反映 / 可观察到”，避免“证明 / 导致 / 决定获奖”。
+- “recognition lag” 写成获奖确认时间间隔，不写成影响产生时间。
+- “citation depth” 写成引用规模入口，不写成论文重要性的唯一标准。
+- “impact breadth” 始终带有 OpenAlex sample / proxy / approximate 边界。
+- Venue 数量、institution 数量、country 数量只写成当前数据中的可见分布，不写成质量排名或贡献排名。
+- 代表论文的贡献、工业影响、基础设施落地必须附 evidence URL；未核查时保留为待核查案例。
+- 结论使用“显示 / 提示 / 反映 / 可观察到”，避免“证明 / 导致 / 决定获奖”。
 
 ## 8. 结论
 
@@ -235,9 +234,3 @@ Network / Visual / Presentation 的集中交付见 `docs/network_visual_presenta
 - E：Citation & Impact 模块分析与报告小节，重点解释 depth / breadth / trajectory 的差异。
 - F：Network / Visual / Presentation 模块分析与展示材料，重点整理机构国家发现和最终展示稿。
 
-## 10. 待人工完成的小项
-
-- Top 12 代表论文已补 DOI/论文页/辅助证据链接；最终采用前需人工打开核对 award citation、贡献解释和展示用中文表述。
-- B-F 各自确认本模块 2–3 条 findings 是否与人工阅读一致。
-- 将本骨架压缩成课程要求的最终报告篇幅。
-- 把 `docs/presentation_pack.md` 转成最终 PPT 或演讲稿。
